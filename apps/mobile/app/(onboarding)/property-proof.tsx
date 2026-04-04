@@ -1,0 +1,270 @@
+import { useState, useRef } from 'react';
+import {
+  View,
+  Text,
+  Pressable,
+  ScrollView,
+  Image,
+  Linking,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import * as ImagePicker from 'expo-image-picker';
+
+const PROOF_TYPES = [
+  { value: 'tax_declaration', label: 'Tax Declaration' },
+  { value: 'barangay_cert', label: 'Barangay Certificate' },
+  { value: 'building_admin_letter', label: 'Building Admin Letter' },
+  { value: 'utility_bill', label: 'Utility Bill w/ Address' },
+  { value: 'land_title', label: 'Land Title' },
+  { value: 'lease_auth', label: 'Lease Authorization' },
+] as const;
+
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
+
+export default function PropertyProofUploadScreen() {
+  const router = useRouter();
+  const [proofType, setProofType] = useState<string | null>(null);
+  const [photoUri, setPhotoUri] = useState<string | null>(null);
+  const [objectKey, setObjectKey] = useState<string | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const consentAtRef = useRef(new Date().toISOString());
+
+  const canTakePhoto = proofType !== null;
+
+  const handleTakePhoto = async () => {
+    if (!canTakePhoto) return;
+
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== 'granted') {
+      Linking.openSettings();
+      return;
+    }
+
+    const result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ['images'],
+      quality: 0.8,
+      allowsEditing: false,
+    });
+
+    if (result.canceled || !result.assets[0]) return;
+    setPhotoUri(result.assets[0].uri);
+    setUploadError(false);
+
+    // Upload to PRIVATE R2 bucket
+    try {
+      setIsUploading(true);
+      setUploadProgress(20);
+
+      const presignRes = await fetch(`${API_URL}/api/storage/presigned-url`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bucket: 'verification', contentType: 'image/jpeg' }),
+      });
+      if (!presignRes.ok) throw new Error('Failed to get upload URL');
+      const { data } = await presignRes.json();
+
+      setUploadProgress(50);
+
+      const blob = await fetch(result.assets[0].uri).then((r) => r.blob());
+      const uploadRes = await fetch(data.uploadUrl, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'image/jpeg' },
+        body: blob,
+      });
+      if (!uploadRes.ok) throw new Error('Upload failed');
+
+      setObjectKey(data.objectKey);
+      setUploadProgress(80);
+
+      // Submit to API
+      const submitRes = await fetch(`${API_URL}/api/landlords/verify/property`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          proofType,
+          r2ObjectKey: data.objectKey,
+          consentAt: consentAtRef.current,
+        }),
+      });
+      if (!submitRes.ok) throw new Error('Submit failed');
+
+      setUploadProgress(100);
+      setIsComplete(true);
+    } catch {
+      setUploadError(true);
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  if (isComplete) {
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+          <View
+            style={{
+              width: 64, height: 64, borderRadius: 32,
+              backgroundColor: '#16A34A', alignItems: 'center', justifyContent: 'center',
+              marginBottom: 24,
+            }}
+          >
+            <Text style={{ color: '#FFFFFF', fontSize: 32 }}>✓</Text>
+          </View>
+          <Text style={{ fontSize: 20, fontWeight: '600', color: '#1A1A2E', textAlign: 'center' }}>
+            Property proof uploaded!
+          </Text>
+          <Text style={{ fontSize: 16, color: '#6B7280', textAlign: 'center', marginTop: 8 }}>
+            Under review — 24-48 hours.
+          </Text>
+          <Pressable
+            onPress={() => router.replace('/(onboarding)/submitted' as never)}
+            style={{
+              marginTop: 32, width: '100%', height: 48,
+              backgroundColor: '#2B51E3', borderRadius: 8,
+              alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>CONTINUE</Text>
+          </Pressable>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+      {/* Header */}
+      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
+        <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
+          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+        </Pressable>
+        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', marginLeft: 12 }}>
+          Property proof
+        </Text>
+      </View>
+
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32 }}
+      >
+        {/* Progress bar */}
+        <Text style={{ fontSize: 12, color: '#6B7280', marginBottom: 4 }}>Step 2 of 3</Text>
+        <View style={{ height: 4, backgroundColor: '#E5E7EB', borderRadius: 2, marginBottom: 20 }}>
+          <View style={{ width: '66%', height: 4, backgroundColor: '#2B51E3', borderRadius: 2 }} />
+        </View>
+
+        {/* Instructions */}
+        <Text style={{ fontSize: 16, color: '#6B7280', marginBottom: 20, lineHeight: 24 }}>
+          Take a photo of a document that proves you are the owner or have the right to rent this property.
+        </Text>
+
+        {/* Proof Type Radio List */}
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
+          What document? <Text style={{ color: '#DC2626' }}>*</Text>
+        </Text>
+        {PROOF_TYPES.map((type) => (
+          <Pressable
+            key={type.value}
+            onPress={() => setProofType(type.value)}
+            style={{ flexDirection: 'row', alignItems: 'center', height: 48, gap: 12 }}
+          >
+            <View
+              style={{
+                width: 20, height: 20, borderRadius: 10,
+                borderWidth: 2, borderColor: proofType === type.value ? '#2B51E3' : '#D1D5DB',
+                alignItems: 'center', justifyContent: 'center',
+              }}
+            >
+              {proofType === type.value && (
+                <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2B51E3' }} />
+              )}
+            </View>
+            <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{type.label}</Text>
+          </Pressable>
+        ))}
+
+        {/* CTA: Take Photo */}
+        <Pressable
+          onPress={handleTakePhoto}
+          disabled={!canTakePhoto || isUploading}
+          style={{
+            marginTop: 20, width: '100%', height: 48,
+            backgroundColor: '#2B51E3', borderRadius: 8,
+            alignItems: 'center', justifyContent: 'center',
+            opacity: !canTakePhoto || isUploading ? 0.5 : 1,
+          }}
+        >
+          <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
+            📷 TAKE PHOTO OF DOCUMENT
+          </Text>
+        </Pressable>
+
+        {/* Photo Preview */}
+        {photoUri && (
+          <View style={{ flexDirection: 'row', gap: 16, marginTop: 16, alignItems: 'center' }}>
+            <Image
+              source={{ uri: photoUri }}
+              style={{
+                width: 120, height: 80, borderRadius: 8,
+                borderWidth: uploadError ? 2 : 0, borderColor: '#EF4444',
+              }}
+            />
+            <Pressable onPress={handleTakePhoto}>
+              <Text style={{ fontSize: 14, color: '#2B51E3' }}>Retake</Text>
+            </Pressable>
+          </View>
+        )}
+
+        {/* Upload Progress */}
+        {isUploading && (
+          <View style={{ marginTop: 16 }}>
+            <Text style={{ fontSize: 14, color: '#6B7280', marginBottom: 8 }}>Uploading...</Text>
+            <View style={{ height: 8, backgroundColor: '#E5E7EB', borderRadius: 4 }}>
+              <View
+                style={{
+                  width: `${uploadProgress}%`, height: 8,
+                  backgroundColor: '#2B51E3', borderRadius: 4,
+                }}
+              />
+            </View>
+          </View>
+        )}
+
+        {/* Upload Error */}
+        {uploadError && (
+          <Pressable onPress={handleTakePhoto}>
+            <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginTop: 16 }}>
+              Upload failed. Try again?
+            </Text>
+          </Pressable>
+        )}
+
+        {/* Skip */}
+        <Pressable
+          onPress={() => router.replace('/(onboarding)/submitted' as never)}
+          style={{ marginTop: 24, alignItems: 'center' }}
+        >
+          <Text style={{ fontSize: 14, color: '#6B7280', textDecorationLine: 'underline' }}>
+            I don't have a document now — skip for now
+          </Text>
+        </Pressable>
+
+        {/* Warning */}
+        <View
+          style={{
+            marginTop: 12, backgroundColor: '#FFFBEB', borderRadius: 8,
+            padding: 12, borderWidth: 1, borderColor: '#FDE68A',
+          }}
+        >
+          <Text style={{ fontSize: 12, color: '#92400E', lineHeight: 18 }}>
+            ⚠️ If you skip this, your listing will not appear in search results until you are verified.
+          </Text>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}

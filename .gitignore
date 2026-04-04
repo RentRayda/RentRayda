@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.turbo/
+.claude/
+.next/
+.expo/
+*.tsbuildinfo
+.env
+.env.local
+google-services.json
+play-store-key.json
+*.apk
+*.aab
+*.ipa

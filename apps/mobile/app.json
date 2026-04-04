@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "RentRayda",
+    "slug": "rentrayda",
+    "version": "1.0.0",
+    "description": "Find verified rentals near BGC and Pasig. No scams. No agents. Free.",
+    "scheme": "rentrayda",
+    "platforms": ["android"],
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2B51E3"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-image-picker",
+        {
+          "cameraPermission": "RentRayda needs your camera to take photos of your ID and property."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#2B51E3"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    },
+    "android": {
+      "package": "ph.rentrayda.app",
+      "versionCode": 1,
+      "softwareKeyboardLayoutMode": "resize",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2B51E3"
+      },
+      "permissions": [
+        "CAMERA",
+        "NOTIFICATIONS"
+      ],
+      "googleServicesFile": "./google-services.json"
+    },
+    "notification": {
+      "androidMode": "default",
+      "androidCollapsedTitle": "RentRayda"
+    }
+  }
+}

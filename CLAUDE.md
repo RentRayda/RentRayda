@@ -1,0 +1,357 @@
+# RentRayda — Claude Code Context
+# ALWAYS read this file before writing any code.
+# Update the CURRENT FOCUS section at the start of every session.
+# Reference docs: TRD.md (APIs + schemas), DRD.md (screens + design), CLAUDE_CODE_PLAYBOOK.md (prompts)
+
+## WHAT THIS APP IS
+
+RentRayda is a trust-first rental connection app for the Philippine informal rental market
+(₱3K-15K/month). It serves displaced provincial migrants (BPO workers) who need housing
+in Metro Manila but have no local connections, and informal landlords (2-10 units, cash
+rent) who need to screen strangers before opening their doors. The platform verifies
+both landlord identity + property ownership and tenant identity + employment, then
+reveals phone numbers only when BOTH sides are verified. It is NOT a property management
+tool, NOT a payment platform, NOT a social network, and NOT a broker marketplace. The
+core transaction is the verified connection reveal — the moment both parties get each
+other's phone number. Everything else exists to get users to that moment.
+
+Brand: #2B51E3 (RentRayda Blue). Logo: Philippine tarsier silhouette.
+Verified badge: #16A34A (Green — universal "approved" signal, NOT brand blue).
+
+## CURRENT FOCUS
+# At the start of every Claude Code session, overwrite this section with:
+# - Feature name you are building
+# - Specific files you are working in
+# - Acceptance criteria for today's session
+# - Any decisions made in previous sessions that affect today
+#
+# Example:
+# Working on: tenant-profile-creation
+# Files: packages/db/schema/tenant-profiles.ts, apps/mobile/app/(onboarding)/tenant-profile.tsx
+# Done when: Tenant can submit profile form, data saves to tenant_profiles table
+# Previous: Using expo-image-picker for photo capture, quality 0.7
+
+## TECH STACK
+
+Backend:
+- Runtime: Node.js 22 LTS
+- Framework: Hono 4.12.x
+- Port: 3001 (development)
+- Start: pnpm --filter @rentrayda/api dev
+
+Web Frontend:
+- Framework: Next.js 16.2 App Router
+- Port: 3000 (development)
+- Start: pnpm --filter @rentrayda/web dev
+- Config: output: 'standalone' in next.config.js (required for self-hosting)
+- Font: Inter via next/font/google with display: 'swap'
+
+Mobile Frontend:
+- Framework: Expo SDK 55 with Expo Router
+- React Native: 0.83 (bundled with SDK 55)
+- Start: cd apps/mobile && npx expo start --dev-client
+- Test on: Custom development build (NOT Expo Go — it cannot run expo-secure-store or push notifications)
+- Scheme: rentrayda (deep links: rentrayda://)
+- New Architecture: enabled by default in SDK 55 (do NOT disable)
+- Font: Inter loaded via expo-font + useFonts() hook (see DRD.md §1.4)
+
+Database:
+- PostgreSQL 16.4 at localhost:5432
+- Database name: rentrayda_dev (development), rentrayda_prod (production)
+- ORM: Drizzle 0.45 (NOT v1.0-beta — use stable 0.45.x only)
+- Schema files: packages/db/schema/ (one file per table, 9 files total — see TRD.md §2)
+- Relations file: packages/db/schema/relations.ts (required for relational queries — see TRD.md §2.12)
+- Run migrations: pnpm --filter @rentrayda/db drizzle-kit migrate
+- View data: pnpm --filter @rentrayda/db drizzle-kit studio
+- NEVER edit migration files manually. Generate → review SQL → apply.
+
+File Storage:
+- Cloudflare R2 (S3-compatible API)
+- SDK: @aws-sdk/client-s3 configured with R2 endpoint
+- Upload pattern: ALWAYS presigned URL. Client uploads directly to R2.
+- NEVER proxy file uploads through the backend.
+- TWO SEPARATE upload functions in apps/api/src/lib/r2.ts:
+  - generatePrivateUploadUrl() → rentrayda-verification-docs (PRIVATE — signed URLs only, 1hr expiry)
+  - generatePublicUploadUrl() → rentrayda-listing-photos / rentrayda-profile-photos (PUBLIC — direct URL)
+- NEVER combine these into one generic function. See TRD.md §6.
+
+Authentication:
+- Package: better-auth 1.5.x with @better-auth/expo plugin
+- Primary method: Phone + SMS OTP via PhilSMS (₱0.35/SMS)
+- Session: Database sessions (NOT JWT) stored in PostgreSQL. Instant revocation on suspension.
+- Plugins: phoneNumber(), bearer(), expo({ scheme: 'rentrayda' })
+- OTP: 6 digits, 10-min expiry, 3 attempts → 15-min lockout, 5 sends/hr/phone
+- Server auth middleware:
+  ```typescript
+  // apps/api/src/middleware/auth.ts
+  import { createMiddleware } from 'hono/factory';
+  import { auth } from '../lib/auth';
+
+  export const authMiddleware = createMiddleware(async (c, next) => {
+    const session = await auth.api.getSession({ headers: c.req.raw.headers });
+    if (!session) return c.json({ error: 'Unauthorized', code: 'UNAUTHORIZED' }, 401);
+    if (session.user.isSuspended) return c.json({ error: 'Account suspended', code: 'SUSPENDED' }, 403);
+    c.set('user', session.user);
+    c.set('session', session.session);
+    await next();
+  });
+  ```
+- Mobile auth client:
+  ```typescript
+  // apps/mobile/lib/auth.ts
+  import { createAuthClient } from 'better-auth/client';
+  import { expoClient } from '@better-auth/expo/client';
+  import { phoneNumberClient } from 'better-auth/client/plugins';
+  import * as SecureStore from 'expo-secure-store';
+
+  export const authClient = createAuthClient({
+    baseURL: process.env.EXPO_PUBLIC_API_URL,
+    plugins: [
+      expoClient({ scheme: 'rentrayda', storagePrefix: 'rentrayda', storage: SecureStore }),
+      phoneNumberClient(),
+    ],
+  });
+  ```
+
+SMS:
+- Provider: PhilSMS (₱0.35/SMS)
+- Wrapper: apps/api/src/lib/sms.ts (custom fetch wrapper — see TRD.md §5)
+- Phone normalization: normalizePhPhone() handles 09XX, +63, 63, and 9XX formats
+- Fallback: iTexMo (₱0.15/SMS) for burst capacity
+
+## PROJECT STRUCTURE
+
+```
+/
+├── apps/
+│   ├── web/                    # Next.js 16.2 — landing page, admin dashboard, listing browse
+│   ├── mobile/                 # Expo SDK 55 — all user-facing onboarding and transaction flows
+│   └── api/                    # Hono 4.12.x — REST API backend serving both web and mobile
+│       ├── src/
+│       │   ├── index.ts        # Hono app + route mounting
+│       │   ├── routes/         # auth, landlords, tenants, listings, connections, storage, reports, users, admin
+│       │   ├── middleware/     # auth.ts, admin.ts, rate-limit.ts
+│       │   ├── lib/            # auth.ts, r2.ts, sms.ts, email.ts, queue.ts
+│       │   └── jobs/           # push-notification.ts, sms-notification.ts, auto-pause-listings.ts
+├── packages/
+│   ├── db/                     # Drizzle 0.45 — 9 schema files, relations, migrations, typed queries
+│   │   ├── schema/             # users, landlord-profiles, tenant-profiles, verification-documents,
+│   │   │                       # listings, listing-photos, connection-requests, connections, reports, relations
+│   │   ├── queries/            # Typed query functions (getActiveListings, getVerificationQueue)
+│   │   └── migrations/         # Generated by drizzle-kit (never edit manually)
+│   ├── shared/                 # Zod validators, TypeScript types, constants, error codes
+│   │   ├── validators/         # auth, listing, profile, connection, report
+│   │   ├── constants.ts        # LAUNCH_BARANGAYS, UNIT_TYPES, INCLUSIONS, ID_TYPES,
+│   │   │                       # EMPLOYMENT_TYPES, BPO_COMPANIES, REPORT_TYPES
+│   │   └── error-codes.ts      # ERROR_CODES enum + ErrorCode type (see TRD.md §2.14)
+│   └── ui/                     # Shared design tokens (color, spacing, typography)
+├── CLAUDE.md                   # This file
+├── TRD.md                      # Technical Requirement Document (APIs, schemas, infra)
+├── DRD.md                      # Design Requirement Document (screens, wireframes, components)
+├── CLAUDE_CODE_PLAYBOOK.md     # 32 paste-ready prompts for building every feature
+├── turbo.json                  # Pipeline: build, dev, lint, typecheck
+├── pnpm-workspace.yaml
+├── .npmrc                      # node-linker=hoisted (required for Expo)
+└── .env.example                # All env vars documented (see below)
+```
+
+## DATABASE SCHEMA
+
+9 tables. Full schemas with indexes and types: TRD.md §2.
+Relations for relational queries: TRD.md §2.12.
+Query examples (search listings, verification queue): TRD.md §2.13.
+
+Key tables:
+- users: phone, role (landlord/tenant/admin), isSuspended, pushToken, lastActiveAt
+- landlord_profiles: userId (FK), fullName, barangay, city, unitCount, profilePhotoUrl, verificationStatus
+- tenant_profiles: userId (FK), fullName, searchBarangay, employmentType, companyName, verificationStatus
+- verification_documents: userId (FK), documentType, idType, r2ObjectKey, selfieR2Key, status, consentAt
+- listings: landlordProfileId (FK), unitType, monthlyRent, barangay, city, beds, inclusions, status, lastActiveAt
+- listing_photos: listingId (FK), r2ObjectKey, displayOrder
+- connection_requests: tenantProfileId + listingId + landlordProfileId, message, status
+- connections: connectionRequestId (FK), tenantUserId, landlordUserId, tenantPhone, landlordPhone
+- reports: reporterId, reportedUserId/reportedListingId, reportType, description, status
+
+Key column names (match these exactly — do NOT use alternatives):
+- listings.landlordProfileId (NOT landlordId)
+- listings.unitType (NOT propertyType) — values: 'bedspace' | 'room' | 'apartment'
+- listings.monthlyRent (integer, pesos)
+- No listings.title field — listings identified by unitType + barangay
+
+## VERIFICATION SYSTEM
+
+Landlord (landlord_profiles.verification_status):
+- 'unverified' → 'pending' → 'verified' (or 'rejected' → resubmit → 'pending')
+- 'partial': Gov ID verified but property proof still pending
+- Verified landlord: listings appear in search, can accept connections
+
+Tenant (tenant_profiles.verification_status):
+- 'unverified' → 'pending' → 'verified' (or 'rejected')
+- Requires BOTH gov ID AND employment proof approved to reach 'verified'
+- Verified tenant: can send connection requests
+
+Connection reveal rule:
+BOTH landlord.verificationStatus = 'verified' AND tenant.verificationStatus = 'verified'
+must be true BEFORE phone numbers are revealed. This check happens SERVER-SIDE in
+PATCH /connections/:id/accept. NEVER trust the client. NEVER reveal a phone number
+when either party is not verified.
+
+## KEY BUSINESS RULES — NEVER VIOLATE
+
+1. Zero payment processing — no GCash, no payment endpoints, no escrow
+2. Phone numbers revealed ONLY when BOTH parties verified AND connection accepted
+3. Government IDs stored ONLY in PRIVATE R2 bucket — signed URLs, 1hr expiry
+4. Never expose r2ObjectKey to any client response — generate signed URLs server-side
+5. All /admin/* routes require user.role === 'admin' middleware
+6. Listings in search ONLY if landlord verified AND listing.status === 'active'
+7. Connection requests ONLY from verified tenants
+8. Landlord onboarding: max 5 screens
+9. Never store gov ID file content in database — R2 object keys only
+10. Verification status changes ONLY through admin routes
+11. Listing photos → PUBLIC R2. Verification docs → PRIVATE R2. Never swap.
+12. New features: check this list first. If conflict, stop and ask founder.
+
+## COMMON CODE PATTERNS
+
+### API Route (Hono):
+```typescript
+import { Hono } from 'hono';
+import { zValidator } from '@hono/zod-validator';
+import { z } from 'zod';
+import { authMiddleware } from '../middleware/auth';
+import { db } from '@rentrayda/db';
+import { listings } from '@rentrayda/db/schema/listings';
+import { eq } from 'drizzle-orm';
+
+const listingsRouter = new Hono();
+listingsRouter.use('/*', authMiddleware);
+
+listingsRouter.post('/',
+  zValidator('json', z.object({
+    unitType: z.enum(['bedspace', 'room', 'apartment']),
+    monthlyRent: z.number().int().min(500).max(100000),
+    barangay: z.string().min(2),
+    beds: z.number().int().min(1).max(20).optional(),
+    inclusions: z.array(z.string()).optional(),
+    description: z.string().max(200).optional(),
+  })),
+  async (c) => {
+    const user = c.get('user');
+    const body = c.req.valid('json');
+    const profile = await db.query.landlordProfiles.findFirst({
+      where: eq(landlordProfiles.userId, user.id),
+    });
+    const [listing] = await db.insert(listings).values({
+      landlordProfileId: profile!.id,
+      ...body,
+      status: profile!.verificationStatus === 'verified' ? 'active' : 'draft',
+    }).returning();
+    return c.json({ data: listing }, 201);
+  }
+);
+```
+
+### Database Query (Drizzle relational):
+```typescript
+// packages/db/queries/listings.ts — see TRD.md §2.13 for full version
+export async function getActiveListings(filters) {
+  return db.query.listings.findMany({
+    where: and(eq(listings.status, 'active'), ...filterConditions),
+    with: {
+      photos: { limit: 1 },
+      landlordProfile: { columns: { fullName: true, profilePhotoUrl: true, verificationStatus: true } },
+    },
+    orderBy: [desc(listings.lastActiveAt)],
+    limit: 10,
+    offset: (page - 1) * 10,
+  });
+}
+```
+
+### Response Formats:
+```typescript
+// Success — always wrap in { data: ... }
+return c.json({ data: resultObject }, 200);
+
+// Error — always include error + code
+return c.json({ error: 'You need to verify first.', code: 'NOT_VERIFIED' }, 403);
+// Error codes: packages/shared/error-codes.ts (see TRD.md §2.14)
+```
+
+## DESIGN TOKENS
+
+NativeWind (mobile) + Tailwind (web):
+- Brand: bg-rayda (#2B51E3), text-rayda, border-rayda
+- Brand light: bg-rayda-light (#EBF0FC)
+- Verified: #16A34A (green — VerifiedBadge only, NOT brand blue)
+- Background: #FAFAFA | Surface: #FFFFFF
+- Text primary: #1A1A2E | Text secondary: #6B7280
+- Danger: #DC2626 | Warning: #D97706
+
+Font: Inter (400 Regular, 500 Medium, 600 SemiBold, 700 Bold)
+Body text: minimum 16px. Never below 12px on any screen.
+Touch targets: minimum 48×48dp on all interactive elements.
+Full design system: DRD.md §1.
+
+## ENVIRONMENT VARIABLES
+
+```
+DATABASE_URL="postgresql://postgres:password@localhost:5432/rentrayda_dev"
+R2_ACCOUNT_ID=""
+R2_ACCESS_KEY_ID=""
+R2_SECRET_ACCESS_KEY=""
+R2_BUCKET_VERIFICATION="rentrayda-verification-docs"
+R2_BUCKET_LISTINGS="rentrayda-listing-photos"
+R2_BUCKET_PROFILES="rentrayda-profile-photos"
+R2_ENDPOINT="https://{account-id}.r2.cloudflarestorage.com"
+R2_PUBLIC_URL="https://pub-{hash}.r2.dev"
+PHILSMS_API_KEY=""
+PHILSMS_SENDER_ID="PhilSMS"
+RESEND_API_KEY=""
+BETTER_AUTH_SECRET=""          # Generate: openssl rand -base64 32
+BETTER_AUTH_URL="http://localhost:3001"
+NEXT_PUBLIC_API_URL="http://localhost:3001"
+EXPO_PUBLIC_API_URL="http://localhost:3001"
+NODE_ENV="development"
+PORT="3001"
+REDIS_URL="redis://localhost:6379"
+SENTRY_DSN=""
+```
+# When adding new env vars: add here AND to .env.example AND to Coolify config.
+
+## LOCAL DEVELOPMENT SETUP
+
+1. Clone: git clone [repo-url] && cd rentrayda
+2. Install: pnpm install
+3. Env: cp .env.example .env (fill in all values)
+4. Databases:
+   docker run -d --name pg -p 5432:5432 -e POSTGRES_PASSWORD=password postgres:16
+   docker run -d --name redis -p 6379:6379 redis:7
+5. Create DB: createdb rentrayda_dev
+6. Migrate: pnpm --filter @rentrayda/db drizzle-kit migrate
+7. Seed admin: psql rentrayda_dev -c "INSERT INTO users (phone, role) VALUES ('09000000000', 'admin');"
+8. Start: pnpm dev
+9. Verify: curl http://localhost:3001/api/auth/me → 401
+
+## DEPLOYMENT
+
+1. Push to main → GitHub Actions: typecheck → lint → build → test
+2. Coolify webhook → Docker build → zero-downtime deploy
+3. Verify: curl https://rentrayda.ph/api/health → { status: 'ok' }
+4. Verify: Sentry clean, full flow works on production
+
+## WHAT NOT TO DO
+
+1. Never add payment routes or GCash/Maya/PayMongo integration
+2. Never serve verification document files directly — presigned URLs only
+3. Never reveal phone numbers without checking BOTH verification statuses server-side
+4. Never use Supabase, Vercel, Firebase, or Heroku for any part of the stack
+5. Never write raw SQL — use Drizzle query builder for all database operations
+6. Never skip Zod validation on API routes — every input must be validated
+7. Never add features that require money movement through the platform
+8. Never make the landlord onboarding longer than 5 screens
+9. Never store government ID file content in the database — R2 object keys only
+10. Never put verification documents in the public R2 bucket
+11. Never change verification_status without going through the admin verification route
+12. Never add map/GPS features without founder approval (cost + complexity)
+13. Never build review or rating features — excluded from MVP scope entirely

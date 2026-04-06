@@ -1,38 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-
-// ─── Scroll-triggered fade-in wrapper ────────────────────────────────
-function FadeIn({ children, delay = 0, direction = 'up' }: { children: ReactNode; delay?: number; direction?: 'up' | 'left' | 'right' | 'none' }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  const translate = direction === 'up' ? 'translateY(40px)' : direction === 'left' ? 'translateX(-40px)' : direction === 'right' ? 'translateX(40px)' : 'none';
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'none' : translate,
-        transition: `opacity 0.7s ease ${delay}s, transform 0.7s ease ${delay}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
+import { motion, useInView } from 'framer-motion';
 
 // ─── Phone Mockup Frame ──────────────────────────────────────────────
 function PhoneMockup({ children, className }: { children: ReactNode; className?: string }) {
@@ -58,22 +27,11 @@ function PhoneMockup({ children, className }: { children: ReactNode; className?:
 // ─── Animated counter ────────────────────────────────────────────────
 function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [count, setCount] = useState(0);
-  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.5 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
+    if (!isInView) return;
     const duration = 1500;
     const steps = 40;
     const increment = target / steps;
@@ -84,7 +42,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
       else setCount(Math.floor(current));
     }, duration / steps);
     return () => clearInterval(timer);
-  }, [started, target]);
+  }, [isInView, target]);
 
   return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
 }
@@ -93,21 +51,10 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 export function VerificationDemo() {
   const [step, setStep] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
+    if (!isInView) return;
     const timers = [
       setTimeout(() => setStep(1), 600),
       setTimeout(() => setStep(2), 1800),
@@ -115,29 +62,29 @@ export function VerificationDemo() {
       setTimeout(() => setStep(4), 4200),
     ];
     return () => timers.forEach(clearTimeout);
-  }, [started]);
+  }, [isInView]);
 
   return (
     <section ref={ref} style={{ padding: '100px 20px', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 80, flexWrap: 'wrap', justifyContent: 'center' }}>
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
-          <FadeIn>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Trust First
             </p>
-          </FadeIn>
-          <FadeIn delay={0.1}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
             <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
               Verify once,<br />connect safely
             </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
             <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
               Upload your government ID and a selfie. Our team reviews it in 24-48 hours. Once verified, landlords know you are real. And you know they are too.
             </p>
-          </FadeIn>
-          <FadeIn delay={0.3}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {[
                 { label: 'Upload your ID', icon: '🪪' },
@@ -156,11 +103,11 @@ export function VerificationDemo() {
                 </div>
               ))}
             </div>
-          </FadeIn>
+          </motion.div>
         </div>
 
         {/* Phone mockup */}
-        <FadeIn delay={0.2} direction="right">
+        <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
           <PhoneMockup>
             <div style={{ paddingTop: 40, height: '100%', backgroundColor: '#F0F2F5' }}>
               {/* Header bar */}
@@ -219,29 +166,25 @@ export function VerificationDemo() {
 
                 {/* Verified badge animation */}
                 {step >= 4 && (
-                  <div style={{
-                    marginTop: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-                    padding: '12px 20px', borderRadius: 24,
-                    backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
-                    animation: 'badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  }}>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                    style={{
+                      marginTop: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+                      padding: '12px 20px', borderRadius: 24,
+                      backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
+                    }}
+                  >
                     <span style={{ color: '#16A34A', fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>✓</span>
                     <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A' }}>Verified</span>
-                  </div>
+                  </motion.div>
                 )}
               </div>
             </div>
           </PhoneMockup>
-        </FadeIn>
+        </motion.div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes badgePop {
-          0% { transform: scale(0); opacity: 0; }
-          60% { transform: scale(1.15); }
-          100% { transform: scale(1); opacity: 1; }
-        }
-      `}} />
     </section>
   );
 }
@@ -249,27 +192,16 @@ export function VerificationDemo() {
 // ─── Feature 2: Browse Listings Animation ────────────────────────────
 export function BrowseListingsDemo() {
   const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [visibleCards, setVisibleCards] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.2 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
+    if (!isInView) return;
     const timers = Array.from({ length: 6 }, (_, i) =>
       setTimeout(() => setVisibleCards(i + 1), 300 + i * 200)
     );
     return () => timers.forEach(clearTimeout);
-  }, [started]);
+  }, [isInView]);
 
   const listings = [
     { price: '5,500', type: 'Room', area: 'Ugong', color: '#DBEAFE' },
@@ -284,7 +216,7 @@ export function BrowseListingsDemo() {
     <section ref={ref} style={{ padding: '100px 20px', backgroundColor: '#F0F2F5' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 80, flexWrap: 'wrap-reverse', justifyContent: 'center' }}>
         {/* Phone mockup */}
-        <FadeIn delay={0.1} direction="left">
+        <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
           <PhoneMockup>
             <div style={{ paddingTop: 36, height: '100%', backgroundColor: '#FFFFFF' }}>
               {/* Search bar */}
@@ -312,26 +244,26 @@ export function BrowseListingsDemo() {
               </div>
             </div>
           </PhoneMockup>
-        </FadeIn>
+        </motion.div>
 
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
-          <FadeIn>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Browse
             </p>
-          </FadeIn>
-          <FadeIn delay={0.1}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
             <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
               Find your next place<br />in seconds
             </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
             <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 24px' }}>
               Browse verified listings in a familiar grid layout. Filter by barangay, unit type, and budget. Every listing is from a verified landlord.
             </p>
-          </FadeIn>
-          <FadeIn delay={0.3}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               {['Bedspace', 'Room', 'Apartment'].map((t) => (
                 <span key={t} style={{
@@ -344,7 +276,7 @@ export function BrowseListingsDemo() {
                 </span>
               ))}
             </div>
-          </FadeIn>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -354,22 +286,11 @@ export function BrowseListingsDemo() {
 // ─── Feature 3: Connection Reveal Animation ──────────────────────────
 export function ConnectionDemo() {
   const ref = useRef<HTMLDivElement>(null);
-  const [started, setStarted] = useState(false);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [phase, setPhase] = useState(0);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting && !started) { setStarted(true); observer.disconnect(); } },
-      { threshold: 0.3 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [started]);
-
-  useEffect(() => {
-    if (!started) return;
+    if (!isInView) return;
     const timers = [
       setTimeout(() => setPhase(1), 500),
       setTimeout(() => setPhase(2), 1500),
@@ -377,29 +298,29 @@ export function ConnectionDemo() {
       setTimeout(() => setPhase(4), 3500),
     ];
     return () => timers.forEach(clearTimeout);
-  }, [started]);
+  }, [isInView]);
 
   return (
     <section ref={ref} style={{ padding: '100px 20px', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 80, flexWrap: 'wrap', justifyContent: 'center' }}>
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
-          <FadeIn>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Connect
             </p>
-          </FadeIn>
-          <FadeIn delay={0.1}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
             <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
               No middleman.<br />Direct connection.
             </h2>
-          </FadeIn>
-          <FadeIn delay={0.2}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
             <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
               When a landlord accepts your request, both phone numbers are revealed instantly. Call or text directly. No agents, no fees, no platform taking a cut.
             </p>
-          </FadeIn>
-          <FadeIn delay={0.3}>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <div style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: '#DBEAFE', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <span style={{ fontSize: 20 }}>📞</span>
@@ -409,11 +330,11 @@ export function ConnectionDemo() {
                 <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>No money moves through the app. Ever.</p>
               </div>
             </div>
-          </FadeIn>
+          </motion.div>
         </div>
 
         {/* Phone mockup */}
-        <FadeIn delay={0.2} direction="right">
+        <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
           <PhoneMockup>
             <div style={{ paddingTop: 40, height: '100%', backgroundColor: '#F0F2F5' }}>
               <div style={{ padding: 20, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: 'calc(100% - 40px)' }}>
@@ -431,7 +352,14 @@ export function ConnectionDemo() {
                     </div>
                     <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Tenant</p>
                     {phase >= 1 && (
-                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease' }}>✓ Verified</span>
+                      <motion.span
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                        style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', display: 'inline-block' }}
+                      >
+                        ✓ Verified
+                      </motion.span>
                     )}
                   </div>
 
@@ -453,33 +381,46 @@ export function ConnectionDemo() {
                     </div>
                     <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Landlord</p>
                     {phase >= 1 && (
-                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease 0.3s both' }}>✓ Verified</span>
+                      <motion.span
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
+                        style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', display: 'inline-block' }}
+                      >
+                        ✓ Verified
+                      </motion.span>
                     )}
                   </div>
                 </div>
 
                 {/* Connection accepted */}
                 {phase >= 3 && (
-                  <div style={{
-                    width: '100%', padding: 16, borderRadius: 16,
-                    backgroundColor: '#DBEAFE', textAlign: 'center',
-                    animation: 'badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    marginBottom: 12,
-                  }}>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                    style={{
+                      width: '100%', padding: 16, borderRadius: 16,
+                      backgroundColor: '#DBEAFE', textAlign: 'center',
+                      marginBottom: 12,
+                    }}
+                  >
                     <p style={{ fontSize: 13, fontFamily: 'BerlinSansFB', color: '#2563EB', margin: '0 0 8px' }}>Connected!</p>
                     <p style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#1D4ED8', margin: '0 0 4px', letterSpacing: 1 }}>
                       +63 917 *** 4589
                     </p>
                     <p style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>Phone number revealed</p>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Call button */}
                 {phase >= 4 && (
-                  <div style={{
-                    display: 'flex', gap: 8, width: '100%',
-                    animation: 'badgePop 0.4s ease',
-                  }}>
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                    style={{ display: 'flex', gap: 8, width: '100%' }}
+                  >
                     <div style={{
                       flex: 1, height: 40, borderRadius: 8, backgroundColor: '#2563EB',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
@@ -494,7 +435,7 @@ export function ConnectionDemo() {
                       <span style={{ fontSize: 14 }}>💬</span>
                       <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#2563EB' }}>Text</span>
                     </div>
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Waiting state */}
@@ -506,16 +447,8 @@ export function ConnectionDemo() {
               </div>
             </div>
           </PhoneMockup>
-        </FadeIn>
+        </motion.div>
       </div>
-
-      <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes badgePop {
-          0% { transform: scale(0); opacity: 0; }
-          60% { transform: scale(1.15); }
-          100% { transform: scale(1); opacity: 1; }
-        }
-      `}} />
     </section>
   );
 }
@@ -525,62 +458,60 @@ export function CrossPlatformDemo() {
   return (
     <section style={{ padding: '100px 20px', backgroundColor: '#F0F2F5' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
-        <FadeIn>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
             Everywhere
           </p>
-        </FadeIn>
-        <FadeIn delay={0.1}>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
           <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
             One app. Android and iOS.
           </h2>
-        </FadeIn>
-        <FadeIn delay={0.2}>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
           <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 48px', maxWidth: 500, marginLeft: 'auto', marginRight: 'auto' }}>
             Works on any phone. Same experience whether you are on a budget Android or an iPhone.
           </p>
-        </FadeIn>
-        <FadeIn delay={0.3}>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.3 }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 24, flexWrap: 'wrap' }}>
-            <a
+            <motion.a
               href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: '16px 32px', borderRadius: 12,
                 backgroundColor: '#050505', color: '#FFFFFF', textDecoration: 'none',
-                transition: 'transform 0.2s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
               <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}>▶</span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>GET IT ON</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>Google Play</span>
               </span>
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#"
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 12,
                 padding: '16px 32px', borderRadius: 12,
                 backgroundColor: '#050505', color: '#FFFFFF', textDecoration: 'none',
-                transition: 'transform 0.2s ease',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
               <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}></span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>Download on the</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>App Store</span>
               </span>
-            </a>
+            </motion.a>
           </div>
-        </FadeIn>
+        </motion.div>
 
         {/* Stats */}
-        <FadeIn delay={0.4}>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.4 }}>
           <div style={{ display: 'flex', justifyContent: 'center', gap: 48, marginTop: 64, flexWrap: 'wrap' }}>
             {[
               { value: 100, suffix: '%', label: 'Free forever' },
@@ -595,7 +526,7 @@ export function CrossPlatformDemo() {
               </div>
             ))}
           </div>
-        </FadeIn>
+        </motion.div>
       </div>
     </section>
   );
@@ -612,46 +543,49 @@ export function HowItWorksAnimated() {
   return (
     <section style={{ padding: '100px 20px', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
-        <FadeIn>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', textAlign: 'center', margin: '0 0 16px', color: '#050505' }}>
             How It Works
           </h2>
-        </FadeIn>
-        <FadeIn delay={0.1}>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
           <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', textAlign: 'center', color: '#65676B', margin: '0 0 56px' }}>
             Three steps. No complicated forms. No waiting forever.
           </p>
-        </FadeIn>
+        </motion.div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 40 }}>
           {steps.map((step, i) => (
-            <FadeIn key={i} delay={0.15 * (i + 1)}>
-              <div style={{
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.15 * (i + 1) }}
+              whileHover={{ y: -6, boxShadow: '0 12px 40px rgba(0,0,0,0.1)' }}
+              style={{
                 textAlign: 'center', padding: '32px 24px', borderRadius: 16,
                 backgroundColor: '#F9FAFB', border: '1px solid #E4E6EB',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                cursor: 'default',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(0,0,0,0.08)'; }}
-              onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
-              >
-                <div style={{
-                  width: 64, height: 64, borderRadius: 16, backgroundColor: '#DBEAFE',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '0 auto 20px', fontSize: 32,
-                }}>
-                  {step.icon}
-                </div>
-                <div style={{
-                  width: 28, height: 28, borderRadius: 14, backgroundColor: '#2563EB',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  margin: '-34px auto 16px', position: 'relative', zIndex: 1,
-                  border: '3px solid #FFFFFF',
-                }}>
-                  <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>{i + 1}</span>
-                </div>
-                <h3 style={{ fontSize: 20, fontFamily: 'BerlinSansFB', margin: '0 0 8px', color: '#050505' }}>{step.title}</h3>
-                <p style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0, lineHeight: 1.5 }}>{step.desc}</p>
+            >
+              <div style={{
+                width: 64, height: 64, borderRadius: 16, backgroundColor: '#DBEAFE',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '0 auto 20px', fontSize: 32,
+              }}>
+                {step.icon}
               </div>
-            </FadeIn>
+              <div style={{
+                width: 28, height: 28, borderRadius: 14, backgroundColor: '#2563EB',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                margin: '-34px auto 16px', position: 'relative', zIndex: 1,
+                border: '3px solid #FFFFFF',
+              }}>
+                <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>{i + 1}</span>
+              </div>
+              <h3 style={{ fontSize: 20, fontFamily: 'BerlinSansFB', margin: '0 0 8px', color: '#050505' }}>{step.title}</h3>
+              <p style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0, lineHeight: 1.5 }}>{step.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>

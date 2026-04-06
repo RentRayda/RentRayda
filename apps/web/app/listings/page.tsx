@@ -1,4 +1,4 @@
-import { USE_MOCK_DATA, MOCK_WEB_LISTINGS } from '../../lib/mock-data';
+import { USE_MOCK_DATA, MOCK_WEB_LISTINGS, MOCK_PHOTOS } from '../../lib/mock-data';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -118,10 +118,14 @@ export default async function ListingsPage({
                 href={`/listings/${listing.id}`}
                 style={{ textDecoration: 'none', color: 'inherit', backgroundColor: '#FFFFFF', borderRadius: 12, overflow: 'hidden', border: '1px solid #E4E6EB', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', transition: 'box-shadow 0.2s' }}
               >
-                {/* Photo placeholder */}
-                <div style={{ width: '100%', height: 200, backgroundColor: '#CED0D4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <span style={{ fontSize: 48, color: '#8A8D91' }}>🏠</span>
-                </div>
+                {/* Photo */}
+                {USE_MOCK_DATA && MOCK_PHOTOS[listing.id] ? (
+                  <img src={MOCK_PHOTOS[listing.id][0]} alt="" style={{ width: '100%', height: 200, objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ width: '100%', height: 200, backgroundColor: '#CED0D4', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <span style={{ fontSize: 48, color: '#8A8D91' }}>🏠</span>
+                  </div>
+                )}
                 <div style={{ padding: 16 }}>
                   <p style={{ fontSize: 20, fontWeight: 600, color: '#2563EB', margin: '0 0 4px', fontFamily: 'BerlinSansFB' }}>
                     ₱{listing.monthlyRent.toLocaleString()}/month

@@ -3,6 +3,44 @@
  * Delete this file before production launch.
  */
 
+// Placeholder photos — random room/interior images from picsum
+export const MOCK_PHOTOS: Record<string, string[]> = {
+  'mock-1': [
+    'https://picsum.photos/seed/room1/600/400',
+    'https://picsum.photos/seed/room1b/600/400',
+    'https://picsum.photos/seed/room1c/600/400',
+  ],
+  'mock-2': [
+    'https://picsum.photos/seed/room2/600/400',
+    'https://picsum.photos/seed/room2b/600/400',
+  ],
+  'mock-3': [
+    'https://picsum.photos/seed/apt3/600/400',
+    'https://picsum.photos/seed/apt3b/600/400',
+    'https://picsum.photos/seed/apt3c/600/400',
+    'https://picsum.photos/seed/apt3d/600/400',
+  ],
+  'mock-4': [
+    'https://picsum.photos/seed/room4/600/400',
+  ],
+  'mock-5': [
+    'https://picsum.photos/seed/bed5/600/400',
+    'https://picsum.photos/seed/bed5b/600/400',
+  ],
+  'mock-6': [
+    'https://picsum.photos/seed/apt6/600/400',
+    'https://picsum.photos/seed/apt6b/600/400',
+    'https://picsum.photos/seed/apt6c/600/400',
+  ],
+  'mock-7': [
+    'https://picsum.photos/seed/room7/600/400',
+  ],
+  'mock-8': [
+    'https://picsum.photos/seed/room8/600/400',
+    'https://picsum.photos/seed/room8b/600/400',
+  ],
+};
+
 export const USE_MOCK_DATA = true;
 
 export const MOCK_WEB_LISTINGS = [

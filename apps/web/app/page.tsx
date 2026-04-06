@@ -1,3 +1,4 @@
+import dynamic from 'next/dynamic';
 import {
   VerificationDemo,
   BrowseListingsDemo,
@@ -5,6 +6,8 @@ import {
   CrossPlatformDemo,
   HowItWorksAnimated,
 } from '../components/AnimatedSections';
+
+const TarsierScene = dynamic(() => import('../components/TarsierScene'), { ssr: false });
 
 export default async function LandingPage() {
   return (
@@ -43,13 +46,8 @@ export default async function LandingPage() {
         padding: '120px 24px 80px', textAlign: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
-        {/* Glow effect behind logo */}
-        <div style={{
-          position: 'absolute', top: '30%', left: '50%', transform: 'translate(-50%, -50%)',
-          width: 600, height: 600, borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(96,165,250,0.4) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
+        {/* 3D Tarsier Scene */}
+        <TarsierScene />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 900 }}>
           <img
@@ -64,7 +62,7 @@ export default async function LandingPage() {
             fontFamily: 'BerlinSansFB', fontSize: 96, lineHeight: 0.95,
             margin: '0 0 24px', letterSpacing: -2,
           }}>
-            RENT<br />RAYDA
+            Rent<br />Rayda
           </h1>
 
           <p style={{
@@ -101,7 +99,7 @@ export default async function LandingPage() {
           fontFamily: 'BerlinSansFB', fontSize: 64, color: '#050505',
           lineHeight: 1.0, margin: '0 auto', maxWidth: 700, letterSpacing: -1,
         }}>
-          YOU DON'T NEED CONNECTIONS IN MANILA.
+          You Don't Need Connections in Manila.
         </h2>
         <p style={{
           fontFamily: 'AlteHaasGrotesk', fontSize: 18, color: '#65676B',
@@ -128,7 +126,7 @@ export default async function LandingPage() {
             fontFamily: 'BerlinSansFB', fontSize: 56, lineHeight: 1.0,
             margin: '0 0 32px', letterSpacing: -1,
           }}>
-            WE ARE NOT LAMUDI.<br />WE ARE NOT RENTPAD.
+            We Are Not Lamudi.<br />We Are Not Rentpad.
           </h2>
           <p style={{
             fontFamily: 'AlteHaasGrotesk', fontSize: 18, color: '#9CA3AF',

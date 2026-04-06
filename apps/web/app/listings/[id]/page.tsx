@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { USE_MOCK_DATA, MOCK_WEB_LISTING_DETAILS, MOCK_PHOTOS } from '../../../lib/mock-data';
+import PhotoCarousel from '../../../components/PhotoCarousel';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -87,16 +88,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
       <main style={{ maxWidth: 800, margin: '0 auto', padding: '24px 20px' }}>
         {/* Photo */}
         {USE_MOCK_DATA && MOCK_PHOTOS[listing.id] ? (
-          <div style={{ marginBottom: 24 }}>
-            <img src={MOCK_PHOTOS[listing.id][0]} alt="" style={{ width: '100%', height: 320, objectFit: 'cover', borderRadius: 12 }} />
-            {MOCK_PHOTOS[listing.id].length > 1 && (
-              <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                {MOCK_PHOTOS[listing.id].slice(1).map((url, i) => (
-                  <img key={i} src={url} alt="" style={{ width: 80, height: 60, objectFit: 'cover', borderRadius: 8 }} />
-                ))}
-              </div>
-            )}
-          </div>
+          <PhotoCarousel photos={MOCK_PHOTOS[listing.id] || []} />
         ) : (
           <div style={{ width: '100%', height: 320, backgroundColor: '#CED0D4', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
             <span style={{ fontSize: 64, color: '#8A8D91' }}>🏠</span>

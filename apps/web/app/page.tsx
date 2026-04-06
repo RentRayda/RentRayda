@@ -44,23 +44,15 @@ export default async function LandingPage() {
         padding: '120px 24px 80px', textAlign: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
-        {/* 3D Tarsier Scene */}
-        <TarsierHero />
-
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 900 }}>
-          <img
-            src="/logo.png"
-            alt="RentRayda"
-            width={96}
-            height={96}
-            style={{ borderRadius: 24, marginBottom: 40, opacity: 0.95 }}
-          />
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 900, width: '100%' }}>
+          {/* 3D Tarsier - mouse reactive */}
+          <TarsierHero />
 
           <h1 style={{
-            fontFamily: 'BerlinSansFB', fontSize: 96, lineHeight: 0.95,
+            fontFamily: 'BerlinSansFB', fontSize: 80, lineHeight: 1,
             margin: '0 0 24px', letterSpacing: -2,
           }}>
-            Rent<br />Rayda
+            RentRayda
           </h1>
 
           <p style={{
@@ -93,6 +85,15 @@ export default async function LandingPage() {
 
       {/* ── Bold statement ────────────────────────────────────────── */}
       <section style={{ padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF' }}>
+        <div style={{ marginBottom: 32 }}>
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="15" y="30" width="50" height="35" rx="4" fill="#DBEAFE" stroke="#2563EB" strokeWidth="2"/>
+            <polygon points="40,10 10,35 70,35" fill="#2563EB"/>
+            <rect x="32" y="45" width="16" height="20" rx="2" fill="#2563EB"/>
+            <circle cx="58" cy="28" r="14" fill="#16A34A" opacity="0.9"/>
+            <path d="M52 28l4 4 8-8" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </div>
         <h2 style={{
           fontFamily: 'BerlinSansFB', fontSize: 64, color: '#050505',
           lineHeight: 1.0, margin: '0 auto', maxWidth: 700, letterSpacing: -1,
@@ -149,6 +150,15 @@ export default async function LandingPage() {
 
       {/* ── Final CTA ─────────────────────────────────────────────── */}
       <section style={{ padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF' }}>
+        <div style={{ marginBottom: 24 }}>
+          <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+            <circle cx="24" cy="24" r="12" stroke="#2563EB" strokeWidth="3" fill="none"/>
+            <circle cx="24" cy="24" r="4" fill="#2563EB"/>
+            <line x1="36" y1="24" x2="56" y2="24" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
+            <line x1="48" y1="24" x2="48" y2="34" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
+            <line x1="54" y1="24" x2="54" y2="30" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
+          </svg>
+        </div>
         <h2 style={{
           fontFamily: 'BerlinSansFB', fontSize: 48, color: '#050505',
           margin: '0 0 16px', letterSpacing: -1,

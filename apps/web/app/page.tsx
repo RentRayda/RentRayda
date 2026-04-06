@@ -47,7 +47,7 @@ export default async function LandingPage() {
             RentRayda
           </h1>
           <p style={{
-            fontSize: 22, fontFamily: 'AlteHaasGrotesk', margin: '0 0 8px', opacity: 0.9, fontWeight: 400,
+            fontSize: 22, fontFamily: 'BobbyJonesSoft', margin: '0 0 8px', opacity: 0.95,
           }}>
             Find verified rentals. No scams. No agents.
           </p>

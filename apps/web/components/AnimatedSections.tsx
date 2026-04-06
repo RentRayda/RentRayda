@@ -152,7 +152,7 @@ export function VerificationDemo() {
                 }}>
                   <span style={{ fontSize: 20 }}>{item.icon}</span>
                   <span style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: step > i ? '#1D4ED8' : '#65676B' }}>{item.label}</span>
-                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16 }}>✓</span>}
+                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>✓</span>}
                 </div>
               ))}
             </div>
@@ -225,7 +225,7 @@ export function VerificationDemo() {
                     backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
                     animation: 'badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}>
-                    <span style={{ color: '#16A34A', fontSize: 16 }}>✓</span>
+                    <span style={{ color: '#16A34A', fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>✓</span>
                     <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A' }}>Verified</span>
                   </div>
                 )}
@@ -553,7 +553,7 @@ export function CrossPlatformDemo() {
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
-              <span style={{ fontSize: 28 }}>▶</span>
+              <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}>▶</span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>GET IT ON</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>Google Play</span>
@@ -570,7 +570,7 @@ export function CrossPlatformDemo() {
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
-              <span style={{ fontSize: 28 }}></span>
+              <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}></span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>Download on the</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>App Store</span>

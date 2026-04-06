@@ -112,12 +112,12 @@ export default function PropertyProofUploadScreen() {
               marginBottom: 24,
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontSize: 32 }}>✓</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGrotesk', fontSize: 32 }}>✓</Text>
           </View>
-          <Text style={{ fontSize: 20, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
+          <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505', textAlign: 'center' }}>
             Property proof uploaded!
           </Text>
-          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             Under review — 24-48 hours.
           </Text>
           <Pressable
@@ -128,7 +128,7 @@ export default function PropertyProofUploadScreen() {
               alignItems: 'center', justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>CONTINUE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>CONTINUE</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -140,9 +140,9 @@ export default function PropertyProofUploadScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
           Property proof
         </Text>
       </View>
@@ -152,18 +152,18 @@ export default function PropertyProofUploadScreen() {
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32 }}
       >
         {/* Progress bar */}
-        <Text style={{ fontSize: 12, color: '#65676B', marginBottom: 4 }}>Step 2 of 3</Text>
+        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginBottom: 4 }}>Step 2 of 3</Text>
         <View style={{ height: 4, backgroundColor: '#CED0D4', borderRadius: 2, marginBottom: 20 }}>
           <View style={{ width: '66%', height: 4, backgroundColor: '#2563EB', borderRadius: 2 }} />
         </View>
 
         {/* Instructions */}
-        <Text style={{ fontSize: 16, color: '#65676B', marginBottom: 20, lineHeight: 24 }}>
+        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginBottom: 20, lineHeight: 24 }}>
           Take a photo of a document that proves you are the owner or have the right to rent this property.
         </Text>
 
         {/* Proof Type Radio List */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           What document? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         {PROOF_TYPES.map((type) => (
@@ -183,7 +183,7 @@ export default function PropertyProofUploadScreen() {
                 <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2563EB' }} />
               )}
             </View>
-            <Text style={{ fontSize: 16, color: '#050505' }}>{type.label}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{type.label}</Text>
           </Pressable>
         ))}
 
@@ -198,7 +198,7 @@ export default function PropertyProofUploadScreen() {
             opacity: !canTakePhoto || isUploading ? 0.5 : 1,
           }}
         >
-          <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
+          <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
             TAKE PHOTO OF DOCUMENT
           </Text>
         </Pressable>
@@ -214,7 +214,7 @@ export default function PropertyProofUploadScreen() {
               }}
             />
             <Pressable onPress={handleTakePhoto}>
-              <Text style={{ fontSize: 14, color: '#2563EB' }}>Retake</Text>
+              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB' }}>Retake</Text>
             </Pressable>
           </View>
         )}
@@ -222,7 +222,7 @@ export default function PropertyProofUploadScreen() {
         {/* Upload Progress */}
         {isUploading && (
           <View style={{ marginTop: 16 }}>
-            <Text style={{ fontSize: 14, color: '#65676B', marginBottom: 8 }}>Uploading...</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginBottom: 8 }}>Uploading...</Text>
             <View style={{ height: 8, backgroundColor: '#CED0D4', borderRadius: 4 }}>
               <View
                 style={{
@@ -237,7 +237,7 @@ export default function PropertyProofUploadScreen() {
         {/* Upload Error */}
         {uploadError && (
           <Pressable onPress={handleTakePhoto}>
-            <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
               Upload failed. Try again?
             </Text>
           </Pressable>
@@ -248,7 +248,7 @@ export default function PropertyProofUploadScreen() {
           onPress={() => router.replace('/(onboarding)/submitted' as never)}
           style={{ marginTop: 24, alignItems: 'center' }}
         >
-          <Text style={{ fontSize: 14, color: '#65676B', textDecorationLine: 'underline' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textDecorationLine: 'underline' }}>
             I don't have a document now — skip for now
           </Text>
         </Pressable>
@@ -260,7 +260,7 @@ export default function PropertyProofUploadScreen() {
             padding: 12, borderWidth: 1, borderColor: '#FDE68A',
           }}
         >
-          <Text style={{ fontSize: 12, color: '#92400E', lineHeight: 18 }}>
+          <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#92400E', lineHeight: 18 }}>
             If you skip this, your listing will not appear in search results until you are verified.
           </Text>
         </View>

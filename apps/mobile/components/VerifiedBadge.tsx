@@ -71,8 +71,8 @@ export function VerifiedBadge({ status, showBpoSubBadge, size = 'md', onPress }:
         accessibilityLabel={config.a11yLabel}
         accessibilityRole={onPress ? 'button' : 'text'}
       >
-        <Text style={{ fontSize: iconSize, color: config.iconColor }}>{config.icon}</Text>
-        <Text style={{ fontSize, fontWeight: '500', color: config.textColor }}>{config.label}</Text>
+        <Text style={{ fontSize: iconSize, fontFamily: 'AlteHaasGrotesk', color: config.iconColor }}>{config.icon}</Text>
+        <Text style={{ fontSize, fontFamily: 'AlteHaasGrotesk', color: config.textColor }}>{config.label}</Text>
       </View>
 
       {showBpoSubBadge && status === 'verified' && (
@@ -93,7 +93,7 @@ export function VerifiedBadge({ status, showBpoSubBadge, size = 'md', onPress }:
           }}
           accessibilityLabel="Employment verified: BPO"
         >
-          <Text style={{ fontSize: 10, fontWeight: '500', color: '#1E40AF' }}>BPO Verified</Text>
+          <Text style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#1E40AF' }}>BPO Verified</Text>
         </View>
       )}
     </View>

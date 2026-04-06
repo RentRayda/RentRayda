@@ -37,9 +37,9 @@ export function NetworkBanner() {
           justifyContent: 'center',
         }}
       >
-        <Text style={{ fontSize: 12, color: '#FFFFFF', fontWeight: '700' }}>!</Text>
+        <Text style={{ fontSize: 12, color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold' }}>!</Text>
       </View>
-      <Text style={{ fontSize: 14, color: '#92400E', flex: 1 }}>
+      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#92400E', flex: 1 }}>
         No internet. Check your connection.
       </Text>
     </View>

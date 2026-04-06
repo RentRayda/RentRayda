@@ -123,9 +123,9 @@ export default function LandlordProfileScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
           Set up your profile
         </Text>
       </View>
@@ -153,7 +153,7 @@ export default function LandlordProfileScreen() {
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={{ width: 80, height: 80 }} />
             ) : (
-              <Text style={{ fontSize: 32, color: '#8A8D91' }}>📷</Text>
+              <Text style={{ fontSize: 32, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>📷</Text>
             )}
           </View>
           {/* Camera badge */}
@@ -170,22 +170,22 @@ export default function LandlordProfileScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontSize: 14 }}>📷</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>📷</Text>
           </View>
         </Pressable>
-        <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
           Tap to take a selfie
         </Text>
         {photoError && (
           <Pressable onPress={handlePhotoPick}>
-            <Text style={{ fontSize: 12, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
+            <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
               Photo upload failed. Try again?
             </Text>
           </Pressable>
         )}
 
         {/* Full Name */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Full name <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <TextInput
@@ -196,6 +196,7 @@ export default function LandlordProfileScreen() {
             borderRadius: 8,
             paddingHorizontal: 12,
             fontSize: 16,
+            fontFamily: 'AlteHaasGrotesk',
             marginBottom: 16,
             backgroundColor: '#FFFFFF',
           }}
@@ -207,7 +208,7 @@ export default function LandlordProfileScreen() {
         />
 
         {/* City Picker */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           City <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
@@ -223,7 +224,7 @@ export default function LandlordProfileScreen() {
             backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: '#050505' }}>▾ {city}</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>▾ {city}</Text>
         </Pressable>
         {showCityPicker && (
           <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
@@ -233,14 +234,14 @@ export default function LandlordProfileScreen() {
                 onPress={() => { setCity(c); setShowCityPicker(false); }}
                 style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: city === c ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#050505' }}>{c}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{c}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Barangay Picker */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Barangay <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
@@ -256,7 +257,7 @@ export default function LandlordProfileScreen() {
             backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: barangay ? '#050505' : '#8A8D91' }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: barangay ? '#050505' : '#8A8D91' }}>
             ▾ {barangay || 'Select barangay'}
           </Text>
         </Pressable>
@@ -268,20 +269,20 @@ export default function LandlordProfileScreen() {
                 onPress={() => { setBarangay(b); setShowBarangayPicker(false); }}
                 style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
             <Pressable
               onPress={() => { setBarangay('Other'); setShowBarangayPicker(false); }}
               style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === 'Other' ? '#DBEAFE' : '#FFFFFF' }}
             >
-              <Text style={{ fontSize: 16, color: '#050505' }}>Other</Text>
+              <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>Other</Text>
             </Pressable>
           </View>
         )}
 
         {/* Unit Count Stepper */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           How many units? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
@@ -297,7 +298,7 @@ export default function LandlordProfileScreen() {
               backgroundColor: '#FFFFFF',
             }}
           >
-            <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505' }}>{unitCount}</Text>
+            <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>{unitCount}</Text>
           </View>
           <Pressable
             onPress={() => setUnitCount(Math.max(1, unitCount - 1))}
@@ -312,7 +313,7 @@ export default function LandlordProfileScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount <= 1 ? '#8A8D91' : '#050505' }}>−</Text>
+            <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGroteskBold', color: unitCount <= 1 ? '#8A8D91' : '#050505' }}>−</Text>
           </Pressable>
           <Pressable
             onPress={() => setUnitCount(Math.min(50, unitCount + 1))}
@@ -327,12 +328,12 @@ export default function LandlordProfileScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount >= 50 ? '#8A8D91' : '#050505' }}>+</Text>
+            <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGroteskBold', color: unitCount >= 50 ? '#8A8D91' : '#050505' }}>+</Text>
           </Pressable>
         </View>
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -355,7 +356,7 @@ export default function LandlordProfileScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>SAVE PROFILE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>SAVE PROFILE</Text>
           )}
         </Pressable>
       </ScrollView>

@@ -1,7 +1,10 @@
-import { View, Text, Pressable } from 'react-native';
-import { FreshnessIndicator } from './FreshnessIndicator';
-import { VerifiedBadge } from './VerifiedBadge';
+import { View, Text, Pressable, Dimensions } from 'react-native';
 import { OptimizedImage } from './OptimizedImage';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const CARD_GAP = 8;
+const HORIZONTAL_PADDING = 16;
+const CARD_WIDTH = (SCREEN_WIDTH - HORIZONTAL_PADDING * 2 - CARD_GAP) / 2;
 
 interface ListingCardProps {
   id: string;
@@ -22,86 +25,94 @@ export function ListingCard({
   unitType,
   barangay,
   city,
-  landlordName,
   lastActiveAt,
   onPress,
 }: ListingCardProps) {
   const typeLabel = unitType.charAt(0).toUpperCase() + unitType.slice(1);
 
+  // "Just listed" if lastActiveAt < 24hrs ago
+  const hoursAgo = (Date.now() - new Date(lastActiveAt).getTime()) / (1000 * 60 * 60);
+  const isJustListed = hoursAgo < 24;
+
   return (
     <Pressable
       onPress={onPress}
       style={{
-        backgroundColor: '#FFFFFF',
-        overflow: 'hidden',
+        width: CARD_WIDTH,
         marginBottom: 16,
       }}
     >
-      {/* Photo — expo-image with caching + blurhash */}
+      {/* Photo — square aspect */}
       <View style={{ position: 'relative' }}>
         {thumbnailUrl ? (
           <OptimizedImage
             uri={thumbnailUrl}
-            style={{ width: '100%', height: 208 }}
+            style={{
+              width: CARD_WIDTH,
+              height: CARD_WIDTH,
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+            }}
           />
         ) : (
-          <View style={{ width: '100%', height: 208, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 32, color: '#8A8D91' }}>🏠</Text>
-          </View>
-        )}
-
-        {/* Save/heart button overlay */}
-        <View
-          style={{
-            position: 'absolute',
-            top: 8,
-            right: 8,
-            width: 32,
-            height: 32,
-            borderRadius: 16,
-            backgroundColor: '#FFFFFF',
-            alignItems: 'center',
-            justifyContent: 'center',
-            shadowColor: '#000',
-            shadowOffset: { width: 0, height: 1 },
-            shadowOpacity: 0.15,
-            shadowRadius: 2,
-            elevation: 2,
-          }}
-        >
-          <Text style={{ fontSize: 16, color: '#65676B' }}>♡</Text>
-        </View>
-      </View>
-
-      {/* Content */}
-      <View style={{ padding: 16 }}>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505' }}>
-          ₱{monthlyRent.toLocaleString()}/month
-        </Text>
-        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 4 }}>
-          {typeLabel} · {barangay}, {city}
-        </Text>
-
-        {/* Seller row with avatar */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 8 }}>
           <View
             style={{
-              width: 20,
-              height: 20,
-              borderRadius: 10,
+              width: CARD_WIDTH,
+              height: CARD_WIDTH,
               backgroundColor: '#E4E6EB',
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 10, color: '#65676B' }}>👤</Text>
+            <Text style={{ fontSize: 32, color: '#8A8D91' }}>🏠</Text>
           </View>
-          <VerifiedBadge status="verified" size="sm" />
-          <Text style={{ fontSize: 12, color: '#65676B' }}>{landlordName}</Text>
-        </View>
+        )}
 
-        <FreshnessIndicator lastActiveAt={lastActiveAt} />
+        {/* "Just listed" badge overlay */}
+        {isJustListed && (
+          <View
+            style={{
+              position: 'absolute',
+              top: 8,
+              left: 8,
+              backgroundColor: '#2B51E3',
+              borderRadius: 4,
+              paddingHorizontal: 6,
+              paddingVertical: 2,
+            }}
+          >
+            <Text style={{ fontSize: 11, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>
+              Just listed
+            </Text>
+          </View>
+        )}
+      </View>
+
+      {/* Text below photo */}
+      <View style={{ paddingTop: 8, paddingHorizontal: 2 }}>
+        <Text
+          style={{ fontSize: 15, fontFamily: 'BerlinSansFB', color: '#050505' }}
+          numberOfLines={1}
+        >
+          P{monthlyRent.toLocaleString()}/mo
+        </Text>
+        <Text
+          style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginTop: 2 }}
+          numberOfLines={1}
+        >
+          {typeLabel} in {barangay}
+        </Text>
+        <Text
+          style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 1 }}
+          numberOfLines={1}
+        >
+          {city}
+        </Text>
       </View>
     </Pressable>
   );
 }
+
+export { CARD_WIDTH, CARD_GAP, HORIZONTAL_PADDING };

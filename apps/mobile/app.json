@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description": "Find verified rentals near BGC and Pasig. No scams. No agents. Free.",
     "scheme": "rentrayda",
-    "platforms": ["android"],
+    "platforms": ["android", "ios"],
     "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -33,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": false
+    },
+    "ios": {
+      "bundleIdentifier": "ph.rentrayda.app",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "RentRayda needs your camera to take photos of your ID and property.",
+        "NSPhotoLibraryUsageDescription": "RentRayda needs access to your photos to upload listing images."
+      }
     },
     "android": {
       "package": "ph.rentrayda.app",

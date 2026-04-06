@@ -55,7 +55,7 @@ export default async function ListingsPage({
       {/* Header */}
       <header style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #CED0D4', padding: '16px 20px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', textDecoration: 'none' }}>RentRayda</a>
+          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', textDecoration: 'none', fontFamily: 'BerlinSansFB' }}>RentRayda</a>
           <a
             href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
             style={{ padding: '8px 16px', fontSize: 14, fontWeight: 600, backgroundColor: '#2563EB', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none' }}
@@ -66,7 +66,7 @@ export default async function ListingsPage({
       </header>
 
       <main style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 20px' }}>
-        <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>Verified Listings</h1>
+        <h1 style={{ fontSize: 28, fontWeight: 700, marginBottom: 8, fontFamily: 'BerlinSansFB' }}>Verified Listings</h1>
         <p style={{ fontSize: 16, color: '#65676B', marginBottom: 24 }}>
           All landlords are verified. Only active listings shown.
         </p>
@@ -112,7 +112,7 @@ export default async function ListingsPage({
                   <span style={{ fontSize: 48, color: '#8A8D91' }}>🏠</span>
                 </div>
                 <div style={{ padding: 16 }}>
-                  <p style={{ fontSize: 20, fontWeight: 600, color: '#2563EB', margin: '0 0 4px' }}>
+                  <p style={{ fontSize: 20, fontWeight: 600, color: '#2563EB', margin: '0 0 4px', fontFamily: 'BerlinSansFB' }}>
                     ₱{listing.monthlyRent.toLocaleString()}/month
                   </p>
                   <p style={{ fontSize: 14, color: '#65676B', margin: '0 0 8px' }}>

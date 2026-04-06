@@ -160,9 +160,9 @@ export default function ListingCreateScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
           Create a Listing
         </Text>
       </View>
@@ -173,7 +173,7 @@ export default function ListingCreateScreen() {
         keyboardShouldPersistTaps="handled"
       >
         {/* Unit Type Chips */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           What type of unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', gap: 8, marginBottom: 16 }}>
@@ -190,7 +190,7 @@ export default function ListingCreateScreen() {
                 justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 14, fontWeight: '500', color: unitType === type ? '#FFFFFF' : '#374151' }}>
+              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: unitType === type ? '#FFFFFF' : '#374151' }}>
                 {UNIT_LABELS[type]}
               </Text>
             </Pressable>
@@ -198,13 +198,13 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Monthly Rent */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           How much is the rent? <Text style={{ color: '#E41E3F' }}>*</Text> P
         </Text>
         <TextInput
           style={{
             height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
-            paddingHorizontal: 12, fontSize: 16, marginBottom: 16, backgroundColor: '#FFFFFF',
+            paddingHorizontal: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk', marginBottom: 16, backgroundColor: '#FFFFFF',
           }}
           keyboardType="number-pad"
           placeholder="5,000"
@@ -215,7 +215,7 @@ export default function ListingCreateScreen() {
         />
 
         {/* Barangay */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Where is the unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
@@ -226,7 +226,7 @@ export default function ListingCreateScreen() {
             marginBottom: showBarangayPicker ? 0 : 16, backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: barangay ? '#050505' : '#8A8D91' }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: barangay ? '#050505' : '#8A8D91' }}>
             {barangay || 'Select barangay'}
           </Text>
         </Pressable>
@@ -238,14 +238,14 @@ export default function ListingCreateScreen() {
                 onPress={() => { setBarangay(b); setShowBarangayPicker(false); }}
                 style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Inclusions */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           Included in rent:
         </Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
@@ -262,68 +262,68 @@ export default function ListingCreateScreen() {
                   backgroundColor: selected ? '#DBEAFE' : '#FFFFFF',
                 }}
               >
-                <Text style={{ fontSize: 14 }}>{inc.label}</Text>
+                <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk' }}>{inc.label}</Text>
               </Pressable>
             );
           })}
         </View>
 
         {/* Beds Stepper */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           How many beds/rooms?
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
           <View style={{ width: 48, height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
-            <Text style={{ fontSize: 18, fontWeight: '600' }}>{beds}</Text>
+            <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGroteskBold' }}>{beds}</Text>
           </View>
           <Pressable onPress={() => setBeds(Math.max(1, beds - 1))} disabled={beds <= 1} style={{ marginLeft: 12, width: 40, height: 40, borderRadius: 8, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: '600' }}>-</Text>
+            <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGroteskBold' }}>-</Text>
           </Pressable>
           <Pressable onPress={() => setBeds(Math.min(20, beds + 1))} disabled={beds >= 20} style={{ marginLeft: 8, width: 40, height: 40, borderRadius: 8, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: '600' }}>+</Text>
+            <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGroteskBold' }}>+</Text>
           </Pressable>
         </View>
 
         {/* Advance & Deposit */}
         <View style={{ flexDirection: 'row', gap: 24, marginBottom: 16 }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>Advance (months)</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Advance (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>{advanceMonths}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>{advanceMonths}</Text>
               </View>
               <Pressable onPress={() => setAdvanceMonths(Math.max(0, advanceMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>-</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>-</Text>
               </Pressable>
               <Pressable onPress={() => setAdvanceMonths(Math.min(6, advanceMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>+</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>+</Text>
               </Pressable>
             </View>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>Deposit (months)</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Deposit (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>{depositMonths}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>{depositMonths}</Text>
               </View>
               <Pressable onPress={() => setDepositMonths(Math.max(0, depositMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>-</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>-</Text>
               </Pressable>
               <Pressable onPress={() => setDepositMonths(Math.min(6, depositMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>+</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>+</Text>
               </Pressable>
             </View>
           </View>
         </View>
 
         {/* Description */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Description (optional)
         </Text>
         <TextInput
           style={{
             height: 96, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
-            paddingHorizontal: 12, paddingTop: 12, fontSize: 16, marginBottom: 4,
+            paddingHorizontal: 12, paddingTop: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk', marginBottom: 4,
             backgroundColor: '#FFFFFF', textAlignVertical: 'top',
           }}
           multiline
@@ -334,12 +334,12 @@ export default function ListingCreateScreen() {
           onChangeText={setDescription}
           editable={!isLoading}
         />
-        <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'right', marginBottom: 16 }}>
+        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'right', marginBottom: 16 }}>
           {description.length}/200
         </Text>
 
         {/* Photos */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           Photos (1-5)
         </Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 20 }}>
@@ -348,7 +348,7 @@ export default function ListingCreateScreen() {
               <Pressable key={i} onPress={() => removePhoto(i)}>
                 <Image source={{ uri: photo.uri }} style={{ width: 80, height: 80, borderRadius: 8 }} />
                 <View style={{ position: 'absolute', top: -4, right: -4, width: 20, height: 20, borderRadius: 10, backgroundColor: '#E41E3F', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '700' }}>x</Text>
+                  <Text style={{ color: '#FFFFFF', fontSize: 12, fontFamily: 'AlteHaasGroteskBold' }}>x</Text>
                 </View>
               </Pressable>
             ))}
@@ -361,14 +361,14 @@ export default function ListingCreateScreen() {
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
-                <Text style={{ fontSize: 24, color: '#8A8D91' }}>+</Text>
+                <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>+</Text>
               </Pressable>
             )}
           </View>
         </ScrollView>
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -386,7 +386,7 @@ export default function ListingCreateScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>PUBLISH</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>PUBLISH</Text>
           )}
         </Pressable>
       </ScrollView>

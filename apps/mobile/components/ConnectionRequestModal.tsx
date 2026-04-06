@@ -91,7 +91,7 @@ export function ConnectionRequestModal({
           </View>
 
           <View style={{ paddingHorizontal: 20, paddingTop: 16 }}>
-            <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505', marginBottom: 16 }}>
+            <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 16 }}>
               Introduce yourself
             </Text>
 
@@ -102,6 +102,7 @@ export function ConnectionRequestModal({
                 borderRadius: 16,
                 padding: 12,
                 fontSize: 16,
+                fontFamily: 'AlteHaasGrotesk',
                 textAlignVertical: 'top',
                 backgroundColor: '#E4E6EB',
               }}
@@ -113,12 +114,12 @@ export function ConnectionRequestModal({
               onChangeText={setMessage}
               editable={!isSubmitting}
             />
-            <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'right', marginTop: 4 }}>
+            <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'right', marginTop: 4 }}>
               {message.length}/200
             </Text>
 
             {error && (
-              <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 8 }}>
+              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginTop: 8 }}>
                 {error}
               </Text>
             )}
@@ -139,13 +140,13 @@ export function ConnectionRequestModal({
               {isSubmitting ? (
                 <ActivityIndicator size="small" color="#FFFFFF" />
               ) : (
-                <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
+                <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
                   SEND REQUEST
                 </Text>
               )}
             </Pressable>
 
-            <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'center', marginTop: 12 }}>
+            <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 12 }}>
               The landlord will see your verified profile along with your message.
             </Text>
           </View>

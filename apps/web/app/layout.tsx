@@ -18,7 +18,35 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ margin: 0, fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @font-face {
+            font-family: 'BobbyJonesSoft';
+            src: url('/fonts/Bobby Jones Soft.otf') format('opentype');
+            font-weight: 400;
+            font-display: swap;
+          }
+          @font-face {
+            font-family: 'BerlinSansFB';
+            src: url('/fonts/Berlin Sans FB Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-display: swap;
+          }
+          @font-face {
+            font-family: 'AlteHaasGrotesk';
+            src: url('/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
+            font-weight: 400;
+            font-display: swap;
+          }
+          @font-face {
+            font-family: 'AlteHaasGrotesk';
+            src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+            font-weight: 700;
+            font-display: swap;
+          }
+        ` }} />
+      </head>
+      <body style={{ margin: 0, fontFamily: 'AlteHaasGrotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>
         {children}
       </body>
     </html>

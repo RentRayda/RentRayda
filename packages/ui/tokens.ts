@@ -32,7 +32,15 @@ export const spacing = {
 } as const;
 
 export const typography = {
-  fontFamily: 'Inter',
+  // Berlin Sans FB — "RentRayda" logo wordmark
+  fontBrand: 'BerlinSansFB',
+  // Berlin Sans FB — screen headers and section titles
+  fontHeading: 'BerlinSansFB',
+  // Bobby Jones Soft — accent/decorative text (section titles, taglines, fun callouts)
+  fontAccent: 'BobbyJonesSoft',
+  // Alte Haas Grotesk — all body text, labels, buttons, etc.
+  fontBody: 'AlteHaasGrotesk',
+  fontBodyBold: 'AlteHaasGroteskBold',
   sizes: {
     xs: 12,
     sm: 14,

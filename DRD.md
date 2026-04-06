@@ -46,117 +46,115 @@ Every interactive element: **minimum 48×48dp.** This is non-negotiable — Andr
 
 **Thumb zone:** On 5-inch budget Android phones (720×1280), the primary CTA must be in the bottom 40% of the screen. Bottom navigation at 48dp height (Facebook-style, slimmer).
 
-### 1.3 Typography Scale (Inter via Google Fonts)
+### 1.3 Typography — 4-Font System
 
-Font family: `Inter` for all texting. Loaded via `expo-font` on mobile, `@next/font/google` on web.
+RentRayda uses 4 custom fonts, each with a specific role. No Google Fonts — all fonts are bundled locally in `apps/mobile/assets/fonts/` and `apps/web/public/fonts/`.
 
-| Level | Size | Weight | Line Height | Letter Spacing | NativeWind Mobile | Tailwind Web | Usage |
-|---|---|---|---|---|---|---|---|
-| Display | 32px | 700 | 40px (1.25) | -0.5px | `text-3xl font-bold` | `text-3xl font-bold` | Ceremony title only |
-| Headline | 24px | 600 | 32px (1.33) | -0.25px | `text-2xl font-semibold` | `text-2xl font-semibold` | Screen titles |
-| Title | 20px | 500 | 28px (1.4) | 0 | `text-xl font-medium` | `text-xl font-medium` | Card titles, section headers |
-| Subhead | 18px | 600 | 26px (1.44) | 0 | `text-lg font-semibold` | `text-lg font-semibold` | Price display |
-| Body | 16px | 400 | 24px (1.5) | 0 | `text-base` | `text-base` | Body text, descriptions |
-| Label | 14px | 500 | 20px (1.43) | 0.1px | `text-sm font-medium` | `text-sm font-medium` | Form labels, button text |
-| Caption | 12px | 400 | 16px (1.33) | 0.2px | `text-xs` | `text-xs` | Timestamps, helper text |
-| Micro | 11px | 500 | 14px (1.27) | 0.3px | `text-[11px] font-medium` | `text-[11px] font-medium` | Badge labels only |
+#### Font Family Assignments
+
+| Font | Family Name (code) | Role | Where Used |
+|---|---|---|---|
+| **Berlin Sans FB** | `BerlinSansFB` | Brand wordmark | "RentRayda" logo text everywhere (headers, hero, footer, splash) |
+| **Berlin Sans FB** | `BerlinSansFB` | Screen headers | Main titles on each screen ("Find a listing", "Profile", "Create a Listing", "Verify your ID", prices) |
+| **Bobby Jones Soft** | `BobbyJonesSoft` | Accent / decorative | Playful headlines, taglines ("Sign up or log in", "What are you looking for?", "{name}, you're verified!", "You are now connected!", empty state headlines, web hero taglines) |
+| **Alte Haas Grotesk Bold** | `AlteHaasGroteskBold` | Buttons / emphasis | CTA button text (SEND CODE, CONTINUE, VERIFY), bold inline labels, emphasized status text |
+| **Alte Haas Grotesk** | `AlteHaasGroteskRegular` | Body / default | All other text: descriptions, form labels, timestamps, captions, error messages, secondary text |
+
+#### Typography Scale
+
+| Level | Size | Font Family | Usage |
+|---|---|---|---|
+| Display | 32px | `BobbyJonesSoft` | Ceremony headlines, celebration text |
+| Headline | 24px | `BerlinSansFB` or `BobbyJonesSoft` | Screen titles (Berlin Sans) or playful taglines (Bobby Jones) |
+| Title | 20px | `BerlinSansFB` | Section headers, page titles |
+| Subhead | 18px | `BerlinSansFB` | Price display, card titles |
+| Body | 16px | `AlteHaasGrotesk` | Body text, descriptions, form inputs |
+| Label | 14px | `AlteHaasGrotesk` or `AlteHaasGroteskBold` | Form labels (regular), button text (bold) |
+| Caption | 12px | `AlteHaasGrotesk` | Timestamps, helper text |
+| Micro | 11px | `AlteHaasGroteskBold` | Badge labels only |
 
 **Rules:**
 - Never below 12px on any screen. Budget Android (720p HD+) renders smaller sizes as blurry.
 - Body text minimum 16px — WHO recommends this for mobile readability.
 - Maximum line length: 45 characters on mobile, 75 on web.
 - Filipino words can be long — test that words like "Verified" and "for rent" don't overflow.
+- **React Native:** NEVER use `fontWeight` with custom fonts — switch `fontFamily` instead. Bold = `AlteHaasGroteskBold`, not `fontWeight: '700'`.
+- **Web:** `fontWeight` works normally with `@font-face` declarations since CSS handles weight mapping.
 
 ### 1.4 Font Loading and Configuration
 
-**Primary font:** Inter — clean, highly readable, excellent on budget Android at small sizes. Free via Google Fonts.
+**Font files (all bundled locally — no CDN dependency):**
+
+| File | Family Name | Format | Size |
+|---|---|---|---|
+| `Berlin Sans FB Regular.ttf` | `BerlinSansFB` | TrueType | 97KB |
+| `Bobby Jones Soft.otf` | `BobbyJonesSoft` | OpenType | 87KB |
+| `AlteHaasGroteskRegular.ttf` | `AlteHaasGrotesk` | TrueType | 144KB |
+| `AlteHaasGroteskBold.ttf` | `AlteHaasGroteskBold` | TrueType | 145KB |
+
+Total font payload: ~473KB (acceptable for 3G loading, cached after first load).
 
 **Mobile (Expo SDK 55 — expo-font):**
 
 ```typescript
 // apps/mobile/app/_layout.tsx
 import { useFonts } from 'expo-font';
-import {
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-} from '@expo-google-fonts/inter';
 import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
+    'BobbyJonesSoft': require('../assets/fonts/Bobby Jones Soft.otf'),
+    'BerlinSansFB': require('../assets/fonts/Berlin Sans FB Regular.ttf'),
+    'AlteHaasGrotesk': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
+    'AlteHaasGroteskBold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
   });
 
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
-  if (!fontsLoaded) return null;
+  if (!fontsLoaded) return <LoadingScreen />;
   return <Stack />;
 }
 ```
 
-**Font weight files required:**
-| Weight | File | NativeWind Class | Usage |
-|---|---|---|---|
-| 400 Regular | `Inter_400Regular` | `font-normal` | Body text, descriptions, captions |
-| 500 Medium | `Inter_500Medium` | `font-medium` | Labels, section headers, titles |
-| 600 SemiBold | `Inter_600SemiBold` | `font-semibold` | Headings, CTAs, price display |
-| 700 Bold | `Inter_700Bold` | `font-bold` | Display text (ceremony), emphasis |
-
-**NativeWind fontFamily config:**
-```javascript
-// tailwind.config.js (mobile)
-module.exports = {
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Inter_400Regular'],
-        medium: ['Inter_500Medium'],
-        semibold: ['Inter_600SemiBold'],
-        bold: ['Inter_700Bold'],
-      },
-    },
-  },
-};
-```
-
-**Web (Next.js 16.2 — next/font/google):**
+**Mobile usage (inline styles — NO fontWeight with custom fonts):**
 ```typescript
-// apps/web/app/layout.tsx
-import { Inter } from 'next/font/google';
+// Brand wordmark
+<Text style={{ fontFamily: 'BerlinSansFB', fontSize: 20 }}>RentRayda</Text>
 
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',       // Show fallback immediately, swap when loaded
-  variable: '--font-inter',
-  weight: ['400', '500', '600', '700'],
-});
+// Screen header
+<Text style={{ fontFamily: 'BerlinSansFB', fontSize: 18 }}>Find a listing</Text>
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en" className={inter.variable}>
-      <body className="font-sans">{children}</body>
-    </html>
-  );
-}
+// Accent/playful headline
+<Text style={{ fontFamily: 'BobbyJonesSoft', fontSize: 24 }}>Sign up or log in</Text>
+
+// Button text
+<Text style={{ fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>SEND CODE</Text>
+
+// Body text
+<Text style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 16 }}>Enter your phone number</Text>
 ```
 
-**Fallback stack:** `Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
+**Web (Next.js — @font-face in layout.tsx):**
+```html
+<style>
+  @font-face { font-family: 'BobbyJonesSoft'; src: url('/fonts/Bobby Jones Soft.otf') format('opentype'); font-display: swap; }
+  @font-face { font-family: 'BerlinSansFB'; src: url('/fonts/Berlin Sans FB Regular.ttf') format('truetype'); font-display: swap; }
+  @font-face { font-family: 'AlteHaasGrotesk'; src: url('/fonts/AlteHaasGroteskRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'AlteHaasGrotesk'; src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+</style>
+<body style="font-family: AlteHaasGrotesk, system-ui, sans-serif">
+```
+
+**Fallback stack:** `AlteHaasGrotesk, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
 
 **Budget Android rendering notes:**
-- Inter renders well on HD+ (720p) displays down to 12px — tested on MediaTek Helio G50 chipsets
-- Avoid font weights below 400 (light/thin) — they become unreadable on low-DPI screens
+- All 4 fonts render well on HD+ (720p) displays down to 12px
 - `textAlignVertical: 'center'` may be needed on Android for vertical alignment in buttons
 - Samsung Galaxy A-series and Redmi phones sometimes override font rendering — test on real devices
-- Font file total size: ~120KB for all 4 weights (acceptable for 3G loading)
 - Splash screen stays visible until fonts load — prevents flash of unstyled text (FOUT)
 
 ### 1.5 Color Token System (Facebook-Aligned)
@@ -2073,18 +2071,42 @@ ScamReportScreen (Modal)
 
 ## 3. WEB SCREEN SPECIFICATIONS (3 Screens)
 
-### WEB SCREEN 1: Landing Page
+### WEB SCREEN 1: Landing Page (Animated)
 **Route:** `apps/web/app/page.tsx`
+**Component:** `apps/web/components/AnimatedSections.tsx` (client component with scroll-triggered animations)
+
+**Animation system:**
+- **Scroll-triggered fade-in:** `IntersectionObserver` (threshold 0.15) triggers once per element. Fade from `opacity: 0` + `translateY(40px)` to visible. Duration: 0.7s ease. Staggered delays (0.1s increments) for child elements.
+- **Step-by-step demos:** `setTimeout` chains triggered on scroll intersection. Each step animates in sequence with 1-1.2s intervals.
+- **Phone mockup frame:** 280x560px rounded rectangle with notch, drop shadow. Used consistently across all feature sections.
+- **Badge pop animation:** `@keyframes badgePop { 0% { scale(0) } 60% { scale(1.15) } 100% { scale(1) } }` — used for verified badges, connection reveals.
+- **Hover interactions:** Cards lift with `translateY(-4px)` + shadow on hover. Store buttons lift with `translateY(-2px)`.
+- **Animated counters:** Numbers count up from 0 to target value over 1.5s when scrolled into view.
+- **No animation libraries.** Pure CSS transitions + IntersectionObserver + setTimeout. Zero dependencies.
 
 **Sections (top to bottom):**
-1. **Hero:** App name + "Here, you don't need connections" + "Download the app" button (links to Play Store)
-2. **How it works:** 3-column: "Sign Up" (Phone icon) → "Get Verified" (Shield icon) → "Connect" (Handshake icon). Each with 1-sentence simple English description.
-3. **Trust counter:** Live count from API: "[X] verified landlords in Pasig, [Y] verified tenants." Updated every page load (ISR not needed — just fetch).
-4. **Testimonial placeholder:** "Stories from verified users" — empty at launch, filled post-launch.
-5. **Anti-scam block:** "We are not Lamudi. We are not Rentpad. Here, everyone is verified — before you connect, we check first."
-6. **Footer:** Privacy Policy | Terms of Service | Contact (email) | "Built in the Philippines 🇵🇭"
 
-**Mobile responsive:** Single column below 768px. Hero CTA full-width on mobile.
+1. **Hero** — Gradient background (#1D4ED8 → #60A5FA) with subtle radial overlay. Logo, "RentRayda" in BerlinSansFB (56px), tagline in BobbyJonesSoft (26px), two CTAs: "Download the App" (white solid) + "Browse Listings" (white outline).
+
+2. **Trust Counter** — Blue banner with live metrics from API. BerlinSansFB for numbers.
+
+3. **How It Works (animated)** — `<HowItWorksAnimated />`. Section title in BerlinSansFB, subtitle in BobbyJonesSoft. 3 cards that fade in staggered (0.15s each). Each card: icon in blue rounded square, numbered badge, title in BerlinSansFB, description in AlteHaasGrotesk. Cards lift on hover.
+
+4. **Verification Demo** — `<VerificationDemo />`. Left: text explaining the flow + 3 step indicators that highlight sequentially. Right: phone mockup showing animated verification flow (progress bar fills, ID photo captured, selfie captured, submit button turns green, verified badge pops in). 4-step sequence auto-plays on scroll.
+
+5. **Browse Listings Demo** — `<BrowseListingsDemo />`. Left: phone mockup with search bar + 2-column grid where 6 listing cards fade in one by one (0.2s stagger). Right: text + filter chip preview. Alternating layout (phone on left).
+
+6. **Connection Demo** — `<ConnectionDemo />`. Left: text + "Zero fees" callout. Right: phone mockup showing animated connection flow: two avatars (tenant + landlord) get verified badges → approach each other (gap shrinks) → connection line draws → phone number card pops in → call/text buttons appear. 4-phase sequence.
+
+7. **Anti-Scam Block** — Static section. Title in BerlinSansFB, body in AlteHaasGrotesk, closing line in BobbyJonesSoft.
+
+8. **Cross-Platform + Stats** — `<CrossPlatformDemo />`. Centered layout. Title in BerlinSansFB, Play Store + App Store download buttons (dark, lift on hover). Three animated stat counters below: "100%" / "0" / "48hr".
+
+9. **Footer** — Dark background. "RentRayda" in BerlinSansFB. Links in AlteHaasGrotesk.
+
+**Layout pattern:** Feature sections alternate text-left/phone-right and text-right/phone-left. All use `display: flex` with `flex-wrap: wrap` for mobile responsiveness. Phone mockups stack below text on narrow screens.
+
+**Mobile responsive:** All flex containers wrap. Phone mockups center below text. Hero CTAs stack vertically. Stats wrap to 2+1 grid.
 
 ### WEB SCREEN 2: Admin Verification Queue
 **Route:** `apps/web/app/admin/verifications/page.tsx`

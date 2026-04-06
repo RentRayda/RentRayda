@@ -61,10 +61,10 @@ export default function RoleSelectionScreen() {
           position: 'relative',
         }}
       >
-        <Text style={{ fontSize: 16, fontWeight: '600', color: '#050505' }}>
+        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
           {title}
         </Text>
-        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 2 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 2 }}>
           {description}
         </Text>
         {isSelected && (
@@ -81,7 +81,7 @@ export default function RoleSelectionScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontSize: 14, fontWeight: '700' }}>✓</Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'AlteHaasGroteskBold' }}>✓</Text>
           </View>
         )}
       </Pressable>
@@ -94,7 +94,7 @@ export default function RoleSelectionScreen() {
         <Text
           style={{
             fontSize: 24,
-            fontWeight: '600',
+            fontFamily: 'BobbyJonesSoft',
             color: '#050505',
             textAlign: 'center',
             marginBottom: 32,
@@ -118,7 +118,7 @@ export default function RoleSelectionScreen() {
         />
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
             {error}
           </Text>
         )}
@@ -141,7 +141,7 @@ export default function RoleSelectionScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>CONTINUE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>CONTINUE</Text>
           )}
         </Pressable>
       </View>

@@ -101,10 +101,10 @@ export default function InboxScreen() {
       {/* Tenant info */}
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontSize: 20, color: '#8A8D91' }}>P</Text>
+          <Text style={{ fontSize: 20, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>P</Text>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={{ fontSize: 16, fontWeight: '500', color: '#050505' }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>
             {item.tenant?.fullName || 'Tenant'}
           </Text>
           <VerifiedBadge status="verified" size="sm" />
@@ -113,13 +113,13 @@ export default function InboxScreen() {
 
       {/* Message */}
       {item.message && (
-        <Text numberOfLines={2} style={{ fontSize: 14, color: '#65676B', marginTop: 8, lineHeight: 20 }}>
+        <Text numberOfLines={2} style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 8, lineHeight: 20 }}>
           "{item.message}"
         </Text>
       )}
 
       {/* Listing ref + timestamp */}
-      <Text style={{ fontSize: 12, color: '#8A8D91', marginTop: 8 }}>
+      <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91', marginTop: 8 }}>
         For: {item.listing.unitType.charAt(0).toUpperCase() + item.listing.unitType.slice(1)} {item.listing.barangay} · {timeAgo(item.createdAt)}
       </Text>
 
@@ -134,7 +134,7 @@ export default function InboxScreen() {
             {processing === item.id ? (
               <ActivityIndicator size="small" color="#FFFFFF" />
             ) : (
-              <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 14 }}>Accept</Text>
+              <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>Accept</Text>
             )}
           </Pressable>
           <Pressable
@@ -142,12 +142,12 @@ export default function InboxScreen() {
             disabled={processing === item.id}
             style={{ flex: 1, height: 40, backgroundColor: '#E4E6EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: '#374151', fontWeight: '500', fontSize: 14 }}>Decline</Text>
+            <Text style={{ color: '#374151', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>Decline</Text>
           </Pressable>
         </View>
       ) : (
         <View style={{ marginTop: 12, paddingVertical: 8, alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontWeight: '500', color: item.status === 'accepted' ? '#31A24C' : '#8A8D91' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: item.status === 'accepted' ? '#31A24C' : '#8A8D91' }}>
             {item.status === 'accepted' ? 'Accepted' : 'Declined'}
           </Text>
         </View>
@@ -158,7 +158,7 @@ export default function InboxScreen() {
   const renderTenantCard = ({ item }: { item: ConnectionRequest }) => (
     <View style={{ backgroundColor: '#FFFFFF', padding: 16, marginBottom: 1, borderBottomWidth: 1, borderBottomColor: '#CED0D4' }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Text style={{ fontSize: 16, fontWeight: '500', color: '#050505' }}>
+        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>
           {item.landlord?.fullName || 'Landlord'}
         </Text>
         <View style={{
@@ -166,18 +166,18 @@ export default function InboxScreen() {
           backgroundColor: item.status === 'pending' ? '#FEF3C7' : item.status === 'accepted' ? '#D1FAE5' : '#E4E6EB',
         }}>
           <Text style={{
-            fontSize: 12, fontWeight: '500',
+            fontSize: 12, fontFamily: 'AlteHaasGrotesk',
             color: item.status === 'pending' ? '#92400E' : item.status === 'accepted' ? '#059669' : '#65676B',
           }}>
             {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
           </Text>
         </View>
       </View>
-      <Text style={{ fontSize: 14, color: '#65676B', marginTop: 4 }}>
+      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 4 }}>
         {item.listing.unitType.charAt(0).toUpperCase() + item.listing.unitType.slice(1)} · {item.listing.barangay}
         {item.listing.monthlyRent ? ` · P${item.listing.monthlyRent.toLocaleString()}` : ''}
       </Text>
-      <Text style={{ fontSize: 12, color: '#8A8D91', marginTop: 4 }}>{timeAgo(item.createdAt)}</Text>
+      <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91', marginTop: 4 }}>{timeAgo(item.createdAt)}</Text>
     </View>
   );
 
@@ -186,7 +186,7 @@ export default function InboxScreen() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
         <View style={{ paddingHorizontal: 20, paddingTop: 16 }}>
-          <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505' }}>Connection Requests</Text>
+          <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505' }}>Connection Requests</Text>
         </View>
         <View style={{ paddingHorizontal: 0, paddingTop: 16 }}>
           {[1, 2, 3].map((i) => (
@@ -213,21 +213,21 @@ export default function InboxScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       <View style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
-        <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505' }}>
+        <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505' }}>
           Connection Requests
         </Text>
-        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 2 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 2 }}>
           {pendingRequests.length} pending
         </Text>
       </View>
 
       {requests.length === 0 ? (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 48, marginBottom: 16 }}>I</Text>
-          <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
+          <Text style={{ fontSize: 48, fontFamily: 'AlteHaasGrotesk', marginBottom: 16 }}>I</Text>
+          <Text style={{ fontSize: 18, fontFamily: 'BobbyJonesSoft', color: '#050505', textAlign: 'center' }}>
             No connection requests yet.
           </Text>
-          <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             {isLandlord
               ? 'When tenants are interested in your listing, their requests will appear here.'
               : 'Your sent requests and connections will appear here.'}

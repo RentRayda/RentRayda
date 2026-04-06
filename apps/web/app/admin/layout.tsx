@@ -22,7 +22,7 @@ export default function AdminLayout({
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 20, fontWeight: 700, color: '#2563EB' }}>RentRayda</span>
+          <span style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', fontFamily: 'BerlinSansFB' }}>RentRayda</span>
           <span style={{ fontSize: 14, color: '#65676B' }}>Admin Dashboard</span>
         </div>
         <nav style={{ display: 'flex', gap: 24 }}>

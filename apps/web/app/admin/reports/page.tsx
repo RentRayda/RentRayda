@@ -79,7 +79,7 @@ export default function AdminReportsPage() {
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24 }}>
+      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24, fontFamily: 'BerlinSansFB' }}>
         Report Queue
         <span style={{ fontSize: 14, fontWeight: 400, color: '#65676B', marginLeft: 8 }}>
           ({reports.filter((r) => r.status === 'pending').length} pending)
@@ -169,7 +169,7 @@ export default function AdminReportsPage() {
       {confirmAction && (
         <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
           <div style={{ backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24, maxWidth: 420, width: '90%' }}>
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 12 }}>Suspend User?</h2>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 12, fontFamily: 'BerlinSansFB' }}>Suspend User?</h2>
             <p style={{ fontSize: 14, color: '#65676B', lineHeight: 1.5 }}>
               This will immediately log out the user, hide their listings, and prevent new connections. Continue?
             </p>

@@ -7,17 +7,19 @@ import {
   ActivityIndicator,
   ScrollView,
   RefreshControl,
+  FlatList,
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { FlashList } from '@shopify/flash-list';
-import { ListingCard } from '../../../components/ListingCard';
-import { SkeletonCard } from '../../../components/SkeletonCard';
+import { ListingCard, CARD_GAP, HORIZONTAL_PADDING } from '../../../components/ListingCard';
 
 const UNIT_TYPES = ['bedspace', 'room', 'apartment'] as const;
 const LAUNCH_BARANGAYS = ['Ugong', 'San Antonio', 'Kapitolyo', 'Oranbo', 'Boni', 'Shaw'] as const;
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const CARD_WIDTH = (SCREEN_WIDTH - HORIZONTAL_PADDING * 2 - CARD_GAP) / 2;
 
 interface Listing {
   id: string;
@@ -32,6 +34,23 @@ interface Listing {
     verificationStatus: string;
   };
   firstPhoto: { r2ObjectKey: string } | null;
+}
+
+function SkeletonGrid() {
+  return (
+    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: CARD_GAP, paddingHorizontal: HORIZONTAL_PADDING }}>
+      {[0, 1, 2, 3, 4, 5].map((i) => (
+        <View key={i} style={{ width: CARD_WIDTH, marginBottom: 16 }}>
+          <View style={{ width: CARD_WIDTH, height: CARD_WIDTH, backgroundColor: '#E4E6EB', borderTopLeftRadius: 8, borderTopRightRadius: 8 }} />
+          <View style={{ paddingTop: 8, paddingHorizontal: 2 }}>
+            <View style={{ width: '60%', height: 16, backgroundColor: '#E4E6EB', borderRadius: 4 }} />
+            <View style={{ width: '80%', height: 14, backgroundColor: '#E4E6EB', borderRadius: 4, marginTop: 6 }} />
+            <View style={{ width: '40%', height: 12, backgroundColor: '#E4E6EB', borderRadius: 4, marginTop: 4 }} />
+          </View>
+        </View>
+      ))}
+    </View>
+  );
 }
 
 export default function ListingSearchScreen() {
@@ -113,79 +132,152 @@ export default function ListingSearchScreen() {
   // Error state
   if (error && !loading) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
           <Pressable
             onPress={() => { setError(null); setLoading(true); fetchListings(1); }}
-            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>Try Again</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>Try Again</Text>
           </Pressable>
         </View>
       </SafeAreaView>
     );
   }
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
-      {/* Header */}
-      <View style={{ paddingHorizontal: 20, paddingTop: 16 }}>
-        <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505' }}>Find a listing</Text>
-        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 2 }}>Hello!</Text>
+  const renderItem = ({ item, index }: { item: Listing; index: number }) => (
+    <View style={{ marginLeft: index % 2 === 0 ? 0 : CARD_GAP }}>
+      <ListingCard
+        id={item.id}
+        thumbnailUrl={null}
+        monthlyRent={item.monthlyRent}
+        unitType={item.unitType}
+        barangay={item.barangay}
+        city={item.city}
+        landlordName={item.landlordProfile.fullName}
+        verificationStatus={item.landlordProfile.verificationStatus}
+        lastActiveAt={item.lastActiveAt}
+        onPress={() => router.push(`/(tabs)/search/${item.id}` as never)}
+      />
+    </View>
+  );
 
+  const ListHeader = () => (
+    <View style={{ paddingHorizontal: HORIZONTAL_PADDING, paddingBottom: 8 }}>
+      {/* Results count */}
+      <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+        {loading ? '' : `${listings.length} verified listing${listings.length !== 1 ? 's' : ''}`}
+      </Text>
+    </View>
+  );
+
+  const ListFooter = () => {
+    if (!hasMore) return null;
+    return (
+      <View style={{ paddingVertical: 16, alignItems: 'center' }}>
+        {loadingMore ? (
+          <ActivityIndicator size="small" color="#2B51E3" />
+        ) : (
+          <Pressable
+            onPress={handleLoadMore}
+            style={{
+              height: 40,
+              paddingHorizontal: 20,
+              borderRadius: 20,
+              backgroundColor: '#E4E6EB',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Text style={{ color: '#050505', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>
+              Load more
+            </Text>
+          </Pressable>
+        )}
+      </View>
+    );
+  };
+
+  const EmptyState = () => (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32, paddingTop: 60 }}>
+      <Text style={{ fontSize: 48, marginBottom: 16 }}>🏠</Text>
+      <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGroteskBold', color: '#050505', textAlign: 'center' }}>
+        No listings found
+      </Text>
+      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+        Try a different barangay or adjust your filters.
+      </Text>
+      <Pressable
+        onPress={clearFilters}
+        style={{
+          marginTop: 24, height: 40, paddingHorizontal: 20, borderRadius: 20,
+          backgroundColor: '#E4E6EB', alignItems: 'center', justifyContent: 'center',
+        }}
+      >
+        <Text style={{ color: '#050505', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>Clear filters</Text>
+      </Pressable>
+    </View>
+  );
+
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+      {/* Search bar + filters */}
+      <View style={{ paddingHorizontal: HORIZONTAL_PADDING, paddingTop: 12, paddingBottom: 4, backgroundColor: '#FFFFFF' }}>
         {/* Search Input */}
-        <View style={{ flexDirection: 'row', backgroundColor: '#E4E6EB', borderRadius: 20, height: 44, alignItems: 'center', paddingHorizontal: 12, gap: 8, marginTop: 12 }}>
-          <Text style={{ fontSize: 16, color: '#8A8D91' }}>S</Text>
+        <View style={{ flexDirection: 'row', backgroundColor: '#F0F2F5', borderRadius: 20, height: 40, alignItems: 'center', paddingHorizontal: 12, gap: 8 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>🔍</Text>
           <TextInput
-            style={{ flex: 1, fontSize: 16, color: '#050505' }}
-            placeholder="Where? (barangay)"
-            placeholderTextColor="#8A8D91"
+            style={{ flex: 1, fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}
+            placeholder="Search by barangay"
+            placeholderTextColor="#65676B"
             value={barangay}
             onChangeText={(t) => { setBarangay(t); setShowBarangaySuggestions(true); }}
             onBlur={() => setTimeout(() => setShowBarangaySuggestions(false), 200)}
           />
           {barangay.length > 0 && (
-            <Pressable onPress={() => setBarangay('')}>
-              <Text style={{ fontSize: 16, color: '#8A8D91' }}>x</Text>
+            <Pressable onPress={() => setBarangay('')} hitSlop={8}>
+              <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>✕</Text>
             </Pressable>
           )}
         </View>
 
         {/* Barangay suggestions */}
         {showBarangaySuggestions && filteredBarangays.length > 0 && (
-          <View style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, marginTop: 4, maxHeight: 200 }}>
+          <View style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E4E6EB', borderRadius: 8, marginTop: 4, maxHeight: 200, zIndex: 10 }}>
             {filteredBarangays.map((b) => (
               <Pressable key={b} onPress={() => { setBarangay(b); setShowBarangaySuggestions(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
-                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
+                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Filter Chips */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 12 }}>
-          <View style={{ flexDirection: 'row', gap: 8 }}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
+          <View style={{ flexDirection: 'row', gap: 8, paddingRight: 8 }}>
             <TextInput
               style={{
-                height: 36, paddingHorizontal: 12, borderRadius: 18, fontSize: 14,
-                backgroundColor: minRent ? '#DBEAFE' : '#E4E6EB', color: '#374151', width: 80,
+                height: 32, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                backgroundColor: minRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
+                borderWidth: minRent ? 1 : 0, borderColor: '#2B51E3',
               }}
-              placeholder="P Min"
-              placeholderTextColor="#8A8D91"
+              placeholder="Min"
+              placeholderTextColor="#65676B"
               keyboardType="number-pad"
               value={minRent}
               onChangeText={setMinRent}
             />
             <TextInput
               style={{
-                height: 36, paddingHorizontal: 12, borderRadius: 18, fontSize: 14,
-                backgroundColor: maxRent ? '#DBEAFE' : '#E4E6EB', color: '#374151', width: 80,
+                height: 32, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                backgroundColor: maxRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
+                borderWidth: maxRent ? 1 : 0, borderColor: '#2B51E3',
               }}
-              placeholder="P Max"
-              placeholderTextColor="#8A8D91"
+              placeholder="Max"
+              placeholderTextColor="#65676B"
               keyboardType="number-pad"
               value={maxRent}
               onChangeText={setMaxRent}
@@ -195,98 +287,49 @@ export default function ListingSearchScreen() {
                 key={type}
                 onPress={() => setTypeFilter(typeFilter === type ? null : type)}
                 style={{
-                  height: 36, paddingHorizontal: 14, borderRadius: 18,
-                  backgroundColor: typeFilter === type ? '#DBEAFE' : '#E4E6EB',
+                  height: 32, paddingHorizontal: 14, borderRadius: 16,
+                  backgroundColor: typeFilter === type ? '#EBF0FC' : '#F0F2F5',
                   alignItems: 'center', justifyContent: 'center',
                   borderWidth: typeFilter === type ? 1 : 0,
-                  borderColor: '#2563EB',
+                  borderColor: '#2B51E3',
                 }}
               >
-                <Text style={{ fontSize: 14, color: typeFilter === type ? '#2563EB' : '#374151' }}>
+                <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: typeFilter === type ? '#2B51E3' : '#050505' }}>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Text>
               </Pressable>
             ))}
           </View>
         </ScrollView>
-
-        {/* Results count */}
-        <Text style={{ fontSize: 12, color: '#65676B', marginTop: 12, marginBottom: 8 }}>
-          {loading ? '' : `${listings.length} verified listing${listings.length !== 1 ? 's' : ''}`}
-        </Text>
       </View>
+
+      {/* Divider */}
+      <View style={{ height: 1, backgroundColor: '#E4E6EB' }} />
 
       {/* Content */}
       {loading ? (
-        <View style={{ paddingHorizontal: 20 }}>
-          <SkeletonCard />
-          <SkeletonCard />
-          <SkeletonCard />
-        </View>
+        <ScrollView style={{ flex: 1, paddingTop: 12 }}>
+          <SkeletonGrid />
+        </ScrollView>
       ) : listings.length === 0 ? (
-        /* Empty State */
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 48, marginBottom: 16 }}>H</Text>
-          <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
-            No listings in this area yet.
-          </Text>
-          <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
-            Try a nearby barangay or check again tomorrow.
-          </Text>
-          <Pressable
-            onPress={clearFilters}
-            style={{
-              marginTop: 24, height: 48, paddingHorizontal: 24, borderRadius: 8,
-              borderWidth: 1, borderColor: '#2563EB', alignItems: 'center', justifyContent: 'center',
-            }}
-          >
-            <Text style={{ color: '#2563EB', fontWeight: '600', fontSize: 16 }}>CLEAR FILTERS</Text>
-          </Pressable>
-        </View>
+        <EmptyState />
       ) : (
-        <View style={{ flex: 1, paddingHorizontal: 20 }}>
-          <FlashList
-            data={listings}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-              <ListingCard
-                id={item.id}
-                thumbnailUrl={null}
-                monthlyRent={item.monthlyRent}
-                unitType={item.unitType}
-                barangay={item.barangay}
-                city={item.city}
-                landlordName={item.landlordProfile.fullName}
-                verificationStatus={item.landlordProfile.verificationStatus}
-                lastActiveAt={item.lastActiveAt}
-                onPress={() => router.push(`/(tabs)/search/${item.id}` as never)}
-              />
-            )}
-            refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2563EB" />
-            }
-            ListFooterComponent={
-              hasMore ? (
-                <Pressable
-                  onPress={handleLoadMore}
-                  disabled={loadingMore}
-                  style={{
-                    height: 48, borderRadius: 8, borderWidth: 1, borderColor: '#CED0D4',
-                    alignItems: 'center', justifyContent: 'center', marginBottom: 16,
-                  }}
-                >
-                  {loadingMore ? (
-                    <ActivityIndicator size="small" color="#2563EB" />
-                  ) : (
-                    <Text style={{ color: '#374151', fontWeight: '500', fontSize: 14 }}>
-                      LOAD MORE (page {page + 1})
-                    </Text>
-                  )}
-                </Pressable>
-              ) : null
-            }
-          />
-        </View>
+        <FlatList
+          data={listings}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          renderItem={renderItem}
+          columnWrapperStyle={{ paddingHorizontal: HORIZONTAL_PADDING, gap: CARD_GAP }}
+          ListHeaderComponent={ListHeader}
+          ListFooterComponent={ListFooter}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2B51E3" />
+          }
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.5}
+          contentContainerStyle={{ paddingTop: 12, paddingBottom: 20 }}
+          showsVerticalScrollIndicator={false}
+        />
       )}
     </SafeAreaView>
   );

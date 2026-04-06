@@ -203,12 +203,12 @@ export default function GovernmentIDUploadScreen() {
               marginBottom: 24,
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontSize: 32 }}>✓</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGrotesk', fontSize: 32 }}>✓</Text>
           </View>
-          <Text style={{ fontSize: 20, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
+          <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505', textAlign: 'center' }}>
             Uploaded!
           </Text>
-          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             Under review — 24-48 hours.
           </Text>
           <Pressable
@@ -223,7 +223,7 @@ export default function GovernmentIDUploadScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>CONTINUE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>CONTINUE</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -235,9 +235,9 @@ export default function GovernmentIDUploadScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
           Verify your ID
         </Text>
       </View>
@@ -248,7 +248,7 @@ export default function GovernmentIDUploadScreen() {
         keyboardShouldPersistTaps="handled"
       >
         {/* Progress bar */}
-        <Text style={{ fontSize: 12, color: '#65676B', marginBottom: 4 }}>Step 1 of 3</Text>
+        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginBottom: 4 }}>Step 1 of 3</Text>
         <View style={{ height: 4, backgroundColor: '#CED0D4', borderRadius: 2, marginBottom: 20 }}>
           <View style={{ width: '33%', height: 4, backgroundColor: '#2563EB', borderRadius: 2 }} />
         </View>
@@ -263,18 +263,18 @@ export default function GovernmentIDUploadScreen() {
             marginBottom: 20,
           }}
         >
-          <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>
             Why is this needed?
           </Text>
           {infoExpanded && (
-            <Text style={{ fontSize: 14, color: '#65676B', marginTop: 8 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 8 }}>
               To confirm you are the real person who registered. We will never show your ID to anyone else.
             </Text>
           )}
         </Pressable>
 
         {/* ID Type Radio List */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           What type of ID? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         {ID_TYPES.map((type) => (
@@ -303,7 +303,7 @@ export default function GovernmentIDUploadScreen() {
                 <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2563EB' }} />
               )}
             </View>
-            <Text style={{ fontSize: 16, color: '#050505' }}>{type.label}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{type.label}</Text>
           </Pressable>
         ))}
 
@@ -326,10 +326,10 @@ export default function GovernmentIDUploadScreen() {
             }}
           >
             {consentChecked && (
-              <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '700' }}>✓</Text>
+              <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 12 }}>✓</Text>
             )}
           </View>
-          <Text style={{ fontSize: 14, color: '#65676B', flex: 1 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', flex: 1 }}>
             I agree to store my government ID for verification.{' '}
             <Text style={{ color: '#2563EB', textDecorationLine: 'underline' }}>
               Read the Privacy Policy
@@ -353,7 +353,7 @@ export default function GovernmentIDUploadScreen() {
             marginBottom: 12,
           }}
         >
-          <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
+          <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
             TAKE PHOTO OF ID
           </Text>
         </Pressable>
@@ -372,7 +372,7 @@ export default function GovernmentIDUploadScreen() {
               }}
             />
             <Pressable onPress={handleTakeIdPhoto}>
-              <Text style={{ fontSize: 14, color: '#2563EB' }}>Retake</Text>
+              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB' }}>Retake</Text>
             </Pressable>
           </View>
         )}
@@ -393,7 +393,7 @@ export default function GovernmentIDUploadScreen() {
               marginBottom: 12,
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
               TAKE SELFIE
             </Text>
           </Pressable>
@@ -412,7 +412,7 @@ export default function GovernmentIDUploadScreen() {
         {/* Upload Progress */}
         {(isUploading || isSubmitting) && (
           <View style={{ marginTop: 16 }}>
-            <Text style={{ fontSize: 14, color: '#65676B', marginBottom: 8 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginBottom: 8 }}>
               {isSubmitting ? 'Submitting...' : 'Uploading...'}
             </Text>
             <View style={{ height: 8, backgroundColor: '#CED0D4', borderRadius: 4 }}>
@@ -431,7 +431,7 @@ export default function GovernmentIDUploadScreen() {
         {/* Upload Error */}
         {uploadError && (
           <Pressable onPress={idObjectKey ? handleTakeSelfie : handleTakeIdPhoto}>
-            <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
               Upload failed. Try again?
             </Text>
           </Pressable>
@@ -442,7 +442,7 @@ export default function GovernmentIDUploadScreen() {
           onPress={() => router.replace('/(onboarding)/submitted' as never)}
           style={{ marginTop: 24, alignItems: 'center' }}
         >
-          <Text style={{ fontSize: 14, color: '#65676B', textDecorationLine: 'underline' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textDecorationLine: 'underline' }}>
             Skip for now — i-verify later
           </Text>
         </Pressable>

@@ -152,7 +152,7 @@ export function VerificationDemo() {
                 }}>
                   <span style={{ fontSize: 20 }}>{item.icon}</span>
                   <span style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: step > i ? '#1D4ED8' : '#65676B' }}>{item.label}</span>
-                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16 }}>&#10003;</span>}
+                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16 }}>✓</span>}
                 </div>
               ))}
             </div>
@@ -186,7 +186,7 @@ export function VerificationDemo() {
                   border: step >= 1 ? '2px solid #2563EB' : '2px dashed #CED0D4',
                 }}>
                   <span style={{ fontSize: step >= 1 ? 14 : 24, color: step >= 1 ? '#1D4ED8' : '#8A8D91', fontFamily: 'AlteHaasGrotesk', transition: 'all 0.3s ease' }}>
-                    {step >= 1 ? '&#10003; ID captured' : '+'}
+                    {step >= 1 ? '✓ ID captured' : '+'}
                   </span>
                 </div>
 
@@ -199,7 +199,7 @@ export function VerificationDemo() {
                   border: step >= 2 ? '2px solid #2563EB' : '2px dashed #CED0D4',
                 }}>
                   <span style={{ fontSize: step >= 2 ? 12 : 20, color: step >= 2 ? '#1D4ED8' : '#8A8D91', fontFamily: 'AlteHaasGrotesk' }}>
-                    {step >= 2 ? '&#10003;' : '📷'}
+                    {step >= 2 ? '✓' : '📷'}
                   </span>
                 </div>
 
@@ -213,7 +213,7 @@ export function VerificationDemo() {
                   transform: step >= 3 ? 'scale(1.02)' : 'none',
                 }}>
                   <span style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'AlteHaasGroteskBold' }}>
-                    {step >= 3 ? '&#10003; SUBMITTED' : 'SUBMIT FOR REVIEW'}
+                    {step >= 3 ? '✓ SUBMITTED' : 'SUBMIT FOR REVIEW'}
                   </span>
                 </div>
 
@@ -225,7 +225,7 @@ export function VerificationDemo() {
                     backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
                     animation: 'badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}>
-                    <span style={{ color: '#16A34A', fontSize: 16 }}>&#10003;</span>
+                    <span style={{ color: '#16A34A', fontSize: 16 }}>✓</span>
                     <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A' }}>Verified</span>
                   </div>
                 )}
@@ -290,7 +290,7 @@ export function BrowseListingsDemo() {
               {/* Search bar */}
               <div style={{ padding: '8px 12px' }}>
                 <div style={{ height: 36, borderRadius: 18, backgroundColor: '#E4E6EB', display: 'flex', alignItems: 'center', paddingLeft: 12, gap: 6 }}>
-                  <span style={{ fontSize: 14, color: '#8A8D91' }}>&#x1F50D;</span>
+                  <span style={{ fontSize: 14, color: '#8A8D91' }}>🔍</span>
                   <span style={{ fontSize: 13, color: '#8A8D91', fontFamily: 'AlteHaasGrotesk' }}>Where? (barangay)</span>
                 </div>
               </div>
@@ -402,7 +402,7 @@ export function ConnectionDemo() {
           <FadeIn delay={0.3}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
               <div style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: '#DBEAFE', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <span style={{ fontSize: 20 }}>&#128222;</span>
+                <span style={{ fontSize: 20 }}>📞</span>
               </div>
               <div>
                 <p style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505', margin: 0 }}>Zero fees. Always.</p>
@@ -427,11 +427,11 @@ export function ConnectionDemo() {
                       border: phase >= 1 ? '3px solid #16A34A' : '3px solid #CED0D4',
                       transition: 'border 0.5s ease',
                     }}>
-                      <span style={{ fontSize: 24 }}>&#128100;</span>
+                      <span style={{ fontSize: 24 }}>👤</span>
                     </div>
                     <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Tenant</p>
                     {phase >= 1 && (
-                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease' }}>&#10003; Verified</span>
+                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease' }}>✓ Verified</span>
                     )}
                   </div>
 
@@ -449,11 +449,11 @@ export function ConnectionDemo() {
                       border: phase >= 1 ? '3px solid #16A34A' : '3px solid #CED0D4',
                       transition: 'border 0.5s ease 0.3s',
                     }}>
-                      <span style={{ fontSize: 24 }}>&#127968;</span>
+                      <span style={{ fontSize: 24 }}>🏠</span>
                     </div>
                     <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Landlord</p>
                     {phase >= 1 && (
-                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease 0.3s both' }}>&#10003; Verified</span>
+                      <span style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', animation: 'badgePop 0.4s ease 0.3s both' }}>✓ Verified</span>
                     )}
                   </div>
                 </div>
@@ -466,7 +466,7 @@ export function ConnectionDemo() {
                     animation: 'badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
                     marginBottom: 12,
                   }}>
-                    <p style={{ fontSize: 13, fontFamily: 'BobbyJonesSoft', color: '#2563EB', margin: '0 0 8px' }}>Connected!</p>
+                    <p style={{ fontSize: 13, fontFamily: 'BerlinSansFB', color: '#2563EB', margin: '0 0 8px' }}>Connected!</p>
                     <p style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#1D4ED8', margin: '0 0 4px', letterSpacing: 1 }}>
                       +63 917 *** 4589
                     </p>
@@ -484,14 +484,14 @@ export function ConnectionDemo() {
                       flex: 1, height: 40, borderRadius: 8, backgroundColor: '#2563EB',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                     }}>
-                      <span style={{ fontSize: 14 }}>&#128222;</span>
+                      <span style={{ fontSize: 14 }}>📞</span>
                       <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>Call</span>
                     </div>
                     <div style={{
                       flex: 1, height: 40, borderRadius: 8, border: '1px solid #2563EB',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                     }}>
-                      <span style={{ fontSize: 14 }}>&#128172;</span>
+                      <span style={{ fontSize: 14 }}>💬</span>
                       <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#2563EB' }}>Text</span>
                     </div>
                   </div>
@@ -553,7 +553,7 @@ export function CrossPlatformDemo() {
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
-              <span style={{ fontSize: 28 }}>&#9654;</span>
+              <span style={{ fontSize: 28 }}>▶</span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>GET IT ON</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>Google Play</span>
@@ -570,7 +570,7 @@ export function CrossPlatformDemo() {
               onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = 'none')}
             >
-              <span style={{ fontSize: 28 }}>&#63743;</span>
+              <span style={{ fontSize: 28 }}></span>
               <span>
                 <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>Download on the</span>
                 <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>App Store</span>
@@ -618,7 +618,7 @@ export function HowItWorksAnimated() {
           </h2>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <p style={{ fontSize: 18, fontFamily: 'BobbyJonesSoft', textAlign: 'center', color: '#65676B', margin: '0 0 56px' }}>
+          <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', textAlign: 'center', color: '#65676B', margin: '0 0 56px' }}>
             Three steps. No complicated forms. No waiting forever.
           </p>
         </FadeIn>

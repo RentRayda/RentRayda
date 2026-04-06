@@ -115,7 +115,7 @@ export default async function LandingPage() {
             No fake listings. No scam agents. No money through the app.
             Just verified landlords and verified tenants, connecting directly.
           </p>
-          <p style={{ fontSize: 16, fontFamily: 'BobbyJonesSoft', color: '#65676B', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6 }}>
             Built for BPO workers in Pasig who need a safe way to find a room without knowing anyone in Manila.
           </p>
         </div>

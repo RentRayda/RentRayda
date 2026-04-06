@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import {
   VerificationDemo,
   BrowseListingsDemo,
@@ -6,8 +5,7 @@ import {
   CrossPlatformDemo,
   HowItWorksAnimated,
 } from '../components/AnimatedSections';
-
-const TarsierScene = dynamic(() => import('../components/TarsierScene'), { ssr: false });
+import TarsierHero from '../components/TarsierHero';
 
 export default async function LandingPage() {
   return (
@@ -47,7 +45,7 @@ export default async function LandingPage() {
         position: 'relative', overflow: 'hidden',
       }}>
         {/* 3D Tarsier Scene */}
-        <TarsierScene />
+        <TarsierHero />
 
         <div style={{ position: 'relative', zIndex: 1, maxWidth: 900 }}>
           <img

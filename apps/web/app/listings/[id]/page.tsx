@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { USE_MOCK_DATA, MOCK_WEB_LISTING_DETAILS } from '../../../lib/mock-data';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -20,6 +21,9 @@ interface ListingDetail {
 }
 
 async function getListing(id: string): Promise<ListingDetail | null> {
+  if (USE_MOCK_DATA) {
+    return MOCK_WEB_LISTING_DETAILS[id] || null;
+  }
   try {
     const res = await fetch(`${API_URL}/api/listings/${id}`, { cache: 'no-store' });
     if (!res.ok) return null;

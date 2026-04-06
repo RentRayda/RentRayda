@@ -1,3 +1,5 @@
+import { USE_MOCK_DATA, MOCK_WEB_LISTINGS } from '../../lib/mock-data';
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
 interface Listing {
@@ -15,6 +17,15 @@ interface Listing {
 }
 
 async function getListings(params: { barangay?: string; minRent?: string; maxRent?: string; type?: string; page?: string }) {
+  if (USE_MOCK_DATA) {
+    let filtered = [...MOCK_WEB_LISTINGS];
+    if (params.barangay) filtered = filtered.filter(l => l.barangay === params.barangay);
+    if (params.type) filtered = filtered.filter(l => l.unitType === params.type);
+    if (params.minRent) filtered = filtered.filter(l => l.monthlyRent >= parseInt(params.minRent!));
+    if (params.maxRent) filtered = filtered.filter(l => l.monthlyRent <= parseInt(params.maxRent!));
+    return { listings: filtered, total: filtered.length, page: 1, pageSize: 10 };
+  }
+
   const query = new URLSearchParams();
   if (params.barangay) query.set('barangay', params.barangay);
   if (params.minRent) query.set('minRent', params.minRent);

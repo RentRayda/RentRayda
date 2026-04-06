@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { VerifiedBadge } from '../../../components/VerifiedBadge';
+import { USE_MOCK_DATA, MOCK_PROFILE } from '../../../lib/mock-data';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -22,16 +23,20 @@ const DOC_STATUS_ICONS: Record<string, { icon: string; color: string }> = {
 
 export default function ProfileScreen() {
   const router = useRouter();
-  const [name] = useState('User');
-  const [city] = useState('Pasig');
-  const [role] = useState<'landlord' | 'tenant'>('tenant');
-  const [verificationStatus] = useState<'verified' | 'pending' | 'unverified' | 'rejected'>('unverified');
-  const [govIdStatus] = useState<'approved' | 'pending' | 'rejected' | 'none'>('none');
-  const [secondDocStatus] = useState<'approved' | 'pending' | 'rejected' | 'none'>('none');
+  const [name] = useState(USE_MOCK_DATA ? MOCK_PROFILE.name : 'User');
+  const [city] = useState(USE_MOCK_DATA ? MOCK_PROFILE.city : 'Pasig');
+  const [role] = useState<'landlord' | 'tenant'>(USE_MOCK_DATA ? MOCK_PROFILE.role : 'tenant');
+  const [verificationStatus] = useState<'verified' | 'pending' | 'unverified' | 'rejected'>(USE_MOCK_DATA ? MOCK_PROFILE.verificationStatus : 'unverified');
+  const [govIdStatus] = useState<'approved' | 'pending' | 'rejected' | 'none'>(USE_MOCK_DATA ? MOCK_PROFILE.govIdStatus : 'none');
+  const [secondDocStatus] = useState<'approved' | 'pending' | 'rejected' | 'none'>(USE_MOCK_DATA ? MOCK_PROFILE.secondDocStatus : 'none');
   const [connectionCount, setConnectionCount] = useState(0);
   const [loggingOut, setLoggingOut] = useState(false);
 
   const fetchConnections = useCallback(async () => {
+    if (USE_MOCK_DATA) {
+      setConnectionCount(MOCK_PROFILE.connectionCount);
+      return;
+    }
     try {
       const res = await fetch(`${API_URL}/api/connections`, { credentials: 'include' });
       if (res.ok) {

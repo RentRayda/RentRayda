@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Tabs } from 'expo-router';
+import { USE_MOCK_DATA, MOCK_CONNECTION_REQUESTS } from '../../lib/mock-data';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -45,6 +46,11 @@ export default function TabsLayout() {
   const [pendingCount, setPendingCount] = useState(0);
 
   useEffect(() => {
+    if (USE_MOCK_DATA) {
+      const pending = MOCK_CONNECTION_REQUESTS.filter(r => r.status === 'pending');
+      setPendingCount(pending.length);
+      return;
+    }
     // Fetch pending request count for inbox badge
     const fetchCount = async () => {
       try {
@@ -57,7 +63,7 @@ export default function TabsLayout() {
       } catch { /* silent */ }
     };
     fetchCount();
-    const interval = setInterval(fetchCount, 30000); // refresh every 30s
+    const interval = setInterval(fetchCount, 30000);
     return () => clearInterval(interval);
   }, []);
 

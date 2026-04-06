@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import { USE_MOCK_DATA, MOCK_MY_LISTINGS } from '../../../lib/mock-data';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -27,6 +28,12 @@ export default function MyListingsScreen() {
   const [refreshing, setRefreshing] = useState(false);
 
   const fetchListings = useCallback(async () => {
+    if (USE_MOCK_DATA) {
+      setListings(MOCK_MY_LISTINGS as any);
+      setLoading(false);
+      setRefreshing(false);
+      return;
+    }
     try {
       // For now fetch all — in production filter by owner via auth
       const res = await fetch(`${API_URL}/api/listings`, { credentials: 'include' });

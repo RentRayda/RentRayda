@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { FreshnessIndicator } from '../../../components/FreshnessIndicator';
 import { VerifiedBadge } from '../../../components/VerifiedBadge';
+import { USE_MOCK_DATA, MOCK_LISTING_DETAILS } from '../../../lib/mock-data';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const PHOTO_HEIGHT = 400;
@@ -86,6 +87,18 @@ export default function ListingDetailScreen() {
 
   useEffect(() => {
     const fetchListing = async () => {
+      if (USE_MOCK_DATA) {
+        const mockDetail = MOCK_LISTING_DETAILS[id!];
+        if (!mockDetail) {
+          setError('This listing is no longer available.');
+          setLoading(false);
+          return;
+        }
+        setListing(mockDetail);
+        setCtaState({ type: 'connect', landlordName: mockDetail.landlordProfile?.fullName || 'Landlord' });
+        setLoading(false);
+        return;
+      }
       try {
         const res = await fetch(`${API_URL}/api/listings/${id}`);
         if (res.status === 404) {

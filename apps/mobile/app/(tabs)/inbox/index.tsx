@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { VerifiedBadge } from '../../../components/VerifiedBadge';
+import { USE_MOCK_DATA, MOCK_CONNECTION_REQUESTS } from '../../../lib/mock-data';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -41,6 +42,15 @@ export default function InboxScreen() {
   const [isLandlord, setIsLandlord] = useState(true); // TODO: derive from auth
 
   const fetchRequests = useCallback(async () => {
+    if (USE_MOCK_DATA) {
+      setRequests(MOCK_CONNECTION_REQUESTS as any);
+      if (MOCK_CONNECTION_REQUESTS.length > 0) {
+        setIsLandlord(!!MOCK_CONNECTION_REQUESTS[0].tenant);
+      }
+      setLoading(false);
+      setRefreshing(false);
+      return;
+    }
     try {
       const res = await fetch(`${API_URL}/api/connections/requests`, {
         credentials: 'include',

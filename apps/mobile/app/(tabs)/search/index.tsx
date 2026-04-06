@@ -13,6 +13,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { ListingCard, CARD_GAP, HORIZONTAL_PADDING } from '../../../components/ListingCard';
+import { USE_MOCK_DATA, MOCK_LISTINGS } from '../../../lib/mock-data';
 
 const UNIT_TYPES = ['bedspace', 'room', 'apartment'] as const;
 const LAUNCH_BARANGAYS = ['Ugong', 'San Antonio', 'Kapitolyo', 'Oranbo', 'Boni', 'Shaw'] as const;
@@ -75,6 +76,23 @@ export default function ListingSearchScreen() {
     : [];
 
   const fetchListings = useCallback(async (pageNum: number, append: boolean = false) => {
+    if (USE_MOCK_DATA) {
+      let filtered = [...MOCK_LISTINGS];
+      if (barangay && LAUNCH_BARANGAYS.includes(barangay as any)) {
+        filtered = filtered.filter(l => l.barangay === barangay);
+      }
+      if (typeFilter) filtered = filtered.filter(l => l.unitType === typeFilter);
+      if (minRent) filtered = filtered.filter(l => l.monthlyRent >= parseInt(minRent));
+      if (maxRent) filtered = filtered.filter(l => l.monthlyRent <= parseInt(maxRent));
+      if (append) setListings(prev => [...prev, ...filtered]);
+      else setListings(filtered);
+      setHasMore(false);
+      setPage(pageNum);
+      setLoading(false);
+      setRefreshing(false);
+      setLoadingMore(false);
+      return;
+    }
     try {
       const params = new URLSearchParams();
       params.set('page', String(pageNum));

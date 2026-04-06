@@ -12,6 +12,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
 import { VerifiedBadge } from '../../components/VerifiedBadge';
+import { USE_MOCK_DATA, MOCK_CONNECTION_REVEAL } from '../../lib/mock-data';
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -36,6 +37,12 @@ export default function ConnectionRevealScreen() {
 
   useEffect(() => {
     const fetchConnection = async () => {
+      if (USE_MOCK_DATA) {
+        setConnection(MOCK_CONNECTION_REVEAL);
+        Animated.spring(scaleAnim, { toValue: 1, stiffness: 200, damping: 15, useNativeDriver: true }).start();
+        setLoading(false);
+        return;
+      }
       try {
         const res = await fetch(`${API_URL}/api/connections/${id}`, {
           credentials: 'include',

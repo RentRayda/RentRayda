@@ -16,12 +16,12 @@ const UNIT_TYPES = ['bedspace', 'room', 'apartment'] as const;
 const UNIT_LABELS: Record<string, string> = { bedspace: 'Bedspace', room: 'Room', apartment: 'Apart.' };
 
 const INCLUSIONS = [
-  { value: 'water', label: '💧 Tubig', },
-  { value: 'electricity', label: '⚡ Kuryente' },
-  { value: 'wifi', label: '📶 WiFi' },
-  { value: 'cr', label: '🚿 CR' },
-  { value: 'aircon', label: '❄️ Aircon' },
-  { value: 'parking', label: '🅿️ Parking' },
+  { value: 'water', label: 'Tubig', },
+  { value: 'electricity', label: 'Kuryente' },
+  { value: 'wifi', label: 'WiFi' },
+  { value: 'cr', label: 'CR' },
+  { value: 'aircon', label: 'Aircon' },
+  { value: 'parking', label: 'Parking' },
 ] as const;
 
 const LAUNCH_BARANGAYS = ['Ugong', 'San Antonio', 'Kapitolyo', 'Oranbo', 'Boni', 'Shaw'] as const;
@@ -156,13 +156,13 @@ export default function ListingCreateScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
           Create a Listing
         </Text>
       </View>
@@ -173,8 +173,8 @@ export default function ListingCreateScreen() {
         keyboardShouldPersistTaps="handled"
       >
         {/* Unit Type Chips */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
-          What type of unit? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+          What type of unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', gap: 8, marginBottom: 16 }}>
           {UNIT_TYPES.map((type) => (
@@ -185,7 +185,7 @@ export default function ListingCreateScreen() {
                 height: 40,
                 paddingHorizontal: 16,
                 borderRadius: 20,
-                backgroundColor: unitType === type ? '#2B51E3' : '#F3F4F6',
+                backgroundColor: unitType === type ? '#2563EB' : '#E4E6EB',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
@@ -198,54 +198,54 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Monthly Rent */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          How much is the rent? <Text style={{ color: '#DC2626' }}>*</Text> ₱
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          How much is the rent? <Text style={{ color: '#E41E3F' }}>*</Text> P
         </Text>
         <TextInput
           style={{
-            height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8,
+            height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
             paddingHorizontal: 12, fontSize: 16, marginBottom: 16, backgroundColor: '#FFFFFF',
           }}
           keyboardType="number-pad"
           placeholder="5,000"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#8A8D91"
           value={monthlyRent}
           onChangeText={formatRent}
           editable={!isLoading}
         />
 
         {/* Barangay */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          Where is the unit? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          Where is the unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
           onPress={() => setShowBarangayPicker(!showBarangayPicker)}
           style={{
-            height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8,
+            height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
             paddingHorizontal: 12, justifyContent: 'center',
             marginBottom: showBarangayPicker ? 0 : 16, backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: barangay ? '#1A1A2E' : '#9CA3AF' }}>
-            ▾ {barangay || 'Select barangay'}
+          <Text style={{ fontSize: 16, color: barangay ? '#050505' : '#8A8D91' }}>
+            {barangay || 'Select barangay'}
           </Text>
         </Pressable>
         {showBarangayPicker && (
-          <View style={{ borderWidth: 1, borderColor: '#D1D5DB', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
+          <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
             {LAUNCH_BARANGAYS.map((b) => (
               <Pressable
                 key={b}
                 onPress={() => { setBarangay(b); setShowBarangayPicker(false); }}
-                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#EBF0FC' : '#FFFFFF' }}
+                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{b}</Text>
+                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Inclusions */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
           Included in rent:
         </Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
@@ -258,8 +258,8 @@ export default function ListingCreateScreen() {
                 style={{
                   flexDirection: 'row', alignItems: 'center', gap: 6,
                   height: 40, paddingHorizontal: 12, borderRadius: 8,
-                  borderWidth: 1, borderColor: selected ? '#2B51E3' : '#D1D5DB',
-                  backgroundColor: selected ? '#EBF0FC' : '#FFFFFF',
+                  borderWidth: 1, borderColor: selected ? '#2563EB' : '#CED0D4',
+                  backgroundColor: selected ? '#DBEAFE' : '#FFFFFF',
                 }}
               >
                 <Text style={{ fontSize: 14 }}>{inc.label}</Text>
@@ -269,17 +269,17 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Beds Stepper */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
           How many beds/rooms?
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
-          <View style={{ width: 48, height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
+          <View style={{ width: 48, height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
             <Text style={{ fontSize: 18, fontWeight: '600' }}>{beds}</Text>
           </View>
-          <Pressable onPress={() => setBeds(Math.max(1, beds - 1))} disabled={beds <= 1} style={{ marginLeft: 12, width: 40, height: 40, borderRadius: 8, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 20, fontWeight: '600' }}>−</Text>
+          <Pressable onPress={() => setBeds(Math.max(1, beds - 1))} disabled={beds <= 1} style={{ marginLeft: 12, width: 40, height: 40, borderRadius: 8, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 20, fontWeight: '600' }}>-</Text>
           </Pressable>
-          <Pressable onPress={() => setBeds(Math.min(20, beds + 1))} disabled={beds >= 20} style={{ marginLeft: 8, width: 40, height: 40, borderRadius: 8, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable onPress={() => setBeds(Math.min(20, beds + 1))} disabled={beds >= 20} style={{ marginLeft: 8, width: 40, height: 40, borderRadius: 8, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 20, fontWeight: '600' }}>+</Text>
           </Pressable>
         </View>
@@ -287,29 +287,29 @@ export default function ListingCreateScreen() {
         {/* Advance & Deposit */}
         <View style={{ flexDirection: 'row', gap: 24, marginBottom: 16 }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>Advance (months)</Text>
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>Advance (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
+              <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>{advanceMonths}</Text>
               </View>
-              <Pressable onPress={() => setAdvanceMonths(Math.max(0, advanceMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>−</Text>
+              <Pressable onPress={() => setAdvanceMonths(Math.max(0, advanceMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>-</Text>
               </Pressable>
-              <Pressable onPress={() => setAdvanceMonths(Math.min(6, advanceMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
+              <Pressable onPress={() => setAdvanceMonths(Math.min(6, advanceMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>+</Text>
               </Pressable>
             </View>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>Deposit (months)</Text>
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>Deposit (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
+              <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>{depositMonths}</Text>
               </View>
-              <Pressable onPress={() => setDepositMonths(Math.max(0, depositMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ fontSize: 16, fontWeight: '600' }}>−</Text>
+              <Pressable onPress={() => setDepositMonths(Math.max(0, depositMonths - 1))} style={{ marginLeft: 8, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ fontSize: 16, fontWeight: '600' }}>-</Text>
               </Pressable>
-              <Pressable onPress={() => setDepositMonths(Math.min(6, depositMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
+              <Pressable onPress={() => setDepositMonths(Math.min(6, depositMonths + 1))} style={{ marginLeft: 4, width: 32, height: 32, borderRadius: 6, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ fontSize: 16, fontWeight: '600' }}>+</Text>
               </Pressable>
             </View>
@@ -317,38 +317,38 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Description */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
           Description (optional)
         </Text>
         <TextInput
           style={{
-            height: 96, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8,
+            height: 96, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
             paddingHorizontal: 12, paddingTop: 12, fontSize: 16, marginBottom: 4,
             backgroundColor: '#FFFFFF', textAlignVertical: 'top',
           }}
           multiline
           maxLength={200}
           placeholder="Describe your unit..."
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#8A8D91"
           value={description}
           onChangeText={setDescription}
           editable={!isLoading}
         />
-        <Text style={{ fontSize: 12, color: '#6B7280', textAlign: 'right', marginBottom: 16 }}>
+        <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'right', marginBottom: 16 }}>
           {description.length}/200
         </Text>
 
         {/* Photos */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
-          📷 Photos (1-5)
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+          Photos (1-5)
         </Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 20 }}>
           <View style={{ flexDirection: 'row', gap: 8 }}>
             {photos.map((photo, i) => (
               <Pressable key={i} onPress={() => removePhoto(i)}>
                 <Image source={{ uri: photo.uri }} style={{ width: 80, height: 80, borderRadius: 8 }} />
-                <View style={{ position: 'absolute', top: -4, right: -4, width: 20, height: 20, borderRadius: 10, backgroundColor: '#DC2626', alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '700' }}>×</Text>
+                <View style={{ position: 'absolute', top: -4, right: -4, width: 20, height: 20, borderRadius: 10, backgroundColor: '#E41E3F', alignItems: 'center', justifyContent: 'center' }}>
+                  <Text style={{ color: '#FFFFFF', fontSize: 12, fontWeight: '700' }}>x</Text>
                 </View>
               </Pressable>
             ))}
@@ -357,18 +357,18 @@ export default function ListingCreateScreen() {
                 onPress={handleAddPhotos}
                 style={{
                   width: 80, height: 80, borderRadius: 8,
-                  borderWidth: 2, borderStyle: 'dashed', borderColor: '#D1D5DB',
+                  borderWidth: 2, borderStyle: 'dashed', borderColor: '#CED0D4',
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
-                <Text style={{ fontSize: 24, color: '#9CA3AF' }}>+</Text>
+                <Text style={{ fontSize: 24, color: '#8A8D91' }}>+</Text>
               </Pressable>
             )}
           </View>
         </ScrollView>
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -378,7 +378,7 @@ export default function ListingCreateScreen() {
           onPress={handlePublish}
           disabled={!isValid || isLoading}
           style={{
-            width: '100%', height: 48, backgroundColor: '#2B51E3', borderRadius: 8,
+            width: '100%', height: 48, backgroundColor: '#2563EB', borderRadius: 8,
             alignItems: 'center', justifyContent: 'center',
             opacity: !isValid || isLoading ? 0.5 : 1,
           }}

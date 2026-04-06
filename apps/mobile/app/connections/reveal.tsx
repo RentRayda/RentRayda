@@ -92,20 +92,20 @@ export default function ConnectionRevealScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA', justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#2B51E3" />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#2563EB" />
       </SafeAreaView>
     );
   }
 
   if (error || !connection) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, color: '#DC2626', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error || 'Connection not found.'}
           </Text>
-          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ color: '#FFFFFF', fontWeight: '600' }}>Go Back</Text>
           </Pressable>
         </View>
@@ -114,11 +114,11 @@ export default function ConnectionRevealScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
       </View>
 
@@ -130,31 +130,31 @@ export default function ConnectionRevealScreen() {
             width: 64,
             height: 64,
             borderRadius: 16,
-            backgroundColor: '#EBF0FC',
+            backgroundColor: '#DBEAFE',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          <Text style={{ fontSize: 32 }}>🤝</Text>
+          <Text style={{ fontSize: 24, fontWeight: '700', color: '#2563EB' }}>Connected</Text>
         </Animated.View>
 
         {/* Headline */}
-        <Text style={{ fontSize: 32, fontWeight: '700', color: '#2B51E3', marginTop: 24, textAlign: 'center' }}>
-          You are now connected! ✓
+        <Text style={{ fontSize: 32, fontWeight: '700', color: '#2563EB', marginTop: 24, textAlign: 'center' }}>
+          You are now connected!
         </Text>
 
-        <Text style={{ fontSize: 16, color: '#6B7280', textAlign: 'center', marginTop: 16, paddingHorizontal: 24 }}>
+        <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginTop: 16, paddingHorizontal: 24 }}>
           You can now call or text each other to schedule a viewing.
         </Text>
 
         {/* Contact Card */}
-        <View style={{ backgroundColor: '#EBF0FC', borderRadius: 16, padding: 20, width: '100%', marginTop: 32 }}>
+        <View style={{ backgroundColor: '#DBEAFE', borderRadius: 16, padding: 20, width: '100%', marginTop: 32 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-            <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: 24, color: '#6B7280' }}>👤</Text>
+            <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 24, color: '#65676B' }}>P</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505' }}>
                 {connection.otherPartyName}
               </Text>
               <VerifiedBadge status="verified" size="sm" />
@@ -162,7 +162,7 @@ export default function ConnectionRevealScreen() {
           </View>
 
           {/* Phone Number — THE KEY REVEAL */}
-          <Text style={{ fontSize: 24, fontWeight: '700', color: '#2B51E3', marginTop: 16, textAlign: 'center' }}>
+          <Text style={{ fontSize: 24, fontWeight: '700', color: '#2563EB', marginTop: 16, textAlign: 'center' }}>
             {connection.otherPartyPhone}
           </Text>
 
@@ -170,16 +170,16 @@ export default function ConnectionRevealScreen() {
           <View style={{ flexDirection: 'row', gap: 12, marginTop: 16 }}>
             <Pressable
               onPress={handleCall}
-              style={{ flex: 1, height: 44, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+              style={{ flex: 1, height: 44, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
             >
-              <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 14 }}>📞 Call</Text>
+              <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 14 }}>Call</Text>
             </Pressable>
             <Pressable
               onPress={handleCopy}
-              style={{ flex: 1, height: 44, borderWidth: 1, borderColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+              style={{ flex: 1, height: 44, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
             >
-              <Text style={{ color: '#2B51E3', fontWeight: '600', fontSize: 14 }}>
-                {copied ? '✓ Copied!' : '📋 Copy'}
+              <Text style={{ color: '#2563EB', fontWeight: '600', fontSize: 14 }}>
+                {copied ? 'Copied!' : 'Copy'}
               </Text>
             </Pressable>
           </View>
@@ -188,21 +188,21 @@ export default function ConnectionRevealScreen() {
         {/* Share button */}
         <Pressable
           onPress={handleShare}
-          style={{ width: '100%', height: 44, borderWidth: 1, borderColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginTop: 16 }}
+          style={{ width: '100%', height: 44, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginTop: 16 }}
         >
-          <Text style={{ color: '#2B51E3', fontWeight: '600', fontSize: 14 }}>📤 Share with friends</Text>
+          <Text style={{ color: '#2563EB', fontWeight: '600', fontSize: 14 }}>Share with friends</Text>
         </Pressable>
 
         {/* Tip */}
-        <Text style={{ fontSize: 12, color: '#6B7280', textAlign: 'center', marginTop: 16 }}>
+        <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'center', marginTop: 16 }}>
           Tip: Schedule a viewing by calling or texting.
         </Text>
       </View>
 
       {/* Copied toast */}
       {copied && (
-        <View style={{ position: 'absolute', bottom: 100, left: 20, right: 20, backgroundColor: '#16A34A', borderRadius: 8, padding: 12, alignItems: 'center' }}>
-          <Text style={{ color: '#FFFFFF', fontWeight: '500' }}>Number copied! ✓</Text>
+        <View style={{ position: 'absolute', bottom: 100, left: 20, right: 20, backgroundColor: '#31A24C', borderRadius: 8, padding: 12, alignItems: 'center' }}>
+          <Text style={{ color: '#FFFFFF', fontWeight: '500' }}>Number copied!</Text>
         </View>
       )}
     </SafeAreaView>

@@ -13,20 +13,20 @@ export function FreshnessIndicator({ lastActiveAt }: FreshnessIndicatorProps) {
   let color: string;
 
   if (hours < 24) {
-    label = '🟢 Active today';
-    color = '#16A34A';
+    label = '• Active today';
+    color = '#31A24C';
   } else if (hours < 48) {
-    label = '🟢 Yesterday';
-    color = '#16A34A';
+    label = '• Yesterday';
+    color = '#31A24C';
   } else if (days < 7) {
-    label = `🟡 ${Math.floor(days)} days ago`;
-    color = '#D97706';
+    label = `• ${Math.floor(days)} days ago`;
+    color = '#F7B928';
   } else if (days < 14) {
-    label = `🟡 ${Math.floor(days / 7)} week(s) ago`;
-    color = '#D97706';
+    label = `• ${Math.floor(days / 7)} week(s) ago`;
+    color = '#F7B928';
   } else {
-    label = '🔴 Not active';
-    color = '#DC2626';
+    label = '• Not active';
+    color = '#E41E3F';
   }
 
   return (

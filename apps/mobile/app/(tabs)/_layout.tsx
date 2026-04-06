@@ -12,14 +12,14 @@ function TabIcon({ icon, label, focused }: { icon: string; label: string; focuse
     <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 4 }}>
       {focused && (
         <View style={{
-          position: 'absolute', top: 0, width: 48, height: 24,
-          borderRadius: 12, backgroundColor: 'rgba(43, 81, 227, 0.1)',
+          position: 'absolute', top: -4, width: 48, height: 2,
+          backgroundColor: '#2563EB',
         }} />
       )}
-      <Text style={{ fontSize: 20, marginTop: 2 }}>{icon}</Text>
+      <Text style={{ fontSize: 14, fontWeight: '600', marginTop: 2, color: focused ? '#2563EB' : '#8A8D91' }}>{icon}</Text>
       <Text style={{
         fontSize: 10, marginTop: 2,
-        color: focused ? '#2B51E3' : '#9CA3AF',
+        color: focused ? '#2563EB' : '#8A8D91',
         fontWeight: focused ? '600' : '400',
       }}>
         {label}
@@ -34,7 +34,7 @@ function InboxBadge({ count }: { count: number }) {
     <View style={{
       position: 'absolute', top: -2, right: -2,
       width: 16, height: 16, borderRadius: 8,
-      backgroundColor: '#DC2626', alignItems: 'center', justifyContent: 'center',
+      backgroundColor: '#E41E3F', alignItems: 'center', justifyContent: 'center',
     }}>
       <Text style={{ fontSize: 8, color: '#FFFFFF', fontWeight: '700' }}>{count > 9 ? '9+' : count}</Text>
     </View>
@@ -66,10 +66,10 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          height: 56,
+          height: 48,
           backgroundColor: '#FFFFFF',
           borderTopWidth: 1,
-          borderTopColor: '#E5E7EB',
+          borderTopColor: '#CED0D4',
         },
         tabBarShowLabel: false,
         tabBarHideOnKeyboard: true,
@@ -81,7 +81,7 @@ export default function TabsLayout() {
           name="search"
           options={{
             tabBarIcon: ({ focused }) => (
-              <TabIcon icon="🔍" label="Search" focused={focused} />
+              <TabIcon icon="S" label="Search" focused={focused} />
             ),
           }}
         />
@@ -90,7 +90,7 @@ export default function TabsLayout() {
           name="listings"
           options={{
             tabBarIcon: ({ focused }) => (
-              <TabIcon icon="🏠" label="My Listings" focused={focused} />
+              <TabIcon icon="H" label="My Listings" focused={focused} />
             ),
           }}
         />
@@ -102,7 +102,7 @@ export default function TabsLayout() {
         options={{
           tabBarIcon: ({ focused }) => (
             <View>
-              <TabIcon icon="📥" label="Inbox" focused={focused} />
+              <TabIcon icon="I" label="Inbox" focused={focused} />
               <InboxBadge count={pendingCount} />
             </View>
           ),
@@ -114,7 +114,7 @@ export default function TabsLayout() {
         name="profile"
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabIcon icon="👤" label="Profile" focused={focused} />
+            <TabIcon icon="P" label="Profile" focused={focused} />
           ),
         }}
       />

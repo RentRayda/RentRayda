@@ -16,7 +16,7 @@ export default function VerificationSubmittedScreen() {
     : 'While you wait, you can start creating a listing.';
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
         {/* Clock icon — amber, 48px */}
         <View
@@ -30,7 +30,7 @@ export default function VerificationSubmittedScreen() {
             marginBottom: 24,
           }}
         >
-          <Text style={{ fontSize: 48 }}>⏳</Text>
+          <Text style={{ fontSize: 32, color: '#92400E' }}>Pending</Text>
         </View>
 
         {/* Headline */}
@@ -38,7 +38,7 @@ export default function VerificationSubmittedScreen() {
           style={{
             fontSize: 24,
             fontWeight: '600',
-            color: '#1A1A2E',
+            color: '#050505',
             textAlign: 'center',
           }}
         >
@@ -49,7 +49,7 @@ export default function VerificationSubmittedScreen() {
         <Text
           style={{
             fontSize: 16,
-            color: '#6B7280',
+            color: '#65676B',
             textAlign: 'center',
             marginTop: 16,
             marginBottom: 24,
@@ -70,7 +70,7 @@ export default function VerificationSubmittedScreen() {
             marginTop: 32,
             width: '100%',
             height: 48,
-            backgroundColor: '#2B51E3',
+            backgroundColor: '#2563EB',
             borderRadius: 8,
             alignItems: 'center',
             justifyContent: 'center',
@@ -85,7 +85,7 @@ export default function VerificationSubmittedScreen() {
         <Text
           style={{
             fontSize: 14,
-            color: '#6B7280',
+            color: '#65676B',
             textAlign: 'center',
             marginTop: 16,
           }}

@@ -51,7 +51,7 @@ export default function PhoneEntryScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       <StatusBar style="dark" />
       <KeyboardAvoidingView
         style={{ flex: 1 }}
@@ -64,7 +64,7 @@ export default function PhoneEntryScreen() {
               width: 64,
               height: 64,
               borderRadius: 16,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               marginBottom: 32,
               justifyContent: 'center',
               alignItems: 'center',
@@ -77,7 +77,7 @@ export default function PhoneEntryScreen() {
             style={{
               fontSize: 24,
               fontWeight: '600',
-              color: '#1A1A2E',
+              color: '#050505',
               textAlign: 'center',
             }}
           >
@@ -87,7 +87,7 @@ export default function PhoneEntryScreen() {
           <Text
             style={{
               fontSize: 16,
-              color: '#6B7280',
+              color: '#65676B',
               textAlign: 'center',
               marginBottom: 32,
               marginTop: 8,
@@ -101,7 +101,7 @@ export default function PhoneEntryScreen() {
             style={{
               flexDirection: 'row',
               borderWidth: 1,
-              borderColor: error ? '#EF4444' : '#D1D5DB',
+              borderColor: error ? '#E41E3F' : '#CED0D4',
               borderRadius: 8,
               height: 48,
               overflow: 'hidden',
@@ -110,19 +110,19 @@ export default function PhoneEntryScreen() {
           >
             <View
               style={{
-                backgroundColor: '#F3F4F6',
+                backgroundColor: '#E4E6EB',
                 paddingHorizontal: 12,
                 justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 14, color: '#6B7280' }}>+63</Text>
+              <Text style={{ fontSize: 14, color: '#65676B' }}>+63</Text>
             </View>
             <TextInput
               style={{ flex: 1, paddingHorizontal: 12, fontSize: 16 }}
               keyboardType="phone-pad"
               maxLength={10}
               placeholder="9XX XXX XXXX"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#8A8D91"
               value={phone}
               onChangeText={handlePhoneChange}
               editable={!isLoading}
@@ -130,7 +130,7 @@ export default function PhoneEntryScreen() {
           </View>
 
           {error && (
-            <Text style={{ fontSize: 12, color: '#DC2626', marginTop: 4, alignSelf: 'flex-start' }}>
+            <Text style={{ fontSize: 12, color: '#E41E3F', marginTop: 4, alignSelf: 'flex-start' }}>
               {error}
             </Text>
           )}
@@ -143,7 +143,7 @@ export default function PhoneEntryScreen() {
               marginTop: 16,
               width: '100%',
               height: 48,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
@@ -162,7 +162,7 @@ export default function PhoneEntryScreen() {
           <Text
             style={{
               fontSize: 12,
-              color: '#6B7280',
+              color: '#65676B',
               textAlign: 'center',
               marginTop: 16,
             }}

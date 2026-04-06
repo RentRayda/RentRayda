@@ -38,12 +38,10 @@ export default function RoleSelectionScreen() {
 
   const RoleCard = ({
     role,
-    emoji,
     title,
     description,
   }: {
     role: RoleOption;
-    emoji: string;
     title: string;
     description: string;
   }) => {
@@ -55,19 +53,18 @@ export default function RoleSelectionScreen() {
         style={{
           height: 120,
           borderWidth: 2,
-          borderColor: isSelected ? '#2B51E3' : '#E5E7EB',
-          backgroundColor: isSelected ? '#EBF0FC' : '#FFFFFF',
+          borderColor: isSelected ? '#2563EB' : '#CED0D4',
+          backgroundColor: isSelected ? '#DBEAFE' : '#FFFFFF',
           borderRadius: 12,
           padding: 16,
           justifyContent: 'center',
           position: 'relative',
         }}
       >
-        <Text style={{ fontSize: 32, marginBottom: 8 }}>{emoji}</Text>
-        <Text style={{ fontSize: 16, fontWeight: '600', color: '#1A1A2E' }}>
+        <Text style={{ fontSize: 16, fontWeight: '600', color: '#050505' }}>
           {title}
         </Text>
-        <Text style={{ fontSize: 14, color: '#6B7280', marginTop: 2 }}>
+        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 2 }}>
           {description}
         </Text>
         {isSelected && (
@@ -79,7 +76,7 @@ export default function RoleSelectionScreen() {
               width: 24,
               height: 24,
               borderRadius: 12,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               alignItems: 'center',
               justifyContent: 'center',
             }}
@@ -92,13 +89,13 @@ export default function RoleSelectionScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }}>
         <Text
           style={{
             fontSize: 24,
             fontWeight: '600',
-            color: '#1A1A2E',
+            color: '#050505',
             textAlign: 'center',
             marginBottom: 32,
           }}
@@ -108,7 +105,6 @@ export default function RoleSelectionScreen() {
 
         <RoleCard
           role="landlord"
-          emoji="🏠"
           title="I'm renting out a place"
           description="I have a unit for rent"
         />
@@ -117,13 +113,12 @@ export default function RoleSelectionScreen() {
 
         <RoleCard
           role="tenant"
-          emoji="🔍"
           title="Looking for a rental"
           description="I want to find an apartment or room"
         />
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginTop: 16 }}>
+          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
             {error}
           </Text>
         )}
@@ -136,7 +131,7 @@ export default function RoleSelectionScreen() {
             marginTop: 32,
             width: '100%',
             height: 48,
-            backgroundColor: '#2B51E3',
+            backgroundColor: '#2563EB',
             borderRadius: 8,
             alignItems: 'center',
             justifyContent: 'center',

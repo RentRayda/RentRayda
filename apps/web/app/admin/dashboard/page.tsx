@@ -22,12 +22,12 @@ function MetricCard({ value, label, color }: { value: number; label: string; col
   return (
     <div style={{
       backgroundColor: '#FFFFFF', borderRadius: 12, padding: 20,
-      boxShadow: '0 1px 3px rgba(0,0,0,0.08)', border: '1px solid #F3F4F6',
+      boxShadow: '0 1px 3px rgba(0,0,0,0.08)', border: '1px solid #E4E6EB',
     }}>
-      <p style={{ fontSize: 36, fontWeight: 700, color: color || '#1A1A2E', margin: '0 0 4px' }}>
+      <p style={{ fontSize: 36, fontWeight: 700, color: color || '#050505', margin: '0 0 4px' }}>
         {value.toLocaleString()}
       </p>
-      <p style={{ fontSize: 14, color: '#6B7280', margin: 0 }}>{label}</p>
+      <p style={{ fontSize: 14, color: '#65676B', margin: 0 }}>{label}</p>
     </div>
   );
 }
@@ -52,19 +52,19 @@ export default function AdminDashboardPage() {
 
   useEffect(() => { fetchMetrics(); }, [fetchMetrics]);
 
-  if (loading) return <p style={{ color: '#6B7280' }}>Loading metrics...</p>;
-  if (error) return <p style={{ color: '#DC2626' }}>{error}</p>;
+  if (loading) return <p style={{ color: '#65676B' }}>Loading metrics...</p>;
+  if (error) return <p style={{ color: '#E41E3F' }}>{error}</p>;
   if (!metrics) return null;
 
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#1A1A2E', margin: 0 }}>Dashboard</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', margin: 0 }}>Dashboard</h1>
         <button
           onClick={fetchMetrics}
           style={{
             padding: '8px 16px', fontSize: 14, fontWeight: 500,
-            backgroundColor: '#2B51E3', color: '#FFFFFF', border: 'none',
+            backgroundColor: '#2563EB', color: '#FFFFFF', border: 'none',
             borderRadius: 8, cursor: 'pointer',
           }}
         >
@@ -73,49 +73,49 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Users */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#6B7280', letterSpacing: 1, marginBottom: 12 }}>USERS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12 }}>USERS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
         <MetricCard value={metrics.totalUsers} label="Total Users" />
         <MetricCard value={metrics.totalLandlords} label="Landlords" />
         <MetricCard value={metrics.totalTenants} label="Tenants" />
-        <MetricCard value={metrics.verifiedLandlords} label="Verified Landlords" color="#16A34A" />
-        <MetricCard value={metrics.verifiedTenants} label="Verified Tenants" color="#16A34A" />
-        <MetricCard value={metrics.pendingVerifications} label="Pending Verifications" color="#D97706" />
+        <MetricCard value={metrics.verifiedLandlords} label="Verified Landlords" color="#31A24C" />
+        <MetricCard value={metrics.verifiedTenants} label="Verified Tenants" color="#31A24C" />
+        <MetricCard value={metrics.pendingVerifications} label="Pending Verifications" color="#F7B928" />
       </div>
 
       {/* Listings */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#6B7280', letterSpacing: 1, marginBottom: 12 }}>LISTINGS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12 }}>LISTINGS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <MetricCard value={metrics.activeListings} label="Active Listings" color="#16A34A" />
-        <MetricCard value={metrics.draftListings} label="Draft Listings" color="#6B7280" />
+        <MetricCard value={metrics.activeListings} label="Active Listings" color="#31A24C" />
+        <MetricCard value={metrics.draftListings} label="Draft Listings" color="#65676B" />
       </div>
 
       {/* Connections */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#6B7280', letterSpacing: 1, marginBottom: 12 }}>CONNECTIONS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12 }}>CONNECTIONS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <MetricCard value={metrics.totalConnections} label="Total Connections" color="#2B51E3" />
-        <MetricCard value={metrics.connectionsThisWeek} label="This Week" color="#2B51E3" />
+        <MetricCard value={metrics.totalConnections} label="Total Connections" color="#2563EB" />
+        <MetricCard value={metrics.connectionsThisWeek} label="This Week" color="#2563EB" />
       </div>
 
       {/* Reports */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#6B7280', letterSpacing: 1, marginBottom: 12 }}>REPORTS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12 }}>REPORTS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <MetricCard value={metrics.pendingReports} label="Pending Reports" color={metrics.pendingReports > 0 ? '#DC2626' : '#6B7280'} />
+        <MetricCard value={metrics.pendingReports} label="Pending Reports" color={metrics.pendingReports > 0 ? '#E41E3F' : '#65676B'} />
       </div>
 
       {/* Quick Links */}
       <div style={{ display: 'flex', gap: 12, marginTop: 16 }}>
         <a href="/admin/verifications" style={{
           padding: '10px 20px', fontSize: 14, fontWeight: 500,
-          backgroundColor: '#EBF0FC', color: '#2B51E3', borderRadius: 8,
+          backgroundColor: '#DBEAFE', color: '#2563EB', borderRadius: 8,
           textDecoration: 'none',
         }}>
           → Verification Queue ({metrics.pendingVerifications})
         </a>
         <a href="/admin/reports" style={{
           padding: '10px 20px', fontSize: 14, fontWeight: 500,
-          backgroundColor: metrics.pendingReports > 0 ? '#FEE2E2' : '#F3F4F6',
-          color: metrics.pendingReports > 0 ? '#DC2626' : '#6B7280', borderRadius: 8,
+          backgroundColor: metrics.pendingReports > 0 ? '#FEE2E2' : '#E4E6EB',
+          color: metrics.pendingReports > 0 ? '#E41E3F' : '#65676B', borderRadius: 8,
           textDecoration: 'none',
         }}>
           → Report Queue ({metrics.pendingReports})

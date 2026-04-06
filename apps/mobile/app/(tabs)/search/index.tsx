@@ -113,14 +113,14 @@ export default function ListingSearchScreen() {
   // Error state
   if (error && !loading) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, color: '#6B7280', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
           <Pressable
             onPress={() => { setError(null); setLoading(true); fetchListings(1); }}
-            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>Try Again</Text>
           </Pressable>
@@ -130,36 +130,36 @@ export default function ListingSearchScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ paddingHorizontal: 20, paddingTop: 16 }}>
-        <Text style={{ fontSize: 20, fontWeight: '500', color: '#1A1A2E' }}>Find a listing</Text>
-        <Text style={{ fontSize: 14, color: '#6B7280', marginTop: 2 }}>Hello!</Text>
+        <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505' }}>Find a listing</Text>
+        <Text style={{ fontSize: 14, color: '#65676B', marginTop: 2 }}>Hello!</Text>
 
         {/* Search Input */}
-        <View style={{ flexDirection: 'row', backgroundColor: '#F3F4F6', borderRadius: 8, height: 44, alignItems: 'center', paddingHorizontal: 12, gap: 8, marginTop: 12 }}>
-          <Text style={{ fontSize: 16, color: '#9CA3AF' }}>🔍</Text>
+        <View style={{ flexDirection: 'row', backgroundColor: '#E4E6EB', borderRadius: 20, height: 44, alignItems: 'center', paddingHorizontal: 12, gap: 8, marginTop: 12 }}>
+          <Text style={{ fontSize: 16, color: '#8A8D91' }}>S</Text>
           <TextInput
-            style={{ flex: 1, fontSize: 16, color: '#1A1A2E' }}
+            style={{ flex: 1, fontSize: 16, color: '#050505' }}
             placeholder="Where? (barangay)"
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#8A8D91"
             value={barangay}
             onChangeText={(t) => { setBarangay(t); setShowBarangaySuggestions(true); }}
             onBlur={() => setTimeout(() => setShowBarangaySuggestions(false), 200)}
           />
           {barangay.length > 0 && (
             <Pressable onPress={() => setBarangay('')}>
-              <Text style={{ fontSize: 16, color: '#9CA3AF' }}>×</Text>
+              <Text style={{ fontSize: 16, color: '#8A8D91' }}>x</Text>
             </Pressable>
           )}
         </View>
 
         {/* Barangay suggestions */}
         {showBarangaySuggestions && filteredBarangays.length > 0 && (
-          <View style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E5E7EB', borderRadius: 8, marginTop: 4, maxHeight: 200 }}>
+          <View style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, marginTop: 4, maxHeight: 200 }}>
             {filteredBarangays.map((b) => (
               <Pressable key={b} onPress={() => { setBarangay(b); setShowBarangaySuggestions(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
-                <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{b}</Text>
+                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
@@ -171,10 +171,10 @@ export default function ListingSearchScreen() {
             <TextInput
               style={{
                 height: 36, paddingHorizontal: 12, borderRadius: 18, fontSize: 14,
-                backgroundColor: minRent ? '#EBF0FC' : '#F3F4F6', color: '#374151', width: 80,
+                backgroundColor: minRent ? '#DBEAFE' : '#E4E6EB', color: '#374151', width: 80,
               }}
-              placeholder="₱ Min"
-              placeholderTextColor="#9CA3AF"
+              placeholder="P Min"
+              placeholderTextColor="#8A8D91"
               keyboardType="number-pad"
               value={minRent}
               onChangeText={setMinRent}
@@ -182,10 +182,10 @@ export default function ListingSearchScreen() {
             <TextInput
               style={{
                 height: 36, paddingHorizontal: 12, borderRadius: 18, fontSize: 14,
-                backgroundColor: maxRent ? '#EBF0FC' : '#F3F4F6', color: '#374151', width: 80,
+                backgroundColor: maxRent ? '#DBEAFE' : '#E4E6EB', color: '#374151', width: 80,
               }}
-              placeholder="₱ Max"
-              placeholderTextColor="#9CA3AF"
+              placeholder="P Max"
+              placeholderTextColor="#8A8D91"
               keyboardType="number-pad"
               value={maxRent}
               onChangeText={setMaxRent}
@@ -196,13 +196,13 @@ export default function ListingSearchScreen() {
                 onPress={() => setTypeFilter(typeFilter === type ? null : type)}
                 style={{
                   height: 36, paddingHorizontal: 14, borderRadius: 18,
-                  backgroundColor: typeFilter === type ? '#EBF0FC' : '#F3F4F6',
+                  backgroundColor: typeFilter === type ? '#DBEAFE' : '#E4E6EB',
                   alignItems: 'center', justifyContent: 'center',
                   borderWidth: typeFilter === type ? 1 : 0,
-                  borderColor: '#2B51E3',
+                  borderColor: '#2563EB',
                 }}
               >
-                <Text style={{ fontSize: 14, color: typeFilter === type ? '#2B51E3' : '#374151' }}>
+                <Text style={{ fontSize: 14, color: typeFilter === type ? '#2563EB' : '#374151' }}>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Text>
               </Pressable>
@@ -211,7 +211,7 @@ export default function ListingSearchScreen() {
         </ScrollView>
 
         {/* Results count */}
-        <Text style={{ fontSize: 12, color: '#6B7280', marginTop: 12, marginBottom: 8 }}>
+        <Text style={{ fontSize: 12, color: '#65676B', marginTop: 12, marginBottom: 8 }}>
           {loading ? '' : `${listings.length} verified listing${listings.length !== 1 ? 's' : ''}`}
         </Text>
       </View>
@@ -226,21 +226,21 @@ export default function ListingSearchScreen() {
       ) : listings.length === 0 ? (
         /* Empty State */
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 48, marginBottom: 16 }}>🏠</Text>
-          <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', textAlign: 'center' }}>
+          <Text style={{ fontSize: 48, marginBottom: 16 }}>H</Text>
+          <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
             No listings in this area yet.
           </Text>
-          <Text style={{ fontSize: 14, color: '#6B7280', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             Try a nearby barangay or check again tomorrow.
           </Text>
           <Pressable
             onPress={clearFilters}
             style={{
               marginTop: 24, height: 48, paddingHorizontal: 24, borderRadius: 8,
-              borderWidth: 1, borderColor: '#2B51E3', alignItems: 'center', justifyContent: 'center',
+              borderWidth: 1, borderColor: '#2563EB', alignItems: 'center', justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#2B51E3', fontWeight: '600', fontSize: 16 }}>CLEAR FILTERS</Text>
+            <Text style={{ color: '#2563EB', fontWeight: '600', fontSize: 16 }}>CLEAR FILTERS</Text>
           </Pressable>
         </View>
       ) : (
@@ -263,7 +263,7 @@ export default function ListingSearchScreen() {
               />
             )}
             refreshControl={
-              <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2B51E3" />
+              <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2563EB" />
             }
             ListFooterComponent={
               hasMore ? (
@@ -271,12 +271,12 @@ export default function ListingSearchScreen() {
                   onPress={handleLoadMore}
                   disabled={loadingMore}
                   style={{
-                    height: 48, borderRadius: 8, borderWidth: 1, borderColor: '#D1D5DB',
+                    height: 48, borderRadius: 8, borderWidth: 1, borderColor: '#CED0D4',
                     alignItems: 'center', justifyContent: 'center', marginBottom: 16,
                   }}
                 >
                   {loadingMore ? (
-                    <ActivityIndicator size="small" color="#2B51E3" />
+                    <ActivityIndicator size="small" color="#2563EB" />
                   ) : (
                     <Text style={{ color: '#374151', fontWeight: '500', fontSize: 14 }}>
                       LOAD MORE (page {page + 1})

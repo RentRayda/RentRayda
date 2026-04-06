@@ -20,10 +20,10 @@ export function EmptyStateView({
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
       <Text style={{ fontSize: 48, marginBottom: 16 }}>{icon}</Text>
-      <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', textAlign: 'center' }}>
+      <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
         {headline}
       </Text>
-      <Text style={{ fontSize: 14, color: '#6B7280', textAlign: 'center', marginTop: 8, lineHeight: 20 }}>
+      <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginTop: 8, lineHeight: 20 }}>
         {body}
       </Text>
       {ctaLabel && onCtaPress && (
@@ -37,14 +37,14 @@ export function EmptyStateView({
             alignItems: 'center',
             justifyContent: 'center',
             ...(ctaVariant === 'primary'
-              ? { backgroundColor: '#2B51E3' }
-              : { borderWidth: 1, borderColor: '#2B51E3' }),
+              ? { backgroundColor: '#2563EB' }
+              : { borderWidth: 1, borderColor: '#2563EB' }),
           }}
         >
           <Text style={{
             fontWeight: '600',
             fontSize: 16,
-            color: ctaVariant === 'primary' ? '#FFFFFF' : '#2B51E3',
+            color: ctaVariant === 'primary' ? '#FFFFFF' : '#2563EB',
           }}>
             {ctaLabel}
           </Text>

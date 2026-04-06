@@ -11,37 +11,37 @@ const BADGE_CONFIG = {
   verified: {
     bg: '#DCFCE7',
     border: '#86EFAC',
-    icon: '✓',
-    iconColor: '#16A34A',
-    label: 'Verified ✓',
-    textColor: '#16A34A',
+    icon: 'V',
+    iconColor: '#31A24C',
+    label: 'Verified',
+    textColor: '#31A24C',
     a11yLabel: 'Verification status: Verified',
   },
   pending: {
     bg: '#FEF3C7',
     border: '#FCD34D',
-    icon: '⏳',
+    icon: '...',
     iconColor: '#92400E',
     label: 'Under review',
     textColor: '#92400E',
     a11yLabel: 'Verification status: Under review',
   },
   unverified: {
-    bg: '#F3F4F6',
-    border: '#D1D5DB',
+    bg: '#E4E6EB',
+    border: '#CED0D4',
     icon: '○',
-    iconColor: '#6B7280',
+    iconColor: '#65676B',
     label: 'Not verified',
-    textColor: '#6B7280',
+    textColor: '#65676B',
     a11yLabel: 'Verification status: Not verified',
   },
   rejected: {
     bg: '#FEE2E2',
     border: '#FCA5A5',
     icon: '✕',
-    iconColor: '#DC2626',
+    iconColor: '#E41E3F',
     label: 'Not approved',
-    textColor: '#DC2626',
+    textColor: '#E41E3F',
     a11yLabel: 'Verification status: Not approved',
   },
 } as const;
@@ -93,8 +93,7 @@ export function VerifiedBadge({ status, showBpoSubBadge, size = 'md', onPress }:
           }}
           accessibilityLabel="Employment verified: BPO"
         >
-          <Text style={{ fontSize: 12, color: '#1E40AF' }}>💼</Text>
-          <Text style={{ fontSize: 10, fontWeight: '500', color: '#1E40AF' }}>BPO ✓</Text>
+          <Text style={{ fontSize: 10, fontWeight: '500', color: '#1E40AF' }}>BPO Verified</Text>
         </View>
       )}
     </View>

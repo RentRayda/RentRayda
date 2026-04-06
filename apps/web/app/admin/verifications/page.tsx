@@ -110,44 +110,44 @@ export default function VerificationsPage() {
   ];
 
   if (loading) {
-    return <p style={{ color: '#6B7280' }}>Loading verification queue...</p>;
+    return <p style={{ color: '#65676B' }}>Loading verification queue...</p>;
   }
 
   if (error) {
-    return <p style={{ color: '#DC2626' }}>{error}</p>;
+    return <p style={{ color: '#E41E3F' }}>{error}</p>;
   }
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#1A1A2E', marginBottom: 24 }}>
+      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24 }}>
         Verification Queue
-        <span style={{ fontSize: 14, fontWeight: 400, color: '#6B7280', marginLeft: 8 }}>
+        <span style={{ fontSize: 14, fontWeight: 400, color: '#65676B', marginLeft: 8 }}>
           ({docs.length} pending)
         </span>
       </h1>
 
       {docs.length === 0 ? (
-        <p style={{ color: '#6B7280', textAlign: 'center', padding: 48 }}>
+        <p style={{ color: '#65676B', textAlign: 'center', padding: 48 }}>
           No pending verifications. All caught up!
         </p>
       ) : (
         <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#FFFFFF', borderRadius: 8, overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
           <thead>
-            <tr style={{ borderBottom: '1px solid #E5E7EB', textAlign: 'left' }}>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 200 }}>User</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 120 }}>Type</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 120 }}>Submitted</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 100 }}>ID Photo</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 100 }}>Selfie</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 100 }}>Status</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#6B7280', width: 200 }}>Actions</th>
+            <tr style={{ borderBottom: '1px solid #CED0D4', textAlign: 'left' }}>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 200 }}>User</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Type</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Submitted</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>ID Photo</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>Selfie</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>Status</th>
+              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 200 }}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {docs.map((doc) => (
-              <tr key={doc.id} style={{ borderBottom: '1px solid #F3F4F6' }}>
+              <tr key={doc.id} style={{ borderBottom: '1px solid #E4E6EB' }}>
                 <td style={{ padding: '12px 16px' }}>
-                  <div style={{ fontSize: 14, fontWeight: 500, color: '#1A1A2E' }}>{doc.user.phone}</div>
+                  <div style={{ fontSize: 14, fontWeight: 500, color: '#050505' }}>{doc.user.phone}</div>
                   <span
                     style={{
                       display: 'inline-block',
@@ -165,9 +165,9 @@ export default function VerificationsPage() {
                 </td>
                 <td style={{ padding: '12px 16px', fontSize: 14, color: '#374151' }}>
                   {doc.documentType === 'government_id' ? 'Gov ID' : doc.documentType === 'property_proof' ? 'Property' : 'Employment'}
-                  {doc.idType && <div style={{ fontSize: 12, color: '#9CA3AF' }}>{doc.idType}</div>}
+                  {doc.idType && <div style={{ fontSize: 12, color: '#8A8D91' }}>{doc.idType}</div>}
                 </td>
-                <td style={{ padding: '12px 16px', fontSize: 14, color: '#6B7280' }}>
+                <td style={{ padding: '12px 16px', fontSize: 14, color: '#65676B' }}>
                   {timeAgo(doc.createdAt)}
                 </td>
                 <td style={{ padding: '12px 16px' }}>
@@ -176,10 +176,10 @@ export default function VerificationsPage() {
                       src={doc.idPhotoUrl}
                       alt="ID"
                       onClick={() => setSelectedDoc(doc)}
-                      style={{ width: 60, height: 40, objectFit: 'cover', borderRadius: 4, cursor: 'pointer', border: '1px solid #E5E7EB' }}
+                      style={{ width: 60, height: 40, objectFit: 'cover', borderRadius: 4, cursor: 'pointer', border: '1px solid #CED0D4' }}
                     />
                   ) : (
-                    <span style={{ fontSize: 12, color: '#9CA3AF' }}>N/A</span>
+                    <span style={{ fontSize: 12, color: '#8A8D91' }}>N/A</span>
                   )}
                 </td>
                 <td style={{ padding: '12px 16px' }}>
@@ -188,10 +188,10 @@ export default function VerificationsPage() {
                       src={doc.selfieUrl}
                       alt="Selfie"
                       onClick={() => setSelectedDoc(doc)}
-                      style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 20, cursor: 'pointer', border: '1px solid #E5E7EB' }}
+                      style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 20, cursor: 'pointer', border: '1px solid #CED0D4' }}
                     />
                   ) : (
-                    <span style={{ fontSize: 12, color: '#9CA3AF' }}>N/A</span>
+                    <span style={{ fontSize: 12, color: '#8A8D91' }}>N/A</span>
                   )}
                 </td>
                 <td style={{ padding: '12px 16px' }}>
@@ -206,7 +206,7 @@ export default function VerificationsPage() {
                       disabled={processing === doc.id}
                       style={{
                         padding: '6px 12px', fontSize: 13, fontWeight: 500,
-                        backgroundColor: '#16A34A', color: '#FFFFFF', border: 'none',
+                        backgroundColor: '#31A24C', color: '#FFFFFF', border: 'none',
                         borderRadius: 6, cursor: 'pointer', opacity: processing === doc.id ? 0.5 : 1,
                       }}
                     >
@@ -217,7 +217,7 @@ export default function VerificationsPage() {
                       disabled={processing === doc.id}
                       style={{
                         padding: '6px 12px', fontSize: 13, fontWeight: 500,
-                        backgroundColor: '#DC2626', color: '#FFFFFF', border: 'none',
+                        backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none',
                         borderRadius: 6, cursor: 'pointer', opacity: processing === doc.id ? 0.5 : 1,
                       }}
                     >
@@ -248,31 +248,31 @@ export default function VerificationsPage() {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1A1A2E' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505' }}>
                 Document Review — {selectedDoc.user.phone}
               </h2>
               <button
                 onClick={() => setSelectedDoc(null)}
-                style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: '#6B7280' }}
+                style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: '#65676B' }}
               >
                 ×
               </button>
             </div>
             <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
               <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 12, color: '#6B7280', marginBottom: 8 }}>ID Photo</p>
+                <p style={{ fontSize: 12, color: '#65676B', marginBottom: 8 }}>ID Photo</p>
                 {selectedDoc.idPhotoUrl ? (
-                  <img src={selectedDoc.idPhotoUrl} alt="ID" style={{ maxWidth: 350, maxHeight: 400, borderRadius: 8, border: '1px solid #E5E7EB' }} />
+                  <img src={selectedDoc.idPhotoUrl} alt="ID" style={{ maxWidth: 350, maxHeight: 400, borderRadius: 8, border: '1px solid #CED0D4' }} />
                 ) : (
-                  <p style={{ color: '#9CA3AF' }}>Not available</p>
+                  <p style={{ color: '#8A8D91' }}>Not available</p>
                 )}
               </div>
               <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 12, color: '#6B7280', marginBottom: 8 }}>Selfie</p>
+                <p style={{ fontSize: 12, color: '#65676B', marginBottom: 8 }}>Selfie</p>
                 {selectedDoc.selfieUrl ? (
-                  <img src={selectedDoc.selfieUrl} alt="Selfie" style={{ maxWidth: 300, maxHeight: 400, borderRadius: 8, border: '1px solid #E5E7EB' }} />
+                  <img src={selectedDoc.selfieUrl} alt="Selfie" style={{ maxWidth: 300, maxHeight: 400, borderRadius: 8, border: '1px solid #CED0D4' }} />
                 ) : (
-                  <p style={{ color: '#9CA3AF' }}>Not available</p>
+                  <p style={{ color: '#8A8D91' }}>Not available</p>
                 )}
               </div>
             </div>
@@ -296,10 +296,10 @@ export default function VerificationsPage() {
               maxWidth: 480, width: '90%',
             }}
           >
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#1A1A2E', marginBottom: 16 }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 16 }}>
               Reject — {rejectDoc.user.phone}
             </h2>
-            <p style={{ fontSize: 14, color: '#6B7280', marginBottom: 12 }}>
+            <p style={{ fontSize: 14, color: '#65676B', marginBottom: 12 }}>
               Reason (required, will be sent via SMS):
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
@@ -308,8 +308,8 @@ export default function VerificationsPage() {
                   key={s}
                   onClick={() => setRejectReason(s)}
                   style={{
-                    padding: '4px 12px', fontSize: 13, border: '1px solid #D1D5DB',
-                    borderRadius: 6, backgroundColor: rejectReason === s ? '#EBF0FC' : '#FFFFFF',
+                    padding: '4px 12px', fontSize: 13, border: '1px solid #CED0D4',
+                    borderRadius: 6, backgroundColor: rejectReason === s ? '#DBEAFE' : '#FFFFFF',
                     cursor: 'pointer', color: '#374151',
                   }}
                 >
@@ -323,7 +323,7 @@ export default function VerificationsPage() {
               placeholder="Enter rejection reason..."
               style={{
                 width: '100%', height: 80, padding: 12, fontSize: 14,
-                border: '1px solid #D1D5DB', borderRadius: 8, resize: 'none',
+                border: '1px solid #CED0D4', borderRadius: 8, resize: 'none',
                 fontFamily: 'inherit',
               }}
             />
@@ -331,7 +331,7 @@ export default function VerificationsPage() {
               <button
                 onClick={() => { setRejectDoc(null); setRejectReason(''); }}
                 style={{
-                  padding: '8px 16px', fontSize: 14, border: '1px solid #D1D5DB',
+                  padding: '8px 16px', fontSize: 14, border: '1px solid #CED0D4',
                   borderRadius: 8, backgroundColor: '#FFFFFF', cursor: 'pointer',
                 }}
               >
@@ -342,7 +342,7 @@ export default function VerificationsPage() {
                 disabled={!rejectReason || processing === rejectDoc.id}
                 style={{
                   padding: '8px 16px', fontSize: 14, fontWeight: 500,
-                  backgroundColor: '#DC2626', color: '#FFFFFF', border: 'none',
+                  backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none',
                   borderRadius: 8, cursor: 'pointer',
                   opacity: !rejectReason || processing === rejectDoc.id ? 0.5 : 1,
                 }}

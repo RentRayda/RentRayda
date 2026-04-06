@@ -109,13 +109,13 @@ export default function TenantProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
           Set up your profile
         </Text>
       </View>
@@ -127,59 +127,59 @@ export default function TenantProfileScreen() {
       >
         {/* Photo Picker */}
         <Pressable onPress={handlePhotoPick} style={{ alignSelf: 'center', marginBottom: 8 }}>
-          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#E5E7EB', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={{ width: 80, height: 80 }} />
             ) : (
-              <Text style={{ fontSize: 32, color: '#9CA3AF' }}>📷</Text>
+              <Text style={{ fontSize: 32, color: '#8A8D91' }}>📷</Text>
             )}
           </View>
-          <View style={{ position: 'absolute', bottom: 0, right: 0, width: 28, height: 28, borderRadius: 14, backgroundColor: '#2B51E3', alignItems: 'center', justifyContent: 'center' }}>
+          <View style={{ position: 'absolute', bottom: 0, right: 0, width: 28, height: 28, borderRadius: 14, backgroundColor: '#2563EB', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ color: '#FFFFFF', fontSize: 14 }}>📷</Text>
           </View>
         </Pressable>
-        <Text style={{ fontSize: 14, color: '#6B7280', textAlign: 'center', marginBottom: 24 }}>
+        <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
           Tap to take a selfie
         </Text>
 
         {/* Full Name */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          Full name <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          Full name <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <TextInput
-          style={{ height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, marginBottom: 16, backgroundColor: '#FFFFFF' }}
+          style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, marginBottom: 16, backgroundColor: '#FFFFFF' }}
           placeholder="Maria Santos"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#8A8D91"
           value={fullName}
           onChangeText={setFullName}
           editable={!isLoading}
         />
 
         {/* Search Barangay */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          Where are you looking? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          Where are you looking? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
           onPress={() => setShowBarangayPicker(!showBarangayPicker)}
-          style={{ height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, paddingHorizontal: 12, justifyContent: 'center', marginBottom: showBarangayPicker ? 0 : 16, backgroundColor: '#FFFFFF' }}
+          style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, justifyContent: 'center', marginBottom: showBarangayPicker ? 0 : 16, backgroundColor: '#FFFFFF' }}
         >
-          <Text style={{ fontSize: 16, color: searchBarangay ? '#1A1A2E' : '#9CA3AF' }}>
+          <Text style={{ fontSize: 16, color: searchBarangay ? '#050505' : '#8A8D91' }}>
             ▾ {searchBarangay || 'Select barangay'}
           </Text>
         </Pressable>
         {showBarangayPicker && (
-          <View style={{ borderWidth: 1, borderColor: '#D1D5DB', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
+          <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
             {LAUNCH_BARANGAYS.map((b) => (
-              <Pressable key={b} onPress={() => { setSearchBarangay(b); setShowBarangayPicker(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: searchBarangay === b ? '#EBF0FC' : '#FFFFFF' }}>
-                <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{b}</Text>
+              <Pressable key={b} onPress={() => { setSearchBarangay(b); setShowBarangayPicker(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: searchBarangay === b ? '#DBEAFE' : '#FFFFFF' }}>
+                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Employment Type Chips */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
-          What is your job? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+          What is your job? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
           {EMPLOYMENT_TYPES.map((type) => (
@@ -188,7 +188,7 @@ export default function TenantProfileScreen() {
               onPress={() => { setEmploymentType(type.value); setCompanyName(''); }}
               style={{
                 height: 40, paddingHorizontal: 16, borderRadius: 20,
-                backgroundColor: employmentType === type.value ? '#2B51E3' : '#F3F4F6',
+                backgroundColor: employmentType === type.value ? '#2563EB' : '#E4E6EB',
                 alignItems: 'center', justifyContent: 'center',
               }}
             >
@@ -202,26 +202,26 @@ export default function TenantProfileScreen() {
         {/* Company Name (conditional) */}
         {showCompanyField && (
           <>
-            <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
+            <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
               {employmentType === 'student' ? 'School name' : 'Company name'}
             </Text>
             <TextInput
-              style={{ height: 48, borderWidth: 1, borderColor: '#D1D5DB', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, marginBottom: showSuggestions && employmentType === 'bpo' && filteredCompanies.length > 0 ? 0 : 16, backgroundColor: '#FFFFFF' }}
+              style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, marginBottom: showSuggestions && employmentType === 'bpo' && filteredCompanies.length > 0 ? 0 : 16, backgroundColor: '#FFFFFF' }}
               placeholder={employmentType === 'bpo' ? 'e.g., Concentrix' : employmentType === 'student' ? 'e.g., PUP' : 'e.g., Company Inc.'}
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#8A8D91"
               value={companyName}
               onChangeText={(t) => { setCompanyName(t); setShowSuggestions(true); }}
               onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
               editable={!isLoading}
             />
             {showSuggestions && employmentType === 'bpo' && filteredCompanies.length > 0 && (
-              <View style={{ borderWidth: 1, borderColor: '#D1D5DB', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF', maxHeight: 200 }}>
+              <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF', maxHeight: 200 }}>
                 <FlatList
                   data={filteredCompanies}
                   keyExtractor={(item) => item}
                   renderItem={({ item }) => (
                     <Pressable onPress={() => { setCompanyName(item); setShowSuggestions(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
-                      <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{item}</Text>
+                      <Text style={{ fontSize: 16, color: '#050505' }}>{item}</Text>
                     </Pressable>
                   )}
                 />
@@ -231,7 +231,7 @@ export default function TenantProfileScreen() {
         )}
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginBottom: 16 }}>{error}</Text>
+          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>{error}</Text>
         )}
 
         {/* CTA */}
@@ -239,7 +239,7 @@ export default function TenantProfileScreen() {
           onPress={handleSave}
           disabled={!isValid || isLoading}
           style={{
-            width: '100%', height: 48, backgroundColor: '#2B51E3', borderRadius: 8,
+            width: '100%', height: 48, backgroundColor: '#2563EB', borderRadius: 8,
             alignItems: 'center', justifyContent: 'center',
             opacity: !isValid || isLoading ? 0.5 : 1,
           }}

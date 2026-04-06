@@ -27,7 +27,7 @@ All spacing derives from an 8px base. Internal spacing must never exceed externa
 | `space-12` | 48 | 3 | `p-12` | `p-12` | Touch target minimum height |
 | `space-16` | 64 | 4 | `p-16` | `p-16` | Ceremony icon size |
 
-**Screen edge horizontal padding:** `px-5` (20px) on all screens. Never full-bleed content except photo galleries.
+**Screen edge horizontal padding:** `px-4` (16px) on form/onboarding screens. `px-0` for feed cards on Home/Search/Inbox (full-width, Facebook-style — cards span edge-to-edge with no horizontal margin, separated by 8px `#F0F2F5` gaps). Photo galleries and listing photos are always full-bleed.
 
 ### 1.2 Touch Targets
 
@@ -37,14 +37,14 @@ Every interactive element: **minimum 48×48dp.** This is non-negotiable — Andr
 |---|---|---|---|
 | Primary CTA button | Full width × 48dp | Same | `h-12 w-full` |
 | Icon button | 24×24dp | 48×48dp | `hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}` |
-| Tab bar item | 24dp icon + 12dp label | 56dp height, flex-1 width | `tabBarStyle: { height: 56 }` |
+| Tab bar item | 24dp icon (no label, Facebook-style) | 48dp height, flex-1 width | `tabBarStyle: { height: 48 }` |
 | Checkbox | 20×20dp | 48×48dp | Pressable wrapper `min-h-12 min-w-12` |
 | Radio button | 20×20dp | 48×48dp | Same as checkbox |
 | Badge (tappable) | 28×auto | 48×48dp | Pressable wrapper with hitSlop |
 | List item (tappable) | Full width × auto | min 48dp height | `min-h-12` |
 | Text link | Auto | 48dp height | `py-3` padding |
 
-**Thumb zone:** On 5-inch budget Android phones (720×1280), the primary CTA must be in the bottom 40% of the screen. Bottom navigation at 56dp height.
+**Thumb zone:** On 5-inch budget Android phones (720×1280), the primary CTA must be in the bottom 40% of the screen. Bottom navigation at 48dp height (Facebook-style, slimmer).
 
 ### 1.3 Typography Scale (Inter via Google Fonts)
 
@@ -159,56 +159,60 @@ export default function RootLayout({ children }) {
 - Font file total size: ~120KB for all 4 weights (acceptable for 3G loading)
 - Splash screen stays visible until fonts load — prevents flash of unstyled text (FOUT)
 
-### 1.5 Color Token System
+### 1.5 Color Token System (Facebook-Aligned)
 
-All colors specified with hex, WCAG contrast ratio against `#FAFAFA` background, and semantic name.
+All colors aligned with Facebook's visual language. The target market lives on Facebook — every color choice should feel immediately familiar. WCAG contrast ratios stated against the `#F0F2F5` background.
 
 ```
-═══ PRIMARY ═══
-  rayda:             #2B51E3    contrast 5.2:1 on #FAFAFA    (Forest green — trust, Filipino)
-  rayda-light:       #EBF0FC    contrast 1.1:1 on #FAFAFA    (Badge/card backgrounds)
-  rayda-dark:        #1A3BB0    contrast 8.1:1 on #FAFAFA    (Pressed/active states)
+═══ PRIMARY (derived from tarsier logo gradient) ═══
+  rayda:             #2563EB    contrast 4.8:1 on #F0F2F5    (Logo mid-gradient blue — vibrant true blue)
+  rayda-light:       #DBEAFE    contrast 1.2:1 on #F0F2F5    (Badge/card highlight backgrounds)
+  rayda-dark:        #1D4ED8    contrast 7.2:1 on #F0F2F5    (Logo dark end — pressed/active states)
+  rayda-bright:      #60A5FA    contrast 3.0:1 on #F0F2F5    (Logo light end — accents, gradients)
+  rayda-gradient:    linear-gradient(135deg, #1D4ED8, #60A5FA) (Logo gradient — splash, covers, headers)
 
-═══ NEUTRAL ═══
-  bg:                #FAFAFA    —                             (App background)
-  surface:           #FFFFFF    contrast 1.03:1 on #FAFAFA   (Cards, modals)
-  text-primary:      #1A1A2E    contrast 14.8:1 on #FAFAFA   (Headings, body — AAA)
-  text-secondary:    #6B7280    contrast 5.1:1 on #FAFAFA    (Captions, meta — AA)
-  text-tertiary:     #9CA3AF    contrast 3.1:1 on #FAFAFA    (Placeholders — LARGE AA only)
-  text-disabled:     #D1D5DB    contrast 1.8:1 on #FAFAFA    (Disabled — with disabled styling)
-  border:            #E5E7EB    —                             (Card borders, dividers)
-  border-focus:      #2B51E3    —                             (Input focus ring — matches primary)
-  divider:           #F3F4F6    —                             (Section dividers, lighter than border)
+═══ NEUTRAL (Facebook-matched) ═══
+  bg:                #F0F2F5    —                             (Facebook's background gray)
+  surface:           #FFFFFF    contrast 1.06:1 on #F0F2F5   (Cards, modals, sheets)
+  text-primary:      #050505    contrast 16.8:1 on #F0F2F5   (Headings, body — AAA)
+  text-secondary:    #65676B    contrast 5.5:1 on #F0F2F5    (Captions, meta — AA)
+  text-tertiary:     #8A8D91    contrast 3.4:1 on #F0F2F5    (Placeholders — LARGE AA only)
+  text-disabled:     #BCC0C4    contrast 2.0:1 on #F0F2F5    (Disabled — with disabled styling)
+  border:            #CED0D4    —                             (Facebook's border/divider)
+  border-focus:      #2563EB    —                             (Input focus ring — matches primary)
+  divider:           #DADDE1    —                             (Section dividers, lighter variant)
+  input-bg:          #E4E6EB    —                             (Facebook's search bar/input background)
+  feed-gap:          #F0F2F5    —                             (8px gap between full-width feed cards)
 
 ═══ STATUS ═══
-  verified:          #16A34A    (Green — universal 'verified/approved' signal)
+  verified:          #31A24C    (Facebook's green — universal 'verified/approved' signal)
   verified-bg:       #DCFCE7
   verified-border:   #86EFAC
-  pending:           #D97706    contrast 4.6:1 on #FAFAFA    (Amber — review in progress)
+  pending:           #F7B928    contrast 3.1:1 on #F0F2F5    (Facebook's amber — review in progress)
   pending-bg:        #FEF3C7
   pending-border:    #FCD34D
-  rejected:          #DC2626    contrast 5.4:1 on #FAFAFA    (Red — rejection, danger)
+  rejected:          #E41E3F    contrast 5.8:1 on #F0F2F5    (Facebook's red — rejection, danger)
   rejected-bg:       #FEE2E2
   rejected-border:   #FCA5A5
-  unverified:        #6B7280    (Same as text-secondary)
-  unverified-bg:     #F3F4F6
-  unverified-border: #D1D5DB
+  unverified:        #65676B    (Same as text-secondary)
+  unverified-bg:     #E4E6EB
+  unverified-border: #CED0D4
 
 ═══ SEMANTIC ═══
-  warning:           #D97706    (Caution, pending actions)
+  warning:           #F7B928    (Caution, pending actions)
   warning-bg:        #FEF3C7
-  danger:            #DC2626    (Errors, scam reports, destructive actions)
+  danger:            #E41E3F    (Errors, scam reports, destructive actions)
   danger-bg:         #FEE2E2
-  success:           #16A34A    (Confirmations, positive feedback)
+  success:           #31A24C    (Confirmations, positive feedback)
   success-bg:        #DCFCE7
-  info:              #1B4965    (Gabi Blue — informational callouts)
-  info-bg:           #DBEAFE
+  info:              #2563EB    (Same as primary — informational callouts)
+  info-bg:           #EBF0FC
 
 ═══ FRESHNESS ═══
-  fresh:             #16A34A    ("Active today" — within 24h)
-  recent:            #16A34A    ("Yesterday" — 24-48h)
-  aging:             #D97706    ("3 days ago" / "1 week(s) ago" — 3-14 days)
-  stale:             #DC2626    ("Not active" — 14+ days)
+  fresh:             #31A24C    ("Active today" — within 24h)
+  recent:            #31A24C    ("Yesterday" — 24-48h)
+  aging:             #F7B928    ("3 days ago" / "1 week(s) ago" — 3-14 days)
+  stale:             #E41E3F    ("Not active" — 14+ days)
 ```
 
 **NativeWind tailwind.config.js:**
@@ -222,8 +226,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'rayda': '#2B51E3',
-        gabi: { DEFAULT: '#1B4965', light: '#DBEAFE' },
+        'rayda': '#2563EB',
+        'fb-bg': '#F0F2F5',
+        'fb-input': '#E4E6EB',
+        'fb-border': '#CED0D4',
+        'fb-text': '#050505',
+        'fb-secondary': '#65676B',
+        'fb-green': '#31A24C',
+        'fb-red': '#E41E3F',
       },
       fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
     },
@@ -232,35 +242,78 @@ module.exports = {
 };
 ```
 
-### 1.6 Icon Library
+### 1.6 Custom Branded Icon System (RaydaIcon)
 
-**Library:** `lucide-react-native` (tree-shakeable, consistent 24×24 stroke icons).
-**Stroke width:** 2px default. 1.5px for smaller (16px) icons inside badges.
-**Color:** Inherits text color via `color` prop.
+**NO emoji icons anywhere in the app.** NO lucide-react-native. All icons are custom SVG components rendered via `react-native-svg`, branded to RentRayda's visual identity. This gives the app a polished, Facebook-grade feel — Facebook never uses emoji for UI elements.
 
-| Context | Icon Name | Size | Color |
-|---|---|---|---|
-| Verified badge | `CheckCircle2` | 16px | `#2B51E3` |
-| Pending badge | `Clock` | 16px | `#D97706` |
-| Unverified badge | `Circle` | 16px | `#6B7280` |
-| Rejected badge | `XCircle` | 16px | `#DC2626` |
-| Search tab | `Search` | 24px | tab color |
-| Inbox tab | `Inbox` | 24px | tab color |
-| Listings tab | `Home` | 24px | tab color |
-| Profile tab | `User` | 24px | tab color |
-| Camera | `Camera` | 24px | `#6B7280` |
-| Back arrow | `ArrowLeft` | 24px | `#1A1A2E` |
-| Share | `Share2` | 24px | `#1A1A2E` |
-| Phone call | `Phone` | 20px | `#FFFFFF` (on green bg) |
-| Copy | `Copy` | 20px | `#2B51E3` |
-| Report/flag | `Flag` | 20px | `#DC2626` |
-| Water inclusion | `Droplets` | 16px | `#6B7280` |
-| Electricity | `Zap` | 16px | `#6B7280` |
-| WiFi | `Wifi` | 16px | `#6B7280` |
-| Bathroom | `Bath` | 16px | `#6B7280` |
-| Close/dismiss | `X` | 24px | `#6B7280` |
-| Chevron right | `ChevronRight` | 20px | `#9CA3AF` |
-| Add photo | `Plus` | 24px | `#6B7280` |
+**Library:** `react-native-svg` for rendering. Icon path data lives in `packages/ui/icons/`.
+**Design language:** 24×24 viewBox, 2px stroke, rounded caps (`strokeLinecap="round"`), rounded joins (`strokeLinejoin="round"`). Consistent with Facebook's icon weight.
+**Color:** Passed via `color` prop. Active: `#2563EB`. Inactive: `#65676B`. On dark bg: `#FFFFFF`.
+
+**TypeScript Interface:**
+```typescript
+// packages/ui/icons/RaydaIcon.tsx
+type RaydaIconName =
+  | 'home' | 'home-filled' | 'search' | 'plus-circle' | 'bell' | 'bell-filled'
+  | 'user' | 'user-filled' | 'camera' | 'shield-check' | 'clock' | 'x-circle'
+  | 'circle' | 'phone' | 'copy' | 'share' | 'flag' | 'droplet' | 'zap'
+  | 'wifi' | 'bath' | 'snowflake' | 'car' | 'arrow-left' | 'chevron-right'
+  | 'x' | 'filter' | 'heart' | 'heart-filled' | 'bookmark' | 'bookmark-filled'
+  | 'map-pin' | 'building' | 'bed' | 'calendar' | 'peso-sign' | 'image'
+  | 'check' | 'info' | 'wifi-off' | 'handshake' | 'edit' | 'menu'
+  | 'star' | 'eye' | 'eye-off' | 'send' | 'message-circle';
+
+interface RaydaIconProps {
+  name: RaydaIconName;
+  size?: number;        // default 24
+  color?: string;       // default '#65676B'
+  strokeWidth?: number; // default 2 (1.5 for 16px icons in badges)
+  filled?: boolean;     // for dual-state icons (heart, bookmark, home, bell)
+}
+```
+
+**Icon source:** SVG paths initially derived from Lucide's open-source set (ISC license), then customized with rounded terminals and slightly heavier strokes to match Facebook's icon weight. Each icon is a pure function returning SVG path data — no external font or sprite sheet.
+
+**Filled vs outlined (Facebook pattern):** Bottom tab icons use outlined when inactive, filled when active (exactly like Facebook). Icons with `-filled` variants: `home`, `bell`, `heart`, `bookmark`, `user`.
+
+| Context | Icon Name | Size | Color | Notes |
+|---|---|---|---|---|
+| Verified badge | `shield-check` | 16px | `#31A24C` | strokeWidth 1.5 |
+| Pending badge | `clock` | 16px | `#F7B928` | strokeWidth 1.5 |
+| Unverified badge | `circle` | 16px | `#65676B` | strokeWidth 1.5 |
+| Rejected badge | `x-circle` | 16px | `#E41E3F` | strokeWidth 1.5 |
+| Home tab (active) | `home-filled` | 24px | `#2563EB` | filled variant |
+| Home tab (inactive) | `home` | 24px | `#65676B` | outline variant |
+| Search tab | `search` | 24px | tab color | |
+| Post/Add tab | `plus-circle` | 28px | `#2563EB` | slightly larger |
+| Notifications tab (active) | `bell-filled` | 24px | `#2563EB` | filled variant |
+| Notifications tab (inactive) | `bell` | 24px | `#65676B` | outline variant |
+| Profile tab (active) | `user-filled` | 24px | `#2563EB` | filled variant |
+| Profile tab (inactive) | `user` | 24px | `#65676B` | outline variant |
+| Camera | `camera` | 24px | `#65676B` | |
+| Back arrow | `arrow-left` | 24px | `#050505` | |
+| Share | `share` | 24px | `#050505` | |
+| Phone call | `phone` | 20px | `#FFFFFF` | on green/blue bg |
+| Copy | `copy` | 20px | `#2563EB` | |
+| Report/flag | `flag` | 20px | `#E41E3F` | |
+| Save/favorite | `heart` / `heart-filled` | 20px | `#E41E3F` | toggle |
+| Bookmark | `bookmark` / `bookmark-filled` | 20px | `#050505` | toggle |
+| Water inclusion | `droplet` | 16px | `#65676B` | |
+| Electricity | `zap` | 16px | `#65676B` | |
+| WiFi | `wifi` | 16px | `#65676B` | |
+| Bathroom | `bath` | 16px | `#65676B` | |
+| Aircon | `snowflake` | 16px | `#65676B` | |
+| Parking | `car` | 16px | `#65676B` | |
+| Close/dismiss | `x` | 24px | `#65676B` | |
+| Chevron right | `chevron-right` | 20px | `#8A8D91` | |
+| Add photo | `plus-circle` | 24px | `#65676B` | |
+| Location | `map-pin` | 16px | `#65676B` | |
+| Bed count | `bed` | 16px | `#65676B` | |
+| Calendar/date | `calendar` | 16px | `#65676B` | |
+| Edit | `edit` | 20px | `#2563EB` | |
+| Send message | `send` | 20px | `#FFFFFF` | on blue bg |
+| Info | `info` | 20px | `#2563EB` | |
+| No connection | `wifi-off` | 16px | `#F7B928` | offline banner |
 
 ### 1.7 Verified Badge Component (Complete Specification)
 
@@ -268,17 +321,17 @@ The most important visual component in the entire app. Appears on every ListingC
 
 **Container:** Height 28px, horizontal padding 8px (`px-2`), vertical padding 4px (`py-1`), border-radius 14px (full pill via `rounded-full`), 1px border, `flex-row items-center gap-1`.
 
-**Content:** Icon 16px (lucide, strokeWidth 1.5) + Label 11px (`text-[11px] font-medium`).
+**Content:** RaydaIcon 16px (strokeWidth 1.5) + Label 11px (`text-[11px] font-medium`).
 
-| State | BG Class | Border Class | Icon | Icon Color | Label | Text Color |
+| State | BG Class | Border Class | Icon (RaydaIcon) | Icon Color | Label | Text Color |
 |---|---|---|---|---|---|---|
-| `verified` | `bg-green-100` | `border-green-300` | `CheckCircle2` | `#16A34A` | "Verified ✓" | `#16A34A` |
-| `pending` | `bg-amber-100` | `border-amber-300` | `Clock` | `#92400E` | "Under review" | `#92400E` |
-| `unverified` | `bg-gray-100` | `border-gray-300` | `Circle` | `#6B7280` | "Not verified" | `#6B7280` |
-| `rejected` | `bg-red-100` | `border-red-300` | `XCircle` | `#DC2626` | "Not approved" | `#DC2626` |
+| `verified` | `bg-green-100` | `border-green-300` | `shield-check` | `#31A24C` | "Verified" | `#31A24C` |
+| `pending` | `bg-amber-100` | `border-amber-300` | `clock` | `#92400E` | "Under review" | `#92400E` |
+| `unverified` | `bg-[#E4E6EB]` | `border-[#CED0D4]` | `circle` | `#65676B` | "Not verified" | `#65676B` |
+| `rejected` | `bg-red-100` | `border-red-300` | `x-circle` | `#E41E3F` | "Not approved" | `#E41E3F` |
 
 **BPO Sub-badge (tenant only, when `employmentType === 'bpo'` AND `verificationStatus === 'verified'`):**
-Additional pill below main badge: `bg-blue-100 border border-blue-300`, icon `Briefcase` 12px `#1E40AF`, label "BPO ✓" 10px `#1E40AF`. Height 22px.
+Additional pill below main badge: `bg-blue-100 border border-blue-300`, `<RaydaIcon name="building" size={12}>` `#1E40AF`, label "BPO Verified" 10px `#1E40AF`. Height 22px.
 
 **TypeScript Interface:**
 ```typescript
@@ -304,8 +357,8 @@ accessibilityHint="Tap to view verification details"
 Used on every screen that fetches data. Provides visual feedback before content loads.
 
 **Parameters:**
-- Base color: `#E5E7EB` (border color)
-- Highlight color: `#F3F4F6` (divider color)
+- Base color: `#CED0D4` (border color, Facebook-aligned)
+- Highlight color: `#E4E6EB` (input-bg color, Facebook shimmer)
 - Animation: Horizontal shimmer gradient, left-to-right, 1.5s duration, infinite repeat
 - Library: `react-native-skeleton-placeholder` or custom with `Animated.View`
 - Bone border-radius: Match the real content (text = 4px, image = 8px, circle = full)
@@ -325,7 +378,8 @@ Used on every screen that fetches data. Provides visual feedback before content 
 | Toast slide up | After action | 300ms | `Easing.out(Easing.ease)` | `translateY: 100→0, opacity: 0→1` |
 | Toast auto-dismiss | 3s after appear | 300ms | `Easing.in(Easing.ease)` | `translateY: 0→100, opacity: 1→0` |
 | Bottom sheet | Tap CTA | 300ms | Spring (stiffness 300, damping 30) | `translateY: screenHeight→0` |
-| Card press | Finger down on card | 100ms | Linear | `scale: 1→0.98, opacity: 1→0.95` |
+| Card press | Finger down on card | 100ms | Linear | `opacity: 1→0.92` (Facebook-style, no scale) |
+| Long press menu | 500ms hold on card | 200ms | Spring (300, 30) | Bottom sheet with Save/Share/Report |
 | Pull-to-refresh | Pull gesture | Native | Native | `RefreshControl` component |
 | Photo gallery swipe | Horizontal swipe | Native | `ScrollView` pagingEnabled | Native momentum |
 
@@ -333,7 +387,7 @@ Used on every screen that fetches data. Provides visual feedback before content 
 
 | Gesture | Screen | Behavior | Library |
 |---|---|---|---|
-| **Pull-to-refresh** | Search, Inbox | Native `RefreshControl`, tintColor="#2B51E3" | React Native built-in |
+| **Pull-to-refresh** | Search, Inbox | Native `RefreshControl`, tintColor="#2563EB" | React Native built-in |
 | **Photo gallery swipe** | Listing Detail | Horizontal scroll, `pagingEnabled`, `decelerationRate="fast"`. Snap to center of each photo. Overscroll: bounce on iOS, clamp on Android. | `ScrollView` |
 | **Bottom sheet drag** | Connection Request Modal | Snap points: 40% (default), 0% (dismissed). Velocity threshold: >500px/s downward = dismiss. Handle bar: 4px × 40px, `#D1D5DB`, centered, `mt-2`. | `@gorhom/bottom-sheet` |
 | **Card press** | ListingCard | `Pressable` with `onPressIn` → scale 0.98 (100ms), `onPressOut` → scale 1.0 (100ms). Cancel on pan (user scrolling, not tapping). | `react-native-reanimated` |
@@ -344,32 +398,55 @@ Used on every screen that fetches data. Provides visual feedback before content 
 
 **MVP: Light mode only.** Dark mode is explicitly excluded from the 30-day build scope. Reason: doubling the design surface for 18 screens is not justified at launch. The color token system in §1.5 is designed to support a dark mode extension later by adding `dark:` variants to each token.
 
-When dark mode is added post-MVP: `bg` becomes `#121212`, `surface` becomes `#1E1E1E`, `text-primary` becomes `#E5E7EB`, and the brand blue `#2B51E3` lightens to `#5B7FFF` for sufficient contrast on dark backgrounds.
+When dark mode is added post-MVP: `bg` becomes `#121212`, `surface` becomes `#1E1E1E`, `text-primary` becomes `#E5E7EB`, and the brand blue `#2563EB` lightens to `#5B7FFF` for sufficient contrast on dark backgrounds.
 
-### 1.12 Navigation Structure
+### 1.12 Navigation Structure (Facebook-Style)
 
-**Mobile — Bottom Tab Bar (Expo Router `(tabs)` layout)**
+**Top Header Bar (persistent on all tab screens)**
 
-Tab bar height: 56dp. Background: `#FFFFFF`. Top border: 1px `#E5E7EB`. `tabBarHideOnKeyboard: true`.
+Height: 48dp. Background: `#FFFFFF`. Bottom border: 1px `#CED0D4`. Fixed position.
 
 ```
-LANDLORD TABS:
-┌───────────┬───────────┬───────────┐
-│  🏠       │  📥       │  👤       │
-│ My       │ Inbox     │ Profile   │   3 tabs
-│ Listings  │           │           │
-└───────────┴───────────┴───────────┘
-
-TENANT TABS:
-┌───────────┬───────────┬───────────┐
-│  🔍       │  📥       │  👤       │
-│ Search     │ Inbox     │ Profile   │   3 tabs
-└───────────┴───────────┴───────────┘
+┌──────────────────────────────────────┐
+│ RentRayda        [search]   [bell]  │   Logo left (20px text or 24px icon)
+│                  (24px)    (24px)    │   Search + notification icons right
+└──────────────────────────────────────┘   Bell has red dot when unread
 ```
 
-- Active tab: Icon + label in `rayda` green, pill indicator behind icon (`bg-rayda/10`, 48×24, rounded-full)
-- Inactive tab: Icon + label in `#9CA3AF`
-- Inbox badge: Red circle (10px diameter, -2px top, -2px right of icon), white text (8px), shows count of pending requests. Hides when count = 0.
+- Logo: "RentRayda" in `text-xl font-bold text-[#2563EB]`, or tarsier icon 24px
+- Search icon: `<RaydaIcon name="search" size={24} color="#050505" />` — navigates to search/filter overlay
+- Bell icon: `<RaydaIcon name="bell" size={24} color="#050505" />` — navigates to inbox
+- Notification dot: 10px red circle (`#E41E3F`), absolute top-0 right-0 of bell icon. Hidden when count = 0.
+
+**Mobile — Bottom Tab Bar (Facebook-style, Expo Router `(tabs)` layout)**
+
+Tab bar height: 48dp. Background: `#FFFFFF`. Top border: 1px `#CED0D4`. `tabBarHideOnKeyboard: true`.
+
+**NO text labels on tabs** — icons only, exactly like Facebook mobile. Active tab indicated by a thin 2px blue line at the TOP of the tab (not a pill behind the icon).
+
+```
+TENANT TABS (5):
+┌────────┬────────┬────────┬────────┬────────┐
+│ ═══    │        │        │        │        │   ═══ = 2px blue top-line on active
+│ [home] │[search]│  [+]   │ [bell] │ [user] │   All icons 24px, [+] is 28px
+│        │        │        │        │        │
+└────────┴────────┴────────┴────────┴────────┘
+  Feed    Explore   Post    Inbox   Profile
+
+LANDLORD TABS (5):
+┌────────┬────────┬────────┬────────┬────────┐
+│ ═══    │        │        │        │        │
+│ [home] │[search]│  [+]   │ [bell] │ [user] │
+│        │        │        │        │        │
+└────────┴────────┴────────┴────────┴────────┘
+  Listings Explore  Create  Inbox   Profile
+```
+
+- Active tab: `<RaydaIcon name="[icon]-filled" color="#2563EB" />` + 2px top-line (`border-t-2 border-[#2563EB]`)
+- Inactive tab: `<RaydaIcon name="[icon]" color="#65676B" />` (outline variant)
+- Center "+" tab: `<RaydaIcon name="plus-circle" size={28} color="#2563EB" />` — for tenants opens connection request compose, for landlords opens listing create
+- Inbox badge: Red circle (10px diameter, -2px top, -2px right of bell icon), white text (8px), shows count of pending requests. Hides when count = 0.
+- Tab press feedback: No animation — instant color swap (Facebook behavior)
 
 **Screen hierarchy:**
 ```
@@ -476,13 +553,13 @@ Every screen below includes: ASCII wireframe, component tree, 7-state table, key
 **Component Tree:**
 ```
 PhoneEntryScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   └── KeyboardAvoidingView (behavior per platform)
 │       └── View (className="flex-1 justify-center items-center px-5")
 │           ├── Image (source={logo}, className="w-16 h-16 mb-8")
-│           ├── Text (className="text-2xl font-semibold text-[#1A1A2E] text-center")
+│           ├── Text (className="text-2xl font-semibold text-[#050505] text-center")
 │           │   "Sign up or log in"
-│           ├── Text (className="text-base text-[#6B7280] text-center mb-8")
+│           ├── Text (className="text-base text-[#65676B] text-center mb-8")
 │           │   "Enter your phone number to get started."
 │           ├── PhoneInput (custom component)
 │           │   └── View (className="flex-row border border-gray-300 rounded-lg h-12 overflow-hidden")
@@ -496,7 +573,7 @@ PhoneEntryScreen
 │           │   ├── [if loading] ActivityIndicator (size="small" color="#FFFFFF")
 │           │   └── [if not loading] Text (className="text-white font-semibold text-base")
 │           │       "SEND CODE"
-│           └── Text (className="text-xs text-[#6B7280] text-center mt-4")
+│           └── Text (className="text-xs text-[#65676B] text-center mt-4")
 │               "It's free. No fees. No credit card needed."
 └── StatusBar (style="dark")
 ```
@@ -509,7 +586,7 @@ PhoneEntryScreen
 | 2 | **Loading** | Phone field disabled, no cursor | Spinner replaces text, disabled |
 | 3 | **Error — Invalid Number** | Input border turns `border-red-500`. Below input: `Text "Invalid number. Must start with 09." text-xs text-red-600 mt-1` | Disabled |
 | 4 | **Error — Rate Limit** | Full-screen modal overlay: "Too many codes sent. Try again in 1 hour." with dismiss button | Hidden behind modal |
-| 5 | **Offline** | Top banner: `View bg-amber-100 px-4 py-2 flex-row items-center gap-2` with `WifiOff` icon 16px + `Text "No internet. Check your connection." text-sm text-amber-800` | Disabled |
+| 5 | **Offline** | Top banner: `View bg-amber-100 px-4 py-2 flex-row items-center gap-2` with `RaydaIcon name="wifi-off"` 16px + `Text "No internet. Check your connection." text-sm text-amber-800` | Disabled |
 | 6 | **Submitting** | Phone field disabled, CTA shows `ActivityIndicator` | Spinner, disabled |
 | 7 | **Success** | Auto-navigate to OTPVerify screen (no visible success state on this screen) | N/A |
 
@@ -595,7 +672,7 @@ OTPVerifyScreen
 | 4 | **Error — Expired** | All inputs cleared. "Code expired. Request a new one." text-amber-700. Resend button becomes prominent (bg-rayda text-white). |
 | 5 | **Offline** | Same top banner as PhoneEntry. Inputs disabled. |
 | 6 | **Submitting** | After auto-submit on 6th digit. Inputs disabled, CTA spinner. |
-| 7 | **Success** | Green `CheckCircle2` icon (48px) appears center, scale 0→1 over 300ms. Auto-navigate to RoleSelection after 500ms. |
+| 7 | **Success** | Green `RaydaIcon name="shield-check"` (48px) appears center, scale 0→1 over 300ms. Auto-navigate to RoleSelection after 500ms. |
 
 **Error — Locked Out (after 3 wrong codes):** Full-screen overlay: "Account temporarily locked. Try again in 15 minutes." All inputs disabled. No resend button. Timer shows minutes remaining.
 
@@ -612,14 +689,14 @@ OTPVerifyScreen
 │   "What are you looking for?"       │  Headline, center
 │                              │
 │   ┌──────────────────────┐   │
-│   │  🏠                  │   │  Card: h-[120], border-2
+│   │  [home icon, 32px]    │   │  Card: h-[120], border-2
 │   │  "I'm renting out a place"    │   │  rounded-xl, p-4
-│   │  "I have a unit     │   │  unselected: border-gray-200
-│   │   for rent"      │   │  selected: border-rayda, bg-rayda-light
-│   └──────────────────────┘   │  + CheckCircle2 icon top-right
+│   │  "I have a unit     │   │  unselected: border-[#CED0D4]
+│   │   for rent"      │   │  selected: border-rayda, bg-[#EBF0FC]
+│   └──────────────────────┘   │  + RaydaIcon shield-check top-right
 │              gap-4           │
 │   ┌──────────────────────┐   │
-│   │  🔍                  │   │  Same card pattern
+│   │  [search icon, 32px] │   │  Same card pattern
 │   │  "Looking for a      │   │
 │   │   rental"           │   │
 │   │  "I want to find │   │
@@ -639,10 +716,10 @@ RoleSelectionScreen
 │   └── View (className="flex-1 justify-center px-5")
 │       ├── Text (headline)
 │       ├── Pressable (landlord card — onPress → setRole('landlord'))
-│       │   ├── Text (emoji 32px)
+│       │   ├── RaydaIcon (name="home" or "search", size={32})
 │       │   ├── Text (title — "I'm renting out a place")
 │       │   ├── Text (description — caption)
-│       │   └── [if selected] CheckCircle2 icon (absolute top-3 right-3, color rayda)
+│       │   └── [if selected] RaydaIcon name="shield-check" (absolute top-3 right-3, color rayda)
 │       ├── Pressable (tenant card — same pattern)
 │       └── Pressable (CTA)
 ```
@@ -672,7 +749,7 @@ RoleSelectionScreen
 │                              │
 │        ┌────────┐            │  80×80 circle
 │        │ SELFIE │            │  Camera icon overlay (32px, bottom-right)
-│        │  📷    │            │  bg-gray-200 placeholder
+│        │[camera]│            │  bg-gray-200 placeholder
 │        └────────┘            │  Tap → expo-image-picker
 │   "Tap to take a selfie"   │  Caption, text-center
 │                              │
@@ -765,7 +842,7 @@ const result = await ImagePicker.launchCameraAsync({
 │  Step 1 of 3  ████░░░░░░░░  │  Progress bar: 33% for landlord
 │                              │  (ID → property → listing)
 │  ┌────────────────────────┐  │  Step X of Y for tenant
-│  │ ℹ️ Why is this needed?    │  │  (ID → employment)
+│  │ [info] Why is this needed?    │  │  (ID → employment)
 │  │ "To confirm you are the    │  │
 │  │  real person who     │  │  Expandable card: bg-blue-50
 │  │  registered. We will   │  │  rounded-lg, p-4
@@ -790,11 +867,11 @@ const result = await ImagePicker.launchCameraAsync({
 │    Policy.                   │  (text-rayda, underline)
 │                              │
 │  ┌────────────────────────┐  │  
-│  │  📷 TAKE PHOTO OF ID  │  │  CTA 1: disabled until
+│  │  [camera] TAKE PHOTO OF ID  │  │  CTA 1: disabled until
 │  └────────────────────────┘  │  consent checked + ID type selected
 │                              │  Opens back camera
 │  ┌────────────────────────┐  │
-│  │  📷 TAKE SELFIE        │  │  CTA 2: hidden until ID captured
+│  │  [camera] TAKE SELFIE        │  │  CTA 2: hidden until ID captured
 │  └────────────────────────┘  │  Opens front camera
 │                              │
 │  ┌────────────────────────┐  │
@@ -901,13 +978,13 @@ const selfieResult = await ImagePicker.launchCameraAsync({
 │  └────────────────────────┘  │
 │                              │
 │  ┌────────────────────────┐  │
-│  │  📷 TAKE PHOTO OF DOCUMENT │  │  CTA: disabled until type selected
+│  │  [camera] TAKE PHOTO OF DOCUMENT │  │  CTA: disabled until type selected
 │  └────────────────────────┘  │
 │                              │
 │  "I don't have a document       │  Skip link
 │   now — skip for now"     │
 │                              │
-│  ⚠️ "If you skip this,   │  Warning caption (text-xs, text-amber-700)
+│  [warning] "If you skip this,   │  Warning caption (text-xs, text-amber-700)
 │   your listing will not appear  │
 │   in search results until      │
 │   you are verified."           │
@@ -968,9 +1045,9 @@ PropertyProofUploadScreen
 │                              │
 │  Included in rent:            │
 │  ┌────────────────────────┐  │  Checkbox group (INCLUSIONS const)
-│  │☐ 💧Tubig  ☐ ⚡Kuryente│  │  2 columns, each h-10
-│  │☐ 📶WiFi   ☐ 🚿CR     │  │
-│  │☐ ❄️Aircon ☐ 🅿️Parking│  │
+│  │☐ [droplet]Tubig  ☐ [zap]Kuryente│  2 columns, each h-10
+│  │☐ [wifi]WiFi      ☐ [bath]CR   │  RaydaIcon 16px + label
+│  │☐ [snowflake]Aircon ☐ [car]Parking│
 │  └────────────────────────┘  │
 │                              │
 │  How many beds/rooms?          │
@@ -988,7 +1065,7 @@ PropertyProofUploadScreen
 │  │                        │  │  maxLength=200
 │  └────────────────────────┘  │  Counter: "42/200" text-xs
 │                              │    text-right text-secondary
-│  📷 Photos (1-5)        │
+│  [camera] Photos (1-5)        │
 │  ┌────┐ ┌────┐ ┌────┐ ┌──┐  │  Horizontal scroll
 │  │img1│ │img2│ │img3│ │ + │  │  Each: 80×80, rounded-lg
 │  └────┘ └────┘ └────┘ └──┘  │  +: dashed border, Plus icon
@@ -1069,7 +1146,7 @@ const result = await ImagePicker.launchImageLibraryAsync({
 │                              │
 │        ┌────────┐            │  Same PhotoPicker as landlord
 │        │ SELFIE │            │  80×80 circle
-│        │  📷    │            │
+│        │[camera]│            │
 │        └────────┘            │
 │   "Tap to take a selfie"   │
 │                              │
@@ -1156,7 +1233,7 @@ TenantProfileScreen
 │  └────────────────────────┘  │
 │                              │
 │  ┌────────────────────────┐  │
-│  │  📷 TAKE PHOTO OF DOCUMENT │  │  Camera CTA
+│  │  [camera] TAKE PHOTO OF DOCUMENT │  │  Camera CTA
 │  └────────────────────────┘  │
 │                              │
 │  [if captured] Photo preview │  120×80 thumbnail + retake
@@ -1165,7 +1242,7 @@ TenantProfileScreen
 │  "I don't have a document —     │  Skip: stays unverified
 │   skip for now"              │  Cannot send connection requests
 │                              │
-│  ⚠️ "If you skip this,   │  Warning: text-xs text-amber-700
+│  [warning] "If you skip this,   │  Warning: text-xs text-amber-700
 │   you will not be able to connect│
 │   with landlords."         │
 └──────────────────────────────┘
@@ -1187,7 +1264,7 @@ TenantProfileScreen
 ┌──────────────────────────────┐
 │                              │
 │         ┌─────┐              │  Clock icon, 48px, amber
-│         │ ⏳  │              │  (lucide: Clock)
+│         │[clock]│             │  RaydaIcon name="clock" 48px
 │         └─────┘              │
 │                              │
 │  "Your documents have been           │  Headline (24px, semibold)
@@ -1240,7 +1317,7 @@ VerificationSubmittedScreen
 │                              │
 │         ┌─────────┐          │  Green shield: 64×64
 │         │  ✓      │          │  bg-rayda, rounded-2xl
-│         │  SHIELD │          │  CheckCircle2 icon 32px white
+│         │  SHIELD │          │  RaydaIcon shield-check 32px white
 │         └─────────┘          │  ANIMATION: scale 0→1
 │                              │  Spring: stiffness 200, damping 15
 │                              │  Background flash: #EBF0FC 300ms
@@ -1268,7 +1345,7 @@ VerificationSubmittedScreen
 │  └────────────────────────┘  │
 │                              │
 │  ┌────────────────────────┐  │
-│  │ 📤 SHARE WITH          │  │  Secondary CTA (border-rayda)
+│  │ [share] SHARE WITH     │  │  Secondary CTA (border-rayda)
 │  │    FRIENDS       │  │  Opens native share sheet
 │  └────────────────────────┘  │
 └──────────────────────────────┘
@@ -1285,7 +1362,7 @@ VerificationCeremonyScreen
 │   └── View (className="flex-1 justify-center items-center px-6")
 │       ├── Animated.View (shield container — spring animation)
 │       │   └── View (className="w-16 h-16 bg-rayda rounded-2xl items-center justify-center")
-│       │       └── CheckCircle2 (32px, white)
+│       │       └── RaydaIcon name="shield-check" size={32} color="#FFFFFF"
 │       ├── Text (headline — personalized with name)
 │       ├── Text (body — role-specific copy)
 │       ├── Pressable (primary CTA, mt-8 w-full)
@@ -1300,99 +1377,112 @@ VerificationCeremonyScreen
 ### SCREEN 12: ListingSearchScreen (Tenant)
 
 **Route:** `apps/mobile/app/(tabs)/search/index.tsx`
-**This is the primary tenant experience screen.**
+**This is the primary tenant experience screen — modeled after Facebook Marketplace.**
 
-**ASCII Wireframe:**
+**ASCII Wireframe (Facebook Marketplace Feed):**
 ```
 ┌──────────────────────────────┐
-│  "Find a listing"         │  Title (20px, font-medium)
-│  "Hello, [Name]!"         │  Greeting (14px, text-secondary)
+│ RentRayda       [search][bell]│  Top header bar (white, fixed, h-48)
+├──────────────────────────────┤
 │                              │
-│  ┌────────────────────────┐  │
-│  │ 🔍 Where? (barangay)   │  │  Search input: h-11, bg-gray-100
-│  └────────────────────────┘  │  rounded-lg, Search icon left
-│                              │  Shows suggestions on focus
-│  ┌──────┐ ┌──────┐ ┌──────┐ │
-│  │₱ Min │ │₱ Max │ │Type ▾│ │  Filter chips: h-9, rounded-full
-│  └──────┘ └──────┘ └──────┘ │  bg-gray-100, text-sm
-│                              │  Active filter: bg-rayda-light
-│  "12 verified listings"     │  Results count (12px, text-secondary)
+│  ┌────────────────────────┐  │  Search bar: h-10, rounded-full
+│  │ [search] Search rentals│  │  bg-[#E4E6EB] (Facebook style)
+│  └────────────────────────┘  │  mx-4, RaydaIcon left
 │                              │
-│  ┌──────────────────────────┐│  FlashList (not FlatList)
-│  │┌────────────────────────┐││  estimatedItemSize={280}
-│  ││ [  PHOTO 16:9 h-48   ] │││
-│  │├────────────────────────┤││  ListingCard component
-│  ││ ₱5,000/month           │││  (reusable, defined below)
-│  ││ Bedspace · Ugong, Pasig│││
-│  ││ ┌──────────────┐       │││
-│  ││ │✓ Verified │       │││  VerifiedBadge (always verified
-│  ││ └──────────────┘       │││  since only verified shown)
-│  ││ 🟢 Active yesterday      │││  FreshnessIndicator
-│  │└────────────────────────┘││
-│  │                          ││
-│  │┌────────────────────────┐││  gap between cards: mb-4 (16px)
-│  ││ [Next listing card...] │││
-│  │└────────────────────────┘││
-│  └──────────────────────────┘│
+│  ┌──────┐┌──────┐┌────────┐  │  Filter chips: h-8, rounded-full
+│  │Filter ││Type ▾││₱ Price▾│  │  Horizontal scroll, mx-4
+│  └──────┘└──────┘└────────┘  │  Active: bg-[#2563EB] text-white
+│                              │  Inactive: bg-[#E4E6EB] text-[#050505]
+│  12 verified listings        │  Count: text-xs text-[#65676B] mx-4
+│                              │
+│┌────────────────────────────┐│  FULL-WIDTH card (no side margins)
+││ [     PHOTO 16:9 h-52    ] ││  No border-radius on photo
+││                             ││
+││                     [heart] ││  Save icon: absolute top-3 right-3
+│├────────────────────────────┤│  white circle bg with heart icon
+││ ₱5,000/mo                   ││  Price: text-lg font-bold #050505
+││ Bedspace · Ugong, Pasig     ││  Meta: text-sm #65676B
+││ [avatar] Juan D. · Verified ││  Seller: 20px circle + name + badge
+││ Active today                ││  Freshness: text-xs
+│└────────────────────────────┘│
+│        8px #F0F2F5 gap       │  Gap between cards (background shows)
+│┌────────────────────────────┐│
+││ [     Next card...         ]││
+│└────────────────────────────┘│
 │                              │
 │  ┌────────────────────────┐  │  Pagination: NOT infinite scroll
 │  │   LOAD MORE (page 2)  │  │  (3G performance concern)
 │  └────────────────────────┘  │  10 items per page
 │                              │
-├──────────┬─────────┬─────────┤
-│ 🔍Search │📥Inbox  │👤Profile│  Bottom tabs (56dp)
-└──────────┴─────────┴─────────┘
+├──────┬──────┬──┬──────┬──────┤
+│[home]│[srch]│[+]│[bell]│[user]│  5-tab bar (48dp, icons only)
+└──────┴──────┴──┴──────┴──────┘  2px blue top-line on active
 ```
 
-**Component Tree:**
+**Component Tree (Facebook Marketplace style):**
 ```
 ListingSearchScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
-│   ├── View (className="px-5 pt-4")
-│   │   ├── Text (title — "Hanap ng listing")
-│   │   ├── Text (greeting — "Kamusta, [Name]!")
-│   │   ├── SearchInput (barangay autocomplete)
-│   │   │   └── View (className="flex-row bg-gray-100 rounded-lg h-11 items-center px-3 gap-2")
-│   │   │       ├── Search icon (20px, gray)
-│   │   │       └── TextInput (placeholder="Saan?", flex-1)
-│   │   └── FilterChips (horizontal scroll)
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
+│   ├── TopHeaderBar (white, fixed)
+│   │   ├── Text ("RentRayda" text-xl font-bold text-[#2563EB])
+│   │   ├── Pressable → RaydaIcon name="search" size={24} color="#050505"
+│   │   └── Pressable → RaydaIcon name="bell" size={24} color="#050505"
+│   │       └── [if unread] NotificationDot (10px red circle)
+│   ├── View (className="px-4 pt-3 pb-2 bg-white")
+│   │   ├── SearchInput (Facebook-style)
+│   │   │   └── View (className="flex-row bg-[#E4E6EB] rounded-full h-10 items-center px-4 gap-2")
+│   │   │       ├── RaydaIcon name="search" size={16} color="#65676B"
+│   │   │       └── TextInput (placeholder="Search rentals...", flex-1, text-base)
+│   │   └── FilterChips (horizontal scroll, mt-2)
 │   │       └── ScrollView (horizontal)
-│   │           └── [for each filter] Pressable (chip — selected: bg-rayda-light)
-│   ├── Text (results count — "12 verified listings")
-│   ├── FlashList (estimatedItemSize={280}, data={listings})
-│   │   └── [for each listing] ListingCard (component below)
-│   ├── [if loading] SkeletonCards (3 shimmer placeholders)
-│   ├── [if empty] EmptyStateView (icon + headline + CTA)
-│   └── Pressable (load more — "I-LOAD PA (page 2)")
-├── [if offline] NetworkBanner
-└── BottomTabBar
+│   │           └── [for each filter] Pressable (chip)
+│   │               Active: bg-[#2563EB] text-white rounded-full h-8 px-3
+│   │               Inactive: bg-[#E4E6EB] text-[#050505] rounded-full h-8 px-3
+│   ├── Text (results count — "12 verified listings" text-xs text-[#65676B] mx-4 mt-2)
+│   ├── FlashList (estimatedItemSize={300}, data={listings}, ItemSeparatorComponent={FeedGap})
+│   │   └── [for each listing] ListingCard (Facebook Marketplace style, below)
+│   ├── [if loading] SkeletonCards (3 full-width shimmer placeholders)
+│   ├── [if empty] EmptyStateView (RaydaIcon name="home" + headline + CTA)
+│   └── Pressable (load more — secondary button, mx-4 mb-4)
+├── [if offline] NetworkBanner (RaydaIcon name="wifi-off")
+└── BottomTabBar (5 tabs, icons only)
+
+FeedGap: View (className="h-2 bg-[#F0F2F5]")  ← 8px gray gap between cards
 ```
 
 **ListingCard TypeScript Interface:**
 ```typescript
 interface ListingCardProps {
   id: string;
-  thumbnailUrl: string;            // First photo R2 public URL
-  monthlyRent: number;             // ₱ amount
+  thumbnailUrl: string | null;     // First photo R2 public URL
+  monthlyRent: number;             // amount in pesos
   unitType: 'bedspace' | 'room' | 'apartment';
   barangay: string;
   city: string;
   landlordName: string;
+  landlordPhotoUrl: string | null;
   verificationStatus: 'verified';  // Only verified shown in search
   lastActiveAt: string;            // ISO timestamp for freshness calc
+  isSaved?: boolean;               // Heart/save state
   onPress: () => void;             // Navigate to [id].tsx
+  onSave?: () => void;             // Toggle save/favorite
+  onLongPress?: () => void;        // Context menu (Save/Share/Report)
 }
 ```
 
-**ListingCard NativeWind:**
+**ListingCard NativeWind (Facebook Marketplace style):**
 ```
-Container: bg-white rounded-xl shadow-sm border border-gray-100 mb-4 overflow-hidden
-Photo: w-full h-48 (expo-image, contentFit="cover", cachePolicy="memory-disk")
-ContentWrap: p-4
-Price: text-lg font-semibold text-rayda
-Meta: text-sm text-gray-600 mt-1  (format: "Bedspace · Ugong, Pasig")
-Badge: mt-2 (VerifiedBadge component)
-Freshness: text-xs mt-2 (color from freshness token system)
+Container: bg-white overflow-hidden (NO border, NO radius, NO shadow, NO margin)
+Photo: w-full aspect-[16/9] (expo-image, contentFit="cover", cachePolicy="memory-disk")
+  SaveButton: absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 items-center justify-center shadow-sm
+    RaydaIcon name="heart" or "heart-filled" size={18} color="#E41E3F"
+ContentWrap: px-4 py-3
+Price: text-lg font-bold text-[#050505] (dark text like Facebook Marketplace, NOT brand blue)
+Meta: text-sm text-[#65676B] mt-1 (format: "Bedspace · Ugong, Pasig")
+SellerRow: flex-row items-center gap-2 mt-2
+  Avatar: expo-image w-5 h-5 rounded-full (landlord photo, tiny inline)
+  Text: text-xs text-[#65676B] ("Juan D. · Verified")
+Freshness: text-xs mt-1 (color from freshness token system)
 ```
 
 **FreshnessIndicator Component:**
@@ -1419,77 +1509,86 @@ interface FreshnessIndicatorProps {
 | 4 | **Empty** | Icon: Home 48px gray. Headline: "No listings in this area yet." Body: "Try a nearby barangay or check again tomorrow." CTA: "CLEAR FILTERS" (secondary button) |
 | 5 | **Offline** | Banner + show cached listings (if any) with "Offline — not updated" overlay. If no cache: empty state with offline note. |
 | 6 | **Submitting** | N/A (no submit on search screen) |
-| 7 | **Refreshing** | Pull-to-refresh: RefreshControl (tintColor="#2B51E3") |
+| 7 | **Refreshing** | Pull-to-refresh: RefreshControl (tintColor="#2563EB") |
 
 ---
 
 ### SCREEN 13: ListingDetailScreen (Tenant)
 
 **Route:** `apps/mobile/app/(tabs)/search/[id].tsx`
+**Design:** Facebook Marketplace product page — sectioned white cards on gray background.
 
-**ASCII Wireframe:**
+**ASCII Wireframe (Facebook Marketplace Product Page):**
 ```
 ┌──────────────────────────────┐
-│  ←              [Share][Flag]│  Header: back + share + report
+│  [<-]            [share][flag]│  Transparent overlay header
+│                              │  Icons: RaydaIcon on semi-transparent bg
+│┌────────────────────────────┐│
+││                             ││  Photo gallery: full-bleed
+││     PHOTO GALLERY           ││  h-72 (taller), edge-to-edge
+││     (swipeable)             ││  expo-image, contentFit="cover"
+││                             ││
+││  1/5                        ││  Photo counter: bottom-left overlay
+│└────────────────────────────┘│  "1/5" text on dark scrim, NOT dots
 │                              │
-│  ┌────────────────────────┐  │  Photo gallery: ScrollView
-│  │                        │  │  horizontal, pagingEnabled
-│  │    PHOTO GALLERY       │  │  h-64, full width
-│  │    (swipeable)         │  │  expo-image, contentFit="cover"
-│  │    ● ○ ○ ○             │  │  Dot indicators below
-│  └────────────────────────┘  │  2px dots, 8px gap
-│                              │
-│  ₱5,000/month               │  Price: text-2xl font-bold text-rayda
-│                              │
-│  Bedspace · Ugong, Pasig    │  Meta: text-base text-secondary
-│                              │
-│  ┌────────────────────────┐  │  Landlord card: bg-gray-50
-│  │ ┌──┐ Juan D.     │  │  rounded-xl, p-4, flex-row
-│  │ │📷│ ✓ Verified     │  │  Photo 48×48 circle
-│  │ │48 │                   │  │  Name: text-base font-medium
-│  │ └──┘                   │  │  Badge: VerifiedBadge
-│  └────────────────────────┘  │
-│                              │
-│  🟢 Active yesterday           │  FreshnessIndicator
-│                              │
-│  ────────────────────────── │  Divider: h-px bg-gray-200 my-4
-│                              │
-│  Included in rent:            │  Label (14px, font-medium)
-│  ┌──────┐ ┌────────┐ ┌────┐ │  Chips: bg-gray-100 rounded-full
-│  │💧Tubig│ │⚡Kuryente│ │📶  │ │  px-3 py-1, icon 16px + text 12px
-│  └──────┘ └────────┘ └────┘ │
-│                              │
-│  1 bed · Available Dec 15  │  Body (16px)
-│  Advance: 1 month           │
-│  Deposit: 2 months           │
-│                              │
-│  "Malinis na bedspace malapit│  Description: text-base
-│   sa Ortigas. Walking       │  text-secondary, mt-2
-│   distance sa Shaw MRT."    │
-│                              │
-│  ────────────────────────── │
-│                              │
-│  ┌────────────────────────┐  │  Anti-scam card: bg-rayda-light
-│  │ ✓ "This landlord is │  │  rounded-lg, p-3
-│  │ verified —    │  │  text-xs text-rayda
-│  │ they have a confirmed ID and     │  │  italic
-│  │ property proof. You will  │  │
-│  │ never be asked to pay │  │
-│  │ anything on this app."          │  │
-│  └────────────────────────┘  │
+│┌────────────────────────────┐│  Section 1: Price card (white, full-width)
+││ ₱5,000/month                ││  Price: text-2xl font-bold #050505
+││ Bedspace · Ugong, Pasig     ││  Meta: text-base #65676B
+││ Listed 2 days ago           ││  Freshness as relative date
+││                     [save]  ││  Heart/bookmark icon right-aligned
+│└────────────────────────────┘│
+│        8px #F0F2F5 gap       │
+│┌────────────────────────────┐│  Section 2: Seller card (white)
+││ Seller Information          ││  Section label: text-sm font-semibold
+││─────────────────────────────││  Divider
+││ [photo]  Juan Dela Cruz     ││  Avatar: 48px circle
+││  48px    Verified [badge]   ││  VerifiedBadge inline
+││          Member since 2024  ││  Join date
+││          [View Profile]     ││  Text button: text-[#2563EB]
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Section 3: Details card (white)
+││ Details                     ││
+││─────────────────────────────││
+││ [bed] 1 bed                 ││  RaydaIcon + label rows
+││ [calendar] Available Dec 15 ││
+││ [peso] Advance: 1 month     ││
+││ [peso] Deposit: 2 months    ││
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Section 4: Inclusions card (white)
+││ Included in rent            ││
+││─────────────────────────────││
+││ [droplet]Water [zap]Electric││  RaydaIcon + text chips
+││ [wifi]WiFi     [bath]CR     ││  2-column grid, each h-10
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Section 5: Description (white)
+││ Description                 ││
+││─────────────────────────────││
+││ "Malinis na bedspace malapit││
+││  sa Ortigas. Walking        ││
+││  distance sa Shaw MRT."     ││
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Trust card: bg-[#EBF0FC]
+││ [shield] This landlord is   ││  RaydaIcon shield-check
+││ verified. You will never be ││  text-sm text-[#2563EB]
+││ asked to pay on this app.   ││
+│└────────────────────────────┘│
 │                              │
 │══════════════════════════════│  Fixed bottom bar: h-20
-│ ┌──────────────────────────┐ │  bg-white, border-t border-gray-200
-│ │  CONNECT WITH JUAN   │ │  CTA: h-12, bg-rayda (if verified)
-│ └──────────────────────────┘ │  or bg-amber-500 (if unverified)
-│ ⚠ Report this listing      │  or bg-gray-300 (if already sent)
-│══════════════════════════════│  Report link: text-xs text-secondary
+│ ┌──────────────────────────┐ │  bg-white, border-t #CED0D4
+│ │  CONNECT WITH JUAN       │ │  CTA: h-12, bg-[#2563EB] rounded-lg
+│ └──────────────────────────┘ │  text-white font-semibold
+│ [flag] Report this listing   │  RaydaIcon flag + text-xs #65676B
+│══════════════════════════════│
 ```
 
 **Component Tree:**
 ```
 ListingDetailScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   ├── Header (absolute, transparent bg)
 │   │   ├── Pressable (back — ArrowLeft 24px)
 │   │   ├── Pressable (share — Share2 24px)
@@ -1564,17 +1663,17 @@ type CTAState =
 │  │                        │  │
 │  │ "Introduce yourself"     │  │  Title (20px, font-medium)
 │  │                        │  │
-│  │ ┌──────────────────┐   │  │  Optional message
+│  │ ┌──────────────────┐   │  │  Optional message (Messenger-style)
 │  │ │ "Hi! BPO      │   │  │  TextInput multiline
-│  │ │  worker based   │   │  │  h-24, border-gray-300
-│  │ │  in Ortigas..."  │   │  │  rounded-lg, p-3
+│  │ │  worker based   │   │  │  h-24, bg-[#E4E6EB]
+│  │ │  in Ortigas..."  │   │  │  rounded-2xl, p-3 (NO visible border)
 │  │ └──────────────────┘   │  │  maxLength=200
 │  │ 42/200                 │  │  Counter: text-xs text-right
 │  │                        │  │
 │  │ ┌──────────────────┐   │  │
-│  │ │  SEND      │   │  │  CTA: h-12, bg-rayda
-│  │ │  REQUEST          │   │  │  full width
-│  │ └──────────────────┘   │  │
+│  │ │   SEND REQUEST   │   │  │  CTA: h-12, bg-[#2563EB]
+│  │ │                   │   │  │  rounded-full (pill, Messenger)
+│  │ └──────────────────┘   │  │  full width
 │  │                        │  │
 │  │ "The landlord will see  │  │  Caption: text-xs text-secondary
 │  │  your verified profile  │  │
@@ -1619,43 +1718,43 @@ ConnectionRequestModal (Bottom Sheet)
 **Route:** `apps/mobile/app/(tabs)/inbox/index.tsx`
 **Shows:** Landlord sees incoming requests. Tenant sees sent requests + connections.
 
-**ASCII Wireframe (Landlord View):**
+**ASCII Wireframe (Landlord View — Facebook Post Feed Style):**
 ```
 ┌──────────────────────────────┐
-│  "Connection Requests"    │  Title (20px)
-│  "3 pending"                │  Subtitle (14px, text-secondary)
+│ RentRayda       [search][bell]│  Top header bar
+├──────────────────────────────┤
+│ Connection Requests · 3 new  │  Section header: bg-white px-4 py-3
+├──────────────────────────────┤
 │                              │
-│  ┌──────────────────────────┐│
-│  │ ┌──┐ Maria Santos       ││  Photo: 48×48 circle
-│  │ │📷│ ✓ Verified       ││  Name: text-base font-medium
-│  │ │  │ BPO · Concentrix    ││  Badge + employer
-│  │ └──┘                     ││
-│  │                          ││
-│  │ "Hi! BPO worker po   ││  Message preview: text-sm
-│  │  ako sa Ortigas. Inte..."││  text-secondary, numberOfLines=2
-│  │                          ││
-│  │ For: Bedspace Ugong  ││  Listing ref: text-xs text-secondary
-│  │ Yesterday                  ││  Timestamp: text-xs text-secondary
-│  │                          ││
-│  │ ┌──────────┐ ┌─────────┐││  Action buttons: h-10 each
-│  │ │ Accept│ │Decline│││  Accept: bg-rayda text-white
-│  │ │ (Accept) │ │(Decline)│││  Decline: bg-gray-100 text-gray-700
-│  │ └──────────┘ └─────────┘││  flex-row gap-3
-│  └──────────────────────────┘│
+│┌────────────────────────────┐│  Full-width card (Facebook post style)
+││ [ava] Maria Santos      2h ││  Avatar 40px + Name + relative time
+││       Verified · BPO        ││  Badge + employer inline below name
+││                             ││
+││ "Hi! BPO worker po ako sa   ││  Full message (NOT truncated)
+││  Ortigas. Interested sa     ││  text-base #050505
+││  bedspace nyo."             ││
+││                             ││
+││ For: Bedspace, Ugong        ││  Reference: text-sm #65676B
+││                             ││
+││ ┌──────────┐ ┌────────────┐││  Action bar (Facebook reaction bar style)
+││ │  Accept   │ │  Decline   │││  Accept: bg-[#2563EB] text-white h-10
+││ │           │ │            │││  Decline: bg-[#E4E6EB] text-[#050505] h-10
+││ └──────────┘ └────────────┘││  rounded-md, flex-row gap-2, mx-4 mb-4
+│└────────────────────────────┘│
+│        8px #F0F2F5 gap       │
+│┌────────────────────────────┐│
+││ [Next request card...]      ││
+│└────────────────────────────┘│
 │                              │
-│  ┌──────────────────────────┐│
-│  │ [Next request card...]   ││
-│  └──────────────────────────┘│
-│                              │
-├──────────┬─────────┬─────────┤
-│🏠Listings│📥Inbox  │👤Profile│
-└──────────┴─────────┴─────────┘
+├──────┬──────┬──┬──────┬──────┤
+│[home]│[srch]│[+]│[bell]│[user]│  5-tab bar, icons only
+└──────┴──────┴──┴──────┴──────┘
 ```
 
 **Component Tree:**
 ```
 LandlordInboxScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   ├── View (className="px-5 pt-4")
 │   │   ├── Text (title — "Mga Connection Request" text-xl font-medium)
 │   │   └── Text (subtitle — "3 pending" text-sm text-secondary)
@@ -1726,12 +1825,12 @@ interface ConnectionRequestCardProps {
 ┌──────────────────────────────┐
 │  ←                           │  Back to inbox
 │                              │
-│         ┌─────────┐          │  Handshake icon container
-│         │  🤝     │          │  64×64, bg-rayda-light
-│         │         │          │  rounded-2xl
+│         ┌─────────┐          │  RaydaIcon handshake container
+│         │handshake│          │  64×64, bg-[#EBF0FC]
+│         │  (32px) │          │  rounded-2xl
 │         └─────────┘          │  ANIMATION: scale 0→1 (spring)
 │                              │
-│  "You are now connected! ✓"     │  Display (32px, bold, text-rayda)
+│  "You are now connected!"     │  Display (32px, bold, text-[#2563EB])
 │                              │  text-center
 │  "You are both         │  Body (16px, text-secondary)
 │   verified. Here are the   │  text-center, px-6
@@ -1739,21 +1838,21 @@ interface ConnectionRequestCardProps {
 │                              │
 │  ┌────────────────────────┐  │  Contact card: bg-rayda-light
 │  │ ┌──┐                  │  │  rounded-2xl, p-5
-│  │ │📷│ [Other Party Name]│  │  Photo: 56×56 circle
-│  │ │56 │ ✓ Verified    │  │  Name: text-lg font-semibold
+│  │ [photo] [Other Party Name]│ │  Photo: 56×56 circle
+│  │  56px   Verified [badge] │ │  Name: text-lg font-semibold
 │  │ └──┘                   │  │  Badge: VerifiedBadge
 │  │                        │  │
-│  │ 📱 +63 917 123 4567   │  │  PHONE: text-2xl font-bold
-│  │                        │  │  text-rayda, mt-4
+│  │ [phone] +63 917 123 4567│  │  PHONE: text-2xl font-bold
+│  │                        │  │  text-[#2563EB], mt-4
 │  │ ┌──────────┐ ┌───────┐ │  │  
-│  │ │ 📞 CALL  │ │📋 COPY│ │  │  Buttons: h-11 each
-│  │ │(bg-rayda)│ │(border)│ │  │  Call: bg-rayda text-white
-│  │ └──────────┘ └───────┘ │  │  Copy: border-rayda text-rayda
+│  │ │[phn]CALL │ │[cpy]  │ │  │  Buttons: h-11 each, rounded-full
+│  │ │(bg-rayda)│ │ COPY  │ │  │  Call: bg-[#2563EB] text-white
+│  │ └──────────┘ └───────┘ │  │  Copy: border-[#2563EB] text-[#2563EB]
 │  └────────────────────────┘  │  Call → Linking.openURL(`tel:+63...`)
 │                              │  Copy → Clipboard + toast "Copied!"
 │  ┌────────────────────────┐  │
-│  │ 📤 SHARE WITH          │  │  Share button: border-rayda
-│  │    FRIENDS       │  │  Opens native share sheet
+│  │ [share] SHARE WITH     │  │  Share button: border-[#2563EB]
+│  │         FRIENDS        │  │  RaydaIcon share, opens native share
 │  └────────────────────────┘  │
 │                              │
 │  "Tip: Schedule a viewing   │  Caption: text-xs text-secondary
@@ -1766,13 +1865,13 @@ interface ConnectionRequestCardProps {
 **Component Tree:**
 ```
 ConnectionRevealScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   ├── Header (back arrow)
 │   └── View (className="flex-1 justify-center items-center px-6")
 │       ├── Animated.View (handshake — spring scale 0→1, stiffness 200, damping 15)
-│       │   └── View (w-16 h-16 bg-rayda-light rounded-2xl items-center justify-center)
-│       │       └── Handshake icon (32px, text-rayda)
-│       ├── Text ("Magkausap na kayo! ✓" text-3xl font-bold text-rayda mt-6)
+│       │   └── View (w-16 h-16 bg-[#EBF0FC] rounded-2xl items-center justify-center)
+│       │       └── RaydaIcon name="handshake" size={32} color="#2563EB"
+│       ├── Text ("You are now connected!" text-3xl font-bold text-[#2563EB] mt-6)
 │       ├── Text (body — text-base text-secondary text-center px-6 mt-4)
 │       ├── View (contact card — bg-rayda-light rounded-2xl p-5 w-full mt-8)
 │       │   ├── View (flex-row items-center gap-3)
@@ -1806,55 +1905,62 @@ ConnectionRevealScreen
 
 **Route:** `apps/mobile/app/(tabs)/profile/index.tsx`
 
-**ASCII Wireframe:**
+**ASCII Wireframe (Facebook Profile Page Style):**
 ```
 ┌──────────────────────────────┐
-│  "Profile"                   │  Title
+│ RentRayda       [search][bell]│  Top header bar
+├──────────────────────────────┤
 │                              │
-│  ┌────────────────────────┐  │  Profile card: bg-white
-│  │ ┌────┐ Juan Dela Cruz  │  │  rounded-xl, shadow-sm, p-4
-│  │ │PHOTO│ ✓ Verified   │  │  Photo: 56×56 circle
-│  │ │ 56 │ Landlord · Pasig │  │  Name: text-lg font-semibold
-│  │ └────┘                  │  │  Badge + role + city
-│  └────────────────────────┘  │
+│┌────────────────────────────┐│  Profile header card (full-width)
+││ ┌──────────────────────── ┐││  Cover strip: h-16 bg-[#2563EB]
+││ │  bg-[#2563EB] gradient  │││  or linear-gradient
+││ └──────────────────────── ┘││
+││                             ││
+││  [PHOTO]  Juan Dela Cruz    ││  Photo: 72x72 circle, border-4 white
+││   72px    Verified [badge]  ││  Overlapping the cover strip (-mt-9)
+││           Landlord · Pasig  ││  Name: text-xl font-bold #050505
+││                             ││
+││  ┌──────────────────────┐   ││
+││  │ [edit] Edit Profile  │   ││  Secondary button: bg-[#E4E6EB]
+││  └──────────────────────┘   ││  text-[#050505], rounded-md, h-9
+│└────────────────────────────┘│
+│        8px #F0F2F5 gap       │
+│┌────────────────────────────┐│  Verification section (white card)
+││ VERIFICATION STATUS         ││  Section header inside card
+││─────────────────────────────││
+││ [shield] Gov ID        Done ││  RaydaIcon + label + status + chevron
+││─────────────────────────────││  Each row: h-12, divider between
+││ [shield] Property   Pending ││
+││─────────────────────────────││
+││ [shield] Complete    [>]    ││  Tap → navigate to verification
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Connections card (white)
+││ [handshake] 3 active     [>]││
+│└────────────────────────────┘│
+│        8px gap               │
+│┌────────────────────────────┐│  Settings card (white)
+││ Privacy Policy            [>]││  Each row: h-12
+││─────────────────────────────││  RaydaIcon chevron-right
+││ Terms of Service          [>]││
+││─────────────────────────────││
+││ About               v1.0 [>]││
+│└────────────────────────────┘│
 │                              │
-│  ── VERIFICATION STATUS ──  │  Section header: text-sm
-│  ┌────────────────────────┐  │  font-medium text-secondary
-│  │ Government ID   ✓ OK   >│  │  uppercase, tracking-wide
-│  ├────────────────────────┤  │
-│  │ Property Proof  ⏳ Pend >│  │  Each row: h-12, flex-row
-│  ├────────────────────────┤  │  justify-between items-center
-│  │ [Complete verification]>│  │  ChevronRight icon
-│  └────────────────────────┘  │  Tap → navigate to re-upload
-│                              │  if rejected
-│  ── MGA CONNECTIONS ──       │
-│  ┌────────────────────────┐  │
-│  │ 3 active connections   >│  │  Tap → connections list
-│  └────────────────────────┘  │
+│  ┌────────────────────────┐  │  Logout: text-[#E41E3F]
+│  │       LOG OUT          │  │  border-[#E41E3F], bg-transparent
+│  └────────────────────────┘  │  mx-4, rounded-md, h-12
 │                              │
-│  ── SETTINGS ──              │
-│  ┌────────────────────────┐  │  Settings rows
-│  │ Privacy Policy         >│  │  each h-12
-│  ├────────────────────────┤  │
-│  │ Terms of Service       >│  │
-│  ├────────────────────────┤  │
-│  │ About         >│  │  (About — shows version)
-│  └────────────────────────┘  │
-│                              │
-│  ┌────────────────────────┐  │  Logout: text-danger
-│  │     LOG OUT         │  │  border-danger, bg-transparent
-│  └────────────────────────┘  │  Confirmation dialog before logout
-│                              │
-├──────────┬─────────┬─────────┤
-│🏠/🔍    │📥Inbox  │👤Profile│
-└──────────┴─────────┴─────────┘
+├──────┬──────┬──┬──────┬──────┤
+│[home]│[srch]│[+]│[bell]│[user]│  5-tab bar, icons only
+└──────┴──────┴──┴──────┴──────┘
 ```
 
 
 **Component Tree:**
 ```
 ProfileScreen
-├── SafeAreaView (className="flex-1 bg-[#FAFAFA]")
+├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   └── ScrollView (className="px-5 pt-4")
 │       ├── Text ("Profile" text-xl font-medium)
 │       ├── View (profile card — bg-white rounded-xl shadow-sm p-4 mt-4)
@@ -1903,7 +2009,7 @@ ProfileScreen
 **ASCII Wireframe:**
 ```
 ┌──────────────────────────────┐
-│  ✕  "Report"             │  X close button + title
+│  [x]  "Report"             │  X close button + title
 │                              │
 │  "What is the problem?"        │  Label
 │                              │
@@ -2031,7 +2137,7 @@ ScamReportScreen (Modal)
 
 1. **All text:** Minimum 16px body, 12px minimum for any texting. Support Dynamic Type / system font scaling.
 2. **All interactive elements:** 48×48dp touch targets. 8dp spacing between targets.
-3. **All icons:** Paired with text labels. Never icon-only buttons (except back arrow and close X — these are universally understood).
+3. **All icons:** Paired with text labels — except bottom tab bar icons (icon-only, Facebook-style — universally understood by our target market), back arrow, and close X. All icon-only elements MUST have `accessibilityLabel` set. Every `<RaydaIcon>` component includes a built-in `accessibilityLabel` mapped from the icon name.
 4. **All images:** `accessibilityLabel` describing content. Listing photos: "Photo of [unitType] in [barangay]."
 5. **Color:** Never color-only information. Status badges use icon + text + color.
 6. **Navigation:** Maximum 3 levels deep from any tab. Flat hierarchy.

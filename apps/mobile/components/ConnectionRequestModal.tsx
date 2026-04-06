@@ -87,39 +87,38 @@ export function ConnectionRequestModal({
         >
           {/* Drag handle */}
           <View style={{ alignItems: 'center', paddingTop: 8, paddingBottom: 4 }}>
-            <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: '#D1D5DB' }} />
+            <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: '#CED0D4' }} />
           </View>
 
           <View style={{ paddingHorizontal: 20, paddingTop: 16 }}>
-            <Text style={{ fontSize: 20, fontWeight: '500', color: '#1A1A2E', marginBottom: 16 }}>
+            <Text style={{ fontSize: 20, fontWeight: '500', color: '#050505', marginBottom: 16 }}>
               Introduce yourself
             </Text>
 
             <TextInput
               style={{
                 height: 96,
-                borderWidth: 1,
-                borderColor: '#D1D5DB',
-                borderRadius: 8,
+                borderWidth: 0,
+                borderRadius: 16,
                 padding: 12,
                 fontSize: 16,
                 textAlignVertical: 'top',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: '#E4E6EB',
               }}
               multiline
               maxLength={200}
               placeholder="Hi! I'm a BPO worker in Ortigas..."
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#8A8D91"
               value={message}
               onChangeText={setMessage}
               editable={!isSubmitting}
             />
-            <Text style={{ fontSize: 12, color: '#6B7280', textAlign: 'right', marginTop: 4 }}>
+            <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'right', marginTop: 4 }}>
               {message.length}/200
             </Text>
 
             {error && (
-              <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginTop: 8 }}>
+              <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 8 }}>
                 {error}
               </Text>
             )}
@@ -129,8 +128,8 @@ export function ConnectionRequestModal({
               disabled={isSubmitting}
               style={{
                 height: 48,
-                backgroundColor: '#2B51E3',
-                borderRadius: 8,
+                backgroundColor: '#2563EB',
+                borderRadius: 24,
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginTop: 16,
@@ -146,7 +145,7 @@ export function ConnectionRequestModal({
               )}
             </Pressable>
 
-            <Text style={{ fontSize: 12, color: '#6B7280', textAlign: 'center', marginTop: 12 }}>
+            <Text style={{ fontSize: 12, color: '#65676B', textAlign: 'center', marginTop: 12 }}>
               The landlord will see your verified profile along with your message.
             </Text>
           </View>

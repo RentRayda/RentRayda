@@ -19,12 +19,12 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3001';
 
 const INCLUSION_LABELS: Record<string, string> = {
-  water: '💧 Tubig',
-  electricity: '⚡ Kuryente',
-  wifi: '📶 WiFi',
-  cr: '🚿 CR',
-  aircon: '❄️ Aircon',
-  parking: '🅿️ Parking',
+  water: 'Tubig',
+  electricity: 'Kuryente',
+  wifi: 'WiFi',
+  cr: 'CR',
+  aircon: 'Aircon',
+  parking: 'Parking',
 };
 
 interface ListingDetail {
@@ -98,20 +98,20 @@ export default function ListingDetailScreen() {
 
   if (loading) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA', justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#2B51E3" />
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5', justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#2563EB" />
       </SafeAreaView>
     );
   }
 
   if (error || !listing) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, color: '#6B7280', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error || 'Listing not found.'}
           </Text>
-          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ color: '#FFFFFF', fontWeight: '600' }}>Go Back</Text>
           </Pressable>
         </View>
@@ -124,14 +124,14 @@ export default function ListingDetailScreen() {
   const photoCount = listing.photos.length || 0;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20, paddingVertical: 8 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
         <Pressable onPress={() => router.push('/report' as never)}>
-          <Text style={{ fontSize: 16, color: '#6B7280' }}>🚩</Text>
+          <Text style={{ fontSize: 16, color: '#65676B' }}>Report</Text>
         </Pressable>
       </View>
 
@@ -148,10 +148,10 @@ export default function ListingDetailScreen() {
               scrollEventThrottle={16}
             >
               {listing.photos.map((photo, i) => (
-                <View key={photo.id} style={{ width: SCREEN_WIDTH, height: 256, backgroundColor: '#E5E7EB' }}>
+                <View key={photo.id} style={{ width: SCREEN_WIDTH, height: 256, backgroundColor: '#CED0D4' }}>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 32, color: '#9CA3AF' }}>🏠</Text>
-                    <Text style={{ fontSize: 12, color: '#9CA3AF', marginTop: 4 }}>Photo {i + 1}</Text>
+                    <Text style={{ fontSize: 32, color: '#8A8D91' }}>H</Text>
+                    <Text style={{ fontSize: 12, color: '#8A8D91', marginTop: 4 }}>Photo {i + 1}</Text>
                   </View>
                 </View>
               ))}
@@ -163,42 +163,42 @@ export default function ListingDetailScreen() {
                   key={i}
                   style={{
                     width: 6, height: 6, borderRadius: 3,
-                    backgroundColor: i === photoIndex ? '#2B51E3' : '#D1D5DB',
+                    backgroundColor: i === photoIndex ? '#2563EB' : '#CED0D4',
                   }}
                 />
               ))}
             </View>
           </View>
         ) : (
-          <View style={{ width: '100%', height: 256, backgroundColor: '#E5E7EB', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 48, color: '#9CA3AF' }}>🏠</Text>
-            <Text style={{ fontSize: 14, color: '#9CA3AF', marginTop: 8 }}>No photos yet</Text>
+          <View style={{ width: '100%', height: 256, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 48, color: '#8A8D91' }}>H</Text>
+            <Text style={{ fontSize: 14, color: '#8A8D91', marginTop: 8 }}>No photos yet</Text>
           </View>
         )}
 
         <View style={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 100 }}>
           {/* Price */}
-          <Text style={{ fontSize: 24, fontWeight: '700', color: '#2B51E3' }}>
-            ₱{listing.monthlyRent.toLocaleString()}/month
+          <Text style={{ fontSize: 24, fontWeight: '700', color: '#050505' }}>
+            P{listing.monthlyRent.toLocaleString()}/month
           </Text>
 
           {/* Meta */}
-          <Text style={{ fontSize: 16, color: '#6B7280', marginTop: 4 }}>
+          <Text style={{ fontSize: 16, color: '#65676B', marginTop: 4 }}>
             {typeLabel} · {listing.barangay}, {listing.city}
           </Text>
 
           {/* Landlord Card */}
           {listing.landlordProfile && (
             <View style={{ backgroundColor: '#F9FAFB', borderRadius: 12, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 16 }}>
-              <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: '#E5E7EB', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+              <View style={{ width: 48, height: 48, borderRadius: 24, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 {listing.landlordProfile.profilePhotoUrl ? (
                   <Image source={{ uri: listing.landlordProfile.profilePhotoUrl }} style={{ width: 48, height: 48 }} />
                 ) : (
-                  <Text style={{ fontSize: 20, color: '#9CA3AF' }}>👤</Text>
+                  <Text style={{ fontSize: 20, color: '#8A8D91' }}>P</Text>
                 )}
               </View>
               <View>
-                <Text style={{ fontSize: 16, fontWeight: '500', color: '#1A1A2E' }}>
+                <Text style={{ fontSize: 16, fontWeight: '500', color: '#050505' }}>
                   {listing.landlordProfile.fullName || 'Landlord'}
                 </Text>
                 <VerifiedBadge status="verified" size="sm" />
@@ -210,17 +210,17 @@ export default function ListingDetailScreen() {
           <FreshnessIndicator lastActiveAt={listing.lastActiveAt} />
 
           {/* Divider */}
-          <View style={{ height: 1, backgroundColor: '#E5E7EB', marginVertical: 16 }} />
+          <View style={{ height: 1, backgroundColor: '#CED0D4', marginVertical: 16 }} />
 
           {/* Inclusions */}
           {inclusions.length > 0 && (
             <>
-              <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
+              <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
                 Included in rent:
               </Text>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
                 {inclusions.map((inc) => (
-                  <View key={inc} style={{ backgroundColor: '#F3F4F6', borderRadius: 9999, paddingHorizontal: 12, paddingVertical: 4 }}>
+                  <View key={inc} style={{ backgroundColor: '#E4E6EB', borderRadius: 9999, paddingHorizontal: 12, paddingVertical: 4 }}>
                     <Text style={{ fontSize: 12, color: '#374151' }}>
                       {INCLUSION_LABELS[inc] || inc}
                     </Text>
@@ -233,41 +233,41 @@ export default function ListingDetailScreen() {
           {/* Details */}
           <View style={{ gap: 4, marginBottom: 16 }}>
             {listing.beds && (
-              <Text style={{ fontSize: 16, color: '#1A1A2E' }}>
+              <Text style={{ fontSize: 16, color: '#050505' }}>
                 {listing.beds} bed{listing.beds > 1 ? 's' : ''}
                 {listing.availableDate ? ` · Available ${listing.availableDate}` : ''}
               </Text>
             )}
-            <Text style={{ fontSize: 16, color: '#6B7280' }}>
+            <Text style={{ fontSize: 16, color: '#65676B' }}>
               Advance: {listing.advanceMonths ?? 1} month{(listing.advanceMonths ?? 1) !== 1 ? 's' : ''}
             </Text>
-            <Text style={{ fontSize: 16, color: '#6B7280' }}>
+            <Text style={{ fontSize: 16, color: '#65676B' }}>
               Deposit: {listing.depositMonths ?? 2} month{(listing.depositMonths ?? 2) !== 1 ? 's' : ''}
             </Text>
           </View>
 
           {/* Description */}
           {listing.description && (
-            <Text style={{ fontSize: 16, color: '#6B7280', marginBottom: 16, lineHeight: 24 }}>
+            <Text style={{ fontSize: 16, color: '#65676B', marginBottom: 16, lineHeight: 24 }}>
               {listing.description}
             </Text>
           )}
 
           {/* Anti-scam card */}
-          <View style={{ backgroundColor: '#EBF0FC', borderRadius: 8, padding: 12 }}>
-            <Text style={{ fontSize: 12, color: '#2B51E3', fontStyle: 'italic', lineHeight: 18 }}>
-              ✓ This landlord is verified — they have a confirmed ID and property proof. You will never be asked to pay anything on this app.
+          <View style={{ backgroundColor: '#DBEAFE', borderRadius: 8, padding: 12 }}>
+            <Text style={{ fontSize: 12, color: '#2563EB', fontStyle: 'italic', lineHeight: 18 }}>
+              This landlord is verified — they have a confirmed ID and property proof. You will never be asked to pay anything on this app.
             </Text>
           </View>
         </View>
       </ScrollView>
 
       {/* Fixed Bottom Bar */}
-      <View style={{ height: 80, backgroundColor: '#FFFFFF', borderTopWidth: 1, borderTopColor: '#E5E7EB', paddingHorizontal: 20, justifyContent: 'center' }}>
+      <View style={{ height: 80, backgroundColor: '#FFFFFF', borderTopWidth: 1, borderTopColor: '#CED0D4', paddingHorizontal: 20, justifyContent: 'center' }}>
         {ctaState.type === 'connect' && (
           <Pressable
             onPress={() => {/* TODO: open connection request modal */}}
-            style={{ height: 48, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
               CONNECT WITH {ctaState.landlordName.toUpperCase()}
@@ -277,7 +277,7 @@ export default function ListingDetailScreen() {
         {ctaState.type === 'verify_first' && (
           <Pressable
             onPress={() => router.push('/(onboarding)/verify-id' as never)}
-            style={{ height: 48, backgroundColor: '#D97706', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, backgroundColor: '#F7B928', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
               PLEASE VERIFY YOUR PROFILE
@@ -287,7 +287,7 @@ export default function ListingDetailScreen() {
         {ctaState.type === 'already_sent' && (
           <Pressable
             disabled
-            style={{ height: 48, backgroundColor: '#D1D5DB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, backgroundColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
               REQUEST ALREADY SENT
@@ -295,10 +295,10 @@ export default function ListingDetailScreen() {
           </Pressable>
         )}
         {ctaState.type === 'loading' && (
-          <ActivityIndicator size="small" color="#2B51E3" />
+          <ActivityIndicator size="small" color="#2563EB" />
         )}
         <Pressable onPress={() => router.push('/report' as never)} style={{ marginTop: 4, alignItems: 'center' }}>
-          <Text style={{ fontSize: 12, color: '#6B7280' }}>⚠ Report this listing</Text>
+          <Text style={{ fontSize: 12, color: '#65676B' }}>Report this listing</Text>
         </Pressable>
       </View>
     </SafeAreaView>

@@ -27,7 +27,18 @@ export function NetworkBanner() {
       accessibilityLabel="No internet connection"
       accessibilityRole="alert"
     >
-      <Text style={{ fontSize: 16 }}>📡</Text>
+      <View
+        style={{
+          width: 20,
+          height: 20,
+          borderRadius: 10,
+          backgroundColor: '#92400E',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Text style={{ fontSize: 12, color: '#FFFFFF', fontWeight: '700' }}>!</Text>
+      </View>
       <Text style={{ fontSize: 14, color: '#92400E', flex: 1 }}>
         No internet. Check your connection.
       </Text>

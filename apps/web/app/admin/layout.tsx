@@ -10,11 +10,11 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#FAFAFA' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
       <header
         style={{
           backgroundColor: '#FFFFFF',
-          borderBottom: '1px solid #E5E7EB',
+          borderBottom: '1px solid #CED0D4',
           padding: '12px 24px',
           display: 'flex',
           alignItems: 'center',
@@ -22,17 +22,17 @@ export default function AdminLayout({
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <span style={{ fontSize: 20, fontWeight: 700, color: '#2B51E3' }}>RentRayda</span>
-          <span style={{ fontSize: 14, color: '#6B7280' }}>Admin Dashboard</span>
+          <span style={{ fontSize: 20, fontWeight: 700, color: '#2563EB' }}>RentRayda</span>
+          <span style={{ fontSize: 14, color: '#65676B' }}>Admin Dashboard</span>
         </div>
         <nav style={{ display: 'flex', gap: 24 }}>
-          <a href="/admin/dashboard" style={{ fontSize: 14, color: '#1A1A2E', textDecoration: 'none' }}>
+          <a href="/admin/dashboard" style={{ fontSize: 14, color: '#050505', textDecoration: 'none' }}>
             Dashboard
           </a>
-          <a href="/admin/verifications" style={{ fontSize: 14, color: '#1A1A2E', textDecoration: 'none' }}>
+          <a href="/admin/verifications" style={{ fontSize: 14, color: '#050505', textDecoration: 'none' }}>
             Verifications
           </a>
-          <a href="/admin/reports" style={{ fontSize: 14, color: '#1A1A2E', textDecoration: 'none' }}>
+          <a href="/admin/reports" style={{ fontSize: 14, color: '#050505', textDecoration: 'none' }}>
             Reports
           </a>
         </nav>

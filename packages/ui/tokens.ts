@@ -1,13 +1,25 @@
 export const colors = {
-  brand: '#2B51E3',
-  brandLight: '#EBF0FC',
-  verified: '#16A34A',
-  background: '#FAFAFA',
+  // Primary — derived from tarsier logo gradient
+  brand: '#2563EB',
+  brandDark: '#1D4ED8',
+  brandBright: '#60A5FA',
+  brandLight: '#DBEAFE',
+
+  // Neutral — Facebook-aligned
+  background: '#F0F2F5',
   surface: '#FFFFFF',
-  textPrimary: '#1A1A2E',
-  textSecondary: '#6B7280',
-  danger: '#DC2626',
-  warning: '#D97706',
+  inputBg: '#E4E6EB',
+  border: '#CED0D4',
+  divider: '#DADDE1',
+  textPrimary: '#050505',
+  textSecondary: '#65676B',
+  textTertiary: '#8A8D91',
+
+  // Status — Facebook-aligned
+  verified: '#31A24C',
+  danger: '#E41E3F',
+  warning: '#F7B928',
+  success: '#31A24C',
 } as const;
 
 export const spacing = {

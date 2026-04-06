@@ -119,13 +119,13 @@ export default function LandlordProfileScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
           Set up your profile
         </Text>
       </View>
@@ -142,18 +142,18 @@ export default function LandlordProfileScreen() {
               width: 80,
               height: 80,
               borderRadius: 40,
-              backgroundColor: '#E5E7EB',
+              backgroundColor: '#CED0D4',
               alignItems: 'center',
               justifyContent: 'center',
               overflow: 'hidden',
               borderWidth: photoError ? 2 : 0,
-              borderColor: photoError ? '#EF4444' : undefined,
+              borderColor: photoError ? '#E41E3F' : undefined,
             }}
           >
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={{ width: 80, height: 80 }} />
             ) : (
-              <Text style={{ fontSize: 32, color: '#9CA3AF' }}>📷</Text>
+              <Text style={{ fontSize: 32, color: '#8A8D91' }}>📷</Text>
             )}
           </View>
           {/* Camera badge */}
@@ -165,7 +165,7 @@ export default function LandlordProfileScreen() {
               width: 28,
               height: 28,
               borderRadius: 14,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               alignItems: 'center',
               justifyContent: 'center',
             }}
@@ -173,26 +173,26 @@ export default function LandlordProfileScreen() {
             <Text style={{ color: '#FFFFFF', fontSize: 14 }}>📷</Text>
           </View>
         </Pressable>
-        <Text style={{ fontSize: 14, color: '#6B7280', textAlign: 'center', marginBottom: 24 }}>
+        <Text style={{ fontSize: 14, color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
           Tap to take a selfie
         </Text>
         {photoError && (
           <Pressable onPress={handlePhotoPick}>
-            <Text style={{ fontSize: 12, color: '#DC2626', textAlign: 'center', marginBottom: 16 }}>
+            <Text style={{ fontSize: 12, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
               Photo upload failed. Try again?
             </Text>
           </Pressable>
         )}
 
         {/* Full Name */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          Full name <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          Full name <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <TextInput
           style={{
             height: 48,
             borderWidth: 1,
-            borderColor: '#D1D5DB',
+            borderColor: '#CED0D4',
             borderRadius: 8,
             paddingHorizontal: 12,
             fontSize: 16,
@@ -200,22 +200,22 @@ export default function LandlordProfileScreen() {
             backgroundColor: '#FFFFFF',
           }}
           placeholder="Juan Dela Cruz"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#8A8D91"
           value={fullName}
           onChangeText={setFullName}
           editable={!isLoading}
         />
 
         {/* City Picker */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          City <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          City <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
           onPress={() => setShowCityPicker(!showCityPicker)}
           style={{
             height: 48,
             borderWidth: 1,
-            borderColor: '#D1D5DB',
+            borderColor: '#CED0D4',
             borderRadius: 8,
             paddingHorizontal: 12,
             justifyContent: 'center',
@@ -223,32 +223,32 @@ export default function LandlordProfileScreen() {
             backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: '#1A1A2E' }}>▾ {city}</Text>
+          <Text style={{ fontSize: 16, color: '#050505' }}>▾ {city}</Text>
         </Pressable>
         {showCityPicker && (
-          <View style={{ borderWidth: 1, borderColor: '#D1D5DB', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
+          <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
             {CITIES.map((c) => (
               <Pressable
                 key={c}
                 onPress={() => { setCity(c); setShowCityPicker(false); }}
-                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: city === c ? '#EBF0FC' : '#FFFFFF' }}
+                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: city === c ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{c}</Text>
+                <Text style={{ fontSize: 16, color: '#050505' }}>{c}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Barangay Picker */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          Barangay <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          Barangay <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
           onPress={() => setShowBarangayPicker(!showBarangayPicker)}
           style={{
             height: 48,
             borderWidth: 1,
-            borderColor: '#D1D5DB',
+            borderColor: '#CED0D4',
             borderRadius: 8,
             paddingHorizontal: 12,
             justifyContent: 'center',
@@ -256,33 +256,33 @@ export default function LandlordProfileScreen() {
             backgroundColor: '#FFFFFF',
           }}
         >
-          <Text style={{ fontSize: 16, color: barangay ? '#1A1A2E' : '#9CA3AF' }}>
+          <Text style={{ fontSize: 16, color: barangay ? '#050505' : '#8A8D91' }}>
             ▾ {barangay || 'Select barangay'}
           </Text>
         </Pressable>
         {showBarangayPicker && (
-          <View style={{ borderWidth: 1, borderColor: '#D1D5DB', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
+          <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
             {LAUNCH_BARANGAYS.map((b) => (
               <Pressable
                 key={b}
                 onPress={() => { setBarangay(b); setShowBarangayPicker(false); }}
-                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#EBF0FC' : '#FFFFFF' }}
+                style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === b ? '#DBEAFE' : '#FFFFFF' }}
               >
-                <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{b}</Text>
+                <Text style={{ fontSize: 16, color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
             <Pressable
               onPress={() => { setBarangay('Other'); setShowBarangayPicker(false); }}
-              style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === 'Other' ? '#EBF0FC' : '#FFFFFF' }}
+              style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: barangay === 'Other' ? '#DBEAFE' : '#FFFFFF' }}
             >
-              <Text style={{ fontSize: 16, color: '#1A1A2E' }}>Other</Text>
+              <Text style={{ fontSize: 16, color: '#050505' }}>Other</Text>
             </Pressable>
           </View>
         )}
 
         {/* Unit Count Stepper */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 4 }}>
-          How many units? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 4 }}>
+          How many units? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
           <View
@@ -290,14 +290,14 @@ export default function LandlordProfileScreen() {
               width: 48,
               height: 48,
               borderWidth: 1,
-              borderColor: '#D1D5DB',
+              borderColor: '#CED0D4',
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
               backgroundColor: '#FFFFFF',
             }}
           >
-            <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E' }}>{unitCount}</Text>
+            <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505' }}>{unitCount}</Text>
           </View>
           <Pressable
             onPress={() => setUnitCount(Math.max(1, unitCount - 1))}
@@ -307,12 +307,12 @@ export default function LandlordProfileScreen() {
               width: 40,
               height: 40,
               borderRadius: 8,
-              backgroundColor: unitCount <= 1 ? '#E5E7EB' : '#D1D5DB',
+              backgroundColor: unitCount <= 1 ? '#CED0D4' : '#CED0D4',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount <= 1 ? '#9CA3AF' : '#1A1A2E' }}>−</Text>
+            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount <= 1 ? '#8A8D91' : '#050505' }}>−</Text>
           </Pressable>
           <Pressable
             onPress={() => setUnitCount(Math.min(50, unitCount + 1))}
@@ -322,17 +322,17 @@ export default function LandlordProfileScreen() {
               width: 40,
               height: 40,
               borderRadius: 8,
-              backgroundColor: unitCount >= 50 ? '#E5E7EB' : '#D1D5DB',
+              backgroundColor: unitCount >= 50 ? '#CED0D4' : '#CED0D4',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount >= 50 ? '#9CA3AF' : '#1A1A2E' }}>+</Text>
+            <Text style={{ fontSize: 20, fontWeight: '600', color: unitCount >= 50 ? '#8A8D91' : '#050505' }}>+</Text>
           </Pressable>
         </View>
 
         {error && (
-          <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -344,7 +344,7 @@ export default function LandlordProfileScreen() {
           style={{
             width: '100%',
             height: 48,
-            backgroundColor: '#2B51E3',
+            backgroundColor: '#2563EB',
             borderRadius: 8,
             alignItems: 'center',
             justifyContent: 'center',

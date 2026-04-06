@@ -90,7 +90,7 @@ export default function VerificationCeremonyScreen() {
               width: 64,
               height: 64,
               borderRadius: 16,
-              backgroundColor: '#16A34A',
+              backgroundColor: '#31A24C',
               alignItems: 'center',
               justifyContent: 'center',
             }}
@@ -103,19 +103,19 @@ export default function VerificationCeremonyScreen() {
             style={{
               fontSize: 32,
               fontWeight: '700',
-              color: '#2B51E3',
+              color: '#2563EB',
               textAlign: 'center',
               marginTop: 24,
             }}
           >
-            {name}, you're verified! ✓
+            {name}, you're verified!
           </Text>
 
           {/* Body copy — role specific */}
           <Text
             style={{
               fontSize: 16,
-              color: '#6B7280',
+              color: '#65676B',
               textAlign: 'center',
               marginTop: 16,
               paddingHorizontal: 24,
@@ -132,7 +132,7 @@ export default function VerificationCeremonyScreen() {
               marginTop: 32,
               width: '100%',
               height: 48,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
@@ -151,14 +151,14 @@ export default function VerificationCeremonyScreen() {
               width: '100%',
               height: 48,
               borderWidth: 1,
-              borderColor: '#2B51E3',
+              borderColor: '#2563EB',
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#2B51E3', fontWeight: '600', fontSize: 16 }}>
-              📤 SHARE WITH FRIENDS
+            <Text style={{ color: '#2563EB', fontWeight: '600', fontSize: 16 }}>
+              SHARE WITH FRIENDS
             </Text>
           </Pressable>
         </View>

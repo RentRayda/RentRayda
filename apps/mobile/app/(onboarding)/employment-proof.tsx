@@ -109,20 +109,20 @@ export default function EmploymentProofScreen() {
 
   if (isComplete) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: '#16A34A', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
+          <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: '#31A24C', alignItems: 'center', justifyContent: 'center', marginBottom: 24 }}>
             <Text style={{ color: '#FFFFFF', fontSize: 32 }}>✓</Text>
           </View>
-          <Text style={{ fontSize: 20, fontWeight: '600', color: '#1A1A2E', textAlign: 'center' }}>
+          <Text style={{ fontSize: 20, fontWeight: '600', color: '#050505', textAlign: 'center' }}>
             Employment proof uploaded!
           </Text>
-          <Text style={{ fontSize: 16, color: '#6B7280', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 16, color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             Under review — 24-48 hours.
           </Text>
           <Pressable
             onPress={() => router.replace('/(onboarding)/submitted' as never)}
-            style={{ marginTop: 32, width: '100%', height: 48, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ marginTop: 32, width: '100%', height: 48, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>CONTINUE</Text>
           </Pressable>
@@ -132,32 +132,32 @@ export default function EmploymentProofScreen() {
   }
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#FAFAFA' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, color: '#1A1A2E' }}>←</Text>
+          <Text style={{ fontSize: 24, color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontWeight: '600', color: '#1A1A2E', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontWeight: '600', color: '#050505', marginLeft: 12 }}>
           Employment proof
         </Text>
       </View>
 
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32 }}>
         {/* Progress bar */}
-        <Text style={{ fontSize: 12, color: '#6B7280', marginBottom: 4 }}>Step 2 of 2</Text>
-        <View style={{ height: 4, backgroundColor: '#E5E7EB', borderRadius: 2, marginBottom: 20 }}>
-          <View style={{ width: '100%', height: 4, backgroundColor: '#2B51E3', borderRadius: 2 }} />
+        <Text style={{ fontSize: 12, color: '#65676B', marginBottom: 4 }}>Step 2 of 2</Text>
+        <View style={{ height: 4, backgroundColor: '#CED0D4', borderRadius: 2, marginBottom: 20 }}>
+          <View style={{ width: '100%', height: 4, backgroundColor: '#2563EB', borderRadius: 2 }} />
         </View>
 
         {/* Instructions */}
-        <Text style={{ fontSize: 16, color: '#6B7280', marginBottom: 20, lineHeight: 24 }}>
+        <Text style={{ fontSize: 16, color: '#65676B', marginBottom: 20, lineHeight: 24 }}>
           So landlords can see you have a job and are reliable.
         </Text>
 
         {/* Proof Type Radio List */}
-        <Text style={{ fontSize: 14, fontWeight: '500', color: '#1A1A2E', marginBottom: 8 }}>
-          What type of proof? <Text style={{ color: '#DC2626' }}>*</Text>
+        <Text style={{ fontSize: 14, fontWeight: '500', color: '#050505', marginBottom: 8 }}>
+          What type of proof? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         {proofTypes.map((type) => (
           <Pressable
@@ -165,12 +165,12 @@ export default function EmploymentProofScreen() {
             onPress={() => setProofType(type.value)}
             style={{ flexDirection: 'row', alignItems: 'center', height: 48, gap: 12 }}
           >
-            <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: proofType === type.value ? '#2B51E3' : '#D1D5DB', alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: 20, height: 20, borderRadius: 10, borderWidth: 2, borderColor: proofType === type.value ? '#2563EB' : '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
               {proofType === type.value && (
-                <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2B51E3' }} />
+                <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#2563EB' }} />
               )}
             </View>
-            <Text style={{ fontSize: 16, color: '#1A1A2E' }}>{type.label}</Text>
+            <Text style={{ fontSize: 16, color: '#050505' }}>{type.label}</Text>
           </Pressable>
         ))}
 
@@ -179,13 +179,13 @@ export default function EmploymentProofScreen() {
           onPress={handleTakePhoto}
           disabled={!canTakePhoto || isUploading}
           style={{
-            marginTop: 20, width: '100%', height: 48, backgroundColor: '#2B51E3', borderRadius: 8,
+            marginTop: 20, width: '100%', height: 48, backgroundColor: '#2563EB', borderRadius: 8,
             alignItems: 'center', justifyContent: 'center',
             opacity: !canTakePhoto || isUploading ? 0.5 : 1,
           }}
         >
           <Text style={{ color: '#FFFFFF', fontWeight: '600', fontSize: 16 }}>
-            📷 TAKE PHOTO OF DOCUMENT
+            TAKE PHOTO OF DOCUMENT
           </Text>
         </Pressable>
 
@@ -194,10 +194,10 @@ export default function EmploymentProofScreen() {
           <View style={{ flexDirection: 'row', gap: 16, marginTop: 16, alignItems: 'center' }}>
             <Image
               source={{ uri: photoUri }}
-              style={{ width: 120, height: 80, borderRadius: 8, borderWidth: uploadError ? 2 : 0, borderColor: '#EF4444' }}
+              style={{ width: 120, height: 80, borderRadius: 8, borderWidth: uploadError ? 2 : 0, borderColor: '#E41E3F' }}
             />
             <Pressable onPress={handleTakePhoto}>
-              <Text style={{ fontSize: 14, color: '#2B51E3' }}>Retake</Text>
+              <Text style={{ fontSize: 14, color: '#2563EB' }}>Retake</Text>
             </Pressable>
           </View>
         )}
@@ -205,16 +205,16 @@ export default function EmploymentProofScreen() {
         {/* Upload Progress */}
         {isUploading && (
           <View style={{ marginTop: 16 }}>
-            <Text style={{ fontSize: 14, color: '#6B7280', marginBottom: 8 }}>Uploading...</Text>
-            <View style={{ height: 8, backgroundColor: '#E5E7EB', borderRadius: 4 }}>
-              <View style={{ width: `${uploadProgress}%`, height: 8, backgroundColor: '#2B51E3', borderRadius: 4 }} />
+            <Text style={{ fontSize: 14, color: '#65676B', marginBottom: 8 }}>Uploading...</Text>
+            <View style={{ height: 8, backgroundColor: '#CED0D4', borderRadius: 4 }}>
+              <View style={{ width: `${uploadProgress}%`, height: 8, backgroundColor: '#2563EB', borderRadius: 4 }} />
             </View>
           </View>
         )}
 
         {uploadError && (
           <Pressable onPress={handleTakePhoto}>
-            <Text style={{ fontSize: 14, color: '#DC2626', textAlign: 'center', marginTop: 16 }}>
+            <Text style={{ fontSize: 14, color: '#E41E3F', textAlign: 'center', marginTop: 16 }}>
               Upload failed. Try again?
             </Text>
           </Pressable>
@@ -225,7 +225,7 @@ export default function EmploymentProofScreen() {
           onPress={() => router.replace('/(onboarding)/submitted' as never)}
           style={{ marginTop: 24, alignItems: 'center' }}
         >
-          <Text style={{ fontSize: 14, color: '#6B7280', textDecorationLine: 'underline' }}>
+          <Text style={{ fontSize: 14, color: '#65676B', textDecorationLine: 'underline' }}>
             I don't have a document — skip for now
           </Text>
         </Pressable>
@@ -233,7 +233,7 @@ export default function EmploymentProofScreen() {
         {/* Warning */}
         <View style={{ marginTop: 12, backgroundColor: '#FFFBEB', borderRadius: 8, padding: 12, borderWidth: 1, borderColor: '#FDE68A' }}>
           <Text style={{ fontSize: 12, color: '#92400E', lineHeight: 18 }}>
-            ⚠️ If you skip this, you will not be able to connect with landlords.
+            If you skip this, you will not be able to connect with landlords.
           </Text>
         </View>
       </ScrollView>

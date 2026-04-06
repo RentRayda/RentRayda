@@ -87,6 +87,9 @@ importers:
       expo-device:
         specifier: ^55.0.12
         version: 55.0.12(expo@55.0.11)
+      expo-font:
+        specifier: ~55.0.0
+        version: 55.0.6(expo@55.0.11)(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
       expo-image:
         specifier: ^55.0.8
         version: 55.0.8(expo@55.0.11)(react-native-web@0.19.13(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
@@ -108,6 +111,9 @@ importers:
       expo-secure-store:
         specifier: ^55.0.11
         version: 55.0.11(expo@55.0.11)
+      expo-splash-screen:
+        specifier: ~55.0.0
+        version: 55.0.15(expo@55.0.11)(typescript@5.9.3)
       expo-status-bar:
         specifier: ~2.0.0
         version: 2.0.1(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)
@@ -3301,6 +3307,11 @@ packages:
   expo-server@55.0.7:
     resolution: {integrity: sha512-Cc1btFyPsD9P4DT2xd1pG/uR96TLVMx0W+dPm9Gjk1uDV9xuzvMcUsY7nf9bt4U5pGyWWkCXmPJcKwWfdl51Pw==}
     engines: {node: '>=20.16.0'}
+
+  expo-splash-screen@55.0.15:
+    resolution: {integrity: sha512-j1RnPtw37mSUFgzrHeank2VbAkgziT5cWzVVECqAk706XWfDTO6a5yriyp68w3o4q8gBp3CdlDbmQpX19Yk7IQ==}
+    peerDependencies:
+      expo: '*'
 
   expo-status-bar@2.0.1:
     resolution: {integrity: sha512-AkIPX7jWHRPp83UBZ1iXtVvyr0g+DgBVvIXTtlmPtmUsm8Vq9Bb5IGj86PW8osuFlgoTVAg7HI/+Ok7yEYwiRg==}
@@ -8659,6 +8670,14 @@ snapshots:
       expo: 55.0.11(@babel/core@7.29.0)(@expo/dom-webview@55.0.5)(expo-router@4.0.22)(react-dom@19.2.4(react@19.2.4))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
 
   expo-server@55.0.7: {}
+
+  expo-splash-screen@55.0.15(expo@55.0.11)(typescript@5.9.3):
+    dependencies:
+      '@expo/prebuild-config': 55.0.12(expo@55.0.11)(typescript@5.9.3)
+      expo: 55.0.11(@babel/core@7.29.0)(@expo/dom-webview@55.0.5)(expo-router@4.0.22)(react-dom@19.2.4(react@19.2.4))(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   expo-status-bar@2.0.1(react-native@0.83.4(@babel/core@7.29.0)(@types/react@19.2.14)(react@19.2.4))(react@19.2.4):
     dependencies:

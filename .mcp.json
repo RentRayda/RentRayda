@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "description": "Up-to-date docs for React Native, Expo, Next.js, Tailwind, etc. Level 5: know the framework before building."
+    },
+    "21st-dev": {
+      "command": "npx",
+      "args": ["-y", "21st-dev-magic-mcp@latest"],
+      "description": "Curate production-ready UI components from 21st.dev. Level 5: Component Sniper."
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-puppeteer@latest"],
+      "description": "Browser automation to screenshot and visually test rendered pages. Level 6: stop coding blind."
+    }
+  }
+}

@@ -44,6 +44,12 @@ export default function RootLayout({
             font-weight: 700;
             font-display: swap;
           }
+          @font-face {
+            font-family: 'AlteHaasGroteskBold';
+            src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+            font-weight: 400;
+            font-display: swap;
+          }
         ` }} />
       </head>
       <body style={{ margin: 0, fontFamily: 'AlteHaasGrotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>

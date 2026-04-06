@@ -134,7 +134,7 @@ export function VerificationDemo() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
-              Upload your government ID and a selfie. Our team reviews it in 24-48 hours. Once verified, landlords know you are real — and you know they are too.
+              Upload your government ID and a selfie. Our team reviews it in 24-48 hours. Once verified, landlords know you are real. And you know they are too.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>
@@ -396,7 +396,7 @@ export function ConnectionDemo() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
-              When a landlord accepts your request, both phone numbers are revealed instantly. Call or text directly — no agents, no fees, no platform taking a cut.
+              When a landlord accepts your request, both phone numbers are revealed instantly. Call or text directly. No agents, no fees, no platform taking a cut.
             </p>
           </FadeIn>
           <FadeIn delay={0.3}>

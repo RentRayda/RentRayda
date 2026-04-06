@@ -111,7 +111,7 @@ export default async function LandingPage() {
             We are not Lamudi. We are not Rentpad.
           </h2>
           <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 24px' }}>
-            Here, everyone is verified — before you connect, we check first.
+            Here, everyone is verified. Before you connect, we check first.
             No fake listings. No scam agents. No money through the app.
             Just verified landlords and verified tenants, connecting directly.
           </p>

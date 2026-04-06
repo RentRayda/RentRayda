@@ -99,7 +99,7 @@ export function ConnectionRequestModal({
               style={{
                 height: 96,
                 borderWidth: 0,
-                borderRadius: 16,
+                borderRadius: 12,
                 padding: 12,
                 fontSize: 16,
                 fontFamily: 'AlteHaasGrotesk',

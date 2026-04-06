@@ -144,7 +144,7 @@ export default function ListingDetailScreen() {
   if (loading) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#2B51E3" />
+        <ActivityIndicator size="large" color="#2563EB" />
       </SafeAreaView>
     );
   }
@@ -156,7 +156,7 @@ export default function ListingDetailScreen() {
           <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error || 'Listing not found.'}
           </Text>
-          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
+          <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold' }}>Go Back</Text>
           </Pressable>
         </View>
@@ -189,7 +189,7 @@ export default function ListingDetailScreen() {
         <Pressable
           onPress={() => router.back()}
           style={{
-            width: 36, height: 36, borderRadius: 18,
+            width: 40, height: 40, borderRadius: 20,
             backgroundColor: 'rgba(0,0,0,0.5)',
             alignItems: 'center', justifyContent: 'center',
           }}
@@ -199,7 +199,7 @@ export default function ListingDetailScreen() {
         <Pressable
           onPress={() => router.push('/report' as never)}
           style={{
-            width: 36, height: 36, borderRadius: 18,
+            width: 40, height: 40, borderRadius: 20,
             backgroundColor: 'rgba(0,0,0,0.5)',
             alignItems: 'center', justifyContent: 'center',
           }}
@@ -267,7 +267,7 @@ export default function ListingDetailScreen() {
                       alignItems: 'center',
                       justifyContent: 'center',
                       borderWidth: i === photoIndex ? 2 : 0,
-                      borderColor: '#2B51E3',
+                      borderColor: '#2563EB',
                       opacity: i === photoIndex ? 1 : 0.6,
                       marginRight: 2,
                     }}
@@ -304,7 +304,7 @@ export default function ListingDetailScreen() {
               <Pressable
                 onPress={() => {/* TODO: open connection request modal */}}
                 style={{
-                  height: 48, backgroundColor: '#2B51E3', borderRadius: 8,
+                  height: 48, backgroundColor: '#2563EB', borderRadius: 8,
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
@@ -341,7 +341,7 @@ export default function ListingDetailScreen() {
             )}
             {ctaState.type === 'loading' && (
               <View style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
-                <ActivityIndicator size="small" color="#2B51E3" />
+                <ActivityIndicator size="small" color="#2563EB" />
               </View>
             )}
           </View>
@@ -475,7 +475,7 @@ export default function ListingDetailScreen() {
 
           {/* Anti-scam info card */}
           <View style={{ backgroundColor: '#F0F9FF', borderRadius: 12, padding: 16 }}>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', color: '#2B51E3', marginBottom: 6 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', color: '#2563EB', marginBottom: 6 }}>
               Safety reminder
             </Text>
             <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#374151', lineHeight: 20 }}>

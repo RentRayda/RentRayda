@@ -173,7 +173,7 @@ export default function ListingCreateScreen() {
         keyboardShouldPersistTaps="handled"
       >
         {/* Unit Type Chips */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           What type of unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', gap: 8, marginBottom: 16 }}>
@@ -190,7 +190,7 @@ export default function ListingCreateScreen() {
                 justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: unitType === type ? '#FFFFFF' : '#374151' }}>
+              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: unitType === type ? '#FFFFFF' : '#374151' }}>
                 {UNIT_LABELS[type]}
               </Text>
             </Pressable>
@@ -198,7 +198,7 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Monthly Rent */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           How much is the rent? <Text style={{ color: '#E41E3F' }}>*</Text> P
         </Text>
         <TextInput
@@ -215,7 +215,7 @@ export default function ListingCreateScreen() {
         />
 
         {/* Barangay */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Where is the unit? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
@@ -245,7 +245,7 @@ export default function ListingCreateScreen() {
         )}
 
         {/* Inclusions */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           Included in rent:
         </Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
@@ -269,7 +269,7 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Beds Stepper */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           How many beds/rooms?
         </Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 16 }}>
@@ -287,7 +287,7 @@ export default function ListingCreateScreen() {
         {/* Advance & Deposit */}
         <View style={{ flexDirection: 'row', gap: 24, marginBottom: 16 }}>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Advance (months)</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Advance (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
                 <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>{advanceMonths}</Text>
@@ -301,7 +301,7 @@ export default function ListingCreateScreen() {
             </View>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Deposit (months)</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>Deposit (months)</Text>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <View style={{ width: 40, height: 40, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFFFFF' }}>
                 <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>{depositMonths}</Text>
@@ -317,7 +317,7 @@ export default function ListingCreateScreen() {
         </View>
 
         {/* Description */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
           Description (optional)
         </Text>
         <TextInput
@@ -339,7 +339,7 @@ export default function ListingCreateScreen() {
         </Text>
 
         {/* Photos */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
           Photos (1-5)
         </Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginBottom: 20 }}>

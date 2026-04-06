@@ -139,7 +139,7 @@ export default function InboxScreen() {
           <Pressable
             onPress={() => handleAccept(item.id)}
             disabled={processing === item.id}
-            style={{ flex: 1, height: 40, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', opacity: processing === item.id ? 0.5 : 1 }}
+            style={{ flex: 1, height: 48, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', opacity: processing === item.id ? 0.5 : 1 }}
           >
             {processing === item.id ? (
               <ActivityIndicator size="small" color="#FFFFFF" />
@@ -150,7 +150,7 @@ export default function InboxScreen() {
           <Pressable
             onPress={() => handleDecline(item.id)}
             disabled={processing === item.id}
-            style={{ flex: 1, height: 40, backgroundColor: '#E4E6EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ flex: 1, height: 48, backgroundColor: '#E4E6EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#374151', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>Decline</Text>
           </Pressable>

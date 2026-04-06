@@ -177,13 +177,13 @@ export default function ConnectionRevealScreen() {
           <View style={{ flexDirection: 'row', gap: 12, marginTop: 16 }}>
             <Pressable
               onPress={handleCall}
-              style={{ flex: 1, height: 44, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+              style={{ flex: 1, height: 48, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
             >
               <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>Call</Text>
             </Pressable>
             <Pressable
               onPress={handleCopy}
-              style={{ flex: 1, height: 44, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+              style={{ flex: 1, height: 48, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
             >
               <Text style={{ color: '#2563EB', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>
                 {copied ? 'Copied!' : 'Copy'}
@@ -195,7 +195,7 @@ export default function ConnectionRevealScreen() {
         {/* Share button */}
         <Pressable
           onPress={handleShare}
-          style={{ width: '100%', height: 44, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginTop: 16 }}
+          style={{ width: '100%', height: 48, borderWidth: 1, borderColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center', marginTop: 16 }}
         >
           <Text style={{ color: '#2563EB', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>Share with friends</Text>
         </Pressable>

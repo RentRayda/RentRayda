@@ -157,7 +157,7 @@ export default function ListingSearchScreen() {
           </Text>
           <Pressable
             onPress={() => { setError(null); setLoading(true); fetchListings(1); }}
-            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2B51E3', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
+            style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
             <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>Try Again</Text>
           </Pressable>
@@ -197,7 +197,7 @@ export default function ListingSearchScreen() {
     return (
       <View style={{ paddingVertical: 16, alignItems: 'center' }}>
         {loadingMore ? (
-          <ActivityIndicator size="small" color="#2B51E3" />
+          <ActivityIndicator size="small" color="#2563EB" />
         ) : (
           <Pressable
             onPress={handleLoadMore}
@@ -278,9 +278,9 @@ export default function ListingSearchScreen() {
           <View style={{ flexDirection: 'row', gap: 8, paddingRight: 8 }}>
             <TextInput
               style={{
-                height: 32, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
                 backgroundColor: minRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
-                borderWidth: minRent ? 1 : 0, borderColor: '#2B51E3',
+                borderWidth: minRent ? 1 : 0, borderColor: '#2563EB',
               }}
               placeholder="Min"
               placeholderTextColor="#65676B"
@@ -290,9 +290,9 @@ export default function ListingSearchScreen() {
             />
             <TextInput
               style={{
-                height: 32, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
                 backgroundColor: maxRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
-                borderWidth: maxRent ? 1 : 0, borderColor: '#2B51E3',
+                borderWidth: maxRent ? 1 : 0, borderColor: '#2563EB',
               }}
               placeholder="Max"
               placeholderTextColor="#65676B"
@@ -305,14 +305,14 @@ export default function ListingSearchScreen() {
                 key={type}
                 onPress={() => setTypeFilter(typeFilter === type ? null : type)}
                 style={{
-                  height: 32, paddingHorizontal: 14, borderRadius: 16,
+                  height: 36, paddingHorizontal: 14, borderRadius: 16,
                   backgroundColor: typeFilter === type ? '#EBF0FC' : '#F0F2F5',
                   alignItems: 'center', justifyContent: 'center',
                   borderWidth: typeFilter === type ? 1 : 0,
-                  borderColor: '#2B51E3',
+                  borderColor: '#2563EB',
                 }}
               >
-                <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: typeFilter === type ? '#2B51E3' : '#050505' }}>
+                <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: typeFilter === type ? '#2563EB' : '#050505' }}>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Text>
               </Pressable>
@@ -341,7 +341,7 @@ export default function ListingSearchScreen() {
           ListHeaderComponent={ListHeader}
           ListFooterComponent={ListFooter}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2B51E3" />
+            <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} tintColor="#2563EB" />
           }
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}

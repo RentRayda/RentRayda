@@ -77,7 +77,7 @@ export function ListingCard({
               position: 'absolute',
               top: 8,
               left: 8,
-              backgroundColor: '#2B51E3',
+              backgroundColor: '#2563EB',
               borderRadius: 4,
               paddingHorizontal: 6,
               paddingVertical: 2,

@@ -4,7 +4,7 @@ import {
   ConnectionDemo,
   CrossPlatformDemo,
   HowItWorksAnimated,
-} from '../../components/AnimatedSections';
+} from '../components/AnimatedSections';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 

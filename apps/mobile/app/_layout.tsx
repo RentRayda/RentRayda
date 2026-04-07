@@ -3,10 +3,6 @@ import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NetworkBanner } from '../components/NetworkBanner';
 import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -15,12 +11,6 @@ export default function RootLayout() {
     'AlteHaasGrotesk': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
     'AlteHaasGroteskBold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
   });
-
-  useEffect(() => {
-    if (fontsLoaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     return (

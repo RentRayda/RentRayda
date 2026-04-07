@@ -44,10 +44,10 @@ export default async function LandingPage() {
         padding: '120px 24px 80px', textAlign: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
-        <div style={{ position: 'relative', zIndex: 1, maxWidth: 900, width: '100%' }}>
-          {/* 3D Tarsier - mouse reactive */}
-          <TarsierHero />
+        {/* 3D Tarsier as background */}
+        <TarsierHero />
 
+        <div style={{ position: 'relative', zIndex: 2, maxWidth: 900, width: '100%' }}>
           <h1 style={{
             fontFamily: 'BerlinSansFB', fontSize: 80, lineHeight: 1,
             margin: '0 0 24px', letterSpacing: -2,

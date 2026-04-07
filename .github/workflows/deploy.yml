@@ -16,4 +16,11 @@ jobs:
       - run: pnpm turbo typecheck
       - run: pnpm turbo build
       - name: Deploy via Coolify webhook
-        run: curl -X POST ${{ secrets.COOLIFY_WEBHOOK_URL }}
+        env:
+          COOLIFY_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+        run: |
+          if [ -n "$COOLIFY_URL" ]; then
+            curl -X POST "$COOLIFY_URL"
+          else
+            echo "COOLIFY_WEBHOOK_URL not set, skipping deploy"
+          fi

@@ -22,13 +22,13 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
             font-family: 'BobbyJonesSoft';
-            src: url('/fonts/Bobby Jones Soft.otf') format('opentype');
+            src: url('/fonts/BobbyJonesSoft.otf') format('opentype');
             font-weight: 400;
             font-display: swap;
           }
           @font-face {
             font-family: 'BerlinSansFB';
-            src: url('/fonts/Berlin Sans FB Regular.ttf') format('truetype');
+            src: url('/fonts/BerlinSansFB.ttf') format('truetype');
             font-weight: 400;
             font-display: swap;
           }

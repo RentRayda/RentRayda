@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { authMiddleware } from '../middleware/auth';
+import { rateLimiter } from '../middleware/rate-limit';
 import { db, users, tenantProfiles, listings, landlordProfiles, connectionRequests, connections } from '@rentrayda/db';
 import { eq, and } from 'drizzle-orm';
 import { connectionRequestSchema } from '@rentrayda/shared';
@@ -13,6 +14,7 @@ connectionsRouter.use('/*', authMiddleware);
 // POST /api/connections/request — tenant only, MUST be verified
 connectionsRouter.post(
   '/request',
+  rateLimiter({ max: 10, windowMs: 60 * 60 * 1000, keyPrefix: 'conn-request', keyBy: 'userId' }),
   zValidator('json', connectionRequestSchema),
   async (c) => {
     const user = c.get('user');

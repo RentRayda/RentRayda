@@ -11,10 +11,12 @@ import type { AppVariables } from '../types';
 const authRouter = new Hono<{ Variables: AppVariables }>();
 
 // POST /api/auth/send-otp
+// Two rate limiters: 10/hr per IP (anti-VPN abuse) + 5/hr per phone (spec: "5 sends/hr/phone")
 authRouter.post(
   '/send-otp',
-  rateLimiter({ max: 5, windowMs: 15 * 60 * 1000, keyPrefix: 'send-otp' }),
+  rateLimiter({ max: 10, windowMs: 60 * 60 * 1000, keyPrefix: 'send-otp-ip' }),
   zValidator('json', sendOtpSchema),
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'send-otp-phone', keyExtractor: (c) => (c.req.valid('json' as never) as { phone: string }).phone }),
   async (c) => {
     const { phone } = c.req.valid('json');
     await auth.api.sendPhoneNumberOTP({
@@ -25,9 +27,10 @@ authRouter.post(
 );
 
 // POST /api/auth/verify-otp
+// 5/15min per IP. better-auth's allowedAttempts:3 handles per-phone lockout.
 authRouter.post(
   '/verify-otp',
-  rateLimiter({ max: 10, windowMs: 15 * 60 * 1000, keyPrefix: 'verify-otp' }),
+  rateLimiter({ max: 5, windowMs: 15 * 60 * 1000, keyPrefix: 'verify-otp' }),
   zValidator('json', verifyOtpSchema),
   async (c) => {
     const { phone, code, role } = c.req.valid('json');
@@ -81,7 +84,33 @@ authRouter.post(
       .limit(1)
       .then(rows => rows[0]));
 
-    return c.json({ data: { user: appUser, isNewUser } });
+    return c.json({ data: { user: appUser, isNewUser, emailRequired: isNewUser && role === 'tenant' } });
+  },
+);
+
+// POST /api/auth/magic-link — rate limited, proxied to better-auth
+authRouter.post(
+  '/magic-link',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'magic-link-send' }),
+  async (c) => {
+    return auth.handler(c.req.raw);
+  },
+);
+
+// POST /api/auth/passkey/* — rate limited passkey endpoints
+authRouter.post(
+  '/passkey/register',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'passkey-register', keyBy: 'userId' }),
+  async (c) => {
+    return auth.handler(c.req.raw);
+  },
+);
+
+authRouter.post(
+  '/passkey/authenticate',
+  rateLimiter({ max: 10, windowMs: 15 * 60 * 1000, keyPrefix: 'passkey-auth' }),
+  async (c) => {
+    return auth.handler(c.req.raw);
   },
 );
 

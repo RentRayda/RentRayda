@@ -1,9 +1,12 @@
 import { betterAuth } from 'better-auth';
-import { phoneNumber } from 'better-auth/plugins';
+import { phoneNumber, magicLink } from 'better-auth/plugins';
 import { bearer } from 'better-auth/plugins';
 import { expo } from '@better-auth/expo';
+import { passkey } from '@better-auth/passkey';
 import { Pool } from 'pg';
 import { sendOTP } from './sms';
+import { sendEmail } from './email';
+import { magicLinkTemplate } from './magic-link-email';
 
 export const auth = betterAuth({
   database: new Pool({ connectionString: process.env.DATABASE_URL }),
@@ -19,6 +22,19 @@ export const auth = betterAuth({
       otpLength: 6,
       expiresIn: 600, // 10 minutes
       allowedAttempts: 3,
+    }),
+    magicLink({
+      sendMagicLink: async ({ email, url }) => {
+        await sendEmail(email, 'Sign in to RentRayda', magicLinkTemplate(url));
+      },
+      expiresIn: 600, // 10 minutes
+    }),
+    passkey({
+      rpName: 'RentRayda',
+      rpID: process.env.NODE_ENV === 'production' ? 'rentrayda.ph' : 'localhost',
+      origin: process.env.NODE_ENV === 'production'
+        ? ['https://rentrayda.ph', 'rentrayda://']
+        : ['http://localhost:3000', 'http://localhost:3001', 'rentrayda://'],
     }),
     bearer(),
     expo(),

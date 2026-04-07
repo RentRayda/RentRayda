@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { authMiddleware } from '../middleware/auth';
+import { rateLimiter } from '../middleware/rate-limit';
 import { db, users, landlordProfiles, verificationDocuments } from '@rentrayda/db';
 import { eq } from 'drizzle-orm';
 import { updateLandlordProfileSchema, verifyIdSchema, verifyPropertySchema } from '@rentrayda/shared';
@@ -41,6 +42,7 @@ landlordsRouter.get('/me', async (c) => {
 // PATCH /api/landlords/me
 landlordsRouter.patch(
   '/me',
+  rateLimiter({ max: 30, windowMs: 60 * 60 * 1000, keyPrefix: 'landlord-profile', keyBy: 'userId' }),
   zValidator('json', updateLandlordProfileSchema),
   async (c) => {
     const user = c.get('user');
@@ -75,6 +77,7 @@ landlordsRouter.patch(
 // POST /api/landlords/verify/id
 landlordsRouter.post(
   '/verify/id',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'landlord-verify-id', keyBy: 'userId' }),
   zValidator('json', verifyIdSchema),
   async (c) => {
     const user = c.get('user');
@@ -120,6 +123,7 @@ landlordsRouter.post(
 // POST /api/landlords/verify/property
 landlordsRouter.post(
   '/verify/property',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'landlord-verify-prop', keyBy: 'userId' }),
   zValidator('json', verifyPropertySchema),
   async (c) => {
     const user = c.get('user');

@@ -3,6 +3,7 @@ import { pgTable, uuid, varchar, boolean, timestamp } from 'drizzle-orm/pg-core'
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
   phone: varchar('phone', { length: 15 }).unique().notNull(),
+  email: varchar('email', { length: 255 }).unique(),
   role: varchar('role', { length: 10 }).notNull(),
     // Values: 'landlord' | 'tenant' | 'admin'
   isSuspended: boolean('is_suspended').default(false).notNull(),

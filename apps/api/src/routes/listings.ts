@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { authMiddleware } from '../middleware/auth';
+import { rateLimiter } from '../middleware/rate-limit';
 import { db, users, landlordProfiles, listings, listingPhotos } from '@rentrayda/db';
 import { eq, and, desc, gte, lte } from 'drizzle-orm';
 import { createListingSchema, updateListingSchema, listingSearchSchema } from '@rentrayda/shared';
@@ -11,6 +12,7 @@ const listingsRouter = new Hono<{ Variables: AppVariables }>();
 // GET /api/listings — public, no auth required
 listingsRouter.get(
   '/',
+  rateLimiter({ max: 60, windowMs: 60 * 1000, keyPrefix: 'listings-search' }),
   zValidator('query', listingSearchSchema),
   async (c) => {
     const filters = c.req.valid('query');
@@ -70,6 +72,7 @@ listingsRouter.get(
 listingsRouter.post(
   '/',
   authMiddleware,
+  rateLimiter({ max: 10, windowMs: 60 * 60 * 1000, keyPrefix: 'listings-create', keyBy: 'userId' }),
   zValidator('json', createListingSchema),
   async (c) => {
     const user = c.get('user');
@@ -163,6 +166,7 @@ listingsRouter.get('/:id', async (c) => {
 listingsRouter.patch(
   '/:id',
   authMiddleware,
+  rateLimiter({ max: 30, windowMs: 60 * 60 * 1000, keyPrefix: 'listings-update', keyBy: 'userId' }),
   zValidator('json', updateListingSchema),
   async (c) => {
     const user = c.get('user');
@@ -232,6 +236,7 @@ listingsRouter.delete(
 listingsRouter.post(
   '/:id/photos',
   authMiddleware,
+  rateLimiter({ max: 30, windowMs: 60 * 60 * 1000, keyPrefix: 'listings-photos', keyBy: 'userId' }),
   async (c) => {
     const user = c.get('user');
     const phone = (user as { phoneNumber?: string }).phoneNumber;

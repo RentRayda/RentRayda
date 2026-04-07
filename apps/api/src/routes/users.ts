@@ -2,6 +2,7 @@ import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { z } from 'zod';
 import { authMiddleware } from '../middleware/auth';
+import { rateLimiter } from '../middleware/rate-limit';
 import { db, users } from '@rentrayda/db';
 import { eq } from 'drizzle-orm';
 import type { AppVariables } from '../types';
@@ -16,6 +17,7 @@ const pushTokenSchema = z.object({
 // POST /api/users/push-token
 usersRouter.post(
   '/push-token',
+  rateLimiter({ max: 10, windowMs: 60 * 60 * 1000, keyPrefix: 'push-token', keyBy: 'userId' }),
   zValidator('json', pushTokenSchema),
   async (c) => {
     const user = c.get('user');

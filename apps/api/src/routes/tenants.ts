@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { zValidator } from '@hono/zod-validator';
 import { authMiddleware } from '../middleware/auth';
+import { rateLimiter } from '../middleware/rate-limit';
 import { db, users, tenantProfiles, verificationDocuments } from '@rentrayda/db';
 import { eq } from 'drizzle-orm';
 import { updateTenantProfileSchema, verifyIdSchema, verifyEmploymentSchema } from '@rentrayda/shared';
@@ -41,6 +42,7 @@ tenantsRouter.get('/me', async (c) => {
 // PATCH /api/tenants/me
 tenantsRouter.patch(
   '/me',
+  rateLimiter({ max: 30, windowMs: 60 * 60 * 1000, keyPrefix: 'tenant-profile', keyBy: 'userId' }),
   zValidator('json', updateTenantProfileSchema),
   async (c) => {
     const user = c.get('user');
@@ -75,6 +77,7 @@ tenantsRouter.patch(
 // POST /api/tenants/verify/id
 tenantsRouter.post(
   '/verify/id',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'tenant-verify-id', keyBy: 'userId' }),
   zValidator('json', verifyIdSchema),
   async (c) => {
     const user = c.get('user');
@@ -120,6 +123,7 @@ tenantsRouter.post(
 // POST /api/tenants/verify/employment
 tenantsRouter.post(
   '/verify/employment',
+  rateLimiter({ max: 5, windowMs: 60 * 60 * 1000, keyPrefix: 'tenant-verify-emp', keyBy: 'userId' }),
   zValidator('json', verifyEmploymentSchema),
   async (c) => {
     const user = c.get('user');

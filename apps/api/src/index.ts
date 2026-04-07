@@ -10,13 +10,17 @@ import { adminRouter } from './routes/admin';
 import { connectionsRouter } from './routes/connections';
 import { reportsRouter } from './routes/reports';
 import { usersRouter } from './routes/users';
+import { globalRateLimiter } from './middleware/rate-limit';
 
 const app = new Hono();
 
-// Health check
+// Health check (before global rate limiter)
 app.get('/api/health', (c) => {
   return c.json({ status: 'ok' });
 });
+
+// Global rate limiter: 100 requests/min per IP — safety net for all routes
+app.use('*', globalRateLimiter());
 
 // Auth routes (send-otp, verify-otp, logout, me) — BEFORE better-auth catch-all
 app.route('/api/auth', authRouter);

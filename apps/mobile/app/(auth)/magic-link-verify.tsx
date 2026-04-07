@@ -49,17 +49,17 @@ export default function MagicLinkVerifyScreen() {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
         {error ? (
           <>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold', color: '#E41E3F', textAlign: 'center', marginBottom: 12 }}>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#E41E3F', textAlign: 'center', marginBottom: 12 }}>
               Link expired
             </Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center' }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center' }}>
               {error}
             </Text>
           </>
         ) : (
           <>
             <ActivityIndicator size="large" color="#2B51E3" />
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 16 }}>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B', marginTop: 16 }}>
               Signing you in...
             </Text>
           </>

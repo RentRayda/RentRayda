@@ -135,18 +135,18 @@ export default function OTPVerifyScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'NotoSansOsage', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', marginLeft: 12 }}>
           Verify your code
         </Text>
       </View>
 
       <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 24 }}>
-        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+        <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B' }}>
           We sent a 6-digit code to
         </Text>
-        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold', color: '#050505', marginTop: 4 }}>
+        <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505', marginTop: 4 }}>
           {displayPhone}
         </Text>
 
@@ -172,7 +172,7 @@ export default function OTPVerifyScreen() {
                 borderRadius: 8,
                 textAlign: 'center',
                 fontSize: 20,
-                fontFamily: 'AlteHaasGroteskBold',
+                fontFamily: 'NotoSansOsage',
               }}
               keyboardType="number-pad"
               maxLength={1}
@@ -186,7 +186,7 @@ export default function OTPVerifyScreen() {
         </Animated.View>
 
         {error && (
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -208,7 +208,7 @@ export default function OTPVerifyScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>VERIFY</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>VERIFY</Text>
           )}
         </Pressable>
 
@@ -219,7 +219,7 @@ export default function OTPVerifyScreen() {
             disabled={resendCooldown > 0}
             style={{ marginTop: 24, paddingVertical: 12, alignItems: 'center' }}
           >
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: resendCooldown > 0 ? '#8A8D91' : '#2563EB' }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: resendCooldown > 0 ? '#8A8D91' : '#2563EB' }}>
               {resendCooldown > 0
                 ? `Didn't receive it? Resend code (${resendCooldown}s)`
                 : "Didn't receive it? Resend code"}
@@ -229,13 +229,13 @@ export default function OTPVerifyScreen() {
 
         {/* Expiry countdown */}
         {expirySeconds > 0 && !isLocked && (
-          <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
             Code expires in {formatTime(expirySeconds)}
           </Text>
         )}
 
         {expirySeconds <= 0 && !isLocked && (
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#F7B928', textAlign: 'center', marginTop: 8 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#F7B928', textAlign: 'center', marginTop: 8 }}>
             Code expired. Request a new one.
           </Text>
         )}

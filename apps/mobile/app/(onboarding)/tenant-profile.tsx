@@ -113,9 +113,9 @@ export default function TenantProfileScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 12 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>←</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'NotoSansOsage', color: '#050505' }}>←</Text>
         </Pressable>
-        <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginLeft: 12 }}>
+        <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', marginLeft: 12 }}>
           Set up your profile
         </Text>
       </View>
@@ -131,23 +131,23 @@ export default function TenantProfileScreen() {
             {photoUri ? (
               <Image source={{ uri: photoUri }} style={{ width: 80, height: 80 }} />
             ) : (
-              <Text style={{ fontSize: 32, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>📷</Text>
+              <Text style={{ fontSize: 32, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>📷</Text>
             )}
           </View>
           <View style={{ position: 'absolute', bottom: 0, right: 0, width: 28, height: 28, borderRadius: 14, backgroundColor: '#2563EB', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>📷</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 14 }}>📷</Text>
           </View>
         </Pressable>
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginBottom: 24 }}>
           Tap to take a selfie
         </Text>
 
         {/* Full Name */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505', marginBottom: 4 }}>
           Full name <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <TextInput
-          style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk', marginBottom: 16, backgroundColor: '#FFFFFF' }}
+          style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, fontFamily: 'NotoSansOsage', marginBottom: 16, backgroundColor: '#FFFFFF' }}
           placeholder="Maria Santos"
           placeholderTextColor="#8A8D91"
           value={fullName}
@@ -156,14 +156,14 @@ export default function TenantProfileScreen() {
         />
 
         {/* Search Barangay */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505', marginBottom: 4 }}>
           Where are you looking? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <Pressable
           onPress={() => setShowBarangayPicker(!showBarangayPicker)}
           style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, justifyContent: 'center', marginBottom: showBarangayPicker ? 0 : 16, backgroundColor: '#FFFFFF' }}
         >
-          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: searchBarangay ? '#050505' : '#8A8D91' }}>
+          <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: searchBarangay ? '#050505' : '#8A8D91' }}>
             ▾ {searchBarangay || 'Select barangay'}
           </Text>
         </Pressable>
@@ -171,14 +171,14 @@ export default function TenantProfileScreen() {
           <View style={{ borderWidth: 1, borderColor: '#CED0D4', borderTopWidth: 0, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, marginBottom: 16, backgroundColor: '#FFFFFF' }}>
             {LAUNCH_BARANGAYS.map((b) => (
               <Pressable key={b} onPress={() => { setSearchBarangay(b); setShowBarangayPicker(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10, backgroundColor: searchBarangay === b ? '#DBEAFE' : '#FFFFFF' }}>
-                <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{b}</Text>
+                <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
         )}
 
         {/* Employment Type Chips */}
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 8 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505', marginBottom: 8 }}>
           What is your job? <Text style={{ color: '#E41E3F' }}>*</Text>
         </Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
@@ -192,7 +192,7 @@ export default function TenantProfileScreen() {
                 alignItems: 'center', justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: employmentType === type.value ? '#FFFFFF' : '#374151' }}>
+              <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: employmentType === type.value ? '#FFFFFF' : '#374151' }}>
                 {type.label}
               </Text>
             </Pressable>
@@ -202,11 +202,11 @@ export default function TenantProfileScreen() {
         {/* Company Name (conditional) */}
         {showCompanyField && (
           <>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 4 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505', marginBottom: 4 }}>
               {employmentType === 'student' ? 'School name' : 'Company name'}
             </Text>
             <TextInput
-              style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk', marginBottom: showSuggestions && employmentType === 'bpo' && filteredCompanies.length > 0 ? 0 : 16, backgroundColor: '#FFFFFF' }}
+              style={{ height: 48, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8, paddingHorizontal: 12, fontSize: 16, fontFamily: 'NotoSansOsage', marginBottom: showSuggestions && employmentType === 'bpo' && filteredCompanies.length > 0 ? 0 : 16, backgroundColor: '#FFFFFF' }}
               placeholder={employmentType === 'bpo' ? 'e.g., Concentrix' : employmentType === 'student' ? 'e.g., PUP' : 'e.g., Company Inc.'}
               placeholderTextColor="#8A8D91"
               value={companyName}
@@ -221,7 +221,7 @@ export default function TenantProfileScreen() {
                   keyExtractor={(item) => item}
                   renderItem={({ item }) => (
                     <Pressable onPress={() => { setCompanyName(item); setShowSuggestions(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
-                      <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{item}</Text>
+                      <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>{item}</Text>
                     </Pressable>
                   )}
                 />
@@ -231,7 +231,7 @@ export default function TenantProfileScreen() {
         )}
 
         {error && (
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>{error}</Text>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>{error}</Text>
         )}
 
         {/* CTA */}
@@ -247,7 +247,7 @@ export default function TenantProfileScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>SAVE PROFILE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>SAVE PROFILE</Text>
           )}
         </Pressable>
       </ScrollView>

@@ -152,14 +152,14 @@ export default function ListingSearchScreen() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
           <Pressable
             onPress={() => { setError(null); setLoading(true); fetchListings(1); }}
             style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>Try Again</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>Try Again</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -186,7 +186,7 @@ export default function ListingSearchScreen() {
   const ListHeader = () => (
     <View style={{ paddingHorizontal: HORIZONTAL_PADDING, paddingBottom: 8 }}>
       {/* Results count */}
-      <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+      <Text style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#65676B' }}>
         {loading ? '' : `${listings.length} verified listing${listings.length !== 1 ? 's' : ''}`}
       </Text>
     </View>
@@ -210,7 +210,7 @@ export default function ListingSearchScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#050505', fontFamily: 'AlteHaasGrotesk', fontSize: 14 }}>
+            <Text style={{ color: '#050505', fontFamily: 'NotoSansOsage', fontSize: 14 }}>
               Load more
             </Text>
           </Pressable>
@@ -222,10 +222,10 @@ export default function ListingSearchScreen() {
   const EmptyState = () => (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32, paddingTop: 60 }}>
       <Text style={{ fontSize: 48, marginBottom: 16 }}>🏠</Text>
-      <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGroteskBold', color: '#050505', textAlign: 'center' }}>
+      <Text style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#050505', textAlign: 'center' }}>
         No listings found
       </Text>
-      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
+      <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 8 }}>
         Try a different barangay or adjust your filters.
       </Text>
       <Pressable
@@ -235,7 +235,7 @@ export default function ListingSearchScreen() {
           backgroundColor: '#E4E6EB', alignItems: 'center', justifyContent: 'center',
         }}
       >
-        <Text style={{ color: '#050505', fontFamily: 'AlteHaasGroteskBold', fontSize: 14 }}>Clear filters</Text>
+        <Text style={{ color: '#050505', fontFamily: 'NotoSansOsage', fontSize: 14 }}>Clear filters</Text>
       </Pressable>
     </View>
   );
@@ -246,9 +246,9 @@ export default function ListingSearchScreen() {
       <View style={{ paddingHorizontal: HORIZONTAL_PADDING, paddingTop: 12, paddingBottom: 4, backgroundColor: '#FFFFFF' }}>
         {/* Search Input */}
         <View style={{ flexDirection: 'row', backgroundColor: '#F0F2F5', borderRadius: 20, height: 40, alignItems: 'center', paddingHorizontal: 12, gap: 8 }}>
-          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>🔍</Text>
+          <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B' }}>🔍</Text>
           <TextInput
-            style={{ flex: 1, fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}
+            style={{ flex: 1, fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}
             placeholder="Search by barangay"
             placeholderTextColor="#65676B"
             value={barangay}
@@ -257,7 +257,7 @@ export default function ListingSearchScreen() {
           />
           {barangay.length > 0 && (
             <Pressable onPress={() => setBarangay('')} hitSlop={8}>
-              <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>✕</Text>
+              <Text style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#65676B' }}>✕</Text>
             </Pressable>
           )}
         </View>
@@ -267,7 +267,7 @@ export default function ListingSearchScreen() {
           <View style={{ backgroundColor: '#FFFFFF', borderWidth: 1, borderColor: '#E4E6EB', borderRadius: 8, marginTop: 4, maxHeight: 200, zIndex: 10 }}>
             {filteredBarangays.map((b) => (
               <Pressable key={b} onPress={() => { setBarangay(b); setShowBarangaySuggestions(false); }} style={{ paddingHorizontal: 12, paddingVertical: 10 }}>
-                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{b}</Text>
+                <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}>{b}</Text>
               </Pressable>
             ))}
           </View>
@@ -278,7 +278,7 @@ export default function ListingSearchScreen() {
           <View style={{ flexDirection: 'row', gap: 8, paddingRight: 8 }}>
             <TextInput
               style={{
-                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'NotoSansOsage',
                 backgroundColor: minRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
                 borderWidth: minRent ? 1 : 0, borderColor: '#2563EB',
               }}
@@ -290,7 +290,7 @@ export default function ListingSearchScreen() {
             />
             <TextInput
               style={{
-                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'AlteHaasGrotesk',
+                height: 36, paddingHorizontal: 12, borderRadius: 16, fontSize: 13, fontFamily: 'NotoSansOsage',
                 backgroundColor: maxRent ? '#EBF0FC' : '#F0F2F5', color: '#050505', width: 72,
                 borderWidth: maxRent ? 1 : 0, borderColor: '#2563EB',
               }}
@@ -312,7 +312,7 @@ export default function ListingSearchScreen() {
                   borderColor: '#2563EB',
                 }}
               >
-                <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: typeFilter === type ? '#2563EB' : '#050505' }}>
+                <Text style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: typeFilter === type ? '#2563EB' : '#050505' }}>
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Text>
               </Pressable>

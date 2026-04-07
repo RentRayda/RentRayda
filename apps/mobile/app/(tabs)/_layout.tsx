@@ -17,11 +17,11 @@ function TabIcon({ icon, label, focused }: { icon: string; label: string; focuse
           backgroundColor: '#2563EB',
         }} />
       )}
-      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', marginTop: 2, color: focused ? '#2563EB' : '#8A8D91' }}>{icon}</Text>
+      <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', marginTop: 2, color: focused ? '#2563EB' : '#8A8D91' }}>{icon}</Text>
       <Text style={{
         fontSize: 10, marginTop: 2,
         color: focused ? '#2563EB' : '#8A8D91',
-        fontFamily: focused ? 'AlteHaasGroteskBold' : 'AlteHaasGrotesk',
+        fontFamily: 'NotoSansOsage',
       }}>
         {label}
       </Text>
@@ -37,7 +37,7 @@ function InboxBadge({ count }: { count: number }) {
       width: 16, height: 16, borderRadius: 8,
       backgroundColor: '#E41E3F', alignItems: 'center', justifyContent: 'center',
     }}>
-      <Text style={{ fontSize: 8, color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold' }}>{count > 9 ? '9+' : count}</Text>
+      <Text style={{ fontSize: 8, color: '#FFFFFF', fontFamily: 'NotoSansOsage' }}>{count > 9 ? '9+' : count}</Text>
     </View>
   );
 }

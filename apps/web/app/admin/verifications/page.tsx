@@ -119,7 +119,7 @@ export default function VerificationsPage() {
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24, fontFamily: 'BerlinSansFB' }}>
+      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24, fontFamily: 'Ralgine' }}>
         Verification Queue
         <span style={{ fontSize: 14, fontWeight: 400, color: '#65676B', marginLeft: 8 }}>
           ({docs.length} pending)
@@ -248,7 +248,7 @@ export default function VerificationsPage() {
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', fontFamily: 'BerlinSansFB' }}>
+              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', fontFamily: 'Ralgine' }}>
                 Document Review — {selectedDoc.user.phone}
               </h2>
               <button
@@ -296,7 +296,7 @@ export default function VerificationsPage() {
               maxWidth: 480, width: '90%',
             }}
           >
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 16, fontFamily: 'BerlinSansFB' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 16, fontFamily: 'Ralgine' }}>
               Reject — {rejectDoc.user.phone}
             </h2>
             <p style={{ fontSize: 14, color: '#65676B', marginBottom: 12 }}>

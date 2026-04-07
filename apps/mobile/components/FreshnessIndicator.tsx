@@ -30,7 +30,7 @@ export function FreshnessIndicator({ lastActiveAt }: FreshnessIndicatorProps) {
   }
 
   return (
-    <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color, marginTop: 8 }}>
+    <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color, marginTop: 8 }}>
       {label}
     </Text>
   );

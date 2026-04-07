@@ -21,38 +21,26 @@ export default function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: `
           @font-face {
-            font-family: 'BobbyJonesSoft';
-            src: url('/fonts/BobbyJonesSoft.otf') format('opentype');
+            font-family: 'TANNimbus';
+            src: url('/fonts/TAN-NIMBUS.ttf') format('truetype');
             font-weight: 400;
             font-display: swap;
           }
           @font-face {
-            font-family: 'BerlinSansFB';
-            src: url('/fonts/BerlinSansFB.ttf') format('truetype');
+            font-family: 'NotoSansOsage';
+            src: url('/fonts/NotoSansOsage-Regular.ttf') format('truetype');
             font-weight: 400;
             font-display: swap;
           }
           @font-face {
-            font-family: 'AlteHaasGrotesk';
-            src: url('/fonts/AlteHaasGroteskRegular.ttf') format('truetype');
-            font-weight: 400;
-            font-display: swap;
-          }
-          @font-face {
-            font-family: 'AlteHaasGrotesk';
-            src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype');
-            font-weight: 700;
-            font-display: swap;
-          }
-          @font-face {
-            font-family: 'AlteHaasGroteskBold';
-            src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype');
+            font-family: 'Ralgine';
+            src: url('/fonts/Ralgine-9MMJ2.otf') format('opentype');
             font-weight: 400;
             font-display: swap;
           }
         ` }} />
       </head>
-      <body style={{ margin: 0, fontFamily: 'AlteHaasGrotesk, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>
+      <body style={{ margin: 0, fontFamily: 'NotoSansOsage, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>
         {children}
       </body>
     </html>

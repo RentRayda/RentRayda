@@ -106,7 +106,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
             position: 'absolute', bottom: 12, right: 12,
             backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 8,
             padding: '4px 10px',
-            fontFamily: 'AlteHaasGrotesk, sans-serif',
+            fontFamily: 'NotoSansOsage, sans-serif',
             fontSize: 13, color: '#FFFFFF', fontWeight: 500,
           }}>
             {current + 1}/{photos.length}

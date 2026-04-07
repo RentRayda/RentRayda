@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "c:\\Users\\Admin\\Documents\\RentRayda\\logs\\.1b7aa84a81a1302a449c0284c7f9a1dc9c4ace81-audit.json",
+    "files": [
+        {
+            "date": 1775562873158,
+            "name": "c:\\Users\\Admin\\Documents\\RentRayda\\logs\\mcp-puppeteer-2026-04-07.log",
+            "hash": "d930e7f4341018f849e678ae6088c07d83cde24575967911ec02de72b6f76954"
+        }
+    ],
+    "hashType": "sha256"
+}

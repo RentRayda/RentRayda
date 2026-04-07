@@ -70,17 +70,17 @@ export function VerificationDemo() {
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
+            <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Trust First
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
+            <h2 style={{ fontSize: 36, fontFamily: 'Ralgine', color: '#050505', margin: '0 0 16px', lineHeight: 1.3, letterSpacing: 1 }}>
               Verify once,<br />connect safely
             </h2>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
+            <p style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
               Upload your government ID and a selfie. Our team reviews it in 24-48 hours. Once verified, landlords know you are real. And you know they are too.
             </p>
           </motion.div>
@@ -98,8 +98,8 @@ export function VerificationDemo() {
                   transform: step > i ? 'translateX(4px)' : 'none',
                 }}>
                   <span style={{ fontSize: 20 }}>{item.icon}</span>
-                  <span style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: step > i ? '#1D4ED8' : '#65676B' }}>{item.label}</span>
-                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>✓</span>}
+                  <span style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: step > i ? '#1D4ED8' : '#65676B' }}>{item.label}</span>
+                  {step > i && <span style={{ marginLeft: 'auto', color: '#16A34A', fontSize: 16, fontFamily: 'NotoSansOsage' }}>✓</span>}
                 </div>
               ))}
             </div>
@@ -112,7 +112,7 @@ export function VerificationDemo() {
             <div style={{ paddingTop: 40, height: '100%', backgroundColor: '#F0F2F5' }}>
               {/* Header bar */}
               <div style={{ padding: '12px 20px', backgroundColor: '#FFFFFF', borderBottom: '1px solid #E4E6EB' }}>
-                <span style={{ fontSize: 15, fontFamily: 'BerlinSansFB', color: '#050505' }}>Verify your ID</span>
+                <span style={{ fontSize: 15, fontFamily: 'Ralgine', color: '#050505' }}>Verify your ID</span>
               </div>
               <div style={{ padding: 20 }}>
                 {/* Progress bar */}
@@ -132,7 +132,7 @@ export function VerificationDemo() {
                   transition: 'all 0.5s ease',
                   border: step >= 1 ? '2px solid #2563EB' : '2px dashed #CED0D4',
                 }}>
-                  <span style={{ fontSize: step >= 1 ? 14 : 24, color: step >= 1 ? '#1D4ED8' : '#8A8D91', fontFamily: 'AlteHaasGrotesk', transition: 'all 0.3s ease' }}>
+                  <span style={{ fontSize: step >= 1 ? 14 : 24, color: step >= 1 ? '#1D4ED8' : '#8A8D91', fontFamily: 'NotoSansOsage', transition: 'all 0.3s ease' }}>
                     {step >= 1 ? '✓ ID captured' : '+'}
                   </span>
                 </div>
@@ -145,7 +145,7 @@ export function VerificationDemo() {
                   transition: 'all 0.5s ease',
                   border: step >= 2 ? '2px solid #2563EB' : '2px dashed #CED0D4',
                 }}>
-                  <span style={{ fontSize: step >= 2 ? 12 : 20, color: step >= 2 ? '#1D4ED8' : '#8A8D91', fontFamily: 'AlteHaasGrotesk' }}>
+                  <span style={{ fontSize: step >= 2 ? 12 : 20, color: step >= 2 ? '#1D4ED8' : '#8A8D91', fontFamily: 'NotoSansOsage' }}>
                     {step >= 2 ? '✓' : '📷'}
                   </span>
                 </div>
@@ -159,7 +159,7 @@ export function VerificationDemo() {
                   transition: 'all 0.5s ease',
                   transform: step >= 3 ? 'scale(1.02)' : 'none',
                 }}>
-                  <span style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'AlteHaasGroteskBold' }}>
+                  <span style={{ color: '#FFFFFF', fontSize: 14, fontFamily: 'NotoSansOsage' }}>
                     {step >= 3 ? '✓ SUBMITTED' : 'SUBMIT FOR REVIEW'}
                   </span>
                 </div>
@@ -176,8 +176,8 @@ export function VerificationDemo() {
                       backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
                     }}
                   >
-                    <span style={{ color: '#16A34A', fontSize: 16, fontFamily: 'AlteHaasGroteskBold' }}>✓</span>
-                    <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A' }}>Verified</span>
+                    <span style={{ color: '#16A34A', fontSize: 16, fontFamily: 'NotoSansOsage' }}>✓</span>
+                    <span style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#16A34A' }}>Verified</span>
                   </motion.div>
                 )}
               </div>
@@ -223,7 +223,7 @@ export function BrowseListingsDemo() {
               <div style={{ padding: '8px 12px' }}>
                 <div style={{ height: 36, borderRadius: 18, backgroundColor: '#E4E6EB', display: 'flex', alignItems: 'center', paddingLeft: 12, gap: 6 }}>
                   <span style={{ fontSize: 14, color: '#8A8D91' }}>🔍</span>
-                  <span style={{ fontSize: 13, color: '#8A8D91', fontFamily: 'AlteHaasGrotesk' }}>Where? (barangay)</span>
+                  <span style={{ fontSize: 13, color: '#8A8D91', fontFamily: 'NotoSansOsage' }}>Where? (barangay)</span>
                 </div>
               </div>
               {/* Grid */}
@@ -236,8 +236,8 @@ export function BrowseListingsDemo() {
                   }}>
                     <div style={{ width: '100%', aspectRatio: '1', backgroundColor: item.color, borderRadius: 6 }} />
                     <div style={{ padding: '4px 2px' }}>
-                      <p style={{ fontSize: 12, fontFamily: 'BerlinSansFB', color: '#050505', margin: 0 }}>P{item.price}</p>
-                      <p style={{ fontSize: 9, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>{item.type} · {item.area}</p>
+                      <p style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#050505', margin: 0 }}>P{item.price}</p>
+                      <p style={{ fontSize: 9, fontFamily: 'NotoSansOsage', color: '#65676B', margin: 0 }}>{item.type} · {item.area}</p>
                     </div>
                   </div>
                 ))}
@@ -249,17 +249,17 @@ export function BrowseListingsDemo() {
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
+            <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Browse
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
+            <h2 style={{ fontSize: 36, fontFamily: 'Ralgine', color: '#050505', margin: '0 0 16px', lineHeight: 1.3, letterSpacing: 1 }}>
               Find your next place<br />in seconds
             </h2>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 24px' }}>
+            <p style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#65676B', lineHeight: 1.6, margin: '0 0 24px' }}>
               Browse verified listings in a familiar grid layout. Filter by barangay, unit type, and budget. Every listing is from a verified landlord.
             </p>
           </motion.div>
@@ -270,7 +270,7 @@ export function BrowseListingsDemo() {
                   padding: '8px 16px', borderRadius: 20,
                   backgroundColor: t === 'Room' ? '#DBEAFE' : '#E4E6EB',
                   border: t === 'Room' ? '1px solid #2563EB' : '1px solid transparent',
-                  fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: t === 'Room' ? '#2563EB' : '#374151',
+                  fontSize: 14, fontFamily: 'NotoSansOsage', color: t === 'Room' ? '#2563EB' : '#374151',
                 }}>
                   {t}
                 </span>
@@ -306,17 +306,17 @@ export function ConnectionDemo() {
         {/* Text */}
         <div style={{ flex: '1 1 360px', maxWidth: 440 }}>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
+            <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
               Connect
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
+            <h2 style={{ fontSize: 36, fontFamily: 'Ralgine', color: '#050505', margin: '0 0 16px', lineHeight: 1.3, letterSpacing: 1 }}>
               No middleman.<br />Direct connection.
             </h2>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
+            <p style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#65676B', lineHeight: 1.6, margin: '0 0 32px' }}>
               When a landlord accepts your request, both phone numbers are revealed instantly. Call or text directly. No agents, no fees, no platform taking a cut.
             </p>
           </motion.div>
@@ -326,8 +326,8 @@ export function ConnectionDemo() {
                 <span style={{ fontSize: 20 }}>📞</span>
               </div>
               <div>
-                <p style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505', margin: 0 }}>Zero fees. Always.</p>
-                <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>No money moves through the app. Ever.</p>
+                <p style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505', margin: 0 }}>Zero fees. Always.</p>
+                <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', margin: 0 }}>No money moves through the app. Ever.</p>
               </div>
             </div>
           </motion.div>
@@ -350,13 +350,13 @@ export function ConnectionDemo() {
                     }}>
                       <span style={{ fontSize: 24 }}>👤</span>
                     </div>
-                    <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Tenant</p>
+                    <p style={{ fontSize: 10, fontFamily: 'NotoSansOsage', color: '#65676B', margin: '4px 0 0' }}>Tenant</p>
                     {phase >= 1 && (
                       <motion.span
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                        style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', display: 'inline-block' }}
+                        style={{ fontSize: 9, fontFamily: 'NotoSansOsage', color: '#16A34A', display: 'inline-block' }}
                       >
                         ✓ Verified
                       </motion.span>
@@ -379,13 +379,13 @@ export function ConnectionDemo() {
                     }}>
                       <span style={{ fontSize: 24 }}>🏠</span>
                     </div>
-                    <p style={{ fontSize: 10, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: '4px 0 0' }}>Landlord</p>
+                    <p style={{ fontSize: 10, fontFamily: 'NotoSansOsage', color: '#65676B', margin: '4px 0 0' }}>Landlord</p>
                     {phase >= 1 && (
                       <motion.span
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.3 }}
-                        style={{ fontSize: 9, fontFamily: 'AlteHaasGroteskBold', color: '#16A34A', display: 'inline-block' }}
+                        style={{ fontSize: 9, fontFamily: 'NotoSansOsage', color: '#16A34A', display: 'inline-block' }}
                       >
                         ✓ Verified
                       </motion.span>
@@ -405,11 +405,11 @@ export function ConnectionDemo() {
                       marginBottom: 12,
                     }}
                   >
-                    <p style={{ fontSize: 13, fontFamily: 'BerlinSansFB', color: '#2563EB', margin: '0 0 8px' }}>Connected!</p>
-                    <p style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#1D4ED8', margin: '0 0 4px', letterSpacing: 1 }}>
+                    <p style={{ fontSize: 13, fontFamily: 'Ralgine', color: '#2563EB', margin: '0 0 8px' }}>Connected!</p>
+                    <p style={{ fontSize: 20, fontFamily: 'Ralgine', color: '#1D4ED8', margin: '0 0 4px', letterSpacing: 1 }}>
                       +63 917 *** 4589
                     </p>
-                    <p style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>Phone number revealed</p>
+                    <p style={{ fontSize: 11, fontFamily: 'NotoSansOsage', color: '#65676B', margin: 0 }}>Phone number revealed</p>
                   </motion.div>
                 )}
 
@@ -426,21 +426,21 @@ export function ConnectionDemo() {
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                     }}>
                       <span style={{ fontSize: 14 }}>📞</span>
-                      <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>Call</span>
+                      <span style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#FFFFFF' }}>Call</span>
                     </div>
                     <div style={{
                       flex: 1, height: 40, borderRadius: 8, border: '1px solid #2563EB',
                       display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
                     }}>
                       <span style={{ fontSize: 14 }}>💬</span>
-                      <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#2563EB' }}>Text</span>
+                      <span style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#2563EB' }}>Text</span>
                     </div>
                   </motion.div>
                 )}
 
                 {/* Waiting state */}
                 {phase < 3 && (
-                  <p style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91', textAlign: 'center', marginTop: 8 }}>
+                  <p style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#8A8D91', textAlign: 'center', marginTop: 8 }}>
                     {phase < 1 ? 'Verifying identities...' : phase < 2 ? 'Both verified!' : 'Connecting...'}
                   </p>
                 )}
@@ -459,17 +459,17 @@ export function CrossPlatformDemo() {
     <section style={{ padding: '100px 20px', backgroundColor: '#F0F2F5' }}>
       <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
+          <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#2563EB', fontWeight: 600, letterSpacing: 1, textTransform: 'uppercase', margin: '0 0 12px' }}>
             Everywhere
           </p>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-          <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', color: '#050505', margin: '0 0 16px', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: 36, fontFamily: 'Ralgine', color: '#050505', margin: '0 0 16px', lineHeight: 1.3, letterSpacing: 1 }}>
             One app. Android and iOS.
           </h2>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.2 }}>
-          <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', color: '#65676B', lineHeight: 1.6, margin: '0 0 48px', maxWidth: 500, marginLeft: 'auto', marginRight: 'auto' }}>
+          <p style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#65676B', lineHeight: 1.6, margin: '0 0 48px', maxWidth: 500, marginLeft: 'auto', marginRight: 'auto' }}>
             Works on any phone. Same experience whether you are on a budget Android or an iPhone.
           </p>
         </motion.div>
@@ -485,10 +485,10 @@ export function CrossPlatformDemo() {
                 backgroundColor: '#050505', color: '#FFFFFF', textDecoration: 'none',
               }}
             >
-              <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}>▶</span>
+              <span style={{ fontSize: 28, fontFamily: 'NotoSansOsage' }}>▶</span>
               <span>
-                <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>GET IT ON</span>
-                <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>Google Play</span>
+                <span style={{ fontSize: 11, fontFamily: 'NotoSansOsage', display: 'block', opacity: 0.7 }}>GET IT ON</span>
+                <span style={{ fontSize: 18, fontFamily: 'Ralgine' }}>Google Play</span>
               </span>
             </motion.a>
             <motion.a
@@ -501,10 +501,10 @@ export function CrossPlatformDemo() {
                 backgroundColor: '#050505', color: '#FFFFFF', textDecoration: 'none',
               }}
             >
-              <span style={{ fontSize: 28, fontFamily: 'AlteHaasGrotesk' }}></span>
+              <span style={{ fontSize: 28, fontFamily: 'NotoSansOsage' }}></span>
               <span>
-                <span style={{ fontSize: 11, fontFamily: 'AlteHaasGrotesk', display: 'block', opacity: 0.7 }}>Download on the</span>
-                <span style={{ fontSize: 18, fontFamily: 'BerlinSansFB' }}>App Store</span>
+                <span style={{ fontSize: 11, fontFamily: 'NotoSansOsage', display: 'block', opacity: 0.7 }}>Download on the</span>
+                <span style={{ fontSize: 18, fontFamily: 'Ralgine' }}>App Store</span>
               </span>
             </motion.a>
           </div>
@@ -519,10 +519,10 @@ export function CrossPlatformDemo() {
               { value: 48, suffix: 'hr', label: 'Verification time' },
             ].map((stat, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 40, fontFamily: 'BerlinSansFB', color: '#2563EB', margin: '0 0 4px' }}>
+                <p style={{ fontSize: 40, fontFamily: 'Ralgine', color: '#2563EB', margin: '0 0 4px' }}>
                   {stat.display !== undefined ? stat.display : <AnimatedCounter target={stat.value} suffix={stat.suffix} />}
                 </p>
-                <p style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0 }}>{stat.label}</p>
+                <p style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', margin: 0 }}>{stat.label}</p>
               </div>
             ))}
           </div>
@@ -544,12 +544,12 @@ export function HowItWorksAnimated() {
     <section style={{ padding: '100px 20px', backgroundColor: '#FFFFFF' }}>
       <div style={{ maxWidth: 960, margin: '0 auto' }}>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <h2 style={{ fontSize: 36, fontFamily: 'BerlinSansFB', textAlign: 'center', margin: '0 0 16px', color: '#050505' }}>
+          <h2 style={{ fontSize: 36, fontFamily: 'Ralgine', textAlign: 'center', margin: '0 0 16px', color: '#050505', letterSpacing: 1, lineHeight: 1.3 }}>
             How It Works
           </h2>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}>
-          <p style={{ fontSize: 18, fontFamily: 'AlteHaasGrotesk', textAlign: 'center', color: '#65676B', margin: '0 0 56px' }}>
+          <p style={{ fontSize: 18, fontFamily: 'NotoSansOsage', textAlign: 'center', color: '#65676B', margin: '0 0 56px' }}>
             Three steps. No complicated forms. No waiting forever.
           </p>
         </motion.div>
@@ -581,10 +581,10 @@ export function HowItWorksAnimated() {
                 margin: '-34px auto 16px', position: 'relative', zIndex: 1,
                 border: '3px solid #FFFFFF',
               }}>
-                <span style={{ fontSize: 13, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>{i + 1}</span>
+                <span style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#FFFFFF' }}>{i + 1}</span>
               </div>
-              <h3 style={{ fontSize: 20, fontFamily: 'BerlinSansFB', margin: '0 0 8px', color: '#050505' }}>{step.title}</h3>
-              <p style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B', margin: 0, lineHeight: 1.5 }}>{step.desc}</p>
+              <h3 style={{ fontSize: 20, fontFamily: 'Ralgine', margin: '0 0 8px', color: '#050505' }}>{step.title}</h3>
+              <p style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#65676B', margin: 0, lineHeight: 1.5 }}>{step.desc}</p>
             </motion.div>
           ))}
         </div>

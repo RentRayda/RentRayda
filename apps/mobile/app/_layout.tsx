@@ -6,10 +6,8 @@ import { useFonts } from 'expo-font';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'BobbyJonesSoft': require('../assets/fonts/Bobby Jones Soft.otf'),
-    'BerlinSansFB': require('../assets/fonts/Berlin Sans FB Regular.ttf'),
-    'AlteHaasGrotesk': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
-    'AlteHaasGroteskBold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
+    'TANNimbus': require('../assets/fonts/TAN-NIMBUS.ttf'),
+    'NotoSansOsage': require('../assets/fonts/NotoSansOsage-Regular.ttf'),
   });
 
   if (!fontsLoaded) {

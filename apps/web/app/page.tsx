@@ -6,6 +6,7 @@ import {
   HowItWorksAnimated,
 } from '../components/AnimatedSections';
 import TarsierHero from '../components/TarsierHero';
+import { LightSectionBg, DarkSectionBg, HeroMeshBg } from '../components/AnimatedBg';
 
 export default async function LandingPage() {
   return (
@@ -19,15 +20,15 @@ export default async function LandingPage() {
         backgroundColor: 'rgba(255,255,255,0.9)', backdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(0,0,0,0.06)',
       }}>
-        <span style={{ fontFamily: 'BerlinSansFB', fontSize: 22, color: '#050505' }}>RentRayda</span>
+        <span style={{ fontFamily: 'TANNimbus', fontSize: 22, color: '#050505', letterSpacing: 2 }}>rent rayda</span>
         <div style={{ display: 'flex', alignItems: 'center', gap: 32 }}>
-          <a href="/listings" style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 15, color: '#050505', textDecoration: 'none' }}>Listings</a>
-          <a href="#how" style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 15, color: '#050505', textDecoration: 'none' }}>How it works</a>
+          <a href="/listings" style={{ fontFamily: 'NotoSansOsage', fontSize: 15, color: '#050505', textDecoration: 'none' }}>Listings</a>
+          <a href="#how" style={{ fontFamily: 'NotoSansOsage', fontSize: 15, color: '#050505', textDecoration: 'none' }}>How it works</a>
           <a
             href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
             style={{
-              fontFamily: 'AlteHaasGroteskBold', fontSize: 14, color: '#FFFFFF',
-              backgroundColor: '#050505', padding: '10px 24px', borderRadius: 100,
+              fontFamily: 'NotoSansOsage', fontSize: 14, color: '#FFFFFF',
+              backgroundColor: '#2B51E3', padding: '10px 24px', borderRadius: 100,
               textDecoration: 'none',
             }}
           >
@@ -40,23 +41,25 @@ export default async function LandingPage() {
       <section style={{
         minHeight: '100vh', display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        backgroundColor: '#2563EB', color: '#FFFFFF',
+        backgroundColor: '#2B51E3', color: '#FFFFFF',
         padding: '120px 24px 80px', textAlign: 'center',
         position: 'relative', overflow: 'hidden',
       }}>
+        {/* Animated mesh gradient background */}
+        <HeroMeshBg />
         {/* 3D Tarsier as background */}
         <TarsierHero />
 
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 900, width: '100%' }}>
           <h1 style={{
-            fontFamily: 'BerlinSansFB', fontSize: 80, lineHeight: 1,
-            margin: '0 0 24px', letterSpacing: -2,
+            fontFamily: 'TANNimbus', fontSize: 80, lineHeight: 1.2,
+            margin: '0 0 24px', letterSpacing: 2,
           }}>
-            RentRayda
+            rent rayda
           </h1>
 
           <p style={{
-            fontFamily: 'AlteHaasGrotesk', fontSize: 20, margin: '0 0 48px',
+            fontFamily: 'NotoSansOsage', fontSize: 20, margin: '0 0 48px',
             opacity: 0.8, maxWidth: 460, marginLeft: 'auto', marginRight: 'auto',
             lineHeight: 1.5,
           }}>
@@ -67,8 +70,8 @@ export default async function LandingPage() {
             href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
             style={{
               display: 'inline-block', padding: '18px 48px', fontSize: 17,
-              fontFamily: 'AlteHaasGroteskBold',
-              backgroundColor: '#FFFFFF', color: '#2563EB', borderRadius: 100,
+              fontFamily: 'NotoSansOsage',
+              backgroundColor: '#FFFFFF', color: '#2B51E3', borderRadius: 100,
               textDecoration: 'none',
             }}
           >
@@ -76,7 +79,7 @@ export default async function LandingPage() {
           </a>
 
           <p style={{
-            fontFamily: 'AlteHaasGrotesk', fontSize: 14, marginTop: 16, opacity: 0.5,
+            fontFamily: 'NotoSansOsage', fontSize: 14, marginTop: 16, opacity: 0.5,
           }}>
             Free forever. Available on Android and iOS.
           </p>
@@ -84,28 +87,34 @@ export default async function LandingPage() {
       </section>
 
       {/* ── Bold statement ────────────────────────────────────────── */}
-      <section style={{ padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF' }}>
-        <div style={{ marginBottom: 32 }}>
-          <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-            <rect x="15" y="30" width="50" height="35" rx="4" fill="#DBEAFE" stroke="#2563EB" strokeWidth="2"/>
-            <polygon points="40,10 10,35 70,35" fill="#2563EB"/>
-            <rect x="32" y="45" width="16" height="20" rx="2" fill="#2563EB"/>
-            <circle cx="58" cy="28" r="14" fill="#16A34A" opacity="0.9"/>
-            <path d="M52 28l4 4 8-8" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+      <section style={{
+        padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <LightSectionBg />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ marginBottom: 32 }}>
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+              <rect x="15" y="30" width="50" height="35" rx="4" fill="#DBEAFE" stroke="#2B51E3" strokeWidth="2"/>
+              <polygon points="40,10 10,35 70,35" fill="#2B51E3"/>
+              <rect x="32" y="45" width="16" height="20" rx="2" fill="#2B51E3"/>
+              <circle cx="58" cy="28" r="14" fill="#16A34A" opacity="0.9"/>
+              <path d="M52 28l4 4 8-8" stroke="white" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+          <h2 style={{
+            fontFamily: 'Ralgine', fontSize: 56, color: '#050505',
+            lineHeight: 1.3, margin: '0 auto', maxWidth: 800, letterSpacing: 1,
+          }}>
+            You Don't Need Connections in Manila.
+          </h2>
+          <p style={{
+            fontFamily: 'NotoSansOsage', fontSize: 18, color: '#65676B',
+            margin: '24px auto 0', maxWidth: 500, lineHeight: 1.6,
+          }}>
+            We verify landlords AND tenants before revealing phone numbers. The scam stops here.
+          </p>
         </div>
-        <h2 style={{
-          fontFamily: 'BerlinSansFB', fontSize: 64, color: '#050505',
-          lineHeight: 1.0, margin: '0 auto', maxWidth: 700, letterSpacing: -1,
-        }}>
-          You Don't Need Connections in Manila.
-        </h2>
-        <p style={{
-          fontFamily: 'AlteHaasGrotesk', fontSize: 18, color: '#65676B',
-          margin: '24px auto 0', maxWidth: 500, lineHeight: 1.6,
-        }}>
-          We verify landlords AND tenants before revealing phone numbers. The scam stops here.
-        </p>
       </section>
 
       {/* ── How It Works ──────────────────────────────────────────── */}
@@ -118,17 +127,21 @@ export default async function LandingPage() {
       <BrowseListingsDemo />
       <ConnectionDemo />
 
-      {/* ── Anti-Scam Block (Wise-style bold) ─────────────────────── */}
-      <section style={{ padding: '120px 24px', backgroundColor: '#050505', color: '#FFFFFF', textAlign: 'center' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
+      {/* ── Anti-Scam Block ───────────────────────────────────────── */}
+      <section style={{
+        padding: '120px 24px', backgroundColor: '#050505', color: '#FFFFFF', textAlign: 'center',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <DarkSectionBg />
+        <div style={{ maxWidth: 800, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <h2 style={{
-            fontFamily: 'BerlinSansFB', fontSize: 56, lineHeight: 1.0,
-            margin: '0 0 32px', letterSpacing: -1,
+            fontFamily: 'Ralgine', fontSize: 48, lineHeight: 1.3,
+            margin: '0 0 32px', letterSpacing: 1,
           }}>
             We Are Not Lamudi.<br />We Are Not Rentpad.
           </h2>
           <p style={{
-            fontFamily: 'AlteHaasGrotesk', fontSize: 18, color: '#9CA3AF',
+            fontFamily: 'NotoSansOsage', fontSize: 18, color: '#9CA3AF',
             lineHeight: 1.7, margin: '0 auto', maxWidth: 540,
           }}>
             Here, everyone is verified before you connect. No fake listings. No scam agents. No money through the app. Just real landlords and real tenants, talking directly.
@@ -138,7 +151,7 @@ export default async function LandingPage() {
             padding: '12px 24px', borderRadius: 100,
             border: '1px solid rgba(255,255,255,0.15)',
           }}>
-            <span style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 14, color: '#9CA3AF' }}>
+            <span style={{ fontFamily: 'NotoSansOsage', fontSize: 14, color: '#9CA3AF' }}>
               Built for BPO workers who need housing in Metro Manila
             </span>
           </div>
@@ -149,39 +162,45 @@ export default async function LandingPage() {
       <CrossPlatformDemo />
 
       {/* ── Final CTA ─────────────────────────────────────────────── */}
-      <section style={{ padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF' }}>
-        <div style={{ marginBottom: 24 }}>
-          <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-            <circle cx="24" cy="24" r="12" stroke="#2563EB" strokeWidth="3" fill="none"/>
-            <circle cx="24" cy="24" r="4" fill="#2563EB"/>
-            <line x1="36" y1="24" x2="56" y2="24" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
-            <line x1="48" y1="24" x2="48" y2="34" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
-            <line x1="54" y1="24" x2="54" y2="30" stroke="#2563EB" strokeWidth="3" strokeLinecap="round"/>
-          </svg>
+      <section style={{
+        padding: '120px 24px', textAlign: 'center', backgroundColor: '#FFFFFF',
+        position: 'relative', overflow: 'hidden',
+      }}>
+        <LightSectionBg />
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ marginBottom: 24 }}>
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="24" cy="24" r="12" stroke="#2B51E3" strokeWidth="3" fill="none"/>
+              <circle cx="24" cy="24" r="4" fill="#2B51E3"/>
+              <line x1="36" y1="24" x2="56" y2="24" stroke="#2B51E3" strokeWidth="3" strokeLinecap="round"/>
+              <line x1="48" y1="24" x2="48" y2="34" stroke="#2B51E3" strokeWidth="3" strokeLinecap="round"/>
+              <line x1="54" y1="24" x2="54" y2="30" stroke="#2B51E3" strokeWidth="3" strokeLinecap="round"/>
+            </svg>
+          </div>
+          <h2 style={{
+            fontFamily: 'Ralgine', fontSize: 48, color: '#050505',
+            margin: '0 0 16px', letterSpacing: 1,
+          }}>
+            Ready?
+          </h2>
+          <p style={{
+            fontFamily: 'NotoSansOsage', fontSize: 18, color: '#65676B',
+            margin: '0 0 40px',
+          }}>
+            Download the app. Get verified. Find your place.
+          </p>
+          <a
+            href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
+            style={{
+              display: 'inline-block', padding: '18px 48px', fontSize: 17,
+              fontFamily: 'NotoSansOsage',
+              backgroundColor: '#2B51E3', color: '#FFFFFF', borderRadius: 100,
+              textDecoration: 'none',
+            }}
+          >
+            Get Rent Rayda free
+          </a>
         </div>
-        <h2 style={{
-          fontFamily: 'BerlinSansFB', fontSize: 48, color: '#050505',
-          margin: '0 0 16px', letterSpacing: -1,
-        }}>
-          Ready?
-        </h2>
-        <p style={{
-          fontFamily: 'AlteHaasGrotesk', fontSize: 18, color: '#65676B',
-          margin: '0 0 40px',
-        }}>
-          Download the app. Get verified. Find your place.
-        </p>
-        <a
-          href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
-          style={{
-            display: 'inline-block', padding: '18px 48px', fontSize: 17,
-            fontFamily: 'AlteHaasGroteskBold',
-            backgroundColor: '#050505', color: '#FFFFFF', borderRadius: 100,
-            textDecoration: 'none',
-          }}
-        >
-          Get RentRayda free
-        </a>
       </section>
 
       {/* ── Footer ─────────────────────────────────────────────── */}
@@ -194,13 +213,13 @@ export default async function LandingPage() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           flexWrap: 'wrap', gap: 24,
         }}>
-          <span style={{ fontFamily: 'BerlinSansFB', fontSize: 18, color: '#050505' }}>RentRayda</span>
+          <span style={{ fontFamily: 'TANNimbus', fontSize: 18, color: '#050505', letterSpacing: 2 }}>rent rayda</span>
           <div style={{ display: 'flex', gap: 32 }}>
-            <a href="/privacy" style={{ fontFamily: 'AlteHaasGrotesk', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Privacy</a>
-            <a href="/terms" style={{ fontFamily: 'AlteHaasGrotesk', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Terms</a>
-            <a href="mailto:hello@rentrayda.ph" style={{ fontFamily: 'AlteHaasGrotesk', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Contact</a>
+            <a href="/privacy" style={{ fontFamily: 'NotoSansOsage', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Privacy</a>
+            <a href="/terms" style={{ fontFamily: 'NotoSansOsage', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Terms</a>
+            <a href="mailto:hello@rentrayda.ph" style={{ fontFamily: 'NotoSansOsage', color: '#65676B', textDecoration: 'none', fontSize: 14 }}>Contact</a>
           </div>
-          <span style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 13, color: '#9CA3AF' }}>Built in the Philippines</span>
+          <span style={{ fontFamily: 'NotoSansOsage', fontSize: 13, color: '#9CA3AF' }}>Built in the Philippines</span>
         </div>
       </footer>
     </div>

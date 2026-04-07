@@ -85,10 +85,10 @@ export default function ProfileScreen() {
           borderBottomWidth: isLast ? 0 : 1, borderBottomColor: '#E4E6EB',
         }}
       >
-        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{label}</Text>
+        <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>{label}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color }}>{icon} {statusLabel}</Text>
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>{'>'}</Text>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color }}>{icon} {statusLabel}</Text>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>{'>'}</Text>
         </View>
       </Pressable>
     );
@@ -97,7 +97,7 @@ export default function ProfileScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#F0F2F5' }}>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 32 }}>
-        <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505', marginBottom: 16 }}>Profile</Text>
+        <Text style={{ fontSize: 20, fontFamily: 'TANNimbus', color: '#050505', marginBottom: 16 }}>Profile</Text>
 
         {/* Profile Card */}
         <View style={{
@@ -107,21 +107,21 @@ export default function ProfileScreen() {
           shadowOpacity: 0.05, shadowRadius: 2, elevation: 1,
         }}>
           <View style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#CED0D4', alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>P</Text>
+            <Text style={{ fontSize: 24, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>P</Text>
           </View>
           <View style={{ flex: 1 }}>
-            <Text style={{ fontSize: 18, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>{name}</Text>
+            <Text style={{ fontSize: 18, fontFamily: 'NotoSansOsage', color: '#050505' }}>{name}</Text>
             <View style={{ marginTop: 4 }}>
               <VerifiedBadge status={verificationStatus} size="sm" />
             </View>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 2 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', marginTop: 2 }}>
               {role.charAt(0).toUpperCase() + role.slice(1)} · {city}
             </Text>
           </View>
         </View>
 
         {/* Verification Status */}
-        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
+        <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
           VERIFICATION STATUS
         </Text>
         <View style={{ backgroundColor: '#FFFFFF', borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1, marginBottom: 24, overflow: 'hidden' }}>
@@ -146,34 +146,34 @@ export default function ProfileScreen() {
         </View>
 
         {/* Connections */}
-        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
+        <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
           CONNECTIONS
         </Text>
         <View style={{ backgroundColor: '#FFFFFF', borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1, marginBottom: 24, overflow: 'hidden' }}>
           <Pressable style={{ height: 48, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16 }}>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>
               {connectionCount} active connection{connectionCount !== 1 ? 's' : ''}
             </Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>{'>'}</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>{'>'}</Text>
           </Pressable>
         </View>
 
         {/* Settings */}
-        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
+        <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', letterSpacing: 1, marginBottom: 8 }}>
           SETTINGS
         </Text>
         <View style={{ backgroundColor: '#FFFFFF', borderRadius: 12, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.05, shadowRadius: 2, elevation: 1, marginBottom: 24, overflow: 'hidden' }}>
           <Pressable style={{ height: 48, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#E4E6EB' }}>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>Privacy Policy</Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>{'>'}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>Privacy Policy</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>{'>'}</Text>
           </Pressable>
           <Pressable style={{ height: 48, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#E4E6EB' }}>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>Terms of Service</Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>{'>'}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>Terms of Service</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>{'>'}</Text>
           </Pressable>
           <Pressable style={{ height: 48, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16 }}>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>About</Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91' }}>v1.0.0 {'>'}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>About</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91' }}>v1.0.0 {'>'}</Text>
           </Pressable>
         </View>
 
@@ -190,7 +190,7 @@ export default function ProfileScreen() {
           {loggingOut ? (
             <ActivityIndicator size="small" color="#E41E3F" />
           ) : (
-            <Text style={{ color: '#E41E3F', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>LOG OUT</Text>
+            <Text style={{ color: '#E41E3F', fontFamily: 'NotoSansOsage', fontSize: 16 }}>LOG OUT</Text>
           )}
         </Pressable>
       </ScrollView>

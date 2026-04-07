@@ -80,7 +80,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
       {/* Header */}
       <header style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #CED0D4', padding: '16px 20px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', textDecoration: 'none', fontFamily: 'BerlinSansFB' }}>RentRayda</a>
+          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', textDecoration: 'none', fontFamily: 'TANNimbus' }}>rent rayda</a>
           <a href="/listings" style={{ fontSize: 14, color: '#65676B', textDecoration: 'none' }}>← Back to listings</a>
         </div>
       </header>
@@ -96,7 +96,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         )}
 
         {/* Price */}
-        <h1 style={{ fontSize: 32, fontWeight: 700, color: '#2563EB', margin: '0 0 4px', fontFamily: 'BerlinSansFB' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 700, color: '#2563EB', margin: '0 0 4px', fontFamily: 'NotoSansOsage' }}>
           ₱{listing.monthlyRent.toLocaleString()}/month
         </h1>
         <p style={{ fontSize: 18, color: '#65676B', margin: '0 0 24px' }}>
@@ -123,7 +123,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         <div style={{ borderTop: '1px solid #CED0D4', paddingTop: 24, marginBottom: 24 }}>
           {inclusions.length > 0 && (
             <>
-              <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px', fontFamily: 'BerlinSansFB' }}>Included in rent</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px', fontFamily: 'Ralgine' }}>Included in rent</h3>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
                 {inclusions.map((inc) => (
                   <span key={inc} style={{ backgroundColor: '#E4E6EB', borderRadius: 9999, padding: '4px 12px', fontSize: 13, color: '#374151' }}>
@@ -144,7 +144,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         {/* Description */}
         {listing.description && (
           <div style={{ marginBottom: 24 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 8px', fontFamily: 'BerlinSansFB' }}>Description</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 8px', fontFamily: 'Ralgine' }}>Description</h3>
             <p style={{ fontSize: 16, color: '#65676B', lineHeight: 1.6, margin: 0 }}>{listing.description}</p>
           </div>
         )}
@@ -158,7 +158,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
 
         {/* CTA: Download App */}
         <div style={{ backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24, textAlign: 'center', border: '1px solid #CED0D4' }}>
-          <h3 style={{ fontSize: 20, fontWeight: 600, margin: '0 0 8px', fontFamily: 'BerlinSansFB' }}>Want to connect with this landlord?</h3>
+          <h3 style={{ fontSize: 20, fontWeight: 600, margin: '0 0 8px', fontFamily: 'Ralgine' }}>Want to connect with this landlord?</h3>
           <p style={{ fontSize: 14, color: '#65676B', margin: '0 0 20px' }}>
             Download the RentRayda app to send a connection request.
           </p>

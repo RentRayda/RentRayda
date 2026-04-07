@@ -30,14 +30,14 @@ export default function VerificationSubmittedScreen() {
             marginBottom: 24,
           }}
         >
-          <Text style={{ fontSize: 32, fontFamily: 'AlteHaasGrotesk', color: '#92400E' }}>Pending</Text>
+          <Text style={{ fontSize: 32, fontFamily: 'NotoSansOsage', color: '#92400E' }}>Pending</Text>
         </View>
 
         {/* Headline */}
         <Text
           style={{
             fontSize: 24,
-            fontFamily: 'BobbyJonesSoft',
+            fontFamily: 'TANNimbus',
             color: '#050505',
             textAlign: 'center',
           }}
@@ -49,7 +49,7 @@ export default function VerificationSubmittedScreen() {
         <Text
           style={{
             fontSize: 16,
-            fontFamily: 'AlteHaasGrotesk',
+            fontFamily: 'NotoSansOsage',
             color: '#65676B',
             textAlign: 'center',
             marginTop: 16,
@@ -77,7 +77,7 @@ export default function VerificationSubmittedScreen() {
             justifyContent: 'center',
           }}
         >
-          <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+          <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
             {ctaLabel}
           </Text>
         </Pressable>
@@ -86,7 +86,7 @@ export default function VerificationSubmittedScreen() {
         <Text
           style={{
             fontSize: 14,
-            fontFamily: 'AlteHaasGrotesk',
+            fontFamily: 'NotoSansOsage',
             color: '#65676B',
             textAlign: 'center',
             marginTop: 16,

@@ -83,7 +83,7 @@ export function ListingCard({
               paddingVertical: 2,
             }}
           >
-            <Text style={{ fontSize: 11, fontFamily: 'AlteHaasGroteskBold', color: '#FFFFFF' }}>
+            <Text style={{ fontSize: 11, fontFamily: 'NotoSansOsage', color: '#FFFFFF' }}>
               Just listed
             </Text>
           </View>
@@ -93,19 +93,19 @@ export function ListingCard({
       {/* Text below photo */}
       <View style={{ paddingTop: 8, paddingHorizontal: 2 }}>
         <Text
-          style={{ fontSize: 15, fontFamily: 'BerlinSansFB', color: '#050505' }}
+          style={{ fontSize: 15, fontFamily: 'TANNimbus', color: '#050505' }}
           numberOfLines={1}
         >
           P{monthlyRent.toLocaleString()}/mo
         </Text>
         <Text
-          style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginTop: 2 }}
+          style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#050505', marginTop: 2 }}
           numberOfLines={1}
         >
           {typeLabel} in {barangay}
         </Text>
         <Text
-          style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 1 }}
+          style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', marginTop: 1 }}
           numberOfLines={1}
         >
           {city}

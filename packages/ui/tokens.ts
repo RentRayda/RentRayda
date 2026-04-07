@@ -1,6 +1,6 @@
 export const colors = {
-  // Primary — derived from tarsier logo gradient
-  brand: '#2563EB',
+  // Primary — RentRayda Blue
+  brand: '#2B51E3',
   brandDark: '#1D4ED8',
   brandBright: '#60A5FA',
   brandLight: '#DBEAFE',
@@ -32,15 +32,13 @@ export const spacing = {
 } as const;
 
 export const typography = {
-  // Berlin Sans FB — "RentRayda" logo wordmark
-  fontBrand: 'BerlinSansFB',
-  // Berlin Sans FB — screen headers and section titles
-  fontHeading: 'BerlinSansFB',
-  // Bobby Jones Soft — accent/decorative text (section titles, taglines, fun callouts)
-  fontAccent: 'BobbyJonesSoft',
-  // Alte Haas Grotesk — all body text, labels, buttons, etc.
-  fontBody: 'AlteHaasGrotesk',
-  fontBodyBold: 'AlteHaasGroteskBold',
+  // TAN Nimbus — logo wordmark, headers, accent text
+  fontBrand: 'TANNimbus',
+  fontHeading: 'TANNimbus',
+  fontAccent: 'TANNimbus',
+  // Noto Sans Osage — all body text, labels, buttons, etc.
+  fontBody: 'NotoSansOsage',
+  fontBodyBold: 'NotoSansOsage',
   sizes: {
     xs: 12,
     sm: 14,

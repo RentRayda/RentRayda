@@ -19,11 +19,11 @@ export function EmptyStateView({
 }: EmptyStateViewProps) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-      <Text style={{ fontSize: 48, fontFamily: 'AlteHaasGrotesk', marginBottom: 16 }}>{icon}</Text>
-      <Text style={{ fontSize: 18, fontFamily: 'BobbyJonesSoft', color: '#050505', textAlign: 'center' }}>
+      <Text style={{ fontSize: 48, fontFamily: 'NotoSansOsage', marginBottom: 16 }}>{icon}</Text>
+      <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', textAlign: 'center' }}>
         {headline}
       </Text>
-      <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8, lineHeight: 20 }}>
+      <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 8, lineHeight: 20 }}>
         {body}
       </Text>
       {ctaLabel && onCtaPress && (
@@ -42,7 +42,7 @@ export function EmptyStateView({
           }}
         >
           <Text style={{
-            fontFamily: 'AlteHaasGroteskBold',
+            fontFamily: 'NotoSansOsage',
             fontSize: 16,
             color: ctaVariant === 'primary' ? '#FFFFFF' : '#2563EB',
           }}>

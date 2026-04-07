@@ -57,10 +57,10 @@ export default function CollectEmailScreen() {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 24, fontFamily: 'BobbyJonesSoft', color: '#050505', textAlign: 'center' }}>
+          <Text style={{ fontSize: 24, fontFamily: 'TANNimbus', color: '#050505', textAlign: 'center' }}>
             Add your email
           </Text>
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8, marginBottom: 32 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 8, marginBottom: 32 }}>
             For password-free sign in next time. No spam, ever.
           </Text>
 
@@ -72,7 +72,7 @@ export default function CollectEmailScreen() {
               borderRadius: 8,
               paddingHorizontal: 12,
               fontSize: 16,
-              fontFamily: 'AlteHaasGrotesk',
+              fontFamily: 'NotoSansOsage',
               backgroundColor: '#FFFFFF',
             }}
             keyboardType="email-address"
@@ -86,7 +86,7 @@ export default function CollectEmailScreen() {
           />
 
           {error && (
-            <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', marginTop: 4 }}>
+            <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#E41E3F', marginTop: 4 }}>
               {error}
             </Text>
           )}
@@ -108,12 +108,12 @@ export default function CollectEmailScreen() {
             {isLoading ? (
               <ActivityIndicator size="small" color="#FFFFFF" />
             ) : (
-              <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>CONTINUE</Text>
+              <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>CONTINUE</Text>
             )}
           </Pressable>
 
           <Pressable onPress={handleSkip} style={{ marginTop: 16, paddingVertical: 12, alignItems: 'center' }}>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B' }}>
               Skip for now
             </Text>
           </Pressable>

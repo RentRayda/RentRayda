@@ -95,14 +95,14 @@ export default function VerificationCeremonyScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ fontSize: 32, fontFamily: 'AlteHaasGrotesk', color: '#FFFFFF' }}>✓</Text>
+            <Text style={{ fontSize: 32, fontFamily: 'NotoSansOsage', color: '#FFFFFF' }}>✓</Text>
           </Animated.View>
 
           {/* Headline */}
           <Text
             style={{
               fontSize: 32,
-              fontFamily: 'BobbyJonesSoft',
+              fontFamily: 'TANNimbus',
               color: '#2563EB',
               textAlign: 'center',
               marginTop: 24,
@@ -115,7 +115,7 @@ export default function VerificationCeremonyScreen() {
           <Text
             style={{
               fontSize: 16,
-              fontFamily: 'AlteHaasGrotesk',
+              fontFamily: 'NotoSansOsage',
               color: '#65676B',
               textAlign: 'center',
               marginTop: 16,
@@ -139,7 +139,7 @@ export default function VerificationCeremonyScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
               {ctaLabel}
             </Text>
           </Pressable>
@@ -158,7 +158,7 @@ export default function VerificationCeremonyScreen() {
               justifyContent: 'center',
             }}
           >
-            <Text style={{ color: '#2563EB', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+            <Text style={{ color: '#2563EB', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
               SHARE WITH FRIENDS
             </Text>
           </Pressable>

@@ -153,11 +153,11 @@ export default function ListingDetailScreen() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-          <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginBottom: 16 }}>
             {error || 'Listing not found.'}
           </Text>
           <Pressable onPress={() => router.back()} style={{ height: 48, paddingHorizontal: 24, backgroundColor: '#2563EB', borderRadius: 8, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold' }}>Go Back</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage' }}>Go Back</Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -224,7 +224,7 @@ export default function ListingDetailScreen() {
                 <View key={photo.id} style={{ width: SCREEN_WIDTH, height: PHOTO_HEIGHT, backgroundColor: '#E4E6EB' }}>
                   <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ fontSize: 40, color: '#8A8D91' }}>🏠</Text>
-                    <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91', marginTop: 4 }}>Photo {i + 1}</Text>
+                    <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#8A8D91', marginTop: 4 }}>Photo {i + 1}</Text>
                   </View>
                 </View>
               ))}
@@ -242,7 +242,7 @@ export default function ListingDetailScreen() {
                 paddingVertical: 4,
               }}
             >
-              <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#FFFFFF' }}>
+              <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#FFFFFF' }}>
                 {photoIndex + 1}/{photoCount}
               </Text>
             </View>
@@ -281,20 +281,20 @@ export default function ListingDetailScreen() {
         ) : (
           <View style={{ width: '100%', height: PHOTO_HEIGHT, backgroundColor: '#E4E6EB', alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 48, color: '#8A8D91' }}>🏠</Text>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#8A8D91', marginTop: 8 }}>No photos yet</Text>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#8A8D91', marginTop: 8 }}>No photos yet</Text>
           </View>
         )}
 
         {/* Content */}
         <View style={{ paddingHorizontal: 16, paddingTop: 16, paddingBottom: 120 }}>
           {/* Title + Price */}
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B' }}>
             {typeLabel}
           </Text>
-          <Text style={{ fontSize: 24, fontFamily: 'BerlinSansFB', color: '#050505', marginTop: 2 }}>
+          <Text style={{ fontSize: 24, fontFamily: 'TANNimbus', color: '#050505', marginTop: 2 }}>
             P{listing.monthlyRent.toLocaleString()}/month
           </Text>
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', marginTop: 4 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', marginTop: 4 }}>
             Listed {timeAgo(listing.lastActiveAt)} in {listing.barangay}, {listing.city}
           </Text>
 
@@ -308,7 +308,7 @@ export default function ListingDetailScreen() {
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
-                <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+                <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
                   CONNECT WITH {ctaState.landlordName.toUpperCase()}
                 </Text>
               </Pressable>
@@ -321,7 +321,7 @@ export default function ListingDetailScreen() {
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
-                <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+                <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
                   VERIFY YOUR PROFILE FIRST
                 </Text>
               </Pressable>
@@ -334,7 +334,7 @@ export default function ListingDetailScreen() {
                   alignItems: 'center', justifyContent: 'center',
                 }}
               >
-                <Text style={{ color: '#65676B', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+                <Text style={{ color: '#65676B', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
                   REQUEST ALREADY SENT
                 </Text>
               </Pressable>
@@ -357,7 +357,7 @@ export default function ListingDetailScreen() {
               }}
             >
               <Text style={{ fontSize: 18 }}>{saved ? '♥' : '♡'}</Text>
-              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+              <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                 {saved ? 'Saved' : 'Save'}
               </Text>
             </Pressable>
@@ -370,7 +370,7 @@ export default function ListingDetailScreen() {
               }}
             >
               <Text style={{ fontSize: 16 }}>↗</Text>
-              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>Share</Text>
+              <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505' }}>Share</Text>
             </Pressable>
           </View>
 
@@ -378,35 +378,35 @@ export default function ListingDetailScreen() {
           <View style={{ height: 8, backgroundColor: '#F0F2F5', marginHorizontal: -16, marginTop: 20, marginBottom: 20 }} />
 
           {/* Details section */}
-          <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginBottom: 12 }}>
+          <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', marginBottom: 12 }}>
             Details
           </Text>
 
           <View style={{ gap: 12 }}>
             {listing.beds && (
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>Beds</Text>
-                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+                <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#65676B' }}>Beds</Text>
+                <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                   {listing.beds}
                 </Text>
               </View>
             )}
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>Advance</Text>
-              <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+              <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#65676B' }}>Advance</Text>
+              <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                 {listing.advanceMonths ?? 1} month{(listing.advanceMonths ?? 1) !== 1 ? 's' : ''}
               </Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-              <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>Deposit</Text>
-              <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+              <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#65676B' }}>Deposit</Text>
+              <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                 {listing.depositMonths ?? 2} month{(listing.depositMonths ?? 2) !== 1 ? 's' : ''}
               </Text>
             </View>
             {listing.availableDate && (
               <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>Available</Text>
-                <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+                <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#65676B' }}>Available</Text>
+                <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                   {listing.availableDate}
                 </Text>
               </View>
@@ -417,13 +417,13 @@ export default function ListingDetailScreen() {
           {inclusions.length > 0 && (
             <>
               <View style={{ height: 1, backgroundColor: '#E4E6EB', marginVertical: 16 }} />
-              <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginBottom: 12 }}>
+              <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', marginBottom: 12 }}>
                 Included in rent
               </Text>
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
                 {inclusions.map((inc) => (
                   <View key={inc} style={{ backgroundColor: '#F0F2F5', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6 }}>
-                    <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>
+                    <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                       {INCLUSION_LABELS[inc] || inc}
                     </Text>
                   </View>
@@ -436,10 +436,10 @@ export default function ListingDetailScreen() {
           {listing.description && (
             <>
               <View style={{ height: 1, backgroundColor: '#E4E6EB', marginVertical: 16 }} />
-              <Text style={{ fontSize: 18, fontFamily: 'BerlinSansFB', color: '#050505', marginBottom: 8 }}>
+              <Text style={{ fontSize: 18, fontFamily: 'TANNimbus', color: '#050505', marginBottom: 8 }}>
                 Description
               </Text>
-              <Text style={{ fontSize: 15, fontFamily: 'AlteHaasGrotesk', color: '#050505', lineHeight: 22 }}>
+              <Text style={{ fontSize: 15, fontFamily: 'NotoSansOsage', color: '#050505', lineHeight: 22 }}>
                 {listing.description}
               </Text>
             </>
@@ -460,7 +460,7 @@ export default function ListingDetailScreen() {
               </View>
               <View style={{ flex: 1 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGroteskBold', color: '#050505' }}>
+                  <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>
                     {listing.landlordProfile.fullName || 'Landlord'}
                   </Text>
                   <VerifiedBadge status="verified" size="sm" />
@@ -475,17 +475,17 @@ export default function ListingDetailScreen() {
 
           {/* Anti-scam info card */}
           <View style={{ backgroundColor: '#F0F9FF', borderRadius: 12, padding: 16 }}>
-            <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGroteskBold', color: '#2563EB', marginBottom: 6 }}>
+            <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#2563EB', marginBottom: 6 }}>
               Safety reminder
             </Text>
-            <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#374151', lineHeight: 20 }}>
+            <Text style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#374151', lineHeight: 20 }}>
               This landlord is verified with a confirmed ID and property proof. Never send money before visiting in person. You will never be asked to pay anything on this app.
             </Text>
           </View>
 
           {/* Report link */}
           <Pressable onPress={() => router.push('/report' as never)} style={{ marginTop: 16, alignItems: 'center', paddingVertical: 8 }}>
-            <Text style={{ fontSize: 13, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>Report this listing</Text>
+            <Text style={{ fontSize: 13, fontFamily: 'NotoSansOsage', color: '#65676B' }}>Report this listing</Text>
           </Pressable>
         </View>
       </ScrollView>

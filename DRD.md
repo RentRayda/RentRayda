@@ -46,55 +46,48 @@ Every interactive element: **minimum 48×48dp.** This is non-negotiable — Andr
 
 **Thumb zone:** On 5-inch budget Android phones (720×1280), the primary CTA must be in the bottom 40% of the screen. Bottom navigation at 48dp height (Facebook-style, slimmer).
 
-### 1.3 Typography — 4-Font System
+### 1.3 Typography — 2-Font System
 
-RentRayda uses 4 custom fonts, each with a specific role. No Google Fonts — all fonts are bundled locally in `apps/mobile/assets/fonts/` and `apps/web/public/fonts/`.
+RentRayda uses 2 custom fonts, each with a clear role. No Google Fonts. All fonts are bundled locally in `apps/mobile/assets/fonts/` and `apps/web/public/fonts/`. See BRAND.md for full typography guidelines.
 
 #### Font Family Assignments
 
 | Font | Family Name (code) | Role | Where Used |
 |---|---|---|---|
-| **Berlin Sans FB** | `BerlinSansFB` | Brand wordmark | "RentRayda" logo text everywhere (headers, hero, footer, splash) |
-| **Berlin Sans FB** | `BerlinSansFB` | Screen headers | Main titles on each screen ("Find a listing", "Profile", "Create a Listing", "Verify your ID", prices) |
-| **Bobby Jones Soft** | `BobbyJonesSoft` | Accent / decorative | Playful headlines, taglines ("Sign up or log in", "What are you looking for?", "{name}, you're verified!", "You are now connected!", empty state headlines, web hero taglines) |
-| **Alte Haas Grotesk Bold** | `AlteHaasGroteskBold` | Buttons / emphasis | CTA button text (SEND CODE, CONTINUE, VERIFY), bold inline labels, emphasized status text |
-| **Alte Haas Grotesk** | `AlteHaasGroteskRegular` | Body / default | All other text: descriptions, form labels, timestamps, captions, error messages, secondary text |
+| **TAN Nimbus** | `TANNimbus` | Brand / display | "rent rayda" wordmark, hero headlines, section titles, screen headers, ceremony text |
+| **Noto Sans Osage** | `NotoSansOsage` | Body / UI | All body text, buttons, form inputs, labels, timestamps, captions, metadata, badges |
 
 #### Typography Scale
 
-| Level | Size | Font Family | Usage |
-|---|---|---|---|
-| Display | 32px | `BobbyJonesSoft` | Ceremony headlines, celebration text |
-| Headline | 24px | `BerlinSansFB` or `BobbyJonesSoft` | Screen titles (Berlin Sans) or playful taglines (Bobby Jones) |
-| Title | 20px | `BerlinSansFB` | Section headers, page titles |
-| Subhead | 18px | `BerlinSansFB` | Price display, card titles |
-| Body | 16px | `AlteHaasGrotesk` | Body text, descriptions, form inputs |
-| Label | 14px | `AlteHaasGrotesk` or `AlteHaasGroteskBold` | Form labels (regular), button text (bold) |
-| Caption | 12px | `AlteHaasGrotesk` | Timestamps, helper text |
-| Micro | 11px | `AlteHaasGroteskBold` | Badge labels only |
+| Level | Size | Font Family | Weight | Usage |
+|---|---|---|---|---|
+| Display | 32px | `TANNimbus` | 400 | Hero headlines, celebration text |
+| Headline | 24px | `TANNimbus` | 400 | Screen titles, section headers |
+| Title | 20px | `TANNimbus` | 400 | Card headers, page names |
+| Subhead | 18px | `NotoSansOsage` | 600 | Price display, emphasis |
+| Body | 16px | `NotoSansOsage` | 400 | Body text, descriptions, form inputs |
+| Label | 14px | `NotoSansOsage` | 500 | Buttons, form labels |
+| Caption | 12px | `NotoSansOsage` | 400 | Timestamps, helper text |
+| Micro | 11px | `NotoSansOsage` | 600 | Badge labels only |
 
 **Rules:**
 - Never below 12px on any screen. Budget Android (720p HD+) renders smaller sizes as blurry.
-- Body text minimum 16px — WHO recommends this for mobile readability.
+- Body text minimum 16px (WHO mobile readability standard).
 - Maximum line length: 45 characters on mobile, 75 on web.
-- Filipino words can be long — test that words like "Verified" and "for rent" don't overflow.
-- **React Native:** NEVER use `fontWeight` with custom fonts — switch `fontFamily` instead. Bold = `AlteHaasGroteskBold`, not `fontWeight: '700'`.
-- **Web:** `fontWeight` works normally with `@font-face` declarations since CSS handles weight mapping.
+- Filipino words can be long. Test that words like "Verified" and "for rent" do not overflow.
+- **React Native:** Use `fontFamily: 'NotoSansOsage'` for all body text. Only one weight is bundled (400), so use `fontWeight` for bold/semibold styling as needed.
+- **Web:** `fontWeight` works normally with `@font-face` declarations.
 
 ### 1.4 Font Loading and Configuration
 
-**Font files (all bundled locally — no CDN dependency):**
+**Font files (all bundled locally, no CDN dependency):**
 
-| File | Family Name | Format | Size |
-|---|---|---|---|
-| `Berlin Sans FB Regular.ttf` | `BerlinSansFB` | TrueType | 97KB |
-| `Bobby Jones Soft.otf` | `BobbyJonesSoft` | OpenType | 87KB |
-| `AlteHaasGroteskRegular.ttf` | `AlteHaasGrotesk` | TrueType | 144KB |
-| `AlteHaasGroteskBold.ttf` | `AlteHaasGroteskBold` | TrueType | 145KB |
+| File | Family Name | Format |
+|---|---|---|
+| `TAN-NIMBUS.ttf` | `TANNimbus` | TrueType |
+| `NotoSansOsage-Regular.ttf` | `NotoSansOsage` | TrueType |
 
-Total font payload: ~473KB (acceptable for 3G loading, cached after first load).
-
-**Mobile (Expo SDK 55 — expo-font):**
+**Mobile (Expo SDK 55, expo-font):**
 
 ```typescript
 // apps/mobile/app/_layout.tsx
@@ -105,10 +98,8 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'BobbyJonesSoft': require('../assets/fonts/Bobby Jones Soft.otf'),
-    'BerlinSansFB': require('../assets/fonts/Berlin Sans FB Regular.ttf'),
-    'AlteHaasGrotesk': require('../assets/fonts/AlteHaasGroteskRegular.ttf'),
-    'AlteHaasGroteskBold': require('../assets/fonts/AlteHaasGroteskBold.ttf'),
+    'TANNimbus': require('../assets/fonts/TAN-NIMBUS.ttf'),
+    'NotoSansOsage': require('../assets/fonts/NotoSansOsage-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -120,54 +111,49 @@ export default function RootLayout() {
 }
 ```
 
-**Mobile usage (inline styles — NO fontWeight with custom fonts):**
+**Mobile usage (inline styles):**
 ```typescript
 // Brand wordmark
-<Text style={{ fontFamily: 'BerlinSansFB', fontSize: 20 }}>RentRayda</Text>
+<Text style={{ fontFamily: 'TANNimbus', fontSize: 20 }}>rent rayda</Text>
 
 // Screen header
-<Text style={{ fontFamily: 'BerlinSansFB', fontSize: 18 }}>Find a listing</Text>
-
-// Accent/playful headline
-<Text style={{ fontFamily: 'BobbyJonesSoft', fontSize: 24 }}>Sign up or log in</Text>
+<Text style={{ fontFamily: 'TANNimbus', fontSize: 18 }}>Find a listing</Text>
 
 // Button text
-<Text style={{ fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>SEND CODE</Text>
+<Text style={{ fontFamily: 'NotoSansOsage', fontSize: 16, fontWeight: '600' }}>SEND CODE</Text>
 
 // Body text
-<Text style={{ fontFamily: 'AlteHaasGrotesk', fontSize: 16 }}>Enter your phone number</Text>
+<Text style={{ fontFamily: 'NotoSansOsage', fontSize: 16 }}>Enter your phone number</Text>
 ```
 
-**Web (Next.js — @font-face in layout.tsx):**
+**Web (Next.js, @font-face in layout.tsx):**
 ```html
 <style>
-  @font-face { font-family: 'BobbyJonesSoft'; src: url('/fonts/Bobby Jones Soft.otf') format('opentype'); font-display: swap; }
-  @font-face { font-family: 'BerlinSansFB'; src: url('/fonts/Berlin Sans FB Regular.ttf') format('truetype'); font-display: swap; }
-  @font-face { font-family: 'AlteHaasGrotesk'; src: url('/fonts/AlteHaasGroteskRegular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-  @font-face { font-family: 'AlteHaasGrotesk'; src: url('/fonts/AlteHaasGroteskBold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'TANNimbus'; src: url('/fonts/TAN-NIMBUS.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'NotoSansOsage'; src: url('/fonts/NotoSansOsage-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
 </style>
-<body style="font-family: AlteHaasGrotesk, system-ui, sans-serif">
+<body style="font-family: NotoSansOsage, system-ui, sans-serif">
 ```
 
-**Fallback stack:** `AlteHaasGrotesk, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
+**Fallback stack:** `NotoSansOsage, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
 
 **Budget Android rendering notes:**
-- All 4 fonts render well on HD+ (720p) displays down to 12px
+- Both fonts render well on HD+ (720p) displays down to 12px
 - `textAlignVertical: 'center'` may be needed on Android for vertical alignment in buttons
-- Samsung Galaxy A-series and Redmi phones sometimes override font rendering — test on real devices
-- Splash screen stays visible until fonts load — prevents flash of unstyled text (FOUT)
+- Samsung Galaxy A-series and Redmi phones sometimes override font rendering. Test on real devices.
+- Splash screen stays visible until fonts load to prevent flash of unstyled text (FOUT)
 
 ### 1.5 Color Token System (Facebook-Aligned)
 
 All colors aligned with Facebook's visual language. The target market lives on Facebook — every color choice should feel immediately familiar. WCAG contrast ratios stated against the `#F0F2F5` background.
 
 ```
-═══ PRIMARY (derived from tarsier logo gradient) ═══
-  rayda:             #2563EB    contrast 4.8:1 on #F0F2F5    (Logo mid-gradient blue — vibrant true blue)
+═══ PRIMARY (RentRayda Blue) ═══
+  rayda:             #2B51E3    contrast 5.1:1 on #F0F2F5    (Brand blue — primary buttons, links, active states)
   rayda-light:       #DBEAFE    contrast 1.2:1 on #F0F2F5    (Badge/card highlight backgrounds)
-  rayda-dark:        #1D4ED8    contrast 7.2:1 on #F0F2F5    (Logo dark end — pressed/active states)
-  rayda-bright:      #60A5FA    contrast 3.0:1 on #F0F2F5    (Logo light end — accents, gradients)
-  rayda-gradient:    linear-gradient(135deg, #1D4ED8, #60A5FA) (Logo gradient — splash, covers, headers)
+  rayda-dark:        #1D4ED8    contrast 7.2:1 on #F0F2F5    (Pressed/active states, hover)
+  rayda-bright:      #60A5FA    contrast 3.0:1 on #F0F2F5    (Accents, gradient endpoints)
+  rayda-gradient:    linear-gradient(135deg, #1D4ED8, #60A5FA) (Splash, covers, hero headers)
 
 ═══ NEUTRAL (Facebook-matched) ═══
   bg:                #F0F2F5    —                             (Facebook's background gray)

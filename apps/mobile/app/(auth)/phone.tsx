@@ -70,13 +70,13 @@ export default function PhoneEntryScreen() {
               alignItems: 'center',
             }}
           >
-            <Text style={{ color: '#FFFFFF', fontSize: 24, fontFamily: 'BerlinSansFB' }}>R</Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 24, fontFamily: 'TANNimbus' }}>R</Text>
           </View>
 
           <Text
             style={{
               fontSize: 24,
-              fontFamily: 'BobbyJonesSoft',
+              fontFamily: 'TANNimbus',
               color: '#050505',
               textAlign: 'center',
             }}
@@ -87,7 +87,7 @@ export default function PhoneEntryScreen() {
           <Text
             style={{
               fontSize: 16,
-              fontFamily: 'AlteHaasGrotesk',
+              fontFamily: 'NotoSansOsage',
               color: '#65676B',
               textAlign: 'center',
               marginBottom: 32,
@@ -116,10 +116,10 @@ export default function PhoneEntryScreen() {
                 justifyContent: 'center',
               }}
             >
-              <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>+63</Text>
+              <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B' }}>+63</Text>
             </View>
             <TextInput
-              style={{ flex: 1, paddingHorizontal: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk' }}
+              style={{ flex: 1, paddingHorizontal: 12, fontSize: 16, fontFamily: 'NotoSansOsage' }}
               keyboardType="phone-pad"
               maxLength={10}
               placeholder="9XX XXX XXXX"
@@ -131,7 +131,7 @@ export default function PhoneEntryScreen() {
           </View>
 
           {error && (
-            <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', marginTop: 4, alignSelf: 'flex-start' }}>
+            <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#E41E3F', marginTop: 4, alignSelf: 'flex-start' }}>
               {error}
             </Text>
           )}
@@ -154,7 +154,7 @@ export default function PhoneEntryScreen() {
             {isLoading ? (
               <ActivityIndicator size="small" color="#FFFFFF" />
             ) : (
-              <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>
+              <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>
                 SEND CODE
               </Text>
             )}
@@ -163,7 +163,7 @@ export default function PhoneEntryScreen() {
           <Text
             style={{
               fontSize: 12,
-              fontFamily: 'AlteHaasGrotesk',
+              fontFamily: 'NotoSansOsage',
               color: '#65676B',
               textAlign: 'center',
               marginTop: 16,

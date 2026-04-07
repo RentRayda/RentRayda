@@ -57,15 +57,15 @@ export default function SetupPasskeyScreen() {
           <Text style={{ fontSize: 36 }}>🔐</Text>
         </View>
 
-        <Text style={{ fontSize: 24, fontFamily: 'BobbyJonesSoft', color: '#050505', textAlign: 'center' }}>
+        <Text style={{ fontSize: 24, fontFamily: 'TANNimbus', color: '#050505', textAlign: 'center' }}>
           Enable FaceID / Fingerprint
         </Text>
-        <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 8, marginBottom: 32, lineHeight: 20 }}>
+        <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 8, marginBottom: 32, lineHeight: 20 }}>
           Sign in instantly next time with your face or fingerprint. No codes, no waiting.
         </Text>
 
         {error && (
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#E41E3F', textAlign: 'center', marginBottom: 16 }}>
             {error}
           </Text>
         )}
@@ -86,12 +86,12 @@ export default function SetupPasskeyScreen() {
           {isLoading ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>ENABLE</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>ENABLE</Text>
           )}
         </Pressable>
 
         <Pressable onPress={handleSkip} style={{ marginTop: 16, paddingVertical: 12, alignItems: 'center' }}>
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#65676B' }}>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#65676B' }}>
             Maybe later
           </Text>
         </Pressable>

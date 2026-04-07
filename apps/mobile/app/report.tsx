@@ -60,14 +60,14 @@ export default function ReportScreen() {
       {/* Header */}
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16 }}>
         <Pressable onPress={() => router.back()} style={{ padding: 4 }}>
-          <Text style={{ fontSize: 24, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>X</Text>
+          <Text style={{ fontSize: 24, fontFamily: 'NotoSansOsage', color: '#050505' }}>X</Text>
         </Pressable>
-        <Text style={{ fontSize: 20, fontFamily: 'BerlinSansFB', color: '#050505' }}>Report</Text>
+        <Text style={{ fontSize: 20, fontFamily: 'TANNimbus', color: '#050505' }}>Report</Text>
         <View style={{ width: 32 }} />
       </View>
 
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 24, paddingBottom: 32 }}>
-        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginBottom: 12 }}>
+        <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505', marginBottom: 12 }}>
           What is the problem?
         </Text>
 
@@ -83,18 +83,18 @@ export default function ReportScreen() {
                 <View style={{ width: 10, height: 10, borderRadius: 5, backgroundColor: '#E41E3F' }} />
               )}
             </View>
-            <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505' }}>{type.label}</Text>
+            <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505' }}>{type.label}</Text>
           </Pressable>
         ))}
 
         {/* Description */}
-        <Text style={{ fontSize: 16, fontFamily: 'AlteHaasGrotesk', color: '#050505', marginTop: 16, marginBottom: 8 }}>
+        <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#050505', marginTop: 16, marginBottom: 8 }}>
           Details (optional)
         </Text>
         <TextInput
           style={{
             height: 96, borderWidth: 1, borderColor: '#CED0D4', borderRadius: 8,
-            padding: 12, fontSize: 16, fontFamily: 'AlteHaasGrotesk', textAlignVertical: 'top', backgroundColor: '#FFFFFF',
+            padding: 12, fontSize: 16, fontFamily: 'NotoSansOsage', textAlignVertical: 'top', backgroundColor: '#FFFFFF',
           }}
           multiline
           maxLength={500}
@@ -106,7 +106,7 @@ export default function ReportScreen() {
         />
 
         {error && (
-          <Text style={{ fontSize: 14, fontFamily: 'AlteHaasGrotesk', color: '#E41E3F', textAlign: 'center', marginTop: 12 }}>{error}</Text>
+          <Text style={{ fontSize: 14, fontFamily: 'NotoSansOsage', color: '#E41E3F', textAlign: 'center', marginTop: 12 }}>{error}</Text>
         )}
 
         {/* CTA */}
@@ -122,11 +122,11 @@ export default function ReportScreen() {
           {isSubmitting ? (
             <ActivityIndicator size="small" color="#FFFFFF" />
           ) : (
-            <Text style={{ color: '#FFFFFF', fontFamily: 'AlteHaasGroteskBold', fontSize: 16 }}>SUBMIT REPORT</Text>
+            <Text style={{ color: '#FFFFFF', fontFamily: 'NotoSansOsage', fontSize: 16 }}>SUBMIT REPORT</Text>
           )}
         </Pressable>
 
-        <Text style={{ fontSize: 12, fontFamily: 'AlteHaasGrotesk', color: '#65676B', textAlign: 'center', marginTop: 16 }}>
+        <Text style={{ fontSize: 12, fontFamily: 'NotoSansOsage', color: '#65676B', textAlign: 'center', marginTop: 16 }}>
           We will review this within 24 hours. Thank you for reporting.
         </Text>
       </ScrollView>

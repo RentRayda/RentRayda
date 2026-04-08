@@ -65,7 +65,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
         <h1 style={{ fontSize: 24, fontWeight: 600 }}>Listing not found</h1>
         <p style={{ color: '#65676B', marginTop: 8 }}>This listing may have been removed.</p>
-        <a href="/listings" style={{ marginTop: 24, padding: '12px 24px', backgroundColor: '#2563EB', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none', fontWeight: 600 }}>
+        <a href="/listings" style={{ marginTop: 24, padding: '12px 24px', backgroundColor: '#2D79BF', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none', fontWeight: 600 }}>
           Browse Listings
         </a>
       </div>
@@ -80,7 +80,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
       {/* Header */}
       <header style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid #CED0D4', padding: '16px 20px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2563EB', textDecoration: 'none', fontFamily: 'TANNimbus' }}>rent rayda</a>
+          <a href="/" style={{ textDecoration: 'none' }}><span style={{ fontFamily: 'Sentient', fontSize: 20, fontWeight: 700, letterSpacing: 0.5, lineHeight: 1.1, color: '#050505' }}>RentRayda</span></a>
           <a href="/listings" style={{ fontSize: 14, color: '#65676B', textDecoration: 'none' }}>← Back to listings</a>
         </div>
       </header>
@@ -96,7 +96,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         )}
 
         {/* Price */}
-        <h1 style={{ fontSize: 32, fontWeight: 700, color: '#2563EB', margin: '0 0 4px', fontFamily: 'NotoSansOsage' }}>
+        <h1 style={{ fontSize: 32, fontWeight: 700, color: '#2D79BF', margin: '0 0 4px', fontFamily: 'Be Vietnam Pro' }}>
           ₱{listing.monthlyRent.toLocaleString()}/month
         </h1>
         <p style={{ fontSize: 18, color: '#65676B', margin: '0 0 24px' }}>
@@ -123,7 +123,7 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         <div style={{ borderTop: '1px solid #CED0D4', paddingTop: 24, marginBottom: 24 }}>
           {inclusions.length > 0 && (
             <>
-              <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px', fontFamily: 'Ralgine' }}>Included in rent</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 12px', fontFamily: 'Sentient' }}>Included in rent</h3>
               <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
                 {inclusions.map((inc) => (
                   <span key={inc} style={{ backgroundColor: '#E4E6EB', borderRadius: 9999, padding: '4px 12px', fontSize: 13, color: '#374151' }}>
@@ -144,27 +144,27 @@ export default async function ListingDetailPage({ params }: { params: Promise<{ 
         {/* Description */}
         {listing.description && (
           <div style={{ marginBottom: 24 }}>
-            <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 8px', fontFamily: 'Ralgine' }}>Description</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 500, margin: '0 0 8px', fontFamily: 'Sentient' }}>Description</h3>
             <p style={{ fontSize: 16, color: '#65676B', lineHeight: 1.6, margin: 0 }}>{listing.description}</p>
           </div>
         )}
 
         {/* Anti-scam card */}
         <div style={{ backgroundColor: '#DBEAFE', borderRadius: 8, padding: 16, marginBottom: 32 }}>
-          <p style={{ fontSize: 14, color: '#2563EB', fontStyle: 'italic', lineHeight: 1.6, margin: 0 }}>
+          <p style={{ fontSize: 14, color: '#2D79BF', fontStyle: 'italic', lineHeight: 1.6, margin: 0 }}>
             ✓ This landlord is verified — they have a confirmed ID and property proof. You will never be asked to pay anything on this app.
           </p>
         </div>
 
         {/* CTA: Download App */}
         <div style={{ backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24, textAlign: 'center', border: '1px solid #CED0D4' }}>
-          <h3 style={{ fontSize: 20, fontWeight: 600, margin: '0 0 8px', fontFamily: 'Ralgine' }}>Want to connect with this landlord?</h3>
+          <h3 style={{ fontSize: 20, fontWeight: 600, margin: '0 0 8px', fontFamily: 'Sentient' }}>Want to connect with this landlord?</h3>
           <p style={{ fontSize: 14, color: '#65676B', margin: '0 0 20px' }}>
             Download the RentRayda app to send a connection request.
           </p>
           <a
             href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
-            style={{ display: 'inline-block', padding: '14px 32px', fontSize: 16, fontWeight: 600, backgroundColor: '#2563EB', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none' }}
+            style={{ display: 'inline-block', padding: '14px 32px', fontSize: 16, fontWeight: 600, backgroundColor: '#2D79BF', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none' }}
           >
             Download RentRayda App
           </a>

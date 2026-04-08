@@ -1,6 +1,16 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+} from '@/components/ui/table';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose, DialogBody, DialogFooter,
+} from '@/components/ui/dialog';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -29,6 +39,19 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(hours / 24)}d ago`;
 }
 
+function docTypeLabel(type: string): string {
+  if (type === 'government_id') return 'Gov ID';
+  if (type === 'property_proof') return 'Property';
+  return 'Employment';
+}
+
+const REJECT_SUGGESTIONS = [
+  'ID is not clear',
+  'Face does not match selfie',
+  'Property proof is not sufficient',
+  'ID is expired',
+];
+
 export default function VerificationsPage() {
   const [docs, setDocs] = useState<VerificationDoc[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,14 +66,8 @@ export default function VerificationsPage() {
       const res = await fetch(`${API_URL}/api/admin/verification-queue`, {
         credentials: 'include',
       });
-      if (res.status === 401) {
-        setError('Not authenticated. Please log in.');
-        return;
-      }
-      if (res.status === 403) {
-        setError('Access denied. Admin role required.');
-        return;
-      }
+      if (res.status === 401) { setError('Not authenticated. Please log in.'); return; }
+      if (res.status === 403) { setError('Access denied. Admin role required.'); return; }
       if (!res.ok) throw new Error('Failed to fetch');
       const { data } = await res.json();
       setDocs(data);
@@ -102,257 +119,212 @@ export default function VerificationsPage() {
     }
   };
 
-  const REJECT_SUGGESTIONS = [
-    'ID is not clear',
-    'Face does not match selfie',
-    'Property proof is not sufficient',
-    'ID is expired',
-  ];
-
   if (loading) {
-    return <p style={{ color: '#65676B' }}>Loading verification queue...</p>;
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-8 w-64" />
+        <Skeleton className="h-[400px] w-full rounded-[12px]" />
+      </div>
+    );
   }
 
   if (error) {
-    return <p style={{ color: '#E41E3F' }}>{error}</p>;
+    return <p className="text-danger text-sm">{error}</p>;
   }
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24, fontFamily: 'Ralgine' }}>
+      <h1 className="font-brand text-2xl text-text-primary mb-6">
         Verification Queue
-        <span style={{ fontSize: 14, fontWeight: 400, color: '#65676B', marginLeft: 8 }}>
+        <span className="text-sm font-normal text-text-secondary ml-2">
           ({docs.length} pending)
         </span>
       </h1>
 
       {docs.length === 0 ? (
-        <p style={{ color: '#65676B', textAlign: 'center', padding: 48 }}>
+        <p className="text-text-secondary text-center py-12">
           No pending verifications. All caught up!
         </p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#FFFFFF', borderRadius: 8, overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #CED0D4', textAlign: 'left' }}>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 200 }}>User</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Type</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Submitted</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>ID Photo</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>Selfie</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>Status</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 200 }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {docs.map((doc) => (
-              <tr key={doc.id} style={{ borderBottom: '1px solid #E4E6EB' }}>
-                <td style={{ padding: '12px 16px' }}>
-                  <div style={{ fontSize: 14, fontWeight: 500, color: '#050505' }}>{doc.user.phone}</div>
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      fontSize: 11,
-                      fontWeight: 500,
-                      padding: '2px 8px',
-                      borderRadius: 9999,
-                      backgroundColor: doc.user.role === 'landlord' ? '#DBEAFE' : '#D1FAE5',
-                      color: doc.user.role === 'landlord' ? '#1D4ED8' : '#059669',
-                      marginTop: 4,
-                    }}
-                  >
-                    {doc.user.role}
-                  </span>
-                </td>
-                <td style={{ padding: '12px 16px', fontSize: 14, color: '#374151' }}>
-                  {doc.documentType === 'government_id' ? 'Gov ID' : doc.documentType === 'property_proof' ? 'Property' : 'Employment'}
-                  {doc.idType && <div style={{ fontSize: 12, color: '#8A8D91' }}>{doc.idType}</div>}
-                </td>
-                <td style={{ padding: '12px 16px', fontSize: 14, color: '#65676B' }}>
-                  {timeAgo(doc.createdAt)}
-                </td>
-                <td style={{ padding: '12px 16px' }}>
-                  {doc.idPhotoUrl ? (
-                    <img
-                      src={doc.idPhotoUrl}
-                      alt="ID"
-                      onClick={() => setSelectedDoc(doc)}
-                      style={{ width: 60, height: 40, objectFit: 'cover', borderRadius: 4, cursor: 'pointer', border: '1px solid #CED0D4' }}
-                    />
-                  ) : (
-                    <span style={{ fontSize: 12, color: '#8A8D91' }}>N/A</span>
-                  )}
-                </td>
-                <td style={{ padding: '12px 16px' }}>
-                  {doc.selfieUrl ? (
-                    <img
-                      src={doc.selfieUrl}
-                      alt="Selfie"
-                      onClick={() => setSelectedDoc(doc)}
-                      style={{ width: 40, height: 40, objectFit: 'cover', borderRadius: 20, cursor: 'pointer', border: '1px solid #CED0D4' }}
-                    />
-                  ) : (
-                    <span style={{ fontSize: 12, color: '#8A8D91' }}>N/A</span>
-                  )}
-                </td>
-                <td style={{ padding: '12px 16px' }}>
-                  <span style={{ fontSize: 12, fontWeight: 500, padding: '2px 8px', borderRadius: 9999, backgroundColor: '#FEF3C7', color: '#92400E' }}>
-                    pending
-                  </span>
-                </td>
-                <td style={{ padding: '12px 16px' }}>
-                  <div style={{ display: 'flex', gap: 8 }}>
-                    <button
-                      onClick={() => handleApprove(doc.id)}
-                      disabled={processing === doc.id}
-                      style={{
-                        padding: '6px 12px', fontSize: 13, fontWeight: 500,
-                        backgroundColor: '#31A24C', color: '#FFFFFF', border: 'none',
-                        borderRadius: 6, cursor: 'pointer', opacity: processing === doc.id ? 0.5 : 1,
-                      }}
+        <div className="rounded-[12px] border border-border bg-surface shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[200px]">User</TableHead>
+                <TableHead className="w-[120px]">Type</TableHead>
+                <TableHead className="w-[120px]">Submitted</TableHead>
+                <TableHead className="w-[100px]">ID Photo</TableHead>
+                <TableHead className="w-[100px]">Selfie</TableHead>
+                <TableHead className="w-[100px]">Status</TableHead>
+                <TableHead className="w-[200px]">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {docs.map((doc) => (
+                <TableRow key={doc.id}>
+                  <TableCell>
+                    <div className="text-sm font-medium text-text-primary">{doc.user.phone}</div>
+                    <Badge
+                      variant={doc.user.role === 'landlord' ? 'default' : 'verified'}
+                      className="mt-1"
                     >
-                      Approve
-                    </button>
-                    <button
-                      onClick={() => setRejectDoc(doc)}
-                      disabled={processing === doc.id}
-                      style={{
-                        padding: '6px 12px', fontSize: 13, fontWeight: 500,
-                        backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none',
-                        borderRadius: 6, cursor: 'pointer', opacity: processing === doc.id ? 0.5 : 1,
-                      }}
-                    >
-                      Reject
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-
-      {/* Side-by-side comparison modal */}
-      {selectedDoc && (
-        <div
-          onClick={() => setSelectedDoc(null)}
-          style={{
-            position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.7)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24,
-              maxWidth: 800, width: '90%', maxHeight: '80vh', overflow: 'auto',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-              <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', fontFamily: 'Ralgine' }}>
-                Document Review — {selectedDoc.user.phone}
-              </h2>
-              <button
-                onClick={() => setSelectedDoc(null)}
-                style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer', color: '#65676B' }}
-              >
-                ×
-              </button>
-            </div>
-            <div style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 12, color: '#65676B', marginBottom: 8 }}>ID Photo</p>
-                {selectedDoc.idPhotoUrl ? (
-                  <img src={selectedDoc.idPhotoUrl} alt="ID" style={{ maxWidth: 350, maxHeight: 400, borderRadius: 8, border: '1px solid #CED0D4' }} />
-                ) : (
-                  <p style={{ color: '#8A8D91' }}>Not available</p>
-                )}
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <p style={{ fontSize: 12, color: '#65676B', marginBottom: 8 }}>Selfie</p>
-                {selectedDoc.selfieUrl ? (
-                  <img src={selectedDoc.selfieUrl} alt="Selfie" style={{ maxWidth: 300, maxHeight: 400, borderRadius: 8, border: '1px solid #CED0D4' }} />
-                ) : (
-                  <p style={{ color: '#8A8D91' }}>Not available</p>
-                )}
-              </div>
-            </div>
-          </div>
+                      {doc.user.role}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="text-sm">{docTypeLabel(doc.documentType)}</div>
+                    {doc.idType && (
+                      <div className="text-xs text-text-tertiary">{doc.idType}</div>
+                    )}
+                  </TableCell>
+                  <TableCell className="text-text-secondary">
+                    {timeAgo(doc.createdAt)}
+                  </TableCell>
+                  <TableCell>
+                    {doc.idPhotoUrl ? (
+                      <img
+                        src={doc.idPhotoUrl}
+                        alt="ID"
+                        onClick={() => setSelectedDoc(doc)}
+                        className="w-[60px] h-[40px] object-cover rounded border border-border cursor-pointer hover:opacity-80 transition-opacity"
+                      />
+                    ) : (
+                      <span className="text-xs text-text-tertiary">N/A</span>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {doc.selfieUrl ? (
+                      <img
+                        src={doc.selfieUrl}
+                        alt="Selfie"
+                        onClick={() => setSelectedDoc(doc)}
+                        className="w-10 h-10 object-cover rounded-full border border-border cursor-pointer hover:opacity-80 transition-opacity"
+                      />
+                    ) : (
+                      <span className="text-xs text-text-tertiary">N/A</span>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="pending">pending</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex gap-2">
+                      <Button
+                        size="sm"
+                        onClick={() => handleApprove(doc.id)}
+                        loading={processing === doc.id}
+                        className="bg-verified hover:bg-verified/90 text-white"
+                      >
+                        Approve
+                      </Button>
+                      <Button
+                        size="sm"
+                        variant="danger"
+                        onClick={() => setRejectDoc(doc)}
+                        disabled={processing === doc.id}
+                      >
+                        Reject
+                      </Button>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </div>
       )}
 
+      {/* Side-by-side comparison modal */}
+      <Dialog open={!!selectedDoc} onClose={() => setSelectedDoc(null)}>
+        <DialogContent className="max-w-[800px]">
+          <DialogHeader>
+            <DialogTitle>
+              Document Review — {selectedDoc?.user.phone}
+            </DialogTitle>
+            <DialogClose onClose={() => setSelectedDoc(null)} />
+          </DialogHeader>
+          <DialogBody>
+            <div className="flex gap-6 justify-center">
+              <div className="text-center">
+                <p className="text-xs text-text-secondary mb-2">ID Photo</p>
+                {selectedDoc?.idPhotoUrl ? (
+                  <img
+                    src={selectedDoc.idPhotoUrl}
+                    alt="ID"
+                    className="max-w-[350px] max-h-[400px] rounded-[8px] border border-border"
+                  />
+                ) : (
+                  <p className="text-text-tertiary">Not available</p>
+                )}
+              </div>
+              <div className="text-center">
+                <p className="text-xs text-text-secondary mb-2">Selfie</p>
+                {selectedDoc?.selfieUrl ? (
+                  <img
+                    src={selectedDoc.selfieUrl}
+                    alt="Selfie"
+                    className="max-w-[300px] max-h-[400px] rounded-[8px] border border-border"
+                  />
+                ) : (
+                  <p className="text-text-tertiary">Not available</p>
+                )}
+              </div>
+            </div>
+          </DialogBody>
+        </DialogContent>
+      </Dialog>
+
       {/* Reject modal */}
-      {rejectDoc && (
-        <div
-          onClick={() => { setRejectDoc(null); setRejectReason(''); }}
-          style={{
-            position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.7)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24,
-              maxWidth: 480, width: '90%',
-            }}
-          >
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 16, fontFamily: 'Ralgine' }}>
-              Reject — {rejectDoc.user.phone}
-            </h2>
-            <p style={{ fontSize: 14, color: '#65676B', marginBottom: 12 }}>
+      <Dialog open={!!rejectDoc} onClose={() => { setRejectDoc(null); setRejectReason(''); }}>
+        <DialogContent className="max-w-[480px]">
+          <DialogHeader>
+            <DialogTitle>Reject — {rejectDoc?.user.phone}</DialogTitle>
+            <DialogClose onClose={() => { setRejectDoc(null); setRejectReason(''); }} />
+          </DialogHeader>
+          <DialogBody className="space-y-4">
+            <p className="text-sm text-text-secondary">
               Reason (required, will be sent via SMS):
             </p>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 12 }}>
+            <div className="flex flex-wrap gap-2">
               {REJECT_SUGGESTIONS.map((s) => (
                 <button
                   key={s}
                   onClick={() => setRejectReason(s)}
-                  style={{
-                    padding: '4px 12px', fontSize: 13, border: '1px solid #CED0D4',
-                    borderRadius: 6, backgroundColor: rejectReason === s ? '#DBEAFE' : '#FFFFFF',
-                    cursor: 'pointer', color: '#374151',
-                  }}
+                  className={`px-3 py-1.5 text-xs rounded-[6px] border transition-colors ${
+                    rejectReason === s
+                      ? 'border-brand bg-brand-light text-brand-dark'
+                      : 'border-border bg-surface text-text-primary hover:bg-background'
+                  }`}
                 >
                   {s}
                 </button>
               ))}
             </div>
-            <textarea
+            <Textarea
               value={rejectReason}
               onChange={(e) => setRejectReason(e.target.value)}
               placeholder="Enter rejection reason..."
-              style={{
-                width: '100%', height: 80, padding: 12, fontSize: 14,
-                border: '1px solid #CED0D4', borderRadius: 8, resize: 'none',
-                fontFamily: 'inherit',
-              }}
+              className="min-h-[80px]"
             />
-            <div style={{ display: 'flex', gap: 12, marginTop: 16, justifyContent: 'flex-end' }}>
-              <button
-                onClick={() => { setRejectDoc(null); setRejectReason(''); }}
-                style={{
-                  padding: '8px 16px', fontSize: 14, border: '1px solid #CED0D4',
-                  borderRadius: 8, backgroundColor: '#FFFFFF', cursor: 'pointer',
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleReject}
-                disabled={!rejectReason || processing === rejectDoc.id}
-                style={{
-                  padding: '8px 16px', fontSize: 14, fontWeight: 500,
-                  backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none',
-                  borderRadius: 8, cursor: 'pointer',
-                  opacity: !rejectReason || processing === rejectDoc.id ? 0.5 : 1,
-                }}
-              >
-                Reject & Send SMS
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          </DialogBody>
+          <DialogFooter>
+            <Button
+              variant="secondary"
+              onClick={() => { setRejectDoc(null); setRejectReason(''); }}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={handleReject}
+              disabled={!rejectReason}
+              loading={!!rejectDoc && processing === rejectDoc.id}
+            >
+              Reject & Send SMS
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -51,7 +51,7 @@ export function TarsierLogo({ size = 64, variant = 'full', color, ...props }: Ta
     <Svg width={size} height={size} viewBox={viewBox} {...props}>
       <Defs>
         <LinearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
-          <Stop offset="0" stopColor="#1D4ED8" />
+          <Stop offset="0" stopColor="#24628F" />
           <Stop offset="1" stopColor="#60A5FA" />
         </LinearGradient>
       </Defs>

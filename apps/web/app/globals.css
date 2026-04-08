@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   RentRayda Design System v3
+   Fonts: Sentient (display + heading) · Be Vietnam Pro (body)
+   Inspired by: igloo.inc (Awwwards SOTD)
+   ═══════════════════════════════════════════════ */
+
+@theme {
+  /* ── Brand ── */
+  --color-brand: #2D79BF;
+  --color-brand-dark: #24628F;
+  --color-brand-bright: #60A5FA;
+  --color-brand-light: #DBEAFE;
+
+  /* ── Neutral ── */
+  --color-background: #F0F2F5;
+  --color-surface: #FFFFFF;
+  --color-input: #E4E6EB;
+  --color-border: #CED0D4;
+  --color-divider: #DADDE1;
+
+  /* ── Text ── */
+  --color-text-primary: #050505;
+  --color-text-secondary: #65676B;
+  --color-text-tertiary: #8A8D91;
+
+  /* ── Semantic ── */
+  --color-verified: #16A34A;
+  --color-verified-light: #DCFCE7;
+  --color-verified-border: #86EFAC;
+  --color-danger: #E41E3F;
+  --color-danger-light: #FEE2E2;
+  --color-warning: #F7B928;
+  --color-warning-light: #FEF3C7;
+
+  /* ── Typography ── */
+  --font-display: 'Sentient', Georgia, serif;
+  --font-heading: 'Sentient', Georgia, serif;
+  --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ── Spacing (Igloo-inspired fluid system) ── */
+  --space-section: clamp(80px, 12vw, 180px);
+  --space-section-sm: clamp(48px, 8vw, 120px);
+  --space-inner: clamp(24px, 4vw, 52px);
+  --space-gutter: clamp(16px, 3vw, 28px);
+
+  /* ── Layout ── */
+  --max-width: 1120px;
+  --max-width-narrow: 720px;
+  --max-width-wide: 1280px;
+
+  /* ── Radius ── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Easing (premium cubic-bezier) ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Font Faces ── */
+
+@font-face {
+  font-family: 'Sentient';
+  src: url('/fonts/Sentient-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sentient';
+  src: url('/fonts/Sentient-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Sentient';
+  src: url('/fonts/Sentient-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/BeVietnamPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/BeVietnamPro-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/BeVietnamPro-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Be Vietnam Pro';
+  src: url('/fonts/BeVietnamPro-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ── Font Utilities ── */
+.font-display { font-family: var(--font-display); }
+.font-heading { font-family: var(--font-heading); }
+.font-brand { font-family: var(--font-display); }
+.font-wordmark { font-family: var(--font-display); }
+
+/* ── Fluid Type Scale (Igloo pattern) ── */
+.text-fluid-display {
+  font-size: clamp(2.5rem, 5vw + 1rem, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.text-fluid-headline {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.text-fluid-title {
+  font-size: clamp(1.25rem, 2vw + 0.25rem, 1.5rem);
+  line-height: 1.3;
+}
+.text-fluid-body-lg {
+  font-size: clamp(1rem, 1.2vw + 0.25rem, 1.25rem);
+  line-height: 1.7;
+}
+
+/* ── Premium Section Spacing ── */
+.section-padding {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+  padding-left: var(--space-gutter);
+  padding-right: var(--space-gutter);
+}
+.section-padding-sm {
+  padding-top: var(--space-section-sm);
+  padding-bottom: var(--space-section-sm);
+  padding-left: var(--space-gutter);
+  padding-right: var(--space-gutter);
+}
+
+/* ── Premium Easing ── */
+.transition-premium {
+  transition-timing-function: var(--ease-out-expo);
+  transition-duration: 0.5s;
+}
+
+/* ── Selection Color ── */
+::selection {
+  background-color: var(--color-brand-light);
+  color: var(--color-brand-dark);
+}

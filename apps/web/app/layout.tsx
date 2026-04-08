@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'RentRayda — Verified Rentals in Pasig',
@@ -18,29 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <style dangerouslySetInnerHTML={{ __html: `
-          @font-face {
-            font-family: 'TANNimbus';
-            src: url('/fonts/TAN-NIMBUS.ttf') format('truetype');
-            font-weight: 400;
-            font-display: swap;
-          }
-          @font-face {
-            font-family: 'NotoSansOsage';
-            src: url('/fonts/NotoSansOsage-Regular.ttf') format('truetype');
-            font-weight: 400;
-            font-display: swap;
-          }
-          @font-face {
-            font-family: 'Ralgine';
-            src: url('/fonts/Ralgine-9MMJ2.otf') format('opentype');
-            font-weight: 400;
-            font-display: swap;
-          }
-        ` }} />
-      </head>
-      <body style={{ margin: 0, fontFamily: 'NotoSansOsage, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif', color: '#050505', backgroundColor: '#FFFFFF' }}>
+      <body>
         {children}
       </body>
     </html>

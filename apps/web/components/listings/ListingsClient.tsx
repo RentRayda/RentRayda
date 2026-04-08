@@ -191,13 +191,13 @@ export default function ListingsClient({
             </svg>
           </div>
           <p style={{
-            fontFamily: 'Ralgine, serif',
+            fontFamily: 'Sentient, serif',
             fontSize: 22, color: '#050505', margin: '0 0 8px',
           }}>
             No listings here yet
           </p>
           <p style={{
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 15, color: '#65676B',
           }}>
             Try a different area or check back soon.

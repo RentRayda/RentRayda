@@ -53,7 +53,7 @@ export default function ViewToggle({ activeView, onToggle }: ViewToggleProps) {
             border: 'none',
             borderRadius: 9999,
             cursor: 'pointer',
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 14,
             fontWeight: activeView === key ? 600 : 400,
             color: activeView === key ? '#050505' : '#65676B',

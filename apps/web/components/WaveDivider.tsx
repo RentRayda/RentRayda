@@ -5,7 +5,7 @@
  * Use flip={true} for bottom-of-section placement.
  */
 export function WaveDivider({
-  topColor = '#2B51E3',
+  topColor = '#2D79BF',
   bottomColor = '#FFFFFF',
   flip = false,
 }: {

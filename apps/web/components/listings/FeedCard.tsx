@@ -61,16 +61,16 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
       <div style={{ padding: '16px 16px 0', display: 'flex', alignItems: 'center', gap: 10 }}>
         <div style={{
           width: 44, height: 44, borderRadius: 9999,
-          backgroundColor: '#2B51E3', color: '#FFFFFF',
+          backgroundColor: '#2D79BF', color: '#FFFFFF',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 15, fontWeight: 600, fontFamily: 'NotoSansOsage, sans-serif',
+          fontSize: 15, fontWeight: 600, fontFamily: 'Be Vietnam Pro, sans-serif',
           flexShrink: 0,
         }}>
           {initials}
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <span style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 15, fontWeight: 600, color: '#050505' }}>
+            <span style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 15, fontWeight: 600, color: '#050505' }}>
               {listing.landlordProfile.fullName}
             </span>
             {isVerified && (
@@ -78,7 +78,7 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
                 display: 'inline-flex', alignItems: 'center', gap: 3,
                 backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
                 borderRadius: 9999, padding: '2px 8px',
-                fontFamily: 'NotoSansOsage, sans-serif',
+                fontFamily: 'Be Vietnam Pro, sans-serif',
                 fontSize: 11, fontWeight: 600, color: '#16A34A',
               }}>
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -88,7 +88,7 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
               </span>
             )}
           </div>
-          <div style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 13, color: '#65676B', marginTop: 2 }}>
+          <div style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 13, color: '#65676B', marginTop: 2 }}>
             <span style={{ textTransform: 'capitalize' }}>{listing.unitType}</span> &middot; {timeAgo(listing.lastActiveAt)}
           </div>
         </div>
@@ -98,8 +98,8 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
       <div style={{ padding: '12px 16px' }}>
         {/* Price */}
         <div style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
-          fontSize: 22, fontWeight: 700, color: '#2B51E3',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
+          fontSize: 22, fontWeight: 700, color: '#2D79BF',
           marginBottom: 6,
         }}>
           PHP {listing.monthlyRent.toLocaleString()}/month
@@ -107,7 +107,7 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
 
         {/* Location */}
         <div style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 14, color: '#65676B',
           marginBottom: 8,
           display: 'flex', alignItems: 'center', gap: 4,
@@ -121,7 +121,7 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
 
         {/* Description */}
         <p style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 15, color: '#050505', lineHeight: 1.55,
           margin: '0 0 12px',
         }}>
@@ -133,7 +133,7 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 12 }}>
             {inclusions.map(inc => (
               <span key={inc} style={{
-                fontFamily: 'NotoSansOsage, sans-serif',
+                fontFamily: 'Be Vietnam Pro, sans-serif',
                 fontSize: 12, color: '#65676B',
                 backgroundColor: '#F0F2F5',
                 padding: '4px 10px',
@@ -161,9 +161,9 @@ export default function FeedCard({ listing, index }: { listing: Listing; index: 
             display: 'block', textAlign: 'center',
             padding: '12px 24px',
             backgroundColor: '#F0F2F5',
-            color: '#2B51E3',
+            color: '#2D79BF',
             borderRadius: 8,
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 14, fontWeight: 600,
             textDecoration: 'none',
             transition: 'background-color 0.15s ease',

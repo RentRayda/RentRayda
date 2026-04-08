@@ -1,11 +1,11 @@
 export const colors = {
-  // Primary — RentRayda Blue
-  brand: '#2B51E3',
-  brandDark: '#1D4ED8',
+  // Primary — RentRayda Blue (#2D79BF is THE brand blue)
+  brand: '#2D79BF',
+  brandDark: '#24628F',
   brandBright: '#60A5FA',
   brandLight: '#DBEAFE',
 
-  // Neutral — Facebook-aligned
+  // Neutral
   background: '#F0F2F5',
   surface: '#FFFFFF',
   inputBg: '#E4E6EB',
@@ -15,11 +15,11 @@ export const colors = {
   textSecondary: '#65676B',
   textTertiary: '#8A8D91',
 
-  // Status — Facebook-aligned
-  verified: '#31A24C',
+  // Status
+  verified: '#16A34A',
   danger: '#E41E3F',
   warning: '#F7B928',
-  success: '#31A24C',
+  success: '#16A34A',
 } as const;
 
 export const spacing = {
@@ -32,13 +32,10 @@ export const spacing = {
 } as const;
 
 export const typography = {
-  // TAN Nimbus — logo wordmark, headers, accent text
-  fontBrand: 'TANNimbus',
-  fontHeading: 'TANNimbus',
-  fontAccent: 'TANNimbus',
-  // Noto Sans Osage — all body text, labels, buttons, etc.
-  fontBody: 'NotoSansOsage',
-  fontBodyBold: 'NotoSansOsage',
+  fontDisplay: 'Sentient',
+  fontHeading: 'Sentient',
+  fontBody: 'Be Vietnam Pro',
+
   sizes: {
     xs: 12,
     sm: 14,
@@ -47,6 +44,7 @@ export const typography = {
     xl: 20,
     '2xl': 24,
     '3xl': 30,
+    '4xl': 36,
   },
   weights: {
     regular: '400',

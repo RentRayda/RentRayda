@@ -66,7 +66,7 @@ export default function PhotoGrid({ photos, alt }: PhotoGridProps) {
             backgroundColor: 'rgba(0,0,0,0.5)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: '#FFFFFF',
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 24, fontWeight: 700,
           }}>
             +{remaining}

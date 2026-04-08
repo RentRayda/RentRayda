@@ -72,7 +72,7 @@ function RangeSlider({
           width: `${maxPercent - minPercent}%`,
           height: 4,
           borderRadius: 2,
-          backgroundColor: '#2B51E3',
+          backgroundColor: '#2D79BF',
         }}
       />
       {/* Min thumb */}
@@ -135,7 +135,7 @@ function RangeSlider({
           width: 20px;
           height: 20px;
           border-radius: 50%;
-          background: #2B51E3;
+          background: #2D79BF;
           border: 3px solid #FFFFFF;
           box-shadow: 0 1px 4px rgba(0,0,0,0.2);
           cursor: pointer;
@@ -145,7 +145,7 @@ function RangeSlider({
           width: 14px;
           height: 14px;
           border-radius: 50%;
-          background: #2B51E3;
+          background: #2D79BF;
           border: 3px solid #FFFFFF;
           box-shadow: 0 1px 4px rgba(0,0,0,0.2);
           cursor: pointer;
@@ -164,7 +164,7 @@ const selectStyle: React.CSSProperties = {
   border: '1px solid #CED0D4',
   fontSize: 14,
   backgroundColor: '#FFFFFF',
-  fontFamily: 'NotoSansOsage, sans-serif',
+  fontFamily: 'Be Vietnam Pro, sans-serif',
   color: '#050505',
   cursor: 'pointer',
 };
@@ -176,13 +176,13 @@ const inputStyle: React.CSSProperties = {
   borderRadius: 6,
   border: '1px solid #CED0D4',
   fontSize: 13,
-  fontFamily: 'NotoSansOsage, sans-serif',
+  fontFamily: 'Be Vietnam Pro, sans-serif',
   color: '#050505',
   textAlign: 'center',
 };
 
 const labelStyle: React.CSSProperties = {
-  fontFamily: 'NotoSansOsage, sans-serif',
+  fontFamily: 'Be Vietnam Pro, sans-serif',
   fontSize: 12,
   fontWeight: 600,
   color: '#65676B',
@@ -252,7 +252,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
         boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
       }}>
         <h2 style={{
-          fontFamily: 'Ralgine, serif',
+          fontFamily: 'Sentient, serif',
           fontSize: 20,
           color: '#050505',
           margin: '0 0 12px',
@@ -260,7 +260,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
           Verified Listings
         </h2>
         <p style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 14,
           color: '#65676B',
           lineHeight: 1.5,
@@ -274,16 +274,16 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               <path d="M9 12l2 2 4-4" />
             </svg>
-            <span style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 13, color: '#050505' }}>
+            <span style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 13, color: '#050505' }}>
               Both sides verified
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B51E3" strokeWidth="2" strokeLinecap="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2D79BF" strokeWidth="2" strokeLinecap="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 13, color: '#050505' }}>
+            <span style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 13, color: '#050505' }}>
               Pasig City
             </span>
           </div>
@@ -299,7 +299,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
         boxShadow: '0 1px 4px rgba(0,0,0,0.04)',
       }}>
         <div style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 16,
           fontWeight: 600,
           color: '#050505',
@@ -391,7 +391,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
                 style={inputStyle}
               />
             </div>
-            <span style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 12, color: '#8A8D91' }}>to</span>
+            <span style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 12, color: '#8A8D91' }}>to</span>
             <div style={{ flex: 1 }}>
               <input
                 type="number"
@@ -411,7 +411,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
             display: 'flex',
             justifyContent: 'space-between',
             marginTop: 6,
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 11,
             color: '#8A8D91',
           }}>
@@ -427,17 +427,17 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
             width: '100%',
             height: 42,
             borderRadius: 8,
-            backgroundColor: '#2B51E3',
+            backgroundColor: '#2D79BF',
             color: '#FFFFFF',
             border: 'none',
             fontSize: 14,
             fontWeight: 600,
             cursor: 'pointer',
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             transition: 'background-color 0.15s ease',
           }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#1D4ED8')}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2B51E3')}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#24628F')}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#2D79BF')}
         >
           Apply Filters
         </button>
@@ -456,7 +456,7 @@ export default function FilterSidebar({ currentFilters }: FilterSidebarProps) {
               border: 'none',
               fontSize: 13,
               cursor: 'pointer',
-              fontFamily: 'NotoSansOsage, sans-serif',
+              fontFamily: 'Be Vietnam Pro, sans-serif',
             }}
             onMouseEnter={e => (e.currentTarget.style.color = '#E41E3F')}
             onMouseLeave={e => (e.currentTarget.style.color = '#65676B')}

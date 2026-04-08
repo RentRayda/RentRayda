@@ -24,7 +24,7 @@ function MetricCard({ value, label, color }: { value: number; label: string; col
       backgroundColor: '#FFFFFF', borderRadius: 12, padding: 20,
       boxShadow: '0 1px 3px rgba(0,0,0,0.08)', border: '1px solid #E4E6EB',
     }}>
-      <p style={{ fontSize: 36, fontWeight: 700, color: color || '#050505', margin: '0 0 4px', fontFamily: 'Ralgine' }}>
+      <p style={{ fontSize: 36, fontWeight: 700, color: color || '#050505', margin: '0 0 4px', fontFamily: 'Sentient' }}>
         {value.toLocaleString()}
       </p>
       <p style={{ fontSize: 14, color: '#65676B', margin: 0 }}>{label}</p>
@@ -59,12 +59,12 @@ export default function AdminDashboardPage() {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', margin: 0, fontFamily: 'Ralgine' }}>Dashboard</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', margin: 0, fontFamily: 'Sentient' }}>Dashboard</h1>
         <button
           onClick={fetchMetrics}
           style={{
             padding: '8px 16px', fontSize: 14, fontWeight: 500,
-            backgroundColor: '#2563EB', color: '#FFFFFF', border: 'none',
+            backgroundColor: '#2D79BF', color: '#FFFFFF', border: 'none',
             borderRadius: 8, cursor: 'pointer',
           }}
         >
@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Users */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Ralgine' }}>USERS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Sentient' }}>USERS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
         <MetricCard value={metrics.totalUsers} label="Total Users" />
         <MetricCard value={metrics.totalLandlords} label="Landlords" />
@@ -84,21 +84,21 @@ export default function AdminDashboardPage() {
       </div>
 
       {/* Listings */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Ralgine' }}>LISTINGS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Sentient' }}>LISTINGS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
         <MetricCard value={metrics.activeListings} label="Active Listings" color="#31A24C" />
         <MetricCard value={metrics.draftListings} label="Draft Listings" color="#65676B" />
       </div>
 
       {/* Connections */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Ralgine' }}>CONNECTIONS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Sentient' }}>CONNECTIONS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <MetricCard value={metrics.totalConnections} label="Total Connections" color="#2563EB" />
-        <MetricCard value={metrics.connectionsThisWeek} label="This Week" color="#2563EB" />
+        <MetricCard value={metrics.totalConnections} label="Total Connections" color="#2D79BF" />
+        <MetricCard value={metrics.connectionsThisWeek} label="This Week" color="#2D79BF" />
       </div>
 
       {/* Reports */}
-      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Ralgine' }}>REPORTS</h2>
+      <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Sentient' }}>REPORTS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
         <MetricCard value={metrics.pendingReports} label="Pending Reports" color={metrics.pendingReports > 0 ? '#E41E3F' : '#65676B'} />
       </div>
@@ -107,7 +107,7 @@ export default function AdminDashboardPage() {
       <div style={{ display: 'flex', gap: 12, marginTop: 16 }}>
         <a href="/admin/verifications" style={{
           padding: '10px 20px', fontSize: 14, fontWeight: 500,
-          backgroundColor: '#DBEAFE', color: '#2563EB', borderRadius: 8,
+          backgroundColor: '#DBEAFE', color: '#2D79BF', borderRadius: 8,
           textDecoration: 'none',
         }}>
           → Verification Queue ({metrics.pendingVerifications})

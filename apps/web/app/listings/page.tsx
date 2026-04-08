@@ -1,6 +1,7 @@
 import { USE_MOCK_DATA, MOCK_WEB_LISTINGS } from '../../lib/mock-data';
 import ListingsClient from '../../components/listings/ListingsClient';
 import FilterSidebar from '../../components/listings/FilterSidebar';
+import Wordmark from '../../components/Wordmark';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -55,50 +56,40 @@ export default async function ListingsPage({
   const defaultView = params.view === 'gallery' ? 'gallery' : 'feed';
 
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#F0F2F5' }}>
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header style={{
-        backgroundColor: '#FFFFFF',
-        borderBottom: '1px solid #CED0D4',
-        padding: '12px 20px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-      }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <a href="/" style={{ fontSize: 20, fontWeight: 700, color: '#2B51E3', textDecoration: 'none', fontFamily: 'TANNimbus' }}>rent rayda</a>
+      <header className="sticky top-0 z-50 bg-surface border-b border-border px-5 py-3">
+        <div className="max-w-[1100px] mx-auto flex items-center justify-between">
+          <a href="/" className="no-underline">
+            <Wordmark />
+          </a>
           <a
             href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
-            style={{ padding: '8px 16px', fontSize: 14, fontWeight: 600, backgroundColor: '#2B51E3', color: '#FFFFFF', borderRadius: 8, textDecoration: 'none', fontFamily: 'NotoSansOsage, sans-serif' }}
+            className="text-sm font-semibold bg-brand text-white px-4 py-2 rounded-lg no-underline hover:bg-brand-dark transition-colors shadow-sm shadow-brand/20"
           >
             Download App
           </a>
         </div>
       </header>
 
-      {/* Content + Sidebar layout (FB Groups style: feed left, filters right) */}
-      <div style={{
-        maxWidth: 1100,
-        margin: '0 auto',
-        padding: '24px 20px',
-        display: 'flex',
-        gap: 24,
-        alignItems: 'flex-start',
-      }}>
+      {/* Content: feed + sidebar */}
+      <div className="max-w-[1100px] mx-auto px-5 py-6 flex flex-col md:flex-row gap-6 items-start">
         {/* Main feed */}
-        <main style={{ flex: 1, minWidth: 0 }}>
+        <main className="flex-1 min-w-0 order-2 md:order-1">
           <ListingsClient listings={listings as any} defaultView={defaultView as any} />
         </main>
 
-        {/* Right sidebar (like FB "About" panel) */}
-        <FilterSidebar currentFilters={{
-          city: params.city,
-          barangay: params.barangay,
-          minRent: params.minRent,
-          maxRent: params.maxRent,
-          type: params.type,
-          view: defaultView,
-        }} />
+        {/* Sidebar — hidden on mobile, shown as bottom sheet or collapsed */}
+        <aside className="w-full md:w-[320px] flex-shrink-0 order-1 md:order-2 md:sticky md:top-[72px]">
+          <FilterSidebar currentFilters={{
+            city: params.city,
+            barangay: params.barangay,
+            minRent: params.minRent,
+            maxRent: params.maxRent,
+            type: params.type,
+            view: defaultView,
+          }} />
+        </aside>
       </div>
     </div>
   );

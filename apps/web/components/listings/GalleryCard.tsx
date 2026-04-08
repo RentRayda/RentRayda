@@ -80,7 +80,7 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
           color: '#FFFFFF',
           padding: '6px 12px',
           borderRadius: 8,
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 16, fontWeight: 700,
         }}>
           PHP{listing.monthlyRent.toLocaleString()}/mo
@@ -94,7 +94,7 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
             color: '#FFFFFF',
             padding: '4px 8px',
             borderRadius: 6,
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 12,
             display: 'flex', alignItems: 'center', gap: 4,
           }}>
@@ -111,7 +111,7 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
       {/* Info */}
       <div style={{ padding: '14px 16px' }}>
         <div style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 15, fontWeight: 500, color: '#050505',
           marginBottom: 6,
           textTransform: 'capitalize',
@@ -123,13 +123,13 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
           <div style={{
             width: 24, height: 24, borderRadius: 9999,
-            backgroundColor: '#2B51E3', color: '#FFFFFF',
+            backgroundColor: '#2D79BF', color: '#FFFFFF',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 10, fontWeight: 600, fontFamily: 'NotoSansOsage, sans-serif',
+            fontSize: 10, fontWeight: 600, fontFamily: 'Be Vietnam Pro, sans-serif',
           }}>
             {initials}
           </div>
-          <span style={{ fontFamily: 'NotoSansOsage, sans-serif', fontSize: 13, color: '#65676B' }}>
+          <span style={{ fontFamily: 'Be Vietnam Pro, sans-serif', fontSize: 13, color: '#65676B' }}>
             {listing.landlordProfile.fullName}
           </span>
           {isVerified && (
@@ -137,7 +137,7 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
               display: 'inline-flex', alignItems: 'center', gap: 3,
               backgroundColor: '#DCFCE7', border: '1px solid #86EFAC',
               borderRadius: 9999, padding: '2px 8px',
-              fontFamily: 'NotoSansOsage, sans-serif',
+              fontFamily: 'Be Vietnam Pro, sans-serif',
               fontSize: 11, fontWeight: 600, color: '#16A34A',
             }}>
               <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
@@ -150,7 +150,7 @@ export default function GalleryCard({ listing, index }: { listing: Listing; inde
 
         {/* Time ago */}
         <div style={{
-          fontFamily: 'NotoSansOsage, sans-serif',
+          fontFamily: 'Be Vietnam Pro, sans-serif',
           fontSize: 12, color: '#8A8D91',
         }}>
           {timeAgo(listing.lastActiveAt)}

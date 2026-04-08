@@ -106,7 +106,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
             position: 'absolute', bottom: 12, right: 12,
             backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: 8,
             padding: '4px 10px',
-            fontFamily: 'NotoSansOsage, sans-serif',
+            fontFamily: 'Be Vietnam Pro, sans-serif',
             fontSize: 13, color: '#FFFFFF', fontWeight: 500,
           }}>
             {current + 1}/{photos.length}
@@ -128,7 +128,7 @@ export default function PhotoCarousel({ photos }: PhotoCarouselProps) {
               aria-label={`Go to photo ${i + 1}`}
               style={{
                 width: 48, height: 48, minWidth: 48, borderRadius: 8,
-                border: i === current ? '2px solid #2563EB' : '2px solid transparent',
+                border: i === current ? '2px solid #2D79BF' : '2px solid transparent',
                 padding: 0, cursor: 'pointer', overflow: 'hidden',
                 opacity: i === current ? 1 : 0.6,
                 transition: 'opacity 150ms, border-color 150ms',

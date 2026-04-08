@@ -1,6 +1,15 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+} from '@/components/ui/table';
+import {
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose, DialogBody, DialogFooter,
+} from '@/components/ui/dialog';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
@@ -24,17 +33,17 @@ function timeAgo(dateStr: string): string {
   return `${Math.floor(hrs / 24)}d ago`;
 }
 
-const STATUS_COLORS: Record<string, { bg: string; text: string }> = {
-  pending: { bg: '#FEF3C7', text: '#92400E' },
-  reviewed: { bg: '#D1FAE5', text: '#059669' },
-  resolved: { bg: '#DBEAFE', text: '#1D4ED8' },
-};
-
 const TYPE_LABELS: Record<string, string> = {
   fake_listing: 'Fake listing',
   scam_attempt: 'Scam attempt',
   identity_fraud: 'Identity fraud',
   other: 'Other',
+};
+
+const STATUS_BADGE: Record<string, 'pending' | 'verified' | 'default'> = {
+  pending: 'pending',
+  reviewed: 'verified',
+  resolved: 'default',
 };
 
 export default function AdminReportsPage() {
@@ -74,123 +83,137 @@ export default function AdminReportsPage() {
     }
   };
 
-  if (loading) return <p style={{ color: '#65676B' }}>Loading reports...</p>;
-  if (error) return <p style={{ color: '#E41E3F' }}>{error}</p>;
+  if (loading) {
+    return (
+      <div className="space-y-4">
+        <Skeleton className="h-8 w-48" />
+        <Skeleton className="h-[400px] w-full rounded-[12px]" />
+      </div>
+    );
+  }
+
+  if (error) return <p className="text-danger text-sm">{error}</p>;
 
   return (
     <div>
-      <h1 style={{ fontSize: 24, fontWeight: 600, color: '#050505', marginBottom: 24, fontFamily: 'Ralgine' }}>
+      <h1 className="font-brand text-2xl text-text-primary mb-6">
         Report Queue
-        <span style={{ fontSize: 14, fontWeight: 400, color: '#65676B', marginLeft: 8 }}>
+        <span className="text-sm font-normal text-text-secondary ml-2">
           ({reports.filter((r) => r.status === 'pending').length} pending)
         </span>
       </h1>
 
       {reports.length === 0 ? (
-        <p style={{ color: '#65676B', textAlign: 'center', padding: 48 }}>
+        <p className="text-text-secondary text-center py-12">
           No pending reports. That's a good sign!
         </p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#FFFFFF', borderRadius: 8, overflow: 'hidden', boxShadow: '0 1px 3px rgba(0,0,0,0.1)' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid #CED0D4', textAlign: 'left' }}>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 160 }}>Reporter</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Type</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 250 }}>Description</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 120 }}>Submitted</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 100 }}>Status</th>
-              <th style={{ padding: '12px 16px', fontSize: 12, fontWeight: 500, color: '#65676B', width: 250 }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {reports.map((report) => {
-              const statusColor = STATUS_COLORS[report.status] || STATUS_COLORS.pending;
-              return (
-                <tr key={report.id} style={{ borderBottom: '1px solid #E4E6EB' }}>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ fontSize: 14, color: '#050505' }}>{report.reporter.phone}</div>
-                    <span style={{ fontSize: 11, fontWeight: 500, padding: '2px 8px', borderRadius: 9999, backgroundColor: '#E4E6EB', color: '#65676B' }}>
+        <div className="rounded-[12px] border border-border bg-surface shadow-[0_1px_3px_rgba(0,0,0,0.1)] overflow-hidden">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[160px]">Reporter</TableHead>
+                <TableHead className="w-[120px]">Type</TableHead>
+                <TableHead className="w-[250px]">Description</TableHead>
+                <TableHead className="w-[120px]">Submitted</TableHead>
+                <TableHead className="w-[100px]">Status</TableHead>
+                <TableHead className="w-[250px]">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {reports.map((report) => (
+                <TableRow key={report.id}>
+                  <TableCell>
+                    <div className="text-sm text-text-primary">{report.reporter.phone}</div>
+                    <Badge variant="secondary" className="mt-1">
                       {report.reporter.role}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{ fontSize: 13, fontWeight: 500, padding: '2px 8px', borderRadius: 9999, backgroundColor: '#FEE2E2', color: '#E41E3F' }}>
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="danger">
                       {TYPE_LABELS[report.reportType] || report.reportType}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <span className="text-sm text-text-primary truncate block max-w-[250px]">
+                      {report.description || '—'}
                     </span>
-                  </td>
-                  <td style={{ padding: '12px 16px', fontSize: 14, color: '#374151', maxWidth: 250, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {report.description || '—'}
-                  </td>
-                  <td style={{ padding: '12px 16px', fontSize: 14, color: '#65676B' }}>{timeAgo(report.createdAt)}</td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <span style={{ fontSize: 12, fontWeight: 500, padding: '2px 8px', borderRadius: 9999, backgroundColor: statusColor.bg, color: statusColor.text }}>
+                  </TableCell>
+                  <TableCell className="text-text-secondary">
+                    {timeAgo(report.createdAt)}
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={STATUS_BADGE[report.status] || 'outline'}>
                       {report.status}
-                    </span>
-                  </td>
-                  <td style={{ padding: '12px 16px' }}>
-                    <div style={{ display: 'flex', gap: 6 }}>
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex gap-1.5">
                       {report.status === 'pending' && (
-                        <button
+                        <Button
+                          size="sm"
                           onClick={() => handleAction(report.id, 'review')}
-                          disabled={processing === report.id}
-                          style={{ padding: '4px 10px', fontSize: 12, fontWeight: 500, backgroundColor: '#2563EB', color: '#FFFFFF', border: 'none', borderRadius: 6, cursor: 'pointer' }}
+                          loading={processing === report.id}
                         >
                           Mark Reviewed
-                        </button>
+                        </Button>
                       )}
                       {report.reportedUserId && report.status !== 'resolved' && (
-                        <button
+                        <Button
+                          size="sm"
+                          variant="danger"
                           onClick={() => setConfirmAction({ reportId: report.id, action: 'suspend_user' })}
                           disabled={processing === report.id}
-                          style={{ padding: '4px 10px', fontSize: 12, fontWeight: 500, backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none', borderRadius: 6, cursor: 'pointer' }}
                         >
                           Suspend User
-                        </button>
+                        </Button>
                       )}
                       {report.reportedListingId && report.status !== 'resolved' && (
-                        <button
+                        <Button
+                          size="sm"
+                          variant="secondary"
                           onClick={() => handleAction(report.id, 'suspend_listing')}
-                          disabled={processing === report.id}
-                          style={{ padding: '4px 10px', fontSize: 12, fontWeight: 500, backgroundColor: '#F7B928', color: '#FFFFFF', border: 'none', borderRadius: 6, cursor: 'pointer' }}
+                          loading={processing === report.id}
+                          className="border-warning text-amber-800"
                         >
                           Suspend Listing
-                        </button>
+                        </Button>
                       )}
                     </div>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       )}
 
       {/* Suspend User Confirmation Dialog */}
-      {confirmAction && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50 }}>
-          <div style={{ backgroundColor: '#FFFFFF', borderRadius: 12, padding: 24, maxWidth: 420, width: '90%' }}>
-            <h2 style={{ fontSize: 18, fontWeight: 600, color: '#050505', marginBottom: 12, fontFamily: 'Ralgine' }}>Suspend User?</h2>
-            <p style={{ fontSize: 14, color: '#65676B', lineHeight: 1.5 }}>
+      <Dialog open={!!confirmAction} onClose={() => setConfirmAction(null)}>
+        <DialogContent className="max-w-[420px]">
+          <DialogHeader>
+            <DialogTitle>Suspend User?</DialogTitle>
+            <DialogClose onClose={() => setConfirmAction(null)} />
+          </DialogHeader>
+          <DialogBody>
+            <p className="text-sm text-text-secondary leading-relaxed">
               This will immediately log out the user, hide their listings, and prevent new connections. Continue?
             </p>
-            <div style={{ display: 'flex', gap: 12, marginTop: 20, justifyContent: 'flex-end' }}>
-              <button
-                onClick={() => setConfirmAction(null)}
-                style={{ padding: '8px 16px', fontSize: 14, border: '1px solid #CED0D4', borderRadius: 8, backgroundColor: '#FFFFFF', cursor: 'pointer' }}
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => handleAction(confirmAction.reportId, confirmAction.action)}
-                disabled={processing === confirmAction.reportId}
-                style={{ padding: '8px 16px', fontSize: 14, fontWeight: 500, backgroundColor: '#E41E3F', color: '#FFFFFF', border: 'none', borderRadius: 8, cursor: 'pointer' }}
-              >
-                Suspend
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          </DialogBody>
+          <DialogFooter>
+            <Button variant="secondary" onClick={() => setConfirmAction(null)}>
+              Cancel
+            </Button>
+            <Button
+              variant="danger"
+              onClick={() => confirmAction && handleAction(confirmAction.reportId, confirmAction.action)}
+              loading={!!confirmAction && processing === confirmAction.reportId}
+            >
+              Suspend
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

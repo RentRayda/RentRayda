@@ -25,6 +25,15 @@
   --color-text-secondary: #65676B;
   --color-text-tertiary: #8A8D91;
 
+  /* ── Warm Palette (beige/brown — testimonials, human connection sections) ── */
+  --color-warm: #E8DFC8;
+  --color-warm-text: #6B5B2E;
+  --color-warm-muted: #A89875;
+
+  /* ── Dark (authority sections) ── */
+  --color-dark: #0B0F1A;
+  --color-dark-surface: #FAFAFA;
+
   /* ── Semantic ── */
   --color-verified: #16A34A;
   --color-verified-light: #DCFCE7;
@@ -44,6 +53,7 @@
   --space-section-sm: clamp(48px, 8vw, 120px);
   --space-inner: clamp(24px, 4vw, 52px);
   --space-gutter: clamp(16px, 3vw, 28px);
+  --section-padding-y: clamp(80px, 12vw, 180px);
 
   /* ── Layout ── */
   --max-width: 1120px;

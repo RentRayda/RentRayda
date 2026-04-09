@@ -78,15 +78,15 @@ export default function AdminDashboardPage() {
         <MetricCard value={metrics.totalUsers} label="Total Users" />
         <MetricCard value={metrics.totalLandlords} label="Landlords" />
         <MetricCard value={metrics.totalTenants} label="Tenants" />
-        <MetricCard value={metrics.verifiedLandlords} label="Verified Landlords" color="#31A24C" />
-        <MetricCard value={metrics.verifiedTenants} label="Verified Tenants" color="#31A24C" />
+        <MetricCard value={metrics.verifiedLandlords} label="Verified Landlords" color="#16A34A" />
+        <MetricCard value={metrics.verifiedTenants} label="Verified Tenants" color="#16A34A" />
         <MetricCard value={metrics.pendingVerifications} label="Pending Verifications" color="#F7B928" />
       </div>
 
       {/* Listings */}
       <h2 style={{ fontSize: 14, fontWeight: 500, color: '#65676B', letterSpacing: 1, marginBottom: 12, fontFamily: 'Sentient' }}>LISTINGS</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16, marginBottom: 32 }}>
-        <MetricCard value={metrics.activeListings} label="Active Listings" color="#31A24C" />
+        <MetricCard value={metrics.activeListings} label="Active Listings" color="#16A34A" />
         <MetricCard value={metrics.draftListings} label="Draft Listings" color="#65676B" />
       </div>
 

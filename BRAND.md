@@ -68,8 +68,8 @@ Maintain a minimum clear space equal to the height of the tarsier's ear around a
 ### Wordmark Consistency (CRITICAL)
 
 The wordmark MUST be rendered identically in every context:
-- Font: **Ralgine** (always — no exceptions)
-- Letter spacing: **1.5px**
+- Font: **Sentient Bold** (always — no exceptions)
+- Letter spacing: **0.5px**
 - Line height: **1.1**
 - Size: 20px in nav/headers/footers, responsive clamp for hero
 - Use the shared `Wordmark` component (`apps/web/components/Wordmark.tsx`)
@@ -99,7 +99,7 @@ Our primary display and heading font. A warm serif with personality. Used for an
 
 ### Be Vietnam Pro (Body / UI)
 
-A clean, geometric sans-serif. Excellent legibility on budget Android screens at small sizes. Neutral enough to carry UI text without competing with Ralgine or Sentient.
+A clean, geometric sans-serif. Excellent legibility on budget Android screens at small sizes. Neutral enough to carry UI text without competing with Sentient.
 
 **Use for:**
 - All body text, descriptions, and paragraphs
@@ -132,7 +132,7 @@ A clean, geometric sans-serif. Excellent legibility on budget Android screens at
 ### Tailwind / CSS Classes
 
 ```css
-.font-display  → font-family: 'Ralgine', serif
+.font-display  → font-family: 'Sentient', serif
 .font-heading  → font-family: 'Sentient', serif
 body default   → font-family: 'Be Vietnam Pro', sans-serif
 ```
@@ -158,6 +158,35 @@ The following fonts are **no longer part of the brand**:
 | Blue Bright | `#60A5FA` | Accent highlights, gradient endpoints, tag text on dark. |
 | Blue Light | `#DBEAFE` | Selected states, light backgrounds, tag fills. |
 
+
+### Warm Palette (beige/brown — human connection sections)
+
+Used for testimonials, verification demos, connection demos. Creates warmth and trust.
+
+| Name | Hex | CSS Token | Usage |
+|---|---|---|---|
+| Warm | `#E8DFC8` | `bg-warm` | Section backgrounds for warm/human sections |
+| Warm Text | `#6B5B2E` | `text-warm-text` | Headings and body text on warm backgrounds |
+| Warm Muted | `#A89875` | `text-warm-muted` | Secondary text on warm backgrounds |
+
+### Dark Palette (authority sections)
+
+Used for anti-scam sections. Creates gravity and seriousness.
+
+| Name | Hex | CSS Token | Usage |
+|---|---|---|---|
+| Dark | `#0B0F1A` | `bg-dark` | Dark section backgrounds |
+| Dark Surface | `#FAFAFA` | `bg-dark-surface` | Footer background, off-white |
+
+### Color Pairing System
+
+The landing page uses three intentional color pairings to create visual rhythm:
+
+| Pairing | Sections | Emotion |
+|---|---|---|
+| **Blue + White** | Hero, Final CTA | Energy, action, brand identity |
+| **Black/Dark + White** | Anti-scam | Trust, authority, seriousness |
+| **Beige + Brown** | Verification, Connection, Testimonials | Warmth, human connection |
 
 ### Neutral
 
@@ -432,5 +461,5 @@ Brand boundaries. If a feature, design, or copy crosses these lines, stop.
 ### DEPRECATED files (do not use in new code):
 | File | Replaced by |
 |---|---|
-| `TAN-NIMBUS.ttf` | Ralgine |
+| `TAN-NIMBUS.ttf` | Sentient (deprecated) |
 | `NotoSansOsage-Regular.ttf` | Be Vietnam Pro |

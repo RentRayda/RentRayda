@@ -1,191 +1,270 @@
-'use client';
+'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useMemo } from 'react';
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
-import Wordmark from './Wordmark';
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 
-const TarsierScene = dynamic(() => import('./TarsierScene'), { ssr: false });
-
-/* Seeded random — deterministic, hydration-safe */
-function sr(seed: number) {
-  const x = Math.sin(seed * 9301 + 49297) * 49297;
-  return x - Math.floor(x);
+// Seeded random number generator for deterministic particle positions
+function seededRandom(seed: number) {
+  let value = seed
+  return () => {
+    value = (value * 9301 + 49297) % 233280
+    return value / 233280
+  }
 }
-const r2 = (n: number) => Math.round(n * 100) / 100;
 
-/* Premium easing */
-const EASE = [0.16, 1, 0.3, 1] as const;
+// Generate deterministic particle positions
+const generateParticles = () => {
+  const random = seededRandom(42)
+  return Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: random() * 100,
+    y: random() * 100,
+    size: 1 + random() * 2,
+    delay: random() * 4,
+    duration: 8 + random() * 8,
+  }))
+}
 
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.2 } },
-};
+const particles = generateParticles()
 
-const fadeUp = {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
   hidden: { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
-};
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+}
 
 export default function InteractiveHero() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
-  const textY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
+  const containerRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start'],
+  })
 
-  const particles = useMemo(() =>
-    Array.from({ length: 30 }, (_, i) => ({
-      top: r2(sr(i * 3 + 1) * 100),
-      left: r2(sr(i * 3 + 2) * 100),
-      dur: r2(6 + sr(i * 3 + 3) * 8),
-      del: r2(sr(i * 7) * 5),
-      size: Math.round(1 + sr(i * 5) * 2),
-    })),
-  []);
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
 
   return (
     <section
-      ref={ref}
-      className="relative min-h-[100svh] flex items-center justify-center overflow-hidden bg-brand"
+      ref={containerRef}
+      className="relative min-h-[100svh] overflow-hidden bg-brand"
     >
-      {/* ── Gradient mesh (Igloo-style layered radials) ── */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: `
-            radial-gradient(ellipse 55% 40% at 15% 10%, rgba(96,165,250,0.30) 0%, transparent 70%),
-            radial-gradient(ellipse 45% 50% at 85% 85%, rgba(36,98,143,0.40) 0%, transparent 70%),
-            radial-gradient(ellipse 30% 25% at 50% 50%, rgba(255,255,255,0.04) 0%, transparent 60%)
-          `,
-        }}
-      />
+      {/* Background Effects Layer */}
+      <div className="pointer-events-none absolute inset-0">
+        {/* Radial Gradient Mesh */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 50% 0%, rgba(96, 165, 250, 0.4), transparent 60%),
+              radial-gradient(ellipse 60% 80% at 0% 50%, rgba(36, 98, 143, 0.3), transparent 50%),
+              radial-gradient(ellipse 60% 80% at 100% 50%, rgba(219, 234, 254, 0.2), transparent 50%)
+            `,
+          }}
+        />
 
-      {/* ── Subtle grid (Igloo-style) ── */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
-        }}
-      />
+        {/* CSS Grid Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, white 1px, transparent 1px),
+              linear-gradient(to bottom, white 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px',
+          }}
+        />
 
-      {/* ── Floating particles ── */}
-      <div className="absolute inset-0 pointer-events-none">
-        {particles.map((p, i) => (
+        {/* Floating Particles */}
+        {particles.map((particle) => (
           <motion.div
-            key={i}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.35, 0], y: [0, -25, 0] }}
-            transition={{ duration: p.dur, repeat: Infinity, delay: p.del, ease: 'easeInOut' }}
-            className="absolute rounded-full bg-white/20"
-            style={{ top: `${p.top}%`, left: `${p.left}%`, width: p.size, height: p.size }}
+            key={particle.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              opacity: 0.2,
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: particle.duration,
+              repeat: Infinity,
+              delay: particle.delay,
+              ease: 'linear',
+            }}
           />
         ))}
+
+        {/* Top Accent Line */}
+        <motion.div
+          className="absolute left-0 top-0 h-[3px] bg-gradient-to-r from-brand-bright to-transparent"
+          initial={{ width: '0%' }}
+          animate={{ width: '40%' }}
+          transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+        />
+
+        {/* Bottom Accent Line */}
+        <motion.div
+          className="absolute bottom-0 right-0 h-[3px] bg-gradient-to-l from-brand-bright to-transparent"
+          initial={{ width: '0%' }}
+          animate={{ width: '40%' }}
+          transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+        />
       </div>
 
-      {/* ── 3D Logo scene ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[52%] w-[320px] h-[320px] md:w-[380px] md:h-[380px] z-[1] opacity-25 md:opacity-30">
-        <TarsierScene />
-      </div>
-
-      {/* ── Accent line (Igloo pattern — top accent) ── */}
+      {/* Content */}
       <motion.div
-        className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-brand-bright to-transparent"
-        initial={{ width: '0%' }}
-        animate={{ width: '40%' }}
-        transition={{ duration: 1.5, ease: EASE }}
-      />
-
-      {/* ── Content ── */}
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
-        className="relative z-[3] text-center text-white px-6"
-        style={{ y: textY, opacity: textOpacity as unknown as number, scale }}
+        style={{ y, opacity }}
+        className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-[var(--space-gutter)] text-center text-white"
       >
-        {/* App icon */}
-        <motion.div variants={fadeUp} className="mb-8 md:mb-10">
-          <Image
-            src="/icon-3d.png"
-            alt="RentRayda"
-            width={88}
-            height={88}
-            priority
-            className="mx-auto rounded-[20px] shadow-[0_8px_40px_rgba(0,0,0,0.3)] md:w-[104px] md:h-[104px]"
-          />
-        </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex max-w-[720px] flex-col items-center gap-6"
+        >
+          {/* App Icon */}
+          <motion.div variants={itemVariants}>
+            <div className="relative">
+              <Image
+                src="/icon-3d.png"
+                alt="RentRayda"
+                width={104}
+                height={104}
+                className="h-[88px] w-[88px] rounded-[20px] shadow-[0_20px_60px_rgba(0,0,0,0.4)] sm:h-[104px] sm:w-[104px]"
+                priority
+              />
+            </div>
+          </motion.div>
 
-        {/* Wordmark — Sentient Bold */}
-        <motion.h1 variants={fadeUp} className="mb-6 md:mb-8">
-          <Wordmark size="lg" color="#FFFFFF" />
-        </motion.h1>
-
-        {/* Subtitle — fluid body large */}
-        <motion.p variants={fadeUp} className="text-fluid-body-lg max-w-[460px] mx-auto mb-10 md:mb-12 opacity-85">
-          Verified rentals in Metro Manila. No scams, no agents, no fees.
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.a
-            href="https://play.google.com/store/apps/details?id=ph.rentrayda.app"
-            whileHover={{ scale: 1.04, boxShadow: '0 12px 40px rgba(0,0,0,0.25)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold bg-white text-brand rounded-2xl shadow-[0_4px_24px_rgba(0,0,0,0.15)] no-underline"
+          {/* Wordmark */}
+          <motion.h1
+            variants={itemVariants}
+            className="text-fluid-display font-display font-bold tracking-[0.5px]"
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.199l2.302 2.302-2.302 2.302-2.608-2.302 2.608-2.302zM5.864 2.658L16.8 8.99l-2.302 2.302-8.635-8.635z"/></svg>
-            Download free
-          </motion.a>
-          <motion.a
-            href="/listings"
-            whileHover={{ scale: 1.04, backgroundColor: 'rgba(255,255,255,0.12)' }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-            className="inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-medium text-white rounded-2xl border border-white/20 backdrop-blur-sm no-underline"
-          >
-            Browse listings
-          </motion.a>
-        </motion.div>
+            RentRayda
+          </motion.h1>
 
-        {/* Fine print */}
-        <motion.p variants={fadeUp} className="text-xs mt-8 opacity-35">
-          Android and iOS. No credit card needed.
-        </motion.p>
+          {/* Subtitle */}
+          <motion.p
+            variants={itemVariants}
+            className="text-fluid-body-lg max-w-[460px] opacity-85"
+          >
+            Verified rentals in Metro Manila. No scams, no agents, no fees.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            variants={itemVariants}
+            className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4"
+          >
+            {/* Primary CTA */}
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              className="flex items-center justify-center gap-3 rounded-2xl bg-white px-8 py-4 font-semibold text-brand shadow-[0_8px_32px_rgba(0,0,0,0.12)] transition-shadow hover:shadow-[0_12px_48px_rgba(0,0,0,0.16)]"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0"
+              >
+                <path
+                  d="M3 20.5V3.5C3 2.4 3.89 1.5 5 1.5H19C20.1 1.5 21 2.4 21 3.5V20.5L12 17L3 20.5Z"
+                  fill="currentColor"
+                  opacity="0.9"
+                />
+              </svg>
+              <span>Download free</span>
+            </motion.button>
+
+            {/* Secondary CTA */}
+            <motion.button
+              whileHover={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              className="flex items-center justify-center gap-3 rounded-2xl border-2 border-white bg-transparent px-8 py-4 font-semibold text-white backdrop-blur-sm"
+            >
+              <span>Browse listings</span>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0"
+              >
+                <path
+                  d="M5 12H19M19 12L12 5M19 12L12 19"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </motion.button>
+          </motion.div>
+
+          {/* Fine Print */}
+          <motion.p
+            variants={itemVariants}
+            className="text-xs opacity-35"
+          >
+            Android and iOS. No credit card needed.
+          </motion.p>
+        </motion.div>
       </motion.div>
 
-      {/* ── Bottom accent line (Igloo pattern) ── */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-0 right-0 h-[3px] bg-gradient-to-l from-brand-bright to-transparent"
-        initial={{ width: '0%' }}
-        animate={{ width: '35%' }}
-        transition={{ duration: 1.5, delay: 0.3, ease: EASE }}
-      />
-
-      {/* ── Scroll indicator ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.4 }}
-        transition={{ delay: 2.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3]"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2"
       >
-        <motion.div animate={{ y: [0, 10, 0] }} transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}>
-          <svg width="20" height="32" viewBox="0 0 20 32" fill="none">
-            <rect x="1" y="1" width="18" height="30" rx="9" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" />
-            <motion.circle
-              cx="10" cy="10" r="2.5" fill="rgba(255,255,255,0.4)"
-              animate={{ cy: [10, 20, 10] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-xs font-medium uppercase tracking-wider text-white opacity-40">
+            Scroll
+          </span>
+          <div className="flex h-8 w-5 items-start justify-center rounded-full border-2 border-white/30 p-1">
+            <motion.div
+              className="h-1.5 w-1.5 rounded-full bg-white"
+              animate={{ y: [0, 12, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
             />
-          </svg>
-        </motion.div>
+          </div>
+        </div>
       </motion.div>
     </section>
-  );
+  )
 }

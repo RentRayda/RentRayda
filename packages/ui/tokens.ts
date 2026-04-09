@@ -5,6 +5,15 @@ export const colors = {
   brandBright: '#60A5FA',
   brandLight: '#DBEAFE',
 
+  // Warm palette (beige/brown — testimonials, human connection sections)
+  warm: '#E8DFC8',
+  warmText: '#6B5B2E',
+  warmMuted: '#A89875',
+
+  // Dark (authority sections)
+  dark: '#0B0F1A',
+  darkSurface: '#FAFAFA',
+
   // Neutral
   background: '#F0F2F5',
   surface: '#FFFFFF',

@@ -152,13 +152,14 @@ Show me the generated SQL — DO NOT apply. Wait for my approval.
 Read CLAUDE.md and TRD.md Sections 3.1, 4, and 5.
 
 Set up authentication:
-1. better-auth config with phoneNumber, bearer, expo plugins (TRD Section 4 code)
+1. better-auth config with phoneNumber, magicLink, passkey, bearer, expo plugins (TRD Section 4 code)
 2. PhilSMS REST wrapper (TRD Section 5 code)
 3. Auth middleware (TRD Section 4 code)
-4. Auth routes: POST send-otp, verify-otp, logout; GET me
-5. Rate limiting: 5/15min for send-otp, 10/15min for verify-otp
-6. Session: database sessions (NOT JWT), 30-day sliding expiry
+4. Auth routes: POST send-otp, verify-otp, magic-link, passkey/register, passkey/authenticate, logout; GET me
+5. Rate limiting: 10/hr per IP + 5/hr per phone for send-otp, 5/15min for verify-otp
+6. Session: database sessions (NOT JWT), 30-day expiry, daily refresh
 7. OTP: 6 digits, 10-min expiry, 3 attempts then 15-min lockout
+8. On first verify-otp: create user with temp email {phone}@rentrayda.local, auto-create empty profile
 
 After:
 1. pnpm turbo typecheck && pnpm turbo build
@@ -226,7 +227,7 @@ After:
 
 ### PROMPT 6: Mobile Auth Screens (Phone + OTP + Role) (Day 3)
 
-**Files:** apps/mobile/app/(auth)/phone.tsx, otp.tsx, role.tsx, apps/mobile/lib/auth.ts
+**Files:** apps/mobile/app/(auth)/phone.tsx, otp.tsx, role.tsx, email.tsx, passkey-setup.tsx, apps/mobile/lib/auth.ts
 
 ```
 Read CLAUDE.md and DRD.md Screens 1, 2, 3.
@@ -277,7 +278,7 @@ Mobile: DRD Screen 4 wireframe exactly
 - Barangay dropdown from LAUNCH_BARANGAYS constant
 - Unit count stepper (1-50)
 - All 7 states from DRD
-- Brand color for CTA: #2B51E3 (bg-rayda)
+- Brand color for CTA: #2D79BF (bg-rayda)
 
 After:
 1. pnpm turbo typecheck && pnpm turbo build
@@ -478,7 +479,7 @@ Read CLAUDE.md, TRD.md Section 3.4, DRD.md Screen 13.
 
 Build listing detail:
 1. Photo gallery (horizontal ScrollView, pagingEnabled, dot indicators)
-2. Price: text-2xl font-bold text-rayda (#2B51E3)
+2. Price: text-2xl font-bold text-rayda (#2D79BF)
 3. Landlord card with photo + VerifiedBadge (green for verified)
 4. FreshnessIndicator
 5. Inclusions chips
@@ -575,7 +576,7 @@ Modify PATCH /api/connections/:id/accept:
 
 Mobile: DRD Screen 16 wireframe
 1. Handshake icon with spring scale animation (stiffness 200, damping 15)
-2. "You are now connected! ✓" headline (32px, bold, text-rayda #2B51E3)
+2. "You are now connected! ✓" headline (32px, bold, text-rayda #2D79BF)
 3. Contact card: photo + name + badge + PHONE NUMBER (text-2xl bold)
 4. Call button (opens dialer) + Copy button (clipboard + toast)
 5. Share button with pre-filled English share text
@@ -736,13 +737,13 @@ After:
 ```
 Read CLAUDE.md, DRD.md Section 1.9.
 
-Set up Expo Router tab navigation:
+Set up Expo Router tab navigation (3 tabs per role, NOT 5):
 1. Root layout: auth guard (redirect to (auth) if no session)
-2. Landlord tabs: My Listings (Home) | Inbox | Profile (User)
-3. Tenant tabs: Search (Search) | Inbox | Profile (User)
-4. Tab bar: h-56dp, bg-white, border-t
-5. Active: icon + label in RentRayda blue (#2B51E3), pill indicator
-6. Inactive: #9CA3AF
+2. Landlord tabs (3): MyListings | Inbox | Profile
+3. Tenant tabs (3): Search | Inbox | Profile
+4. Tab bar: h-48dp, bg-white, border-t, NO text labels (icons only)
+5. Active: filled icon + 2px blue top-line (#2D79BF)
+6. Inactive: outline icon, #65676B
 7. tabBarHideOnKeyboard: true
 8. Inbox badge: red circle with pending count
 
@@ -859,7 +860,7 @@ You MUST configure a development build for testing on real devices.
    - plugins: ["expo-router", "expo-secure-store", "expo-image-picker",
      "expo-notifications"]
    - newArchEnabled: true (SDK 55 default)
-   - splash screen config with RentRayda blue (#2B51E3) background
+   - splash screen config with RentRayda blue (#2D79BF) background
 
 2. Configure eas.json:
    {
@@ -905,7 +906,7 @@ Read CLAUDE.md, DRD.md Web Screens 1-2.
 Build all web-facing pages:
 1. Landing page:
    - Hero with RentRayda tarsier logo + app name + tagline
-   - Brand color: #2B51E3 for CTAs and accents
+   - Brand color: #2D79BF for CTAs and accents
    - "Find verified rentals. No scams. No agents." headline
    - 3-step how-it-works: Register → Get Verified → Connect
    - Trust counter from API: "[X] verified na landlord sa Pasig"
@@ -1066,12 +1067,12 @@ Configure RentRayda app identity and store presence:
 
 1. App icon (RentRayda tarsier logo — provided by founder):
    - Android adaptive icon foreground: 1024×1024 PNG with tarsier silhouette
-   - Android adaptive icon background color: "#2B51E3" (RentRayda Blue)
+   - Android adaptive icon background color: "#2D79BF" (RentRayda Blue)
    - iOS icon: 1024×1024 PNG (no transparency, no rounded corners — iOS rounds automatically)
    - Place all in apps/mobile/assets/images/
 
 2. Splash screen:
-   - backgroundColor: "#2B51E3"
+   - backgroundColor: "#2D79BF"
    - image: White tarsier silhouette on transparent, centered, 200×200
    - resizeMode: "contain"
    - Configure in app.json under "splash" key

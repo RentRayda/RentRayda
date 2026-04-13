@@ -48,35 +48,35 @@ Every interactive element: **minimum 48×48dp.** This is non-negotiable — Andr
 
 ### 1.3 Typography — 2-Font System
 
-RentRayda uses 2 custom fonts, each with a clear role. No Google Fonts. All fonts are bundled locally in `apps/mobile/assets/fonts/` and `apps/web/public/fonts/`. See BRAND.md for full typography guidelines.
+RentRayda uses 2 custom fonts, each with a clear role. No Google Fonts. All fonts are bundled locally in `apps/mobile/assets/fonts/` and `apps/web/public/fonts/`.
 
 #### Font Family Assignments
 
 | Font | Family Name (code) | Role | Where Used |
 |---|---|---|---|
-| **TAN Nimbus** | `TANNimbus` | Brand / display | "rent rayda" wordmark, hero headlines, section titles, screen headers, ceremony text |
-| **Noto Sans Osage** | `NotoSansOsage` | Body / UI | All body text, buttons, form inputs, labels, timestamps, captions, metadata, badges |
+| **Sentient** | `Sentient` | Brand / display | "rent rayda" wordmark, hero headlines, section titles, screen headers, ceremony text |
+| **Be Vietnam Pro** | `BeVietnamPro` | Body / UI | All body text, buttons, form inputs, labels, timestamps, captions, metadata, badges |
 
 #### Typography Scale
 
 | Level | Size | Font Family | Weight | Usage |
 |---|---|---|---|---|
-| Display | 32px | `TANNimbus` | 400 | Hero headlines, celebration text |
-| Headline | 24px | `TANNimbus` | 400 | Screen titles, section headers |
-| Title | 20px | `TANNimbus` | 400 | Card headers, page names |
-| Subhead | 18px | `NotoSansOsage` | 600 | Price display, emphasis |
-| Body | 16px | `NotoSansOsage` | 400 | Body text, descriptions, form inputs |
-| Label | 14px | `NotoSansOsage` | 500 | Buttons, form labels |
-| Caption | 12px | `NotoSansOsage` | 400 | Timestamps, helper text |
-| Micro | 11px | `NotoSansOsage` | 600 | Badge labels only |
+| Display | 32px | `Sentient` | 700 (Bold) | Hero headlines, celebration text |
+| Headline | 24px | `Sentient` | 600 (SemiBold) | Screen titles, section headers |
+| Title | 20px | `Sentient` | 400 (Regular) | Card headers, page names |
+| Subhead | 18px | `BeVietnamPro` | 600 (SemiBold) | Price display, emphasis |
+| Body | 16px | `BeVietnamPro` | 400 (Regular) | Body text, descriptions, form inputs |
+| Label | 14px | `BeVietnamPro` | 500 (Medium) | Buttons, form labels |
+| Caption | 12px | `BeVietnamPro` | 400 (Regular) | Timestamps, helper text |
+| Micro | 11px | `BeVietnamPro` | 600 (SemiBold) | Badge labels only |
 
 **Rules:**
 - Never below 12px on any screen. Budget Android (720p HD+) renders smaller sizes as blurry.
 - Body text minimum 16px (WHO mobile readability standard).
 - Maximum line length: 45 characters on mobile, 75 on web.
 - Filipino words can be long. Test that words like "Verified" and "for rent" do not overflow.
-- **React Native:** Use `fontFamily: 'NotoSansOsage'` for all body text. Only one weight is bundled (400), so use `fontWeight` for bold/semibold styling as needed.
-- **Web:** `fontWeight` works normally with `@font-face` declarations.
+- **React Native:** Use `fontFamily: 'BeVietnamPro-Regular'` etc. Full weight set bundled (Thin through Black + Italics).
+- **Web:** Use `fontFamily: 'Be Vietnam Pro'` + `fontWeight`. Sentient available as .otf (Extralight, Light, Regular, Italic, Bold, BoldItalic).
 
 ### 1.4 Font Loading and Configuration
 
@@ -84,8 +84,11 @@ RentRayda uses 2 custom fonts, each with a clear role. No Google Fonts. All font
 
 | File | Family Name | Format |
 |---|---|---|
-| `TAN-NIMBUS.ttf` | `TANNimbus` | TrueType |
-| `NotoSansOsage-Regular.ttf` | `NotoSansOsage` | TrueType |
+| `Sentient-*.otf` (7 weights) | `Sentient` | OpenType |
+| `BeVietnamPro-*.ttf` (18 weights) | `BeVietnamPro` | TrueType |
+
+**Available Sentient weights:** Extralight, ExtralightItalic, Light, LightItalic, Regular, Italic, Bold, BoldItalic
+**Available Be Vietnam Pro weights:** Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Black (+ Italic variants)
 
 **Mobile (Expo SDK 55, expo-font):**
 
@@ -98,8 +101,14 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'TANNimbus': require('../assets/fonts/TAN-NIMBUS.ttf'),
-    'NotoSansOsage': require('../assets/fonts/NotoSansOsage-Regular.ttf'),
+    'Sentient-Regular': require('../assets/fonts/Sentient-Regular.otf'),
+    'Sentient-Bold': require('../assets/fonts/Sentient-Bold.otf'),
+    'Sentient-Light': require('../assets/fonts/Sentient-Light.otf'),
+    'BeVietnamPro-Regular': require('../assets/fonts/BeVietnamPro-Regular.ttf'),
+    'BeVietnamPro-Medium': require('../assets/fonts/BeVietnamPro-Medium.ttf'),
+    'BeVietnamPro-SemiBold': require('../assets/fonts/BeVietnamPro-SemiBold.ttf'),
+    'BeVietnamPro-Bold': require('../assets/fonts/BeVietnamPro-Bold.ttf'),
+    // Add more weights as needed
   });
 
   useEffect(() => {
@@ -114,28 +123,32 @@ export default function RootLayout() {
 **Mobile usage (inline styles):**
 ```typescript
 // Brand wordmark
-<Text style={{ fontFamily: 'TANNimbus', fontSize: 20 }}>rent rayda</Text>
+<Text style={{ fontFamily: 'Sentient-Bold', fontSize: 20 }}>rent rayda</Text>
 
 // Screen header
-<Text style={{ fontFamily: 'TANNimbus', fontSize: 18 }}>Find a listing</Text>
+<Text style={{ fontFamily: 'Sentient-Regular', fontSize: 18 }}>Find a listing</Text>
 
 // Button text
-<Text style={{ fontFamily: 'NotoSansOsage', fontSize: 16, fontWeight: '600' }}>SEND CODE</Text>
+<Text style={{ fontFamily: 'BeVietnamPro-SemiBold', fontSize: 16 }}>SEND CODE</Text>
 
 // Body text
-<Text style={{ fontFamily: 'NotoSansOsage', fontSize: 16 }}>Enter your phone number</Text>
+<Text style={{ fontFamily: 'BeVietnamPro-Regular', fontSize: 16 }}>Enter your phone number</Text>
 ```
 
 **Web (Next.js, @font-face in layout.tsx):**
 ```html
 <style>
-  @font-face { font-family: 'TANNimbus'; src: url('/fonts/TAN-NIMBUS.ttf') format('truetype'); font-weight: 400; font-display: swap; }
-  @font-face { font-family: 'NotoSansOsage'; src: url('/fonts/NotoSansOsage-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Sentient'; src: url('/fonts/Sentient-Regular.otf') format('opentype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Sentient'; src: url('/fonts/Sentient-Bold.otf') format('opentype'); font-weight: 700; font-display: swap; }
+  @font-face { font-family: 'Be Vietnam Pro'; src: url('/fonts/BeVietnamPro-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+  @font-face { font-family: 'Be Vietnam Pro'; src: url('/fonts/BeVietnamPro-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+  @font-face { font-family: 'Be Vietnam Pro'; src: url('/fonts/BeVietnamPro-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+  @font-face { font-family: 'Be Vietnam Pro'; src: url('/fonts/BeVietnamPro-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
 </style>
-<body style="font-family: NotoSansOsage, system-ui, sans-serif">
+<body style="font-family: 'Be Vietnam Pro', system-ui, sans-serif">
 ```
 
-**Fallback stack:** `NotoSansOsage, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
+**Fallback stack:** `'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif`
 
 **Budget Android rendering notes:**
 - Both fonts render well on HD+ (720p) displays down to 12px
@@ -148,12 +161,13 @@ export default function RootLayout() {
 All colors aligned with Facebook's visual language. The target market lives on Facebook — every color choice should feel immediately familiar. WCAG contrast ratios stated against the `#F0F2F5` background.
 
 ```
-═══ PRIMARY (RentRayda Blue) ═══
-  rayda:             #2B51E3    contrast 5.1:1 on #F0F2F5    (Brand blue — primary buttons, links, active states)
+═══ PRIMARY (RentRayda Blue — updated v2) ═══
+  rayda:             #2D79BF    contrast 4.5:1 on #F0F2F5    (Brand blue — primary buttons, links, active states)
   rayda-light:       #DBEAFE    contrast 1.2:1 on #F0F2F5    (Badge/card highlight backgrounds)
-  rayda-dark:        #1D4ED8    contrast 7.2:1 on #F0F2F5    (Pressed/active states, hover)
+  rayda-dark:        #24628F    contrast 7.0:1 on #F0F2F5    (Pressed/active states, hover)
   rayda-bright:      #60A5FA    contrast 3.0:1 on #F0F2F5    (Accents, gradient endpoints)
-  rayda-gradient:    linear-gradient(135deg, #1D4ED8, #60A5FA) (Splash, covers, hero headers)
+  rayda-gradient:    linear-gradient(135deg, #24628F, #60A5FA) (Splash, covers, hero headers)
+  NOTE: #2B51E3 is DEPRECATED (old v1 blue). See BRAND.md §5 for banned colors.
 
 ═══ NEUTRAL (Facebook-matched) ═══
   bg:                #F0F2F5    —                             (Facebook's background gray)
@@ -163,7 +177,7 @@ All colors aligned with Facebook's visual language. The target market lives on F
   text-tertiary:     #8A8D91    contrast 3.4:1 on #F0F2F5    (Placeholders — LARGE AA only)
   text-disabled:     #BCC0C4    contrast 2.0:1 on #F0F2F5    (Disabled — with disabled styling)
   border:            #CED0D4    —                             (Facebook's border/divider)
-  border-focus:      #2563EB    —                             (Input focus ring — matches primary)
+  border-focus:      #2D79BF    —                             (Input focus ring — matches primary)
   divider:           #DADDE1    —                             (Section dividers, lighter variant)
   input-bg:          #E4E6EB    —                             (Facebook's search bar/input background)
   feed-gap:          #F0F2F5    —                             (8px gap between full-width feed cards)
@@ -189,7 +203,7 @@ All colors aligned with Facebook's visual language. The target market lives on F
   danger-bg:         #FEE2E2
   success:           #31A24C    (Confirmations, positive feedback)
   success-bg:        #DCFCE7
-  info:              #2563EB    (Same as primary — informational callouts)
+  info:              #2D79BF    (Same as primary — informational callouts)
   info-bg:           #EBF0FC
 
 ═══ FRESHNESS ═══
@@ -210,7 +224,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'rayda': '#2563EB',
+        'rayda': '#2D79BF',
         'fb-bg': '#F0F2F5',
         'fb-input': '#E4E6EB',
         'fb-border': '#CED0D4',
@@ -232,7 +246,7 @@ module.exports = {
 
 **Library:** `react-native-svg` for rendering. Icon path data lives in `packages/ui/icons/`.
 **Design language:** 24×24 viewBox, 2px stroke, rounded caps (`strokeLinecap="round"`), rounded joins (`strokeLinejoin="round"`). Consistent with Facebook's icon weight.
-**Color:** Passed via `color` prop. Active: `#2563EB`. Inactive: `#65676B`. On dark bg: `#FFFFFF`.
+**Color:** Passed via `color` prop. Active: `#2D79BF`. Inactive: `#65676B`. On dark bg: `#FFFFFF`.
 
 **TypeScript Interface:**
 ```typescript
@@ -266,19 +280,19 @@ interface RaydaIconProps {
 | Pending badge | `clock` | 16px | `#F7B928` | strokeWidth 1.5 |
 | Unverified badge | `circle` | 16px | `#65676B` | strokeWidth 1.5 |
 | Rejected badge | `x-circle` | 16px | `#E41E3F` | strokeWidth 1.5 |
-| Home tab (active) | `home-filled` | 24px | `#2563EB` | filled variant |
+| Home tab (active) | `home-filled` | 24px | `#2D79BF` | filled variant |
 | Home tab (inactive) | `home` | 24px | `#65676B` | outline variant |
 | Search tab | `search` | 24px | tab color | |
-| Post/Add tab | `plus-circle` | 28px | `#2563EB` | slightly larger |
-| Notifications tab (active) | `bell-filled` | 24px | `#2563EB` | filled variant |
+| Post/Add tab | `plus-circle` | 28px | `#2D79BF` | slightly larger |
+| Notifications tab (active) | `bell-filled` | 24px | `#2D79BF` | filled variant |
 | Notifications tab (inactive) | `bell` | 24px | `#65676B` | outline variant |
-| Profile tab (active) | `user-filled` | 24px | `#2563EB` | filled variant |
+| Profile tab (active) | `user-filled` | 24px | `#2D79BF` | filled variant |
 | Profile tab (inactive) | `user` | 24px | `#65676B` | outline variant |
 | Camera | `camera` | 24px | `#65676B` | |
 | Back arrow | `arrow-left` | 24px | `#050505` | |
 | Share | `share` | 24px | `#050505` | |
 | Phone call | `phone` | 20px | `#FFFFFF` | on green/blue bg |
-| Copy | `copy` | 20px | `#2563EB` | |
+| Copy | `copy` | 20px | `#2D79BF` | |
 | Report/flag | `flag` | 20px | `#E41E3F` | |
 | Save/favorite | `heart` / `heart-filled` | 20px | `#E41E3F` | toggle |
 | Bookmark | `bookmark` / `bookmark-filled` | 20px | `#050505` | toggle |
@@ -294,9 +308,9 @@ interface RaydaIconProps {
 | Location | `map-pin` | 16px | `#65676B` | |
 | Bed count | `bed` | 16px | `#65676B` | |
 | Calendar/date | `calendar` | 16px | `#65676B` | |
-| Edit | `edit` | 20px | `#2563EB` | |
+| Edit | `edit` | 20px | `#2D79BF` | |
 | Send message | `send` | 20px | `#FFFFFF` | on blue bg |
-| Info | `info` | 20px | `#2563EB` | |
+| Info | `info` | 20px | `#2D79BF` | |
 | No connection | `wifi-off` | 16px | `#F7B928` | offline banner |
 
 ### 1.7 Verified Badge Component (Complete Specification)
@@ -371,7 +385,7 @@ Used on every screen that fetches data. Provides visual feedback before content 
 
 | Gesture | Screen | Behavior | Library |
 |---|---|---|---|
-| **Pull-to-refresh** | Search, Inbox | Native `RefreshControl`, tintColor="#2563EB" | React Native built-in |
+| **Pull-to-refresh** | Search, Inbox | Native `RefreshControl`, tintColor="#2D79BF" | React Native built-in |
 | **Photo gallery swipe** | Listing Detail | Horizontal scroll, `pagingEnabled`, `decelerationRate="fast"`. Snap to center of each photo. Overscroll: bounce on iOS, clamp on Android. | `ScrollView` |
 | **Bottom sheet drag** | Connection Request Modal | Snap points: 40% (default), 0% (dismissed). Velocity threshold: >500px/s downward = dismiss. Handle bar: 4px × 40px, `#D1D5DB`, centered, `mt-2`. | `@gorhom/bottom-sheet` |
 | **Card press** | ListingCard | `Pressable` with `onPressIn` → scale 0.98 (100ms), `onPressOut` → scale 1.0 (100ms). Cancel on pan (user scrolling, not tapping). | `react-native-reanimated` |
@@ -382,7 +396,7 @@ Used on every screen that fetches data. Provides visual feedback before content 
 
 **MVP: Light mode only.** Dark mode is explicitly excluded from the 30-day build scope. Reason: doubling the design surface for 18 screens is not justified at launch. The color token system in §1.5 is designed to support a dark mode extension later by adding `dark:` variants to each token.
 
-When dark mode is added post-MVP: `bg` becomes `#121212`, `surface` becomes `#1E1E1E`, `text-primary` becomes `#E5E7EB`, and the brand blue `#2563EB` lightens to `#5B7FFF` for sufficient contrast on dark backgrounds.
+When dark mode is added post-MVP: `bg` becomes `#121212`, `surface` becomes `#1E1E1E`, `text-primary` becomes `#E5E7EB`, and the brand blue `#2D79BF` lightens to `#5B7FFF` for sufficient contrast on dark backgrounds.
 
 ### 1.12 Navigation Structure (Facebook-Style)
 
@@ -397,7 +411,7 @@ Height: 48dp. Background: `#FFFFFF`. Bottom border: 1px `#CED0D4`. Fixed positio
 └──────────────────────────────────────┘   Bell has red dot when unread
 ```
 
-- Logo: "RentRayda" in `text-xl font-bold text-[#2563EB]`, or tarsier icon 24px
+- Logo: "RentRayda" in `text-xl font-bold text-[#2D79BF]`, or tarsier icon 24px
 - Search icon: `<RaydaIcon name="search" size={24} color="#050505" />` — navigates to search/filter overlay
 - Bell icon: `<RaydaIcon name="bell" size={24} color="#050505" />` — navigates to inbox
 - Notification dot: 10px red circle (`#E41E3F`), absolute top-0 right-0 of bell icon. Hidden when count = 0.
@@ -406,31 +420,31 @@ Height: 48dp. Background: `#FFFFFF`. Bottom border: 1px `#CED0D4`. Fixed positio
 
 Tab bar height: 48dp. Background: `#FFFFFF`. Top border: 1px `#CED0D4`. `tabBarHideOnKeyboard: true`.
 
-**NO text labels on tabs** — icons only, exactly like Facebook mobile. Active tab indicated by a thin 2px blue line at the TOP of the tab (not a pill behind the icon).
+**NO text labels on tabs** — icons only. Active tab indicated by a thin 2px blue line at the TOP of the tab (not a pill behind the icon).
 
 ```
-TENANT TABS (5):
-┌────────┬────────┬────────┬────────┬────────┐
-│ ═══    │        │        │        │        │   ═══ = 2px blue top-line on active
-│ [home] │[search]│  [+]   │ [bell] │ [user] │   All icons 24px, [+] is 28px
-│        │        │        │        │        │
-└────────┴────────┴────────┴────────┴────────┘
-  Feed    Explore   Post    Inbox   Profile
+TENANT TABS (3):
+┌──────────┬──────────┬──────────┐
+│ ═══      │          │          │   ═══ = 2px blue top-line on active
+│ [search] │  [bell]  │  [user]  │   All icons 24px
+│          │          │          │
+└──────────┴──────────┴──────────┘
+  Search     Inbox     Profile
 
-LANDLORD TABS (5):
-┌────────┬────────┬────────┬────────┬────────┐
-│ ═══    │        │        │        │        │
-│ [home] │[search]│  [+]   │ [bell] │ [user] │
-│        │        │        │        │        │
-└────────┴────────┴────────┴────────┴────────┘
-  Listings Explore  Create  Inbox   Profile
+LANDLORD TABS (3):
+┌──────────┬──────────┬──────────┐
+│ ═══      │          │          │
+│ [home]   │  [bell]  │  [user]  │
+│          │          │          │
+└──────────┴──────────┴──────────┘
+ MyListings  Inbox     Profile
 ```
 
-- Active tab: `<RaydaIcon name="[icon]-filled" color="#2563EB" />` + 2px top-line (`border-t-2 border-[#2563EB]`)
+- Active tab: `<RaydaIcon name="[icon]-filled" color="#2D79BF" />` + 2px top-line (`border-t-2 border-[#2D79BF]`)
 - Inactive tab: `<RaydaIcon name="[icon]" color="#65676B" />` (outline variant)
-- Center "+" tab: `<RaydaIcon name="plus-circle" size={28} color="#2563EB" />` — for tenants opens connection request compose, for landlords opens listing create
 - Inbox badge: Red circle (10px diameter, -2px top, -2px right of bell icon), white text (8px), shows count of pending requests. Hides when count = 0.
-- Tab press feedback: No animation — instant color swap (Facebook behavior)
+- Tab press feedback: No animation — instant color swap
+- Listing creation accessed from MyListings tab (landlord), not a center tab
 
 **Screen hierarchy:**
 ```
@@ -438,7 +452,9 @@ Root (_layout.tsx)
 ├── (auth)/           # Unauthenticated screens
 │   ├── phone.tsx     # Screen 1: PhoneEntry
 │   ├── otp.tsx       # Screen 2: OTPVerify
-│   └── role.tsx      # Screen 3: RoleSelection
+│   ├── role.tsx      # Screen 3: RoleSelection
+│   ├── email.tsx     # Email collection (for magic link / passkey)
+│   └── passkey-setup.tsx  # Passkey enrollment (optional)
 ├── (onboarding)/     # Post-auth, pre-main
 │   ├── landlord-profile.tsx   # Screen 4
 │   ├── tenant-profile.tsx     # Screen 8
@@ -447,16 +463,15 @@ Root (_layout.tsx)
 │   ├── employment-proof.tsx   # Screen 9 (tenant only)
 │   ├── submitted.tsx          # Screen 10
 │   └── verified.tsx           # Screen 11 (ceremony)
-├── (tabs)/           # Main authenticated experience
-│   ├── search/       # Tenant tab 1
+├── (tabs)/           # Main authenticated experience (3 tabs per role)
+│   ├── search/       # Tenant: tab 1 (Search)
 │   │   ├── index.tsx          # Screen 12: ListingSearch
 │   │   └── [id].tsx           # Screen 13: ListingDetail
-│   ├── listings/     # Landlord tab 1
-│   │   ├── index.tsx          # Landlord's own listings
-│   │   └── create.tsx         # Screen 7: ListingCreate
-│   ├── inbox/
+│   ├── listings/     # Landlord: tab 1 (MyListings)
+│   │   └── index.tsx          # Landlord's own listings + create
+│   ├── inbox/        # Both roles: tab 2 (Inbox) — has badge for pending count
 │   │   └── index.tsx          # Screen 15: LandlordInbox / TenantSentRequests
-│   └── profile/
+│   └── profile/      # Both roles: tab 3 (Profile)
 │       └── index.tsx          # Screen 17: Profile
 ├── connections/
 │   └── reveal.tsx             # Screen 16: ConnectionReveal
@@ -1375,7 +1390,7 @@ VerificationCeremonyScreen
 │                              │
 │  ┌──────┐┌──────┐┌────────┐  │  Filter chips: h-8, rounded-full
 │  │Filter ││Type ▾││₱ Price▾│  │  Horizontal scroll, mx-4
-│  └──────┘└──────┘└────────┘  │  Active: bg-[#2563EB] text-white
+│  └──────┘└──────┘└────────┘  │  Active: bg-[#2D79BF] text-white
 │                              │  Inactive: bg-[#E4E6EB] text-[#050505]
 │  12 verified listings        │  Count: text-xs text-[#65676B] mx-4
 │                              │
@@ -1408,7 +1423,7 @@ VerificationCeremonyScreen
 ListingSearchScreen
 ├── SafeAreaView (className="flex-1 bg-[#F0F2F5]")
 │   ├── TopHeaderBar (white, fixed)
-│   │   ├── Text ("RentRayda" text-xl font-bold text-[#2563EB])
+│   │   ├── Text ("RentRayda" text-xl font-bold text-[#2D79BF])
 │   │   ├── Pressable → RaydaIcon name="search" size={24} color="#050505"
 │   │   └── Pressable → RaydaIcon name="bell" size={24} color="#050505"
 │   │       └── [if unread] NotificationDot (10px red circle)
@@ -1420,7 +1435,7 @@ ListingSearchScreen
 │   │   └── FilterChips (horizontal scroll, mt-2)
 │   │       └── ScrollView (horizontal)
 │   │           └── [for each filter] Pressable (chip)
-│   │               Active: bg-[#2563EB] text-white rounded-full h-8 px-3
+│   │               Active: bg-[#2D79BF] text-white rounded-full h-8 px-3
 │   │               Inactive: bg-[#E4E6EB] text-[#050505] rounded-full h-8 px-3
 │   ├── Text (results count — "12 verified listings" text-xs text-[#65676B] mx-4 mt-2)
 │   ├── FlashList (estimatedItemSize={300}, data={listings}, ItemSeparatorComponent={FeedGap})
@@ -1429,7 +1444,7 @@ ListingSearchScreen
 │   ├── [if empty] EmptyStateView (RaydaIcon name="home" + headline + CTA)
 │   └── Pressable (load more — secondary button, mx-4 mb-4)
 ├── [if offline] NetworkBanner (RaydaIcon name="wifi-off")
-└── BottomTabBar (5 tabs, icons only)
+└── BottomTabBar (3 tabs, icons only)
 
 FeedGap: View (className="h-2 bg-[#F0F2F5]")  ← 8px gray gap between cards
 ```
@@ -1493,7 +1508,7 @@ interface FreshnessIndicatorProps {
 | 4 | **Empty** | Icon: Home 48px gray. Headline: "No listings in this area yet." Body: "Try a nearby barangay or check again tomorrow." CTA: "CLEAR FILTERS" (secondary button) |
 | 5 | **Offline** | Banner + show cached listings (if any) with "Offline — not updated" overlay. If no cache: empty state with offline note. |
 | 6 | **Submitting** | N/A (no submit on search screen) |
-| 7 | **Refreshing** | Pull-to-refresh: RefreshControl (tintColor="#2563EB") |
+| 7 | **Refreshing** | Pull-to-refresh: RefreshControl (tintColor="#2D79BF") |
 
 ---
 
@@ -1528,7 +1543,7 @@ interface FreshnessIndicatorProps {
 ││ [photo]  Juan Dela Cruz     ││  Avatar: 48px circle
 ││  48px    Verified [badge]   ││  VerifiedBadge inline
 ││          Member since 2024  ││  Join date
-││          [View Profile]     ││  Text button: text-[#2563EB]
+││          [View Profile]     ││  Text button: text-[#2D79BF]
 │└────────────────────────────┘│
 │        8px gap               │
 │┌────────────────────────────┐│  Section 3: Details card (white)
@@ -1557,13 +1572,13 @@ interface FreshnessIndicatorProps {
 │        8px gap               │
 │┌────────────────────────────┐│  Trust card: bg-[#EBF0FC]
 ││ [shield] This landlord is   ││  RaydaIcon shield-check
-││ verified. You will never be ││  text-sm text-[#2563EB]
+││ verified. You will never be ││  text-sm text-[#2D79BF]
 ││ asked to pay on this app.   ││
 │└────────────────────────────┘│
 │                              │
 │══════════════════════════════│  Fixed bottom bar: h-20
 │ ┌──────────────────────────┐ │  bg-white, border-t #CED0D4
-│ │  CONNECT WITH JUAN       │ │  CTA: h-12, bg-[#2563EB] rounded-lg
+│ │  CONNECT WITH JUAN       │ │  CTA: h-12, bg-[#2D79BF] rounded-lg
 │ └──────────────────────────┘ │  text-white font-semibold
 │ [flag] Report this listing   │  RaydaIcon flag + text-xs #65676B
 │══════════════════════════════│
@@ -1655,7 +1670,7 @@ type CTAState =
 │  │ 42/200                 │  │  Counter: text-xs text-right
 │  │                        │  │
 │  │ ┌──────────────────┐   │  │
-│  │ │   SEND REQUEST   │   │  │  CTA: h-12, bg-[#2563EB]
+│  │ │   SEND REQUEST   │   │  │  CTA: h-12, bg-[#2D79BF]
 │  │ │                   │   │  │  rounded-full (pill, Messenger)
 │  │ └──────────────────┘   │  │  full width
 │  │                        │  │
@@ -1721,7 +1736,7 @@ ConnectionRequestModal (Bottom Sheet)
 ││ For: Bedspace, Ugong        ││  Reference: text-sm #65676B
 ││                             ││
 ││ ┌──────────┐ ┌────────────┐││  Action bar (Facebook reaction bar style)
-││ │  Accept   │ │  Decline   │││  Accept: bg-[#2563EB] text-white h-10
+││ │  Accept   │ │  Decline   │││  Accept: bg-[#2D79BF] text-white h-10
 ││ │           │ │            │││  Decline: bg-[#E4E6EB] text-[#050505] h-10
 ││ └──────────┘ └────────────┘││  rounded-md, flex-row gap-2, mx-4 mb-4
 │└────────────────────────────┘│
@@ -1814,7 +1829,7 @@ interface ConnectionRequestCardProps {
 │         │  (32px) │          │  rounded-2xl
 │         └─────────┘          │  ANIMATION: scale 0→1 (spring)
 │                              │
-│  "You are now connected!"     │  Display (32px, bold, text-[#2563EB])
+│  "You are now connected!"     │  Display (32px, bold, text-[#2D79BF])
 │                              │  text-center
 │  "You are both         │  Body (16px, text-secondary)
 │   verified. Here are the   │  text-center, px-6
@@ -1827,15 +1842,15 @@ interface ConnectionRequestCardProps {
 │  │ └──┘                   │  │  Badge: VerifiedBadge
 │  │                        │  │
 │  │ [phone] +63 917 123 4567│  │  PHONE: text-2xl font-bold
-│  │                        │  │  text-[#2563EB], mt-4
+│  │                        │  │  text-[#2D79BF], mt-4
 │  │ ┌──────────┐ ┌───────┐ │  │  
 │  │ │[phn]CALL │ │[cpy]  │ │  │  Buttons: h-11 each, rounded-full
-│  │ │(bg-rayda)│ │ COPY  │ │  │  Call: bg-[#2563EB] text-white
-│  │ └──────────┘ └───────┘ │  │  Copy: border-[#2563EB] text-[#2563EB]
+│  │ │(bg-rayda)│ │ COPY  │ │  │  Call: bg-[#2D79BF] text-white
+│  │ └──────────┘ └───────┘ │  │  Copy: border-[#2D79BF] text-[#2D79BF]
 │  └────────────────────────┘  │  Call → Linking.openURL(`tel:+63...`)
 │                              │  Copy → Clipboard + toast "Copied!"
 │  ┌────────────────────────┐  │
-│  │ [share] SHARE WITH     │  │  Share button: border-[#2563EB]
+│  │ [share] SHARE WITH     │  │  Share button: border-[#2D79BF]
 │  │         FRIENDS        │  │  RaydaIcon share, opens native share
 │  └────────────────────────┘  │
 │                              │
@@ -1854,8 +1869,8 @@ ConnectionRevealScreen
 │   └── View (className="flex-1 justify-center items-center px-6")
 │       ├── Animated.View (handshake — spring scale 0→1, stiffness 200, damping 15)
 │       │   └── View (w-16 h-16 bg-[#EBF0FC] rounded-2xl items-center justify-center)
-│       │       └── RaydaIcon name="handshake" size={32} color="#2563EB"
-│       ├── Text ("You are now connected!" text-3xl font-bold text-[#2563EB] mt-6)
+│       │       └── RaydaIcon name="handshake" size={32} color="#2D79BF"
+│       ├── Text ("You are now connected!" text-3xl font-bold text-[#2D79BF] mt-6)
 │       ├── Text (body — text-base text-secondary text-center px-6 mt-4)
 │       ├── View (contact card — bg-rayda-light rounded-2xl p-5 w-full mt-8)
 │       │   ├── View (flex-row items-center gap-3)
@@ -1896,8 +1911,8 @@ ConnectionRevealScreen
 ├──────────────────────────────┤
 │                              │
 │┌────────────────────────────┐│  Profile header card (full-width)
-││ ┌──────────────────────── ┐││  Cover strip: h-16 bg-[#2563EB]
-││ │  bg-[#2563EB] gradient  │││  or linear-gradient
+││ ┌──────────────────────── ┐││  Cover strip: h-16 bg-[#2D79BF]
+││ │  bg-[#2D79BF] gradient  │││  or linear-gradient
 ││ └──────────────────────── ┘││
 ││                             ││
 ││  [PHOTO]  Juan Dela Cruz    ││  Photo: 72x72 circle, border-4 white

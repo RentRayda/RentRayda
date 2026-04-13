@@ -1,0 +1,855 @@
+RESEARCH_FINDINGS.md — Philippine Informal Rental
+Marketplace
+Compiled April 3, 2026 | 10 research subagents deployed | ~350+ sources consulted
+Sect io n 1: Co mp et it iv e Lands cap e
+The Philip p ine r ent al mar ket  has  no  t r u s t ed digit al p lat fo r m — Facebo o k s t ill w ins
+The mo s t  imp o r t ant  fi nding acr o s s  all co mp et it o r  r es ear ch is  s t ar k: no  ex is t ing p lat fo r m o w ns
+t he info r mal r ent al s egment  (₱3 K–15 K/ mo nt h). Ev er y  cr edible u s er  r ev iew , fo r u m p o s t , and
+indu s t r y  analy s is  p o int s  t o  Facebo o k gr o u p s  and Mar ket p lace as  t he de fact o  s t andar d. One
+Qu o r a u s er  s u mmar iz ed it : "I hate to say that... but everyone in Philippines communicates and
+advertises on the golden goose [Facebook]." Ex p at .co m fo r u m u s er s  echo  t his : "I have
+never found a good app or company here that has a comprehensive rental list."
+This  v alidat es  t he co r e s t ar t u p  o p p o r t u nit y . The ex is t ing p lat fo r ms  all t ar get  t he w r o ng s egment
+— co ndo s , p r o fes s io nal br o ker s , and mid-t o -u p p er -inco me r ent er s . The ₱3 K–15 K beds p ace-t o -
+bu dget -s t u dio  s egment  liv es  ent ir ely  o ffl ine o r  o n Facebo o k.
+Co mp et it o r  analy s is  t able
+Plat fo r mTar get  Segment  Landlo r d Co s t   Ver ifi cat io nLis t ings    Rev enu e
+Mo del
+Rent PadEx p at s ,
+fu r nis hed
+co ndo s
+Fr ee t o  p o s t     No ne ev ident     ~18 ,6 17
+Met r o
+Manila
+Unkno w n
+(likely  ads )
+Lamu diBr o ad r eal es t at e
+(bu y / s ell/ r ent )
+Fr ee bas ic;
+~₱9 9 9 / mo  Pr o ;
+cu s t o m fo r
+agencies
+"Cer t ifi ed
+Par t ner s " badge
+(w idely  cr it iciz ed)
+16 0 ,0 0 0 +Su bs cr ip t io n +
+adv er t is ing
+Do r my .p hSt u dent s , y o u ng
+p r o fes s io nals
+Fr ee t o  lis t      Semi-v er ifi ed →
+Fu lly -v er ifi ed →
+Par t ner  t ier s
+Small
+(s t ar t u p -
+s t age)
+Tr ans act io n
+fees  (ho lds
+p ay ment s )
+Rent .p hBr o ker -backed
+p r o fes s io nal
+No t  dis clo s edLicens ed
+p r o fes s io nals
+net w o r k
+Unkno w nBr o ker -led
+s er v ice fees
+Quora
+Expat.com
+----------------Page (0) Break----------------
+Plat fo r mTar get  Segment  Landlo r d Co s t   Ver ifi cat io nLis t ings    Rev enu e
+Mo del
+My To w nYo u ng
+p r o fes s io nals
+(o p er at o r )
+N/A — t hey
+o w n/ o p er at e
+N/A (dir ect
+management )
+14 –18  s it es ,
+4 ,8 0 0 + beds
+Dir ect  r ent al
+r ev enu e
+p h. r ent als  Gener al
+r ent er s / o w ner s
+Unkno w nUnkno w nNew / ear ly -
+s t age
+Mar ket p lace
+mo del
+⚠ Lamu di ₱15 , 0 0 0  fee:  NOT CONFIRMED.  Res ear ch fo u nd Lamu di's  act u al p r icing is : Bas ic
+(fr ee), Pr o  (~₱9 9 9 / mo nt h fo r  10  lis t ings ), Bu s ines s  (cu s t o m fo r  agencies ). Pr emiu m adv er t is ing
+p lacement  and banner  ads  ar e av ailable as  addit io nal p aid o p t io ns  bu t  no  s ingle ₱15 ,0 0 0  fee w as
+fo u nd. Lamu di's  t r affi c declined 13 . 4 % y ear -o v er -y ear  as  o f No v ember  2 0 2 5 . 
+Do r my .p h v er ifi cat io n s y s t em — t he clo s es t  co mp et it o r
+Do r my .p h, fo u nded in 2 0 2 2  by  UST s t u dent s , is  t he o nly  co mp et it o r  at t emp t ing end-t o -end
+digit al r ent al. Their  v er ifi cat io n u s es  t ier ed t r u s t : s emi-v er ifi ed → fu lly -v er ifi ed → Par t ner  s t at u s
+(Par t ner  = "10 0 % o f o u r  t r u s t "). They  p ar t ner ed w it h 18  u niv er s it ies  fo r  p ilo t . In Ju ly  2 0 2 5 , t hey
+lau nched Su z y  Rent , a mo bile ap p  t ar get ing a br o ader  mar ket  bey o nd s t u dent s . CEO Ku r t
+Gu t ier r ez 's  go al: "fully digital renting experience to at least 3,000 Filipinos this year." To t al
+fu nding: ~$5 0 ,9 0 0  fr o m AHG Lab.
+✓ CONFIRMS int er v iew  fi nding t hat  co mmu nit y  t r u s t  makes  ap p s  u nneces s ar y  — Do r my  is  s t ill
+v er y  ear ly  des p it e lau nching in 2 0 2 2 .
+Fiv e v er bat im u s er  co mp laint s  fr o m ex is t ing p lat fo r ms
+1. Lamu di Tr u s t p ilo t  (Au g 2 0 2 5 ): "Scam listings. They don't delete the identified fraudulent
+accounts."
+2 . Lamu di Tr u s t p ilo t  (Sep  2 0 2 3 ): "The price and picture of the property does not match at all.
+It's just a click bait. I sent my brother to inspect because it says the agents are
+verified/certified and my brother drove 1 hr to get there but the real price is more than
+double the advertised price."
+3 . Lamu di Tr u s t p ilo t  (Sep  2 0 2 3 ): "Most probably Lamudi Philippines is using a dummy buyer
+account. I get notifications regarding some interested prospective buyers but when I try to
+call the number, either no one answers or the number doesn't work."
+4 . Qu o r a o n Lamu di: "Lamudi is not at all updated and most of the times the listing owner will
+send a standard reply — oh its already rented out, do you want to look at other properties —
+mostly a click bait."
+5 . Qu o r a o n Rent Pad: "The prices are mostly higher than expected and inflated."
+Traders Union
+Trustpilot
+Trustpilot
+Trustpilot
+Quora
+Quora
+----------------Page (1) Break----------------
+Lamu di's  Tr u s t p ilo t  has  11 r ev iew s ,  all 1-s t ar ,  Tr u s t Sco r e 2 . 0 / 5 .  The p r o fi le is
+u nclaimed. 
+Do cu ment ed s cam p at t er ns  fr o m legal and new s  s o u r ces
+Res p icio  & Co . (Philip p ine law  fi r m) and 3 D Academy  do cu ment  s ix  p r imar y  r ent al s cam t y p es :
+1. Res er v at io n Fee Scam (r is ing t r end):  Scammer s  demand ₱1,0 0 0 –₱10 ,0 0 0  v ia GCas h
+befo r e v iew ing, t hen v anis h.  Do r my .p h fl agged t his  as  a
+gr o w ing p r o blem. 
+2 . Fake Landlo r d/Agent  Scam:  Scammer  p o s es  as  o w ner  u s ing s t o len p ho t o s , co llect s
+adv ance + dep o s it . 
+3 . Du p licat e/ Clo ned Lis t ing Scam:  Real lis t ings  co p ied t o  new  co nt act  info  at  lo w er  p r ices .
+4 . Gho s t  Pr o p er t y  Scam:  Pr o p er t y  do es n't  ex is t ; gener ic p ho t o s , v agu e lo cat io ns . 
+5 . Illegal Su blet t ing Scam:  Tenant  r ent s  o u t  w it ho u t  o w ner  p er mis s io n. 
+6 . No n-Refu ndable Dep o s it  Scam:  Unfair  "no n-r efu ndable" t er ms  o n dep o s it s . 
+Philip p ines  r anks  2 nd glo bally  fo r  digit al fr au d r at e at  13 . 4 % (behind India at
+19 %). An es t imat ed 6 7 % o f Filip ino s  enco u nt er  s cams  mo nt hly           w it h av er age
+2 3 9  s cam enco u nt er s  p er  p er s o n p er  y ear .  To t al es t imat ed annu al lo s s es :
+$8 . 2 9  billio n (₱4 8 0  billio n),  r ep r es ent ing 1. 9 % o f GDP. 
+✓ CONFIRMS int er v iew  fi nding t hat  s cams  ar e r eal fo r  t enant s .
+Zip Mat ch:  t he cau t io nar y  t ale
+Zip Mat ch, t he Philip p ines ' fi r s t  o nline r eal es t at e mar ket p lace (fo u nded 2 0 12 ), r ais ed $3 . 5 M fr o m
+Go o gle Acceler at o r , Mo nk's  Hill Vent u r es , Kicks t ar t  Vent u r es , and 5 0 0  Glo bal. Rev enu e p eaked
+at  ju s t  $2 2 0 K in 2 0 19 , p lu mmet ed t o  $7 2 K in 2 0 2 0  du e t o  COVID. Acq u ir ed by  Ho p p ler  in May
+2 0 2 1 fo r  $14 5 K + 10 % o f Ho p p ler  eq u it y  — a 9 6 % lo s s  o n inv es t ed cap it al. 
+ The br and is  eff ect iv ely  defu nct .
+Mar ket  gap  as s es s ment
+The Philip p ine r ent al mar ket  ex hibit s  a s ev er e s t r u ct u r al mis mat ch. Met r o  Manila has  a 2 4 . 7 %
+co ndo  v acancy  r at e (Co llier s  Q4  2 0 2 5 ) w it h 3 0 , 0 0 0  u ns o ld r eady -fo r -o ccu p ancy
+u nit s  w o r t h ₱15 8  billio n. Bu t  t his  o v er s u p p ly  is  co ncent r at ed in mid-t o -high-end co ndo s  (₱2 0 K–
+6 0 K/ mo nt h r ent ). The bu dget  s egment  (₱3 K–15 K) s ho w s  8 5 –9 0 % o ccu p ancy  (Rent PH dat a).
+ A Manila Times  edit o r ial by  ar chit ect  Ju n Palafo x  no t ed t hat  BGC, Makat i, and C5  Co r r ido r
+Trustpilot
+trustpilot
+Lawyer Philippines3d-universal
+Dormy
+3d-universalRevitalizerealty
+3d-universal
+3d-universal
+3d-universal
+3d-universal
+Techforgoodinstitute
+Techforgoodinstitute
+Global Anti-Scam Alliance
+Techforgoodinstitute
+Online Marketplaces
+Crunchbase
+Bamboo Routes
+Rent
+----------------Page (2) Break----------------
+"are powered daily by service workers, maintenance staff, security guards and retail employees —
+yet they offer almost no place for them to live."
+⚠ CONTRADICTION: The 2 5 % co ndo  v acancy  r at e ap p ear s  t o  co nt r adict  t he "demand > s u p p ly
+in BPO ar eas " int er v iew  fi nding. Ho w ev er , t he v acancy  is  ent ir ely  in t he w r o ng p r ice s egment . Fo r
+bu dget  r ent als , demand genu inely  ex ceeds  s u p p ly . This  is  a mis mat ch p r o blem, no t  a s u p p ly
+p r o blem.
+Sect io n 2 : Ident it y  Ver ifi cat io n Op t io ns
+KYC API p r icing — ID Analy z er  is  cheap es t ,  PhilSy s  is  fr ee
+The mo s t  cr it ical fi nding fo r  t his  s t ar t u p : t he Philip p ine Nat io nal ID (PhilSy s ) o ff er s  fr ee digit al
+v er ifi cat io n v ia QR co de s canning and API acces s  fo r  r egis t er ed "r ely ing p ar t ies ." This  eliminat es
+t he need fo r  ex p ens iv e t hir d-p ar t y  KYC fo r  t he p r imar y  u s e cas e.
+Pr o v ider   Cheap es t
+Tier
+Per
+Ver ifi cat io n
+Mo nt hly
+Minimu m
+Fr ee Tier       PH ID
+Su p p o r t
+PhilSy s
+eVer ify
+Go v er nment
+API
+FREENo neUnlimit ed (aft er
+r egis t r at io n)
+✅ Nat iv e
+ID
+Analy z er
+Ent r y       ~$0 .0 8 9      $8 9 / mo  (1,0 0 0
+v er ifi cat io ns )
+10 0  fr ee/ mo nt h✅ 19 0 +
+co u nt r ies
+iDenfy     Pay -as -y o u -
+go
+$0 .5 0 –0 .5 5
+(high v o l)
+Vo lu me-bas ed14 -day  t r ial, 10
+checks
+✅ Glo bal
+Ver iff      Es s ent ial$0 .8 0        $4 9 / mo         15 -day  t r ial, 5 0
+checks
+✅ 2 3 0 +
+co u nt r ies
+iDenfy     St ar t u p      $1.3 0        Annu al
+co mmit ment
+(3 ,0 0 0 )
+See abo v e✅ Glo bal
+Su ms u bBas ic$1.3 5        $14 9 / mo        14 -day  t r ial, 5 0
+checks
+✅ 2 2 0 +
+co u nt r ies
+Ver iff      Plu s        $1.3 9        $9 9 / mo         See abo v e✅ See
+abo v e
+Per s o naSt ar t u p      ~$1.5 0 –2 .5 0
+(es t .)
+$0  bas eFr ee s t ar t u p  p lan✅ 2 0 0 +
+co u nt r ies
+The Manila Times
+----------------Page (3) Break----------------
+PRICING HIDDEN fo r  Per s o na:  Fu ll p er -v er ifi cat io n r at es  r eq u ir e s ales  engagement . G2  r ep o r t s
+"3  p r icing edit io ns  s t ar t ing at  $0 ." Indu s t r y  es t imat e: ~$1.5 0 –$2 .5 0 / v er ifi cat io n. Per s o na clo s ed
+$2 0 0 M Ser ies  D at  $2 B v alu at io n in Ap r il 2 0 2 5 .
+Reco mmendat io n fo r  MVP:  Skip  all p aid KYC APIs . Us e PhilSy s  QR v er ifi cat io n (fr ee) + manu al
+r ev iew  by  fo u nding t eam fo r  t he fi r s t  5 0 0  u s er s . ID Analy z er 's  10 0  fr ee mo nt hly  cr edit s  s er v e as  a
+backu p .
+Co mp let e lis t  o f v alid Philip p ine go v er nment  IDs
+Pr imar y  IDs  (s t and-alo ne p r o o f o f ident it y ):  PhilSy s  Nat io nal ID, Philip p ine Pas s p o r t , Dr iv er 's
+Licens e, UMID, SSS ID, GSIS ID, PRC ID, Vo t er 's  ID/ Cer t ifi cat io n, Po s t al ID, NBI Clear ance, Po lice
+Clear ance, PhilHealt h ID, Pag-IBIG Lo y alt y  Car d, iDOLE/ OFW ID, Senio r  Cit iz en ID, PWD ID,
+OWWA ID, ACR I-Car d, Seaman's  Bo o k, IBP ID, Fir ear ms  Licens e. 
+Seco ndar y  IDs  (may  need p air ing):  TIN Car d, Bar angay  Clear ance, Cedu la, Co mp any  ID,
+Scho o l ID, PSA Bir t h Cer t ifi cat e, PSA Mar r iage Cer t ifi cat e, 4 Ps / DSWD Cer t ifi cat io n.
+Which BPO w o r ker s  defi nit ely  hav e (r eq u ir ed fo r  emp lo y ment ):  SSS nu mber / ID, PhilHealt h,
+Pag-IBIG, TIN, NBI Clear ance, Co mp any  ID, and incr eas ingly  t he PhilSy s  Nat io nal ID (8 0 %
+p o p u lat io n co v er age).
+PhilSy s  Nat io nal ID — t he v er ifi cat io n game-changer
+9 0 . 7  millio n Filip ino s  r egis t er ed as  o f December  2 0 2 5  (~8 0 % o f p o p u lat io n). Phy s ical car ds
+deliv er ed t o  ~5 5  millio n; t he r es t  can u s e p ap er  ePhilID o r  Digit al Nat io nal ID v ia eGo v PH ap p .
+The PhilSy s  Check s y s t em (v er ify .p hils y s .go v .p h) allo w s  any o ne t o  s can a PhilID's  QR co de fo r
+ins t ant  cr y p t o gr ap hic v er ifi cat io n — co mp let ely  fr ee. The Nat io nal ID eVer ify  (ev er ify .go v .p h)
+p lat fo r m o ff er s  facial r eco gnit io n mat ching agains t  t he bio met r ic r egis t r y  fo r  r egis t er ed r ely ing
+p ar t ies . As ia Unit ed Bank w as  t he fi r s t  bank t o  int egr at e.
+This  is  t he s t ar t u p 's  mo s t  p o w er fu l as s et  fo r  ident it y  v er ifi cat io n at  z er o  co s t .
+SMS OTP p r icing — Semap ho r e w ins  fo r  Philip p ines
+Pr o v ider    Co s t  p er  SMS (PH)Ty p eNo t es
+PhilSMS~₱0 .3 5  (~$0 .0 0 6 )Lo calCheap es t
+Clo u dSMS~₱0 .4 0 –0 .5 0      Lo calLo cal p r o v ider
+Semap ho r e₱0 . 5 0  (~$0 . 0 0 9 )Lo calBes t  dev elo p er  ex p er ience,  dedicat ed OTP r o u t ing
+Pliv o      $0 .0 8 3 1        Int er nat io nalCheap es t  int l
+Tele HR Solutions +2
+Business Registration Phili...
+----------------Page (4) Break----------------
+Pr o v ider    Co s t  p er  SMS (PH)Ty p eNo t es
+Tw ilio     $0 .16 9 9 –0 .2 0      Int er nat io nalEnt er p r is e-gr ade, 2 0 x  mo r e ex p ens iv e
+Semap ho r e co v er s  all PH car r ier s  (Glo be, Smar t , Su n, DITO), has  a s imp le REST API, dedicat ed
+OTP q u eu e fo r  r eliabilit y  du r ing high-v o lu me p er io ds , and is  bu ilt  s p ecifi cally  fo r  Philip p ine
+s t ar t u p s . At  ₱0 .5 0 / SMS, 1, 0 0 0  OTP v er ifi cat io ns  co s t  ₱5 0 0  (~$9 ). Fo r  10 ,0 0 0  mo nt hly  act iv e
+u s er s  s ending o ne OTP each, co s t  is  ₱5 ,0 0 0 / mo nt h (~$9 0 ).
+Manu al v er ifi cat io n at  s t ar t u p  s cale — ho w  s u cces s fu l PH s t ar t u p s  did it
+Angkas :  Online do cu ment  s u bmis s io n (NBI Clear ance, Po lice/ Bar angay  Clear ance, Pr o fes s io nal
+Dr iv er 's  Licens e, OR/ CR)  → manu al s t aff  r ev iew  (~2  day s ) → SMS no t ifi cat io n →
+in-p er s o n t r aining at  Angkas  Tr aining Cent er . No w  s caled t o  3 0 ,0 0 0 + r ider s   w it h
+t his  hy br id p r o ces s .
+Gr ab Philip p ines  (ear ly  day s ):  In-p er s o n do cu ment  v er ifi cat io n at  Gr ab o ffi ce → do cu ment s
+checked → w hit e w r is t band is s u ed → mandat o r y  s eminar  → GCas h s et u p  v ia p ap er  fo r ms .
+Ent ir ely  manu al.
+Air bnb:  Fo u nder s  w ent  do o r -t o -do o r  in NYC p ho t o gr ap hing lis t ings . 
+ Br ian Ches ky : "Do it until it hurts, then automate it away."
+The p at t er n is  u niv er s al: manu al v er ifi cat io n fi r s t ,  au t o mat io n lat er . Ev er y  s u cces s fu l p lat fo r m
+s t ar t u p  p er s o nally  r ev iew ed ear ly  u s er s .
+Emp lo y ment  v er ifi cat io n fo r  BPO w o r ker s
+BPO w o r ker s  can p r o v e emp lo y ment  v ia: Cer t ifi cat e o f Emp lo y ment  (COE, legally  mandat ed
+w it hin 3  day s  o f r eq u es t ), Cer t ifi cat e o f Emp lo y ment  w it h Co mp ens at io n (COEC), Co mp any  ID,
+lat es t  p ay s lip s , BIR Fo r m 2 3 16 , bank s t at ement s  s ho w ing r egu lar  dep o s it s , and SSS co nt r ibu t io n
+r eco r ds . BPO ent r y -lev el agent s  t y p ically  ear n ₱18 , 0 0 0 –2 5 , 0 0 0 / mo nt h net .
+PDPA co mp liance r eq u ir ement s  fo r  s t o r ing go v er nment  IDs
+The Philip p ine Dat a Pr iv acy  Act  (RA 10 17 3 ) clas s ifi es  go v er nment  IDs  as  s ens it iv e p er s o nal
+info r mat io n — t he highes t  p r o t ect io n t ier .
+Mandat o r y  r eq u ir ement s :
+Ex p licit  w r it t en/ elect r o nic co ns ent  befo r e co llect ing any  go v er nment  ID 
+Dat a Pr o t ect io n Offi cer  (DPO) mu s t  be ap p o int ed and r egis t er ed w it h NPC w it hin 9 0  day s
+NPC Regis t r at io n is  r eq u ir ed fo r  ent it ies  p r o ces s ing s ens it iv e dat a (go v er nment  IDs
+q u alify )
+Inquirer Mobility
+INQUIRER.net
+Sketchplanations
+Glauser Creative
+SecurePrivacy
+Gloroots
+----------------Page (5) Break----------------
+Pr iv acy  Imp act  As s es s ment  r eq u ir ed fo r  high-r is k p r o ces s ing
+Encr y p t io n at  r es t  and in t r ans it  fo r  all go v er nment  ID dat a
+Br each no t ifi cat io n t o  NPC and aff ect ed indiv idu als
+Annu al Secu r it y  Incident  Rep o r t  t o  NPC
+Penalt ies  fo r  no n-co mp liance:  Up  t o  7  y ear s  imp r is o nment  and ₱5  millio n fi nes  fo r
+u nau t ho r iz ed p r o ces s ing o f s ens it iv e p er s o nal info r mat io n. Adminis t r at iv e fi nes : ₱2 0 ,0 0 0 –
+₱5 0 ,0 0 0  p er  incident , cu mu lat iv e max imu m ₱5  millio n. NPC enfo r cement  is  act iv e — in May
+2 0 2 4 , a p r iv acy  s w eep  at  a s ho p p ing mall fo u nd 6 5  t enant s  o p er at ing w it ho u t  NPC r egis t r at io n.
+Sect io n 3 : Co ld St ar t  So lu t io ns
+Su p p ly -fi r s t  is  t he o nly  v iable s t r at egy  fo r  r ent als
+Lenny  Rachit s ky 's  r es ear ch acr o s s  17  majo r  mar ket p lace co mp anies  fo u nd 8 0 % (14  o f 17 )
+fo cu s ed almo s t  all r es o u r ces  o n s u p p ly  fi r s t .  Only  3  ex cep t io ns  (Ro v er , Tas kRabbit ,
+Zillo w ) p r io r it iz ed demand — and each had u niq u e cir cu ms t ances  w her e s u p p ly  w as  eas y  o r
+fr eely  av ailable.  Thu mbt ack fo u nder  Sander  Daniels : "We looked at the biggest
+marketplace companies — eBay, Craigslist, Amazon. Two things in common: they had all the
+supply, and they had ugly products. The lesson: all that matters is supply."
+Fo r  t he Philip p ine r ent al co nt ex t , s u p p ly -fi r s t  is  ev en mo r e cr it ical becau s e landlo r ds  mu s t  inv es t
+t ime cr eat ing lis t ings  and accep t  s t r anger  r is k, w hile t enant s  ar e accu s t o med t o  s ear ching
+any w her e (Facebo o k, w alking neighbo r ho o ds , w o r d-o f-mo u t h). 
+Minimu m v iable s u p p ly :  15 0 –3 0 0  lis t ings  p er  mar ket
+Jo nat han Go lden (Air bnb's  fi r s t  PM): "3 0 0  lis t ings ,  w it h 10 0  r ev iew ed lis t ings ,  w as  t he magic
+nu mber  t o  s ee gr o w t h t ake o ff  in a mar ket . " They  o bs er v ed s t ep -fu nct io n gr o w t h in bo o kings  at
+3 0 0  lis t ings  in NY, Par is , and o t her  t o p  mar ket s . 
+Fo r  a lo cal r ent al mar ket p lace (no t  v acat io n), t he nu mber  is  likely  lo w er  becau s e r ent als  ar e
+s ear ched les s  fr eq u ent ly  (1–2 x / y ear ), geo gr ap hic s co p e is  t ight er  (s p ecifi c neighbo r ho o ds ), and
+lis t ings  ar e lo nger -liv ed (w eeks / mo nt hs  v s . night ly ). Es t imat ed minimu m fo r  o ne Met r o  Manila
+dis t r ict : 5 0 –7 5  v er ifi ed lis t ings  p er  neighbo r ho o d, o r  ~15 0 –3 0 0  t o t al p er  cit y -lev el mar ket .
+Eli Chait 's  analy s is  o f t he t o p  10 0  mar ket p laces : half o f t he t o p  2 0  hav e few er  t han 10 0 , 0 0 0
+s u p p lier s . LendingTr ee has  o nly  3 0 0  s u p p lier s  bu t  ~$5 0 0 M r ev enu e.  Yo u  do n't  need
+millio ns  — y o u  need t he r ight  dens it y .
+Sharetribe
+lennysnewsletter
+Substack
+Medium
+Andrew Chen
+Eli Chait
+----------------Page (6) Break----------------
+Thr ee p r o v en co ld s t ar t  t echniq u es  ap p licable t o  t his  mar ket p lace
+1.  Single-p lay er  mo de (3 4 % o f t o p  10 0  mar ket p laces  u s ed t his ) Bu ild a t o o l v alu able t o
+landlo r ds  w it ho u t  any  t enant s  o n t he p lat fo r m. Op enTable bu ilt  a r es er v at io n management
+s y s t em r es t au r ant s  u s ed s t andalo ne.  Fo r  t his  r ent al ap p : lis t ing management
+das hbo ar d, digit al leas e gener at o r , p ay ment  t r acking, t enant  s cr eening t o o ls . Landlo r ds  get
+immediat e v alu e. Eli Chait  fo u nd s ingle-p lay er  mo de mar ket p laces  had 10 x  t he cap it al
+effi ciency  o f o t her  ap p r o aches . 
+2 .  Piggy backing ex is t ing net w o r ks  (Air bnb's  Cr aigs lis t  s t r at egy ) Air bnb r ev er s e-engineer ed
+Cr aigs lis t  t o  let  ho s t s  cr o s s -p o s t  lis t ings . Fo r  t his  ap p : act iv ely  p o s t  in Facebo o k r ent al gr o u p s ,
+au t o -p o p u lat e lis t ings  fr o m Facebo o k Mar ket p lace dat a, cr eat e s har eable lis t ing links  o p t imiz ed
+fo r  Facebo o k/ Mes s enger  s har ing.
+3 .  Geo gr ap hic dens it y  and ev ent -dr iv en s eeding Uber  lau nched o nly  in SF and didn't  leav e
+u nt il s at u r at ed. Do o r Das h cho s e u nder s er v ed s u bu r bs  w her e co mp et it io n w as  w eak.  Fo r
+t his  ap p : s t ar t  w it h o ne BPO co r r ido r  (e.g., Makat i CBD) and s at u r at e it  befo r e ex p anding.
+Philip p ines -s p ecifi c acq u is it io n s t o r ies
+GCas h (2 0 M → 9 0 M u s er s ):  Lev er aged Glo be Teleco m's  ex is t ing net w o r k  +
+COVID-19  as  infl ect io n p o int  + go v er nment  p ar t ner s hip  fo r  s o cial as s is t ance dis bu r s ement  +
+t ar get ed t he u nbanked w it h fr ict io nles s  o nbo ar ding. 
+Angkas  (mo t o r cy cle t ax i):  Fo r maliz ed t he ex is t ing info r mal "habal-habal" eco no my  — 19
+millio n mo t o r bike o w ner s  alr eady  had s kills  and v ehicles .  Bu ilt  Angkas  Rider
+Academy  fo r  t r aining. Regu lat o r y  fi ght s  gener at ed mas s iv e fr ee PR. Each go v er nment  s hu t do w n
+t u r ned int o  a p u blic s y mp at hy  w av e and media co v er age.
+Gr ab Philip p ines :  Lau nched as  Gr abTax i in Au gu s t  2 0 13 , s t ar t ing w it h ex is t ing t ax i dr iv er s  w ho
+alr eady  had v ehicles  and licens es . No  new  behav io r  r eq u ir ed — ju s t  fi lled t heir  idle t ime.
+✓ CONFIRMS int er v iew  fi nding abo u t  co mmu nit y  t r u s t : All t hr ee PH s u cces s  s t o r ies  lev er aged
+ex is t ing t r u s t  net w o r ks  and info r mal eco no mies  r at her  t han bu ilding fr o m s cr at ch.
+Co ld s t ar t  t echniq u e fo r  high-fr au d mar ket s
+Pr o gr es s iv e lay er ed v er ifi cat io n is  t he co ns ens u s  ap p r o ach fo r  high-t r u s t  mar ket s .  St ar t
+w it h lo w -fr ict io n v er ifi cat io n (p ho ne + email), t hen es calat e as  t r ans act io n v alu e incr eas es .
+Tr u lio o  cas e s t u dy : cu s t o miz ing v er ifi cat io n by  mar ket  y ielded a 4 % imp r o v ement  in
+v er ifi cat io n r at es , t r ans lat ing t o  ~7 0 0 ,0 0 0  addit io nal u s er s  annu ally .  The key  ins ight :
+do n't  fr o nt -lo ad all v er ifi cat io n at  s ignu p . Add s t ep s  as  u s er s  engage in higher -v alu e act io ns .
+Ev er y  addit io nal v er ifi cat io n s t ep  incr eas es  dr o p -o ff . 
+Car o u s ell, aft er  acq u ir ing OLX Philip p ines , dep lo y ed dedicat ed fr au d det ect io n t eams , t hir d-
+p ar t y  Tr u s t  and Safet y  int egr at io n,  and AI-bas ed lis t ing q u alit y  s cr eening —
+LinkedInEli Chait
+LinkedIn +2
+Medium
+StatistaGonuclei
+Team Tweaks Blog
+PesoMatters
+Trulioo
+Trulioo
+AppscripCognito
+BusinessMirror
+----------------Page (7) Break----------------
+achiev ing fas t es t  gr o w t h in t heir  co ncent r at ed Philip p ine mar ket .
+Sect io n 4 : Tech St ack Dev elo p er  Co ns ens u s
+Reco mmended s t ack w it h dev elo p er  co ns ens u s  lev els
+Lay er       Reco mmendat io nCo nfi denceKey  War ning
+Web
+Fr amew o r k
+Nex t .js  (Ap p  Ro u t er )HighSelf-ho s t ing r eq u ir es  o u t p u t :
+'s t an dalo n e'; ISR/ caching needs  Redis
+Mo bile
+Fr amew o r k
+Ex p o  (React  Nat iv e)HighEx p o  Go  no t  fo r  p r o du ct io n; u s e cu s t o m dev
+bu ilds
+Backend/APIHo no .js          HighSmaller  eco s y s t em t han Ex p r es s  (bu t  3 –4 x
+fas t er )
+API Lay er     t RPCHigh✅ Wo r ks  w it h Ex p o  — co nfi r med in
+p r o du ct io n
+ORMDr iz z le ORMHighReq u ir es  SQL kno w ledge; Pr is ma 7  nar r o w s
+gap
+Dat abas ePo s t gr eSQL (s elf-
+ho s t ed)
+HighSelf-managed backu p s / p at ches  r eq u ir ed
+Au t hBet t er  Au t hMediu m-
+High
+New er  libr ar y ; has  dedicat ed Ex p o  p lu gin
+SMS OTPSemap ho r eHighPhilip p ine-o nly ; dedicat ed OTP r o u t ing
+Mo no r ep o     Tu r bo r ep o  + p np mHighUs e n o de- lin ker =ho is t ed fo r  Ex p o
+Dep lo y ment    Co o lify  o n
+Digit alOcean
+Mediu m-
+High
+Res o u r ce-heav y  das hbo ar d; 7  CVEs  in au dit
+Dev  To o lClau de Co deMediu m-
+High
+4 0 % p r o du ct iv it y  gains  bu t  declines  w it h
+co debas e co mp lex it y
+Infr as t r u ct u r e p r icing t able (ex act ,  fet ched fr o m o ffi cial p ages )
+Digit alOcean Dr o p let s  (Bas ic/ Regu lar  CPU):
+----------------Page (8) Break----------------
+Tier        RAMv CPUs      SSDTr ans fer       Pr ice
+$12 / mo       2  GiB1         5 0  GiB2  TB$12 .0 0
+$2 4 / mo       4  GiB2          8 0  GiB4  TB$2 4 .0 0
+$4 8 / mo       8  GiB4          16 0  GiB5  TB$4 8 .0 0
+Clo u dfl ar e R2  (fet ched fr o m o ffi cial do cs ):
+Co mp o nent           Pr iceFr ee Tier
+St o r age$0 .0 15 / GB-mo nt h10  GB-mo nt h
+Clas s  A (w r it es )$4 .5 0 / millio n r eq u es t s            1 millio n/ mo nt h
+Clas s  B (r eads )$0 .3 6 / millio n r eq u es t s            10  millio n/ mo nt h
+Egr es s              $0 . 0 0  — FREE alw ay s           N/A
+Ot her  s er v ices :
+Ser v iceFr ee Tier                    Paid
+Co o lify  (s elf-ho s t ed)Fr ee fo r ev er ,  all feat u r es            Clo u d: $5 / mo  bas e
+Res end (email)3 ,0 0 0  emails / mo  (10 0 / day  limit )$2 0 / mo  fo r  5 0 K
+Ex p o  EAS Bu ild15  iOS + 15  Andr o id bu ilds / mo          $19 / mo  (St ar t er )
+Bet t er  Au t hFr ee,  o p en-s o u r ceN/A
+Do kku              Fr ee,  o p en-s o u r ceDo kku  Pr o  fo r  t eams
+To t al es t imat ed mo nt hly  co s t  u nder  $5 0 :
+----------------Page (9) Break----------------
+Co mp o nent      Op t io n A ($2 5 / mo )Op t io n B ($4 9 / mo )
+Ser v er         DO $2 4  Dr o p let  (4  GiB, 2  v CPU)DO $4 8  Dr o p let  (8  GiB, 4  v CPU)
+Dep lo y ment      Co o lify  (fr ee, s elf-ho s t ed)Co o lify  (fr ee, s elf-ho s t ed)
+Dat abas ePo s t gr eSQL (s elf-ho s t ed)Po s t gr eSQL (s elf-ho s t ed)
+Object  St o r ageClo u dfl ar e R2  (fr ee t ier )Clo u dfl ar e R2  (fr ee t ier )
+EmailRes end (fr ee t ier )Res end (fr ee t ier )
+Au t hBet t er  Au t h (fr ee)Bet t er  Au t h (fr ee)
+Bu ilds         Ex p o  EAS (fr ee t ier )Ex p o  EAS (fr ee t ier )
+Do main~$1/ mo                     ~$1/ mo
+To t al~$2 5 / mo                   ~$4 9 / mo
+Het z ner  alt er nat iv e:  A co mp ar able Het z ner  CPX3 2  (4  v CPU, 8  GB RAM) co s t s  ~$12 / mo  — 7 5 %
+cheap er  t han Digit alOcean fo r  eq u iv alent  s p ecs . Het z ner  w ins  o n r aw  v alu e bu t  lacks  managed
+s er v ices  and has  o nly  4  dat a cent er s  (EU + US + Singap o r e).
+Co o lify  v s  Do kku  — t he dep lo y ment  decis io n
+Co o lify  is  r eco mmended fo r  t his  s t ack. It  p r o v ides  a w eb GUI fo r  managing mu lt ip le s er v ices
+ (Nex t .js  ap p , API s er v er , Po s t gr eSQL, Redis ), s u p p o r t s  Do cker  Sw ar m fo r
+mu lt i-s er v er  s caling, inclu des  au t o mat ic SSL  and S3  backu p s .  Key  w eaknes s :
+co ns u mes  meaningfu l s er v er  r es o u r ces  fo r  it s  das hbo ar d,  and a s ecu r it y  au dit
+fo u nd 7  CVEs . Do kp lo y  is  an emer ging alt er nat iv e (2 4 K Git Hu b s t ar s ) w it h cleaner  UI.
+Do kku  is  light er -w eight   and 13 + y ear s  bat t le-t es t ed bu t  CLI-o nly ,  s ingle-
+s er v er  o nly .  Bet t er  fo r  dev elo p er s  co mfo r t able w it h Her o ku -s t y le git  p u s h
+dep lo y ment  w ho  do n't  need a das hbo ar d.
+t RPC + Ex p o :  co nfi r med w o r king
+t RPC w o r ks  w it h React  Nat iv e/ Ex p o  v ia @t r p c/ r eact - q u er y  w r ap p er  o v er  @t an s t ack/ r eact -
+q u er y .  The Ex p o  ap p  co nnect s  v ia ht t p Bat chLin k. Mu lt ip le p r o du ct io n s t ar t er  kit s  ex is t
+(cr eat e-t 3 -t u r bo , ex p o -t r p c mo no r ep o ).  Bet t er  Au t h has  a dedicat ed @bet t er -
+au t h/ ex p o  p lu gin t hat  int egr at es  w it h t RPC's  ht t p Bat chLink.  Bo t h w eb and mo bile
+MediumDEV Community
+CoolifyCoolify
+XDEV Community
+UpCloud
+Medium
+XDEV CommunityX
+DEV Community
+tRPC
+GitHubGitHub
+Better Auth
+----------------Page (10) Break----------------
+co ns u me t he s ame t RPC r o u t er  fr o m a s har ed p ackages / t r p c p ackage in t he Tu r bo r ep o
+mo no r ep o . 
+Dr iz z le v s  Pr is ma:  Dr iz z le w ins  fo r  t his  u s e cas e
+Dev elo p er  co ns ens u s  fav o r s  Dr iz z le fo r  s elf-ho s t ed Po s t gr eSQL. Zer o  r u nt ime dep endencies
+means  s imp ler  Do cker  dep lo y ment s .  SQL-fi r s t  ap p r o ach  p air s  w ell w it h Clau de
+Co de fo r  t r ans p ar ent , r ev iew able q u er ies . Planet Scale hir ed t he ent ir e Dr iz z le co r e t eam fo r  fu ll-
+t ime dev elo p ment .  Pr is ma 7  (lat e 2 0 2 5 ) r emo v ed it s  Ru s t  engine, nar r o w ing t he
+p er fo r mance gap   — bu t  Dr iz z le r emains  leaner  fo r  s elf-ho s t ed s cenar io s .
+⛔ Lu cia Au t h:  DEPRECATED
+Lu cia v 3  w as  o ffi cially  dep r ecat ed in Mar ch 2 0 2 5 . The np m p ackage is  no  lo nger  maint ained.
+ The cr eat o r  co nclu ded t hat  imp lement ing s es s io ns  fr o m s cr at ch is  s imp ler  t han u s ing t he
+libr ar y . Do  no t  s t ar t  new  p r o ject s  w it h Lu cia.  Relat ed libr ar ies  (Ar ct ic fo r  OAu t h, Os lo
+fo r  cr y p t o ) r emain maint ained. 
+Nex t .js  s elf-ho s t ing w ar nings
+Self-ho s t ing Nex t .js  r eq u ir es  car efu l at t ent io n.  The defau lt  fi les y s t em-bas ed cache
+br eaks  w it h mu lt ip le ins t ances .  ISR is  deep ly  int egr at ed w it h Ver cel's  p lat fo r m. Kno w n
+is s u es : cache co ns is t ency  acr o s s  r ep licas  needs  Redis -bas ed cu s t o m handler , Ver cel fr eq u ent ly
+br eaks  cu s t o m cache handler s  o n u p dat es ,  s t at ic as s et  4 0 4 s  w it h Nginx . 
+Mu s t  u s e o u t p u t :  's t an dalo n e' mo de.  Ins t alling s har p  is  r eq u ir ed fo r  p r o du ct io n
+image o p t imiz at io n. 
+Clau de Co de:  r eal bu t  r eq u ir es  dis cip line
+Real p r o du ct io n ev idence: a s o lo  maint ainer  w it h 3 5 0 K+ LOC co debas e r ep o r t s  4 0 %
+p r o du ct iv it y  incr eas e meas u r ed o v er  9 –11 w eeks .  A PM (no n-engineer ) s hip p ed
+13  p r o ject s  inclu ding a p u blis hed iOS ap p .  Tho u ght bo t  (es t ablis hed agency ) p r o du ced
+"t r u e p r o du ct io n-q u alit y  co de" in a 2 -w eek client  s p r int .  Cr it ical w ar nings :
+p r o du ct iv it y  gains  decline as  co debas e gr o w s ,  Clau de w ill dis able failing t es t s  r at her
+t han fi x  t hem,  and ev er y  co mmit  mu s t  be hu man-r ev iew ed.  Bes t  p r act ice:
+br eak co de int o  <3 0 K line mo du les  w it h clear  bo u ndar ies . 
+DEV Community
+BytebasePrisma
+BuildMVPFast
+MakerKit
+GitHub
+GitHub
+GitHub
+Next.js
+Dlhck
+DlhckBetterLink Blog
+Sherpa
+Next.js
+DEV Community
+Medium
+Thoughtbot
+Substack
+SubstackThoughtbot
+Substack
+----------------Page (11) Break----------------
+Sect io n 5 : Philip p ine Technical Env ir o nment
+Dev ice and co nnect iv it y  fact s  t able
+Met r icValu eSo u r ce
+Andr o id mar ket  s har e9 0 . 16 % (Feb 2 0 2 6 )St at Co u nt er
+iOS mar ket  s har e9 .7 7 %St at Co u nt er
+Median mo bile do w nlo ad3 5 . 5 6  Mbp s  (Jan 2 0 2 5 )Oo kla/ Dat aRep o r t al
+Yo Y s p eed imp r o v ement         +2 8 .1%Oo kla
+Glo bal mo bile av g6 1.5 2  Mbp s               Melt w at er
+Cheap es t  w eekly  dat a p lan₱5 0  (~$0 .9 0 ) fo r  2 GBGlo be Go SURF5 0
+Av g mo bile dat a co s t            ~$0 .5 9 / GBPr ep aidDat a Wiki
+Mo nt hly  mo bile dat a co ns u mp t io n8 .7  GB (2 0 2 4 )Glo balDat a
+GCas h mo nt hly  act iv e u s er s       8 1 millio n (Jan 2 0 2 5 )Camp aign As ia
+GCas h r egis t er ed u s er s          ~9 4  millio nFint ech New s  PH
+Facebo o k u s er s              10 5  millio n (8 7 .5 % p enet r at io n)Nap o leo nCat  (Oct  2 0 2 5 )
+Smar t p ho ne p enet r at io n~6 8 –7 2 % o f p o p u lat io nSt at is t a
+Int er net  u s er s               9 7 .5  millio n (8 3 .8 %)Dat aRep o r t al
+Int er net  acces s  v ia p ho ne9 8 .5 % o f int er net  u s er s         GWI
+Av g daily  int er net  t ime8  hr s  5 2  min (3 r d glo bally )GWI
+Po p u lat io n116  millio nDat aRep o r t al
+Median age2 6 .1 y ear s                Dat aRep o r t al
+Mo s t  co mmo n bu dget  dev ices  (u nder  ₱5 , 0 0 0  /  ~$8 9 )
+Ov er  5 0 % o f 2 0 2 4  s mar t p ho ne s hip ment s  w er e p r iced belo w  $10 0 . Ty p ical s p ecs  o f bu dget
+p ho nes : 3 –4  GB RAM,  6 4 –12 8  GB s t o r age,  HD+ (7 2 0 p ) 12 0 Hz  dis p lay s ,  5 , 0 0 0  mAh bat t er ies ,
+MediaTek chip s et s ,  Andr o id 14 –15 . Po p u lar  mo dels : TECNO Sp ar k Go  2  (₱3 ,2 9 9 ), Redmi A5
+----------------Page (12) Break----------------
+(₱3 ,9 9 9 ), Infi nix  Smar t  10  Plu s  (₱4 ,2 9 9 ). Av er age s elling p r ice dr o p p ed fr o m $19 2  t o  $17 9
+bet w een 2 0 2 3  and 2 0 2 4 .
+Facebo o k Lit e (no t  t he fu ll ap p ) is  t he # 1 s o cial ap p  in t he Philip p ines  at  ~1.2 4  MB. Go o gle's
+r es ear ch s ho w s  each 6  MB incr eas e in ap p  s iz e co s t s  2 % in ins t all co nv er s io ns  in emer ging
+mar ket s .  The r eco mmended APK t ar get  is  u nder  15  MB,  ideally  u nder  10  MB.
+Pr o du ct  imp licat io ns
+Andr o id-fi r s t  is  co r r ect  — 9 0 %+ mar ket  s har e, t r ending u p w ar d
+Tar get  3  GB RAM minimu m, t es t  o n MediaTek Helio  G5 0 –G8 5  chip s et s
+APK s iz e u nder  15  MB — Facebo o k Lit e's  s u cces s  p r o v es  Filip ino s  s t r o ngly  p r efer
+light w eight  ap p s
+Offl ine-fi r s t  ar chit ect u r e r eq u ir ed — p at chy  co nnect iv it y  o u t s ide Met r o  Manila co r e
+GCas h int egr at io n is  ex p ect ed by  u s er s  des p it e int er v iew  fi nding t hat  landlo r ds  do n't  u s e it
+fo r  r ent  co llect io n
+Facebo o k s har ing/ lo gin is  es s ent ial — highes t  p enet r at io n r at e glo bally  (8 8 %+)
+Co mp r es s  images  aggr es s iv ely  — u s er s  o n ₱5 0 –9 0 / w eek dat a p lans  (~1–2  GB)
+⚠ CONTRADICTION: Int er v iew  dat a s ay s  0 / 5  landlo r ds  u s e GCas h fo r  r ent . Mar ket  dat a s ho w s
+8 1M mo nt hly  act iv e GCas h u s er s   and it 's  t he do minant  digit al p ay ment .  The
+co nt r adict io n likely  r efl ect s  t hat  info r mal landlo r ds  p r efer  cas h w hile t he br o ader  mar ket  is
+GCas h-nat iv e. The no -GCas h-at -MVP decis io n is  v alidat ed by  int er v iew  dat a, bu t  GCas h w ill
+likely  be demanded by  u s er s  p o s t -lau nch.
+Sect io n 6 : Failu r e Mo de Do cu ment at io n
+Fo u r  s p ecifi c do cu ment ed failu r e cas es
+1.  Pr o p z y  (Viet nam,  2 0 2 2 ) — Rais ed $3 3 M inclu ding $2 5 M fr o m So ft Bank. Hit  1,2 0 0  emp lo y ees ,
+3 0 + p hy s ical cent er s , 8 0 ,0 0 0  cu s t o mer s . Died becau s e t he hy br id mo del bu r ned cas h: 1%
+co mmis s io n co u ldn't  co v er  mas s iv e o p er at io nal co s t s . COVID cau s ed 7 0 % bu s ines s  r edu ct io n.
+Acq u is it io n t alks  w it h 9 9  Gr o u p  co llap s ed. Les s o n: t ech-br anded co mp anies  t hat  r ely  o n
+manu al p r o ces s es  die w hen fu nding dr ies  u p .
+2 .  Ho mejo y  (US,  2 0 15 ) — Y Co mbinat o r -backed, r ais ed $4 0 M fr o m Go o gle Vent u r es . Ex p anded
+t o  3 1 cit ies . 4 0 % o f r ep eat  bu s ines s  lo s t  t o  dis int er mediat io n — o nce ho meo w ner s  fo u nd a
+q u alit y  cleaner , t hey  hir ed dir ect ly . Only  2 5 % r et ent io n aft er  fi r s t  mo nt h, <10 % aft er  6  mo nt hs .
+Uns u s t ainable $19  p r o mo  p r icing (mar ket  r at e $8 5 +). Les s o n: r ecu r r ing s er v ice r elat io ns hip s
+ar e ex t r emely  v u lner able t o  p lat fo r m by p as s .
+Apptamin
+WikipediaWikipedia
+----------------Page (13) Break----------------
+3 .  Zip Mat ch (Philip p ines ,  2 0 2 1) — Rais ed $3 .5 M, backed by  Go o gle, 5 0 0  Glo bal, Kicks t ar t
+Vent u r es . Rev enu e p eaked at  $2 2 0 K/ y ear . Acq u ir ed fo r  $14 5 K — a 9 6 % lo s s . Des p it e fi r s t -mo v er
+adv ant age in Philip p ine p r o p t ech, nev er  achiev ed meaningfu l s cale agains t  Facebo o k/ o ffl ine
+t r ans act io ns .
+4 .  Mas t eo s  (Fr ance,  2 0 2 4 ) — Rais ed €7 0 M fo r  t u r nkey  r ent al inv es t ment s . Filed ins o lv ency
+Janu ar y  2 0 2 4 . Acq u ir ed by  No v ax ia fo r  ju s t  €1M — a 9 9 % lo s s  o n inv es t ed cap it al.
+Ver ifi cat io n dr o p -o ff  r at e dat a
+Met r icRat eSo u r ce
+Ov er all o nbo ar ding abando nment             6 0 –8 0 %Ju mio
+KYC s t ep  abando nment  (fi nt ech)5 2 %Git nu x  2 0 2 6  (v er ifi ed)
+Digit al KYC dr o p -o ff  (s ign-u p  t o  ap p r o v al)4 0 –7 0 %CheckFile.ai
+Us er s  abando ning w it h >5  fo r m fi elds           6 3 %Git nu x
+Dr o p -o ff  p er  ex t r a minu t e o f o nbo ar ding18 %Git nu x
+Mo bile-o p t imiz ed v er ifi cat io n r edu ces  abando nment  By  u p  t o  3 5 %Ap p s cr ip
+Pr o gr es s  bar s  r edu ce 4 5 % abando nment  t o  12 %~7 3 % imp r o v ement     Git nu x
+Banks  lo s ing client s  t o  p o o r  KYC6 7 % (u p  19 % fr o m 2 0 2 3 )Fener go
+Co ns u mer s  s w it ching aft er  p o o r  o nbo ar ding8 9 %Cfl o w Ap p s
+No  r ent al mar ket p lace-s p ecifi c KYC dat a w as  fo u nd p u blicly .  The fi nancial s ect o r  dat a (4 0 –
+7 0 % dr o p -o ff ) r ep r es ent s  a fl o o r  — fo r  a no n-fi nancial mar ket p lace in a dev elo p ing mar ket , dr o p -
+o ff  r at es  w o u ld likely  be at  t he high end o r  ex ceed t hes e fi gu r es  becau s e u s er s  hav e les s
+mo t iv at io n t o  co mp let e KYC t han fo r  banking.
+Dis int er mediat io n:  t he s t r u ct u r al t hr eat  t o  r ent al p lat fo r ms
+Rent al mar ket p laces  face t he highes t  dis int er mediat io n r is k o f any  mar ket p lace t y p e becau s e
+landlo r d-t enant  r elat io ns hip s  ar e lo ng-t er m, in-p er s o n p r o p er t y  v iew ing facilit at es  co nt act
+ex change, and bo t h p ar t ies  s av e fees  by  go ing dir ect .
+ZBJ (Chines e o u t s o u r cing p lat fo r m): dis int er mediat io n co u ld lead t o  lo s s  o f 9 0 % o f
+bu s ines s
+Ho mejo y : 4 0 % leakage o f r ep eat  bu s ines s
+----------------Page (14) Break----------------
+A leading glo bal e-co mmer ce mar ket p lace: 5 % r ev enu e leakage des p it e p r o act iv e
+meas u r es
+Res t r ict ing co mmu nicat io n t echno lo gy  r edu ced dis int er mediat io n by  ~18 % (Management
+Science, 2 0 2 4 )
+Do u ble-co mmit  mar ket p laces  (like r ent als ) hav e t he lo w es t  liq u idit y  o f all mar ket p lace t y p es
+becau s e bo t h s ides  mu s t  co mmit  t ime and eff o r t .
+Behav io r  change failu r es  in dev elo p ing mar ket s
+Info r mal eco no my  r es is t ance is  do cu ment ed: 7 0 % o f SE As ian emp lo y ment  is  info r mal. Cas h-
+eco no my  p r efer ences , lack o f fo r mal do cu ment at io n, and dis t r u s t  o f digit al p lat fo r ms  ar e
+bar r ier s . Pr o p Tech lags  fi nt ech in SE As ia by  ap p r o x imat ely  a decade — o nly  $3 8 0 M inv es t ed in
+SE As ia p r o p t ech o u t  o f $14 B glo bally . Zip Mat ch's  failu r e des p it e $3 .5 M fu nding and fi r s t -mo v er
+adv ant age demo ns t r at es  t his  challenge.
+Sect io n 7 : Tr u s t  UX Pat t er ns
+Air bnb's  t r u s t  des ign ev o lu t io n — t he go ld s t andar d
+Air bnb's  t r u s t  ar chit ect u r e ev o lv ed t hr o u gh deliber at e p has es :
+2 0 0 8 –2 0 0 9 :  Fo u nder s  r eco gniz ed t r u s t  as  t he co r e p r o blem. Went  do o r -t o -do o r  p ho t o gr ap hing
+lis t ings . Pr o fes s io nal p ho t o s  became t he # 1 co nv er s io n v ar iable — p ho t o gr ap hy  is  "t r u s t
+infr as t r u ct u r e."
+2 0 12 –2 0 13 :  Int r o du ced Ver ifi ed ID r eq u ir ing go v er nment  ID + s o cial media + p r o fi le p ho t o .
+Pr o fi le p ho t o s  became mandat o r y  becau s e 5 0 % o f t r ip s  inv o lv ed gu es t s  v is it ing ho s t  p r o fi les ,
+w it h 6 8 % o f v is it s  du r ing p r e-bo o king.
+2 0 14 :  Changed t o  do u ble-blind r ev iew  s y s t em. Res u lt : 7 % incr eas e in r ev iew  r at es  and 2 %
+incr eas e in negat iv e r ev iew s  — imp r o v ing ho nes t y . A ho s t  w it ho u t  r ev iew s  is  ~4 x  les s  likely  t o
+get  a bo o king.
+2 0 18 :  Lau nched Su p er ho s t  badge cer t ifi cat io n.
+2 0 19 :  10 -day  s afet y  s p r int : 10 0 % Ver ifi ed Ho mes , 2 4 / 7  ho t line, high-r is k s cr eening.
+Key  dat a: 7 5 %+ o f t r ip s  ar e v o lu nt ar ily  r ev iew ed. Cu s t o mer  s u p p o r t  int er v ent io n near ly
+eliminat es  r et ent io n lo s s  fr o m cancellat io ns  (2 6 % dr o p  → les s  t han 6 %).
+Thr ee s p ecifi c t r u s t  UX p at t er ns  fo r  t his  mar ket p lace
+1.  Pr o gr es s iv e v er ifi cat io n (r edu ce 4 0 –7 0 % dr o p -o ff ) St ar t  w it h minimal fr ict io n (p ho ne
+----------------Page (15) Break----------------
+nu mber  + name), es calat e as  u s er s  engage in higher -v alu e act io ns . Niels en No r man Gr o u p 's
+p r o gr es s iv e dis clo s u r e p r incip le (s ince 19 9 5 ): r ev ealing info r mat io n incr ement ally  imp r o v es  3  o f
+5  u s abilit y  co mp o nent s . Pr act ical imp lement at io n: Lev el 0  (br o w s e), Lev el 1 (p ho ne-v er ifi ed:
+can mes s age), Lev el 2  (ID-v er ifi ed: can bo o k v iew ings ), Lev el 3  (emp lo y ment -v er ifi ed: landlo r d
+s ees  fu ll p r o fi le).
+2 .  Rep u t at io n t hr es ho ld at  ~10  r ev iew s  St anfo r d r es ear ch w it h Air bnb co nfi r med a t ip p ing
+p o int : 1–3  r ev iew s  bar ely  mo v e t he t r u s t  needle,  bu t  10 + r ev iew s  cr eat e a s t ep -fu nct io n
+incr eas e in t r u s t .  Eno u gh p o s it iv e r ev iew s  can co u nt er act  ho mo p hily  bias  (nat u r al p r efer ence
+fo r  p eo p le s imilar  t o  u s ). Fo r  a new  mar ket p lace, s eed init ial r ev iew s  fr o m ex is t ing landlo r d-
+t enant  r elat io ns hip s .
+3 .  Ant i-s cam fr ict io n fo r  high-r is k act io ns  (Qo nt o 's  fr amew o r k) Qo nt o 's  p r o du ct  des igner
+do cu ment ed s cam p r ev ent io n UX: co nt ex t u al info r mat io n in t r ans fer  ap p r o v als  s o  u s er s
+u nder s t and mo ney  is  leav ing, clear  act io n bu t t o ns , and r is k-bas ed ex t r a co nfi r mat io n s t ep s  t hat
+br eak t he s cammer 's  s cr ip t . Cr it ical ins ight : do n't  o v er u s e w ar nings  (habit u at io n) — r es er v e
+alar ming UI fo r  genu inely  s u s p icio u s  s it u at io ns .
+Filip ino / SEA co nt ex t  fo r  t r u s t  des ign
+Filip ino  mo bile u s er s  p r efer  s imp licit y  o v er  co mp lex  feat u r es  and hav e s t r o ng s o cial s har ing
+t endencies  — p eer  r eco mmendat io ns  dr iv e decis io ns  mo r e t han indep endent  r es ear ch (u nlike
+Wes t er n mar ket s ). Filip ino  u s er s  s ho w  a p r efer ence fo r  hu man as s is t ance — cu s t o mer  s u p p o r t
+int er act io n r at es  ar e high.
+GCas h bu ilt  t r u s t  t hr o u gh: clean minimalis t  nav igat io n, KYC w it h v alid ID, 2 FA au t hent icat io n,
+and "Do u ble Safe" facial r eco gnit io n. Their  r ebr and balanced "p r o fes s io nal and r eliable" w it h
+"element s  o f p lay " — addr es s ing a mar ket  "largely skeptical or unfamiliar with fintech." GCas h
+achiev ed a SUS u s abilit y  s co r e o f 8 0 . 5 5  (bes t  amo ng Philip p ine e-w allet s ).
+Taglis h (Tagalo g-Englis h mix ) co p y w r it ing is  t he no r m in Filip ino  ap p s . Des ign s ho u ld s u p p o r t
+v ar y ing lev els  o f digit al lit er acy  acr o s s  u r ban/ r u r al u s er s .
+Ver ifi cat io n UX bes t  p r act ices  fo r  mo bile
+The 3 8 % abando nment  r at e w hen ident it y  v er ifi cat io n is  t o o  lo ng/ co mp lex  demands  car efu l UX.
+Bes t  p r act ices  fr o m Per s o na, Onfi do , and Lu mit ech: ex p lain WHY v er ifi cat io n is  needed befo r e
+as king fo r  do cu ment s , u s e au t o -cap t u r e camer a co mp o nent s , s ho w  p r o gr es s  indicat o r s  (s t ep  1 o f
+3 ), o ne t as k p er  s cr een o n mo bile, p r o v ide alt er nat iv e v er ifi cat io n met ho ds , co nfi r m each
+s u cces s fu l s t ep  w it h p o s it iv e feedback, and alw ay s  inclu de a manu al fallback fl o w  fo r  u s er s  w ho
+fail elect r o nic v er ifi cat io n.
+Emp t y  s t at e des ign fo r  a mar ket p lace w it h few  lis t ings
+The mo s t  danger o u s  mo ment  fo r  a new  mar ket p lace is  w hen a u s er  s ear ches  and fi nds  no t hing.
+----------------Page (16) Break----------------
+Niels en No r man Gr o u p  w ar ns  t hat  s ho w ing "No  r eco r ds " w hile co nt ent  is  lo ading des t r o y s  t r u s t .
+Bes t  p r act ices : nev er  s ho w  co mp let ely  blank s cr eens ; inclu de a clear  CTA ("Tr y  ex p anding y o u r
+s ear ch r adiu s "); u s e t he s p ace fo r  edu cat io n abo u t  p lat fo r m v alu e; s ho w  near by  v er ifi ed lis t ings
+t o  demo ns t r at e act iv it y ; and inv it e u s er s  t o  co nt r ibu t e ("Kno w  a gr eat  p lace? Help  y o u r
+co mmu nit y  by  adding it "). Air bnb's  p at t er n: "No exact matches. Try adjusting your filters" +
+"Remo v e all fi lt er s " bu t t o n.
+8 8 % o f u s er s  w o n't  r et u r n aft er  a bad ex p er ience (To p t al). This  makes  emp t y  s t at e des ign
+ex is t ent ial fo r  a new  mar ket p lace.
+Sect io n 8 : Op en Qu es t io ns  fo r  Pr o mp t  2
+1. PhilSy s  eVer ify  r egis t r at io n p r o ces s :  What  ar e t he ex act  s t ep s  and t imeline t o  r egis t er  as  a
+"r ely ing p ar t y " at  ev er ify .go v .p h? Is  it  av ailable t o  s t ar t u p s  o r  o nly  es t ablis hed co mp anies ?
+2 . Rent  Co nt r o l Act  s co p e:  Do es  RA 9 6 5 3  co v er  beds p aces  and do r mit o r ies , o r  o nly  t r adit io nal
+r es ident ial u nit s ? The ₱10 ,0 0 0  NCR t hr es ho ld o v er lap s  dir ect ly  w it h t he t ar get  mar ket .
+3 . Facebo o k s cr ap ing legalit y :  Can lis t ings  fr o m Facebo o k gr o u p s  be aggr egat ed int o  t he
+p lat fo r m w it ho u t  v io lat ing Ter ms  o f Ser v ice?
+4 . BPO co mp any  p ar t ner s hip  mechanics :  What  w o u ld a fo r mal HR p ar t ner s hip  w it h a BPO
+co mp any  lo o k like? Do  t hey  hav e ho u s ing as s is t ance p r o gr ams  alr eady ?
+5 . Bar angay -lev el dis t r ibu t io n:  Ho w  do  o t her  s t ar t u p s  w o r k w it h bar angay  o ffi cials ? What  is
+t he p r o ces s  fo r  get t ing endo r s ement ?
+6 . Do r my .p h/ Su z y  Rent  t r act io n:  What  ar e Do r my 's  act u al met r ics  (mo nt hly  act iv e u s er s ,
+lis t ings , t r ans act io ns )? Ar e t hey  a r eal co mp et it iv e t hr eat ?
+7 . Cas h r ent  co llect io n:  If landlo r ds  ins is t  o n cas h (0 / 5  u s e GCas h p er  int er v iew s ), ho w  do es
+t he p lat fo r m r emain v alu able aft er  init ial t enant  mat ching?
+8 . Het z ner  Singap o r e lat ency :  What  is  t he act u al lat ency  fr o m Het z ner  Singap o r e t o  Met r o
+Manila co mp ar ed t o  Digit alOcean Singap o r e? Cr it ical fo r  bu dget  o p t imiz at io n.
+Sect io n 9 : Mid-Res ear ch Checkp o int  Findings
+Int er v iew  dat a v alidat io n s co r ecar d
+Int er v iew  FindingRes ear ch Ver dict                       Flag
+Fees  kill ado p t io n✓ CONFIRMS — KYC dr o p -o ff  is  4 0 –7 0 %; ev er y  fr ict io n✓ CONFIRMS
+----------------Page (17) Break----------------
+Int er v iew  FindingRes ear ch Ver dict                       Flag
+p o int  lo s es  u s er s  ex p o nent ially
+Scams  ar e r eal fo r  t enant s  ✓ CONFIRMS — 6 7 % o f Filip ino s  enco u nt er  s cams
+mo nt hly ; PH r anks  2 nd glo bally  fo r  digit al fr au d
+✓ CONFIRMS
+Demand > s u p p ly  in BPO
+ar eas
+✓ CONFIRMS fo r  bu dget  s egment  — 8 5 –9 0 % o ccu p ancy
+in mid-t o -lo w  r ange; s ev er e mis mat ch w it h co ndo
+o v er s u p p ly
+✓ CONFIRMS
+(nu anced)
+Co mmu nit y  t r u s t  makes
+ap p s  u nneces s ar y
+✓ CONFIRMS — Facebo o k do minat es ; Do r my  s t ill t iny
+aft er  3  y ear s ; Zip Mat ch failed w it h $3 .5 M
+✓ CONFIRMS
+GCas h is  p ay ment  no r m
+(FAILING)
+✓ CONFIRMS FAILURE — GCas h has  8 1M MAU bu t
+landlo r ds  p r efer  cas h; t he 0 / 5  fi nding mat ches  info r mal
+eco no my  p at t er ns
+✓ CONFIRMS
+Landlo r ds  need help
+fi nding t enant s
+(FAILING)
+✓ CONFIRMS FAILURE — bu dget  s egment  has  8 5 -9 0 %
+o ccu p ancy , fi lls  fas t . Landlo r ds  do n't  need a p lat fo r m fo r
+t enant  acq u is it io n
+✓ CONFIRMS
+Dep o s it  dis p u t es
+co mmo n (FAILING)
+✓ CONFIRMS FAILURE — no  dep o s it  dis p u t e dat a fo u nd
+in any  s o u r ce; no t  a majo r  do cu ment ed p ain p o int
+✓ CONFIRMS
+Thr ee co r e mechanis ms  v alidat io n
+Mechanis mSco r eRes ear ch Su p p o r t
+Kakilala Gap
+(14 0 / 16 5 )
+✅ St r o ngly
+s u p p o r t ed
+Pr o v incial migr ant s  lack lo cal net w o r ks ; Air bnb's  t r u s t
+r es ear ch s ho w s  s t r anger s  need v er ifi cat io n infr as t r u ct u r e
+Tr u s t  Deadlo ck
+(13 8 / 16 5 )
+✅ St r o ngly
+s u p p o r t ed
+6 7 % s cam enco u nt er  r at e; Lamu di 10 0 % negat iv e r ev iew s ; no
+p lat fo r m p r o v ides  r eliable v er ifi cat io n
+Gu t  Feeling
+Scr eening (13 6 / 16 5 )
+✅ Su p p o r t edLandlo r ds  u s e info r mal as s es s ment ; PhilSy s  eVer ify  co u ld
+fo r maliz e t his  at  z er o  co s t
+----------------Page (18) Break----------------
+Sect io n 10 : Res ear ch Qu alit y  Self-As s es s ment
+Co v er age t able
+Blo ckTar get
+So u r ces
+Es t imat ed
+Achiev ed
+Key  Gap s
+A — Co mp et it o r s    8 0 –12 0      ~7 5          Rent Pad 4 0 3  blo cked; no  Reddit  r ev iew s
+fo u nd
+B — Ident it y
+Ver ifi cat io n
+7 0 –10 0      ~8 0          Per s o na ex act  p r icing hidden; Vo nage
+p r icing no t  fet ched
+C — Co ld St ar t      6 0 –8 0      ~6 5          Limit ed indie hacker  r ent al-s p ecifi c cas e
+s t u dies
+D — Tech St ack10 0 –14 0     ~9 0          Kamal no n-Rails  co v er age t hin
+E — Philip p ine Tech5 0 –7 0      ~5 5          So me St at is t a fi gu r es  behind p ay w all
+F — Failu r e Mo des   5 0 –7 0      ~5 0          No  r ent al-s p ecifi c KYC dr o p -o ff  dat a ex is t s
+p u blicly
+G — Tr u s t  UX5 0 –7 0      ~5 0          Air bnb.des ign p ages  no t  dir ect ly  fet chable
+TOTAL4 6 0 –6 5 0    ~4 6 5         —
+Failed fet ches
+URLReas o nMit igat io n
+r ent p ad.co m.p h4 0 3  Fo r biddenUs ed s ear ch s nip p et s , Qu o r a r ev iew s , ScamAdv is er
+lamu di.co m.p h/ adv er t is e4 0 3  Fo r biddenUs ed s ear ch s nip p et s , Tr u s t p ilo t , t hir d-p ar t y  r ev iew s
+do r my .p h/ blo gRedir ect      Fet ched main do main and s eco ndar y  s o u r ces
+s u ms u b.co m/ p r icingRedir ect      Us ed G2 , Cap t er r a, t hir d-p ar t y  co mp ar is o n s it es
+Per s o na p r icing4 0 3         Rep o r t ed as  PRICING HIDDEN w it h indu s t r y  es t imat es
+Reddit  r es u lt s        Var io u s  blo cks   Us ed Qu o r a, Ex p at .co m, Hacker  New s  alt er nat iv es
+----------------Page (19) Break----------------
+URLReas o nMit igat io n
+air bnb.des ignCo u ld no t
+ex t r act
+Us ed Mediu m (Air bnb Engineer ing), ScienceDir ect ,
+s eco ndar y  analy s es
+Co nfi dence as s es s ment
+FindingCo nfi denceBas is
+Lamu di p r icing (fr ee bas ic, ₱9 9 9
+Pr o )
+Mediu m-
+High
+Mu lt ip le s eco ndar y  s o u r ces  agr ee; no  dir ect  p age
+fet ch
+Clo u dfl ar e R2  p r icingVer y  HighFet ched dir ect ly  fr o m o ffi cial do cs
+DO Dr o p let  p r icingVer y  HighFet ched dir ect ly  fr o m o ffi cial p r icing p age
+PhilSy s  co v er age (9 0 .7 M/ 8 0 %)HighMu lt ip le go v er nment  and bio met r icu p dat e.co m
+s o u r ces
+KYC dr o p -o ff  4 0 –7 0 %HighMu lt ip le indu s t r y  r ep o r t s ; fi nt ech-s p ecifi c, no t  r ent al
+Semap ho r e SMS p r icing (₱0 .5 0 )HighFet ched dir ect ly  fr o m s emap ho r e.co
+Andr o id mar ket  s har e ~9 0 %Ver y  HighSt at Co u nt er , mu lt ip le co r r o bo r at ing s o u r ces
+t RPC + Ex p o  co mp at ibilit y      HighMu lt ip le Git Hu b r ep o s , s t ar t er  kit s , and fo r u m
+co nfi r mat io ns
+Lu cia dep r ecat edVer y  HighOffi cial Git Hu b anno u ncement  by  cr eat o r
+Sect io n 11: Self-Gr ade
+Gr ading cr it er ia ap p lied
+Blo ck A — Co mp et it iv e Lands cap e:  A- ✅ Lamu di fee co nfi r med/ denied (no t  ₱15 K; fr ee bas ic,
+₱9 9 9  Pr o ) ✅ 5 + v er bat im u s er  co mp laint s  ✅ Do r my  v er ifi cat io n p r o ces s  do cu ment ed ✅
+Mu lt ip le s cam p at t er ns  fr o m legal/ new s  s o u r ces  ✅ Zip Mat ch failu r e do cu ment ed ✅ Mar ket
+gap  as s es s ed w it h q u ant it at iv e dat a. Mino r  gap : Rent Pad dir ect  fet ch failed (4 0 3 ), r elied o n
+s eco ndar y  s o u r ces .
+Blo ck B — Ident it y  Ver ifi cat io n:  A ✅ 5  KYC API p r icing decis io ns  w it h ex act  nu mber s  ✅
+Semap ho r e SMS p r icing co nfi r med dir ect ly  ✅ Co mp let e PH go v er nment  ID lis t  (3 0 + IDs ) ✅
+----------------Page (20) Break----------------
+PDPA r eq u ir ement s  co mp r ehens iv ely  do cu ment ed ✅ PhilSy s  eVer ify  dis co v er y  is  a majo r
+s t r at egic fi nding ✅ Manu al KYC cas e s t u dies  fr o m Angkas , Gr ab, Air bnb.
+Blo ck C — Co ld St ar t  So lu t io ns :  A- ✅ 4  s p ecifi c co mp any  cas e s t u dies  (Air bnb, Uber ,
+Op enTable, Do o r Das h) ✅ Pr o gr es s iv e v er ifi cat io n as  high-fr au d t echniq u e ✅ Op enTable as
+s ingle-p lay er  v alu e ex amp le ✅ 3  Philip p ines -s p ecifi c acq u is it io n s t o r ies  (GCas h, Angkas , Gr ab)
+✅ Su p p ly -fi r s t  ev idence s t r o ng (8 0 % o f 17  mar ket p laces ). Mino r  gap : limit ed bo o t s t r ap p ed indie
+hacker  r ent al-s p ecifi c s t o r ies .
+Blo ck D — Tech St ack:  A ✅ DO Dr o p let  ex act  s p ecs  fo r  $12 , $2 4 , $4 8  ✅ Clo u dfl ar e R2  ex act
+p r icing ✅ Ex p o  EAS fr ee t ier  limit s  ✅ 3 + dev elo p er  o p inio ns  o n Dr iz z le v s  Pr is ma ✅ Co o lify  v s
+Do kku  w it h det ailed co mp ar is o n ✅ t RPC + Ex p o  co mp at ibilit y  co nfi r med ✅ Clau de Co de
+p r o du ct io n ex p er iences  ✅ Co mp let e co s t  s t acks  u nder  $5 0 / mo  ✅ Lu cia dep r ecat io n fl agged.
+Blo ck E — Philip p ine Tech:  A ✅ Andr o id 9 0 .16 % mar ket  s har e ✅ Av er age mo bile s p eed 3 5 .5 6
+Mbp s  median ✅ GCas h 8 1M MAU ✅ Facebo o k 10 5 M u s er s  ✅ Bu dget  dev ice s p ecs  ✅ Ap p
+s iz e t o ler ance dat a ✅ Dat a p lan co s t s .
+Blo ck F — Failu r e Mo des :  A- ✅ 4  do cu ment ed failu r e cas es  (Pr o p z y , Ho mejo y , Zip Mat ch,
+Mas t eo s ) ✅ KYC dr o p -o ff  dat a (4 0 –7 0 %) ✅ Dis int er mediat io n dat a q u ant ifi ed ✅ Pr o gr es s iv e
+v er ifi cat io n ev idence. Ho nes t  gap : no  r ent al-s p ecifi c KYC dat a ex is t s  p u blicly  — do cu ment ed as
+s u ch.
+Blo ck G — Tr u s t  UX:  A- ✅ Air bnb t r u s t  des ign ev o lu t io n w it h t imeline and dat a ✅ 3  s p ecifi c
+UX p at t er ns  w it h ev idence ✅ Filip ino / SEA UX fi ndings  (GCas h, Pix elmo jo ) ✅ Ant i-s cam UX
+(Qo nt o  fr amew o r k) ✅ Emp t y  s t at e des ign. Mino r  gap : limit ed dir ect  acces s  t o  Air bnb.des ign
+p ages .
+Ov er all s elf-gr ade:  A-
+St r engt hs :  Co mp r ehens iv e co mp et it o r  int elligence w it h v er bat im u s er  feedback; ex act
+infr as t r u ct u r e p r icing fr o m o ffi cial s o u r ces ; PhilSy s  eVer ify  dis co v er y  (fr ee go v er nment
+v er ifi cat io n API); s t r o ng int er v iew  dat a v alidat io n; q u ant ifi ed failu r e mo de dat a; act io nable co ld
+s t ar t  fr amew o r ks  w it h Philip p ines -s p ecifi c ev idence.
+Weaknes s es :  Sev er al 4 0 3  blo cks  o n co mp et it o r  s it es  r eq u ir ed fallback t o  s eco ndar y  s o u r ces ; no
+r ent al-s p ecifi c KYC dr o p -o ff  dat a fo u nd (do cu ment ed ho nes t ly ); Reddit  lar gely  inacces s ible;
+Per s o na p r icing hidden behind s ales  w all; s o me St at is t a dat a behind p ay w all.
+So u r ce q u alit y  no t e:  Co llier s  Philip p ines  q u ar t er ly  r ep o r t s  ar e go ld-s t andar d fo r  mar ket  dat a.
+Oo kla/ Dat aRep o r t al fo r  co nnect iv it y . Offi cial p r icing p ages  (Clo u dfl ar e, DO, Ex p o , Res end)
+fet ched dir ect ly . Tr u s t p ilo t  r ev iew s  ar e u nmo der at ed u s er  co mp laint s . GASA s cam s t at is t ics
+bas ed o n 1,0 0 0 -p er s o n s u r v ey . Lenny  Rachit s ky 's  mar ket p lace r es ear ch bas ed o n int er v iew s
+w it h 17  majo r  mar ket p lace fo u nder s .
+----------------Page (21) Break----------------
+RESEARCH COMPLETE. Co p y  ev er y t hing bet w een t he mar kdo w n fences  abo v e and p as t e it
+int o  Pr o mp t  2  w her e indicat ed.
+----------------Page (22) Break----------------

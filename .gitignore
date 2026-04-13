@@ -12,3 +12,5 @@ play-store-key.json
 *.apk
 *.aab
 *.ipa
+logs/
+.mcp.json

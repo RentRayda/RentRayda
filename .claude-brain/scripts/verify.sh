@@ -27,6 +27,10 @@ if [ -z "$STAGED" ]; then
   exit 0
 fi
 
+# Application code only (excludes brain docs and archived files — they document
+# banned patterns as "don't use these" and would false-positive every scan).
+STAGED_APP=$(echo "$STAGED" | grep -v "^\.claude-brain/" | grep -v "^docs/archive/" || true)
+
 # ============================================================================
 # 2. Check for killed concepts in staged files
 # ============================================================================
@@ -45,8 +49,8 @@ KILLED_PATTERNS=(
 )
 
 for pattern in "${KILLED_PATTERNS[@]}"; do
-  # Search only actual code files, exclude docs and brain
-  MATCHES=$(echo "$STAGED" | grep -E '\.(ts|tsx|js|jsx)$' | xargs grep -l "$pattern" 2>/dev/null | grep -v ".claude-brain" || true)
+  # Search only application code files, exclude brain and archive
+  MATCHES=$(echo "$STAGED_APP" | grep -E '\.(ts|tsx|js|jsx)$' | xargs grep -l "$pattern" 2>/dev/null || true)
   if [ ! -z "$MATCHES" ]; then
     echo -e "${RED}✗ BLOCKED:${NC} Staged file(s) reference killed concept '$pattern':"
     echo "$MATCHES" | sed 's/^/    /'
@@ -71,7 +75,7 @@ DRIFT_PATTERNS=(
 )
 
 for pattern in "${DRIFT_PATTERNS[@]}"; do
-  NEW_REFS=$(git diff --cached 2>/dev/null | grep "^+" | grep -v "^+++" | grep "$pattern" || true)
+  NEW_REFS=$(git diff --cached -- ':!.claude-brain' ':!docs/archive' 2>/dev/null | grep "^+" | grep -v "^+++" | grep "$pattern" || true)
   if [ ! -z "$NEW_REFS" ]; then
     echo -e "${RED}✗ BLOCKED:${NC} Staged changes ADD reference to deprecated '$pattern'"
     echo "    Use BeVietnamPro-Bold or Sentient-Medium instead (see context/04-brand.md)"
@@ -85,7 +89,7 @@ COLOR_PATTERNS=(
 )
 
 for pattern in "${COLOR_PATTERNS[@]}"; do
-  NEW_REFS=$(git diff --cached 2>/dev/null | grep "^+" | grep -v "^+++" | grep "$pattern" || true)
+  NEW_REFS=$(git diff --cached -- ':!.claude-brain' ':!docs/archive' 2>/dev/null | grep "^+" | grep -v "^+++" | grep "$pattern" || true)
   if [ ! -z "$NEW_REFS" ]; then
     echo -e "${YELLOW}⚠ WARN:${NC} Staged changes add deprecated color '$pattern'"
     echo "    Use #2D79BF instead (see context/04-brand.md)"
@@ -113,7 +117,7 @@ SECRET_PATTERNS=(
 )
 
 for pattern in "${SECRET_PATTERNS[@]}"; do
-  FOUND=$(echo "$STAGED" | xargs grep -l -E "$pattern" 2>/dev/null || true)
+  FOUND=$(echo "$STAGED_APP" | xargs grep -l -E "$pattern" 2>/dev/null || true)
   if [ ! -z "$FOUND" ]; then
     echo -e "${RED}✗ BLOCKED:${NC} Possible secret matching '$pattern' in:"
     echo "$FOUND" | sed 's/^/    /'
@@ -216,7 +220,7 @@ fi
 echo ""
 echo "→ Checking for console.log in staged code..."
 
-CONSOLE_LOGS=$(git diff --cached 2>/dev/null | grep "^+" | grep -v "^+++" | grep -E "console\.(log|debug)" | grep -v "console.error\|console.warn" || true)
+CONSOLE_LOGS=$(git diff --cached -- ':!.claude-brain' ':!docs/archive' 2>/dev/null | grep "^+" | grep -v "^+++" | grep -E "console\.(log|debug)" | grep -v "console.error\|console.warn" || true)
 
 if [ ! -z "$CONSOLE_LOGS" ]; then
   echo -e "${YELLOW}⚠ WARN:${NC} console.log/debug found in staged changes."

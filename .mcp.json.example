@@ -3,13 +3,13 @@
     "context7": {
       "command": "npx",
       "args": ["-y", "@upstash/context7-mcp@latest"],
-      "description": "Up-to-date docs for React Native, Expo, Next.js, Tailwind, etc."
+      "description": "Up-to-date docs for React Native, Expo, Next.js, Tailwind, etc. No API key needed."
     },
     "21st-dev": {
       "command": "npx",
       "args": ["-y", "@21st-dev/magic@latest"],
       "env": {
-        "TWENTY_FIRST_API_KEY": "YOUR_21ST_DEV_API_KEY_HERE"
+        "TWENTY_FIRST_API_KEY": "YOUR_21ST_DEV_API_KEY_HERE — get at https://21st.dev/settings/api-keys"
       },
       "description": "Curate production-ready UI components from 21st.dev."
     },
@@ -20,14 +20,14 @@
         "mcp-remote",
         "https://mcp.v0.dev",
         "--header",
-        "Authorization: Bearer YOUR_V0_TOKEN_HERE"
+        "Authorization: Bearer YOUR_V0_TOKEN_HERE — get at https://vercel.com/account/tokens"
       ],
       "description": "Generate UI components via v0.dev AI"
     },
     "puppeteer": {
       "command": "npx",
       "args": ["-y", "puppeteer-mcp-server@latest"],
-      "description": "Browser automation to screenshot and visually test rendered pages."
+      "description": "Browser automation to screenshot and visually test rendered pages. No API key needed."
     }
   }
 }

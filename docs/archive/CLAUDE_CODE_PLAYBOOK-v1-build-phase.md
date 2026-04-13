@@ -1,3 +1,16 @@
+# CLAUDE_CODE_PLAYBOOK v1 (ARCHIVED — build phase)
+
+This was the original 31-prompt build-phase playbook used to construct the RentRayda MVP
+(monorepo setup through initial deploy). It is preserved as historical reference.
+
+For current execution, see PLAYBOOK.md at repo root (v6 bundle, 40 prompts covering
+validation → scale phases).
+
+Archived: 2026-04-13
+Reason: Superseded by v6 bundle PLAYBOOK.md. Build phase complete per REPO_STATUS.md (MVP 95%).
+
+---
+
 # CLAUDE CODE PLAYBOOK
 # RentRayda — Philippine Informal Rental Marketplace
 # 31 Paste-Ready Prompts | Self-Testing Verification Loops | Session Protocols

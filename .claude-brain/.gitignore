@@ -1,0 +1,7 @@
+# The current session scratchpad is overwritten every session and should not be committed.
+# It gets archived to scratch/archive/ at session-end.
+scratch/current-session.md
+
+# OS noise
+.DS_Store
+Thumbs.db

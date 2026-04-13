@@ -1,7 +1,45 @@
-# RentRayda — Claude Code Context
-# ALWAYS read this file before writing any code.
-# Update the CURRENT FOCUS section at the start of every session.
-# Reference docs: TRD.md (APIs + schemas), DRD.md (screens + design), CLAUDE_CODE_PLAYBOOK.md (prompts)
+# RentRayda — Session Boot + Technical Reference
+# Primary Claude Code context file. Read BEFORE any other file.
+# Deep context: .claude-brain/ (decisions, research, brand, psychographics, scripts)
+
+---
+
+## SESSION BOOT PROTOCOL (read FIRST, every session)
+
+**HARD RULES (violating any = stop immediately):**
+1. Never write code before reading `.claude-brain/context/00-north-star.md`.
+2. Never suggest anything in `FINAL_DECISION.md` Section 3 (kill list — 19 rejected paths).
+3. Never add a dependency without asking.
+4. Never refactor beyond the immediate scope.
+5. Never write a blueprint longer than 500 lines.
+
+**BEFORE ANY RESPONSE INVOLVING CODE — mental checklist:**
+1. Does it already exist? Check REPO_STATUS.md §9.
+2. Is it a known bug? Check REPO_STATUS.md §10.
+3. Is it in the build list? Check FINAL_DECISION.md Section 4.
+4. Is there a decision file? Check `.claude-brain/decisions/`.
+5. What's the minimum scope? Narrow it before touching any file.
+
+**Kickoff procedure:** follow `.claude-brain/prompts/session-kickoff.md` (execute automatically at session start — no prompting needed).
+
+For behavioral guardrails, reset protocol, and anti-patterns: see `.claude-brain/CLAUDE.md`.
+
+---
+
+## CURRENT FOCUS
+# At the start of every Claude Code session, overwrite this section with:
+# - Feature name you are building
+# - Specific files you are working in
+# - Acceptance criteria for today's session
+# - Any decisions made in previous sessions that affect today
+#
+# Example:
+# Working on: tenant-profile-creation
+# Files: packages/db/schema/tenant-profiles.ts, apps/mobile/app/(onboarding)/tenant-profile.tsx
+# Done when: Tenant can submit profile form, data saves to tenant_profiles table
+# Previous: Using expo-image-picker for photo capture, quality 0.7
+
+---
 
 ## WHAT THIS APP IS
 
@@ -18,19 +56,6 @@ other's phone number. Everything else exists to get users to that moment.
 Brand: #2D79BF (RentRayda Blue). Logo: Philippine tarsier silhouette.
 Verified badge: #16A34A (Green — universal "approved" signal, NOT brand blue).
 NOTE: #2B51E3 is the OLD brand blue (v1) — use #2D79BF everywhere. See BRAND.md §5 for banned colors.
-
-## CURRENT FOCUS
-# At the start of every Claude Code session, overwrite this section with:
-# - Feature name you are building
-# - Specific files you are working in
-# - Acceptance criteria for today's session
-# - Any decisions made in previous sessions that affect today
-#
-# Example:
-# Working on: tenant-profile-creation
-# Files: packages/db/schema/tenant-profiles.ts, apps/mobile/app/(onboarding)/tenant-profile.tsx
-# Done when: Tenant can submit profile form, data saves to tenant_profiles table
-# Previous: Using expo-image-picker for photo capture, quality 0.7
 
 ## TECH STACK
 
@@ -84,37 +109,6 @@ Authentication:
 - Plugins: phoneNumber(), magicLink(), passkey(), bearer(), expo({ scheme: 'rentrayda' })
 - OTP: 6 digits, 10-min expiry, 3 attempts → 15-min lockout, 5 sends/hr/phone
 - On first verify-otp: creates user with temp email `{phone}@rentrayda.local` + auto-creates empty profile based on role
-- Server auth middleware:
-  ```typescript
-  // apps/api/src/middleware/auth.ts
-  import { createMiddleware } from 'hono/factory';
-  import { auth } from '../lib/auth';
-
-  export const authMiddleware = createMiddleware(async (c, next) => {
-    const session = await auth.api.getSession({ headers: c.req.raw.headers });
-    if (!session) return c.json({ error: 'Unauthorized', code: 'UNAUTHORIZED' }, 401);
-    if (session.user.isSuspended) return c.json({ error: 'Account suspended', code: 'SUSPENDED' }, 403);
-    c.set('user', session.user);
-    c.set('session', session.session);
-    await next();
-  });
-  ```
-- Mobile auth client:
-  ```typescript
-  // apps/mobile/lib/auth.ts
-  import { createAuthClient } from 'better-auth/client';
-  import { expoClient } from '@better-auth/expo/client';
-  import { phoneNumberClient } from 'better-auth/client/plugins';
-  import * as SecureStore from 'expo-secure-store';
-
-  export const authClient = createAuthClient({
-    baseURL: process.env.EXPO_PUBLIC_API_URL,
-    plugins: [
-      expoClient({ scheme: 'rentrayda', storagePrefix: 'rentrayda', storage: SecureStore }),
-      phoneNumberClient(),
-    ],
-  });
-  ```
 
 SMS:
 - Provider: PhilSMS (₱0.35/SMS)
@@ -122,10 +116,19 @@ SMS:
 - Phone normalization: normalizePhPhone() handles 09XX, +63, 63, and 9XX formats
 - Fallback: iTexMo (₱0.15/SMS) for burst capacity
 
+Code patterns (route, query, response, auth middleware): `.claude-brain/context/13-code-patterns.md`
+
 ## PROJECT STRUCTURE
 
 ```
 /
+├── .claude-brain/              # v6 second brain — context, decisions, prompts, scripts
+│   ├── context/                # 13 context docs (north-star, research, repo-status, etc.)
+│   ├── decisions/              # Decision log (kill-scraping, tenant-only-revenue, etc.)
+│   ├── prompts/                # Session kickoff, pre-commit, reset, debug, wrap
+│   ├── scripts/                # refresh-repo-status, check-sync, install-hooks, verify
+│   ├── journal/                # Session journals (YYYY-MM-DD-topic.md)
+│   └── CLAUDE.md               # Behavioral guardrails + reset protocol (secondary to this file)
 ├── apps/
 │   ├── web/                    # Next.js 16.2 — landing page, admin dashboard, listing browse
 │   ├── mobile/                 # Expo SDK 55 — all user-facing onboarding and transaction flows
@@ -138,43 +141,27 @@ SMS:
 │       │   └── jobs/           # push-notification.ts, sms-notification.ts, auto-pause-listings.ts
 ├── packages/
 │   ├── db/                     # Drizzle 0.45 — 9 schema files, relations, migrations
-│   │   ├── schema/             # users, landlord-profiles, tenant-profiles, verification-documents,
-│   │   │                       # listings, listing-photos, connection-requests, connections, reports, relations
-│   │   ├── index.ts            # DB initialization and exports
-│   │   └── migrations/         # Generated by drizzle-kit (never edit manually)
 │   ├── shared/                 # Zod validators, TypeScript types, constants, error codes
-│   │   ├── validators/         # auth, listing, profile, connection, report
-│   │   ├── constants.ts        # ROLES, UNIT_TYPES, LAUNCH_BARANGAYS, INCLUSIONS, ID_TYPES,
-│   │   │                       # EMPLOYMENT_TYPES, BPO_COMPANIES, REPORT_TYPES, VERIFICATION_STATUSES,
-│   │   │                       # LISTING_STATUSES, CONNECTION_REQUEST_STATUSES, DOCUMENT_TYPES, DOC_STATUSES
-│   │   └── error-codes.ts      # ERROR_CODES enum + ErrorCode type (see TRD.md §2.14)
 │   └── ui/                     # Shared design tokens (color, spacing, typography)
+├── artifacts/                  # Pre-drafted marketing/onboarding content
+├── docs/archive/               # Archived docs (v1 build-phase playbook)
 ├── CLAUDE.md                   # This file
 ├── TRD.md                      # Technical Requirement Document (APIs, schemas, infra)
 ├── DRD.md                      # Design Requirement Document (screens, wireframes, components)
-├── CLAUDE_CODE_PLAYBOOK.md     # 32 paste-ready prompts for building every feature
+├── PLAYBOOK.md                 # 40 god-prompts: validation → scale
+├── FINAL_DECISION.md           # Kill list (19 items) + build list + revenue paths
+├── BRAND.md                    # Brand book v2 — colors, tarsier, typography
 ├── turbo.json                  # Pipeline: build, dev, lint, typecheck
 ├── pnpm-workspace.yaml
 ├── .npmrc                      # node-linker=hoisted (required for Expo)
-└── .env.example                # All env vars documented (see below)
+└── .env.example                # All env vars documented
 ```
 
 ## DATABASE SCHEMA
 
-9 tables + relations file. Full schemas with indexes and types: TRD.md §2.
+Full schemas with indexes and types: TRD.md §2.
 Relations for relational queries: TRD.md §2.12.
 All queries are inline in route handlers (no separate queries/ directory).
-
-Key tables:
-- users: phone, email (unique, temp `{phone}@rentrayda.local`), role (landlord/tenant/admin), isSuspended, pushToken, lastActiveAt
-- landlord_profiles: userId (FK), fullName, barangay, city, unitCount, profilePhotoUrl, verificationStatus
-- tenant_profiles: userId (FK), fullName, searchBarangay, employmentType, companyName, verificationStatus
-- verification_documents: userId (FK), documentType, idType, r2ObjectKey, selfieR2Key, status, consentAt
-- listings: landlordProfileId (FK), unitType, monthlyRent, barangay, city, beds, inclusions, status, lastActiveAt
-- listing_photos: listingId (FK), r2ObjectKey, displayOrder
-- connection_requests: tenantProfileId + listingId + landlordProfileId, message, status
-- connections: connectionRequestId (FK), tenantUserId, landlordUserId, tenantPhone, landlordPhone
-- reports: reporterId, reportedUserId/reportedListingId, reportType, description, status
 
 Key column names (match these exactly — do NOT use alternatives):
 - listings.landlordProfileId (NOT landlordId)
@@ -187,18 +174,15 @@ Key column names (match these exactly — do NOT use alternatives):
 Landlord (landlord_profiles.verification_status):
 - 'unverified' → 'pending' → 'verified' (or 'rejected' → resubmit → 'pending')
 - 'partial': Gov ID verified but property proof still pending
-- Verified landlord: listings appear in search, can accept connections
 
 Tenant (tenant_profiles.verification_status):
 - 'unverified' → 'pending' → 'verified' (or 'rejected')
 - Requires BOTH gov ID AND employment proof approved to reach 'verified'
-- Verified tenant: can send connection requests
 
 Connection reveal rule:
-BOTH landlord.verificationStatus = 'verified' AND tenant.verificationStatus = 'verified'
-must be true BEFORE phone numbers are revealed. This check happens SERVER-SIDE in
-PATCH /connections/:id/accept. NEVER trust the client. NEVER reveal a phone number
-when either party is not verified.
+BOTH landlord AND tenant verificationStatus = 'verified' must be true BEFORE phone
+numbers are revealed. This check happens SERVER-SIDE in PATCH /connections/:id/accept.
+NEVER trust the client. NEVER reveal a phone number when either party is not verified.
 
 ## KEY BUSINESS RULES — NEVER VIOLATE
 
@@ -214,73 +198,6 @@ when either party is not verified.
 10. Verification status changes ONLY through admin routes
 11. Listing photos → PUBLIC R2. Verification docs → PRIVATE R2. Never swap.
 12. New features: check this list first. If conflict, stop and ask founder.
-
-## COMMON CODE PATTERNS
-
-### API Route (Hono):
-```typescript
-import { Hono } from 'hono';
-import { zValidator } from '@hono/zod-validator';
-import { z } from 'zod';
-import { authMiddleware } from '../middleware/auth';
-import { db } from '@rentrayda/db';
-import { listings } from '@rentrayda/db/schema/listings';
-import { eq } from 'drizzle-orm';
-
-const listingsRouter = new Hono();
-listingsRouter.use('/*', authMiddleware);
-
-listingsRouter.post('/',
-  zValidator('json', z.object({
-    unitType: z.enum(['bedspace', 'room', 'apartment']),
-    monthlyRent: z.number().int().min(500).max(100000),
-    barangay: z.string().min(2),
-    beds: z.number().int().min(1).max(20).optional(),
-    inclusions: z.array(z.string()).optional(),
-    description: z.string().max(200).optional(),
-  })),
-  async (c) => {
-    const user = c.get('user');
-    const body = c.req.valid('json');
-    const profile = await db.query.landlordProfiles.findFirst({
-      where: eq(landlordProfiles.userId, user.id),
-    });
-    const [listing] = await db.insert(listings).values({
-      landlordProfileId: profile!.id,
-      ...body,
-      status: profile!.verificationStatus === 'verified' ? 'active' : 'draft',
-    }).returning();
-    return c.json({ data: listing }, 201);
-  }
-);
-```
-
-### Database Query (Drizzle relational):
-```typescript
-// Queries are inline in route handlers (no separate queries/ directory)
-async function getActiveListings(filters) {
-  return db.query.listings.findMany({
-    where: and(eq(listings.status, 'active'), ...filterConditions),
-    with: {
-      photos: { limit: 1 },
-      landlordProfile: { columns: { fullName: true, profilePhotoUrl: true, verificationStatus: true } },
-    },
-    orderBy: [desc(listings.lastActiveAt)],
-    limit: 10,
-    offset: (page - 1) * 10,
-  });
-}
-```
-
-### Response Formats:
-```typescript
-// Success — always wrap in { data: ... }
-return c.json({ data: resultObject }, 200);
-
-// Error — always include error + code
-return c.json({ error: 'You need to verify first.', code: 'NOT_VERIFIED' }, 403);
-// Error codes: packages/shared/error-codes.ts (see TRD.md §2.14)
-```
 
 ## DESIGN TOKENS
 
@@ -323,27 +240,6 @@ SENTRY_DSN=""
 ```
 # When adding new env vars: add here AND to .env.example AND to Coolify config.
 
-## LOCAL DEVELOPMENT SETUP
-
-1. Clone: git clone [repo-url] && cd rentrayda
-2. Install: pnpm install
-3. Env: cp .env.example .env (fill in all values)
-4. Databases:
-   docker run -d --name pg -p 5432:5432 -e POSTGRES_PASSWORD=password postgres:16
-   docker run -d --name redis -p 6379:6379 redis:7
-5. Create DB: createdb rentrayda_dev
-6. Migrate: pnpm --filter @rentrayda/db drizzle-kit migrate
-7. Seed admin: psql rentrayda_dev -c "INSERT INTO users (phone, role) VALUES ('09000000000', 'admin');"
-8. Start: pnpm dev
-9. Verify: curl http://localhost:3001/api/auth/me → 401
-
-## DEPLOYMENT
-
-1. Push to main → GitHub Actions: typecheck → lint → build → test
-2. Coolify webhook → Docker build → zero-downtime deploy
-3. Verify: curl https://rentrayda.ph/api/health → { status: 'ok' }
-4. Verify: Sentry clean, full flow works on production
-
 ## WHAT NOT TO DO
 
 1. Never add payment routes or GCash/Maya/PayMongo integration
@@ -359,3 +255,12 @@ SENTRY_DSN=""
 11. Never change verification_status without going through the admin verification route
 12. Never add map/GPS features without founder approval (cost + complexity)
 13. Never build review or rating features — excluded from MVP scope entirely
+
+Local setup: SETUP.md §Local Development
+Deployment: docs/deployment.md
+
+---
+
+## SESSION END PROTOCOL
+
+At session end: follow `.claude-brain/prompts/session-wrap.md`.

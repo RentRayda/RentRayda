@@ -114,6 +114,40 @@ Read `PLAYBOOK.md` section "The meta-rules across all 40 prompts" before startin
 
 ---
 
+## Local Development
+
+```bash
+# 1. Clone
+git clone [repo-url] && cd rentrayda
+
+# 2. Install
+pnpm install
+
+# 3. Environment
+cp .env.example .env   # fill in all values
+
+# 4. Databases
+docker run -d --name pg -p 5432:5432 -e POSTGRES_PASSWORD=password postgres:16
+docker run -d --name redis -p 6379:6379 redis:7
+
+# 5. Create DB
+createdb rentrayda_dev
+
+# 6. Migrate
+pnpm --filter @rentrayda/db drizzle-kit migrate
+
+# 7. Seed admin
+psql rentrayda_dev -c "INSERT INTO users (phone, role) VALUES ('09000000000', 'admin');"
+
+# 8. Start all services
+pnpm dev
+
+# 9. Verify
+curl http://localhost:3001/api/auth/me   # → 401 (expected — no auth token)
+```
+
+---
+
 ## Daily rhythm
 
 ### Start of every work session

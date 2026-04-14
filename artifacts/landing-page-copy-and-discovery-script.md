@@ -266,7 +266,21 @@ If they say no to recording, confirm only notes.
 **Q13:** "May specific po ba kayong requirements? Female-only? Malapit sa work? May aircon?"
 > [Listen: top 3 non-negotiables = search filter priority for our product.]
 
-### Section 5: Close and thank (18-20 minutes)
+### Section 5: Infrastructure Signals (4-5 minutes)
+
+**Q-I1:** "If paying rent through our app could build your credit score for bank loans, would that matter to you?"
+> [Listen: does credit history resonate? Or is she too immediate-focused to care about future credit? Tags: credit-history-value]
+
+**Q-I2:** "If we told a landlord you're verified — ID confirmed, employed at [their company], paid on time — do you think they'd prefer you over a random Facebook inquiry?"
+> [Listen: does she believe verification has value to landlords? Her perspective on landlord behavior. Tags: verification-value-to-landlord]
+
+**Q-I3:** "Aside from housing, what else do you need in your first 30 days in Manila?"
+> [Listen: adjacent needs — furniture, clearances, roommate, community, transport. Top 3 by frequency across calls. Tags: adjacent-needs]
+
+**Q-I4:** "We can help process your NBI, police, and barangay clearances for ₱399 all-in — would you use that?"
+> [Listen: specific yes/no + price sensitivity. Would they pay more? Less? Tags: document-processing]
+
+### Section 6: Close and thank (18-20 minutes)
 
 **Q14:** "One last question: may kakilala po ba kayo — batchmate, friend, family — who's also looking for housing sa Manila? Pwede po bang i-connect niyo kami?"
 > [Referrals are the highest-quality traffic. Ask every single call.]
@@ -321,6 +335,12 @@ Document in `.claude-brain/journal/YYYY-MM-DD-customer-call-[name].md`:
 - Deposit capacity: ₱X
 - Total willing to pay us: ₱X
 
+## Infrastructure signals
+- Credit history interest: [Yes/No + reasoning]
+- Verification value: [Yes/No + their take]
+- Adjacent needs: [top 3 mentioned]
+- Document processing: [Yes/No + price reaction]
+
 ## Referral offered
 [Yes/No, names if yes]
 
@@ -337,6 +357,12 @@ After 10 calls, look for:
 - Deal-breaker clustering (what's the one thing that would make 7+/10 people refund?)
 - Urgency distribution (is the 72-hour window the modal case, or outlier?)
 - Referral rate (what % offer a name vs. decline?)
+
+Infrastructure patterns to track:
+- Credit history interest: X/total said yes (threshold: 7+/10 across all calls = viable)
+- Verification value to landlords: X/total said yes (threshold: 8+/10 = strong signal)
+- Top 3 adjacent needs (ranked by frequency across all calls)
+- Document processing: X/total said yes at ₱399 (threshold: 5+/10 = build it)
 
 After 30 calls, we have enough signal to make Phase 2 decisions with conviction.
 

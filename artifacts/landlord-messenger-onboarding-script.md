@@ -54,7 +54,49 @@ Interested po ba kayong subukan?
 - "Direkta po sa inyo via GCash — hindi po kami humahawak ng pera" — addresses BSP concerns AND reinforces trust
 - "Kami hindi na po apektado" — signals we're not getting in between her and tenant relationship
 
-## STAGE 3: If yes — collecting listing details
+## STAGE 3: Guarantee-lite pitch (after rapport, before listing creation)
+
+Once the landlord has expressed interest (said yes or asked "paano yan?" and you've explained), introduce the guarantee-lite. This is the trust anchor that differentiates RentRayda from Facebook groups.
+
+**If the landlord was referred by a barangay captain**, open with the referral before the pitch:
+
+```
+Si Kapitan [name] po ang nag-refer sa amin sa inyo. Maraming salamat po sa kanya — gusto niya po matulungan yung mga landlord sa barangay na makahanap ng magandang tenant.
+```
+
+Then deliver the guarantee-lite pitch:
+
+```
+Ate/Kuya, ang tenants na isesend namin sa inyo, verified na po — may PhilSys ID, confirmed na employed, at may record ng on-time payment. Kung umalis sila within 3 months, hahanap kami ng kapalit within 7 days, libre po. Mas maganda po sila kaysa random sa Facebook.
+```
+
+**If she asks "Talaga ba yan?":**
+
+```
+Opo. Kasi po, every tenant na ipapadala namin sa inyo — ine-check namin ang ID, employment, at history. Hindi po basta-basta. Kaya confident kami mag-offer ng replacement guarantee — kasi alam namin na maganda yung tenant from the start.
+
+Pero syempre po, 'yung guarantee is about finding a replacement — hindi po kami nag-cocover ng rent o deposit. Kami ang maghahanap ng bagong tenant within 7 days, libre po.
+```
+
+**Why these exact words:**
+- "Verified na po — may PhilSys ID, confirmed na employed" gives concrete proof, not vague promises
+- "Kung umalis sila within 3 months, hahanap kami ng kapalit within 7 days" is the hook — no other platform offers this
+- "Libre po" reinforces the zero-cost positioning
+- "Mas maganda po sila kaysa random sa Facebook" directly compares to the channel she currently uses
+- The barangay captain mention (when applicable) leverages existing community trust — the captain's endorsement carries more weight than any marketing
+
+**Tracking (for founder):**
+After delivering the pitch, record the landlord's reaction in the pipeline tracker:
+- **Excited** — "Ah talaga? Ang ganda naman!" / asks follow-up questions / immediately more engaged
+- **Neutral** — acknowledges but doesn't react strongly / "Sige, okay"
+- **Skeptical** — "Paano kung hindi kayo makahanap?" / questions the guarantee / seems doubtful
+- **Rejected** — "Hindi ko kailangan yan" / dismisses the offer / not interested
+
+This data feeds into Prompt 42 (formal guarantee-lite launch). Target: >60% excited/positive before formalizing.
+
+---
+
+## STAGE 4: If yes — collecting listing details
 
 Send this as a single message so she can respond in one batch:
 
@@ -95,7 +137,7 @@ Sagot niyo na lang po isa-isa, hindi po need sabay. Relax lang po 😊
 - Fields 10-14: amenities that actually matter to BPO workers (night shift = needs aircon + WiFi)
 - Field 15: photos are what sell the listing — no photos, no bookings
 
-## STAGE 4: After she sends photos — quality check and polish
+## STAGE 5: After she sends photos — quality check and polish
 
 **If photos are blurry, dim, or only show one angle:**
 
@@ -113,7 +155,7 @@ Perpekto po! 😊 Magaganda yung photos. I-prep ko na po listing ninyo ngayon.
 Bibigyan po kita ng preview bago i-publish para ma-check niyo muna. 15-20 mins po.
 ```
 
-## STAGE 5: Preview before publish
+## STAGE 6: Preview before publish
 
 Create the listing in the admin dashboard using the details she sent. Take screenshots of:
 - The listing card as it will appear to tenants
@@ -141,7 +183,7 @@ Sagot po kayo, ako na po mag-edit para sa inyo 🙏
 - Gives her psychological ownership over the listing
 - Small corrections are easy now, painful post-launch
 
-## STAGE 6: Verification request (after she approves the preview)
+## STAGE 7: Verification request (after she approves the preview)
 
 ```
 Salamat po! Bago i-publish, required po ng RentRayda ang verification para maging "Verified Landlord" badge kayo — mas madali ma-attract ng magandang tenant pag may badge 🙏
@@ -164,7 +206,7 @@ Tanong po ba kayo kung bakit required?
 - "Kami po nagko-compile at hindi isi-share" addresses the #1 landlord fear we found
 - RA 10173 reference signals we know what we're doing legally
 
-## STAGE 7: Post-verification confirmation
+## STAGE 8: Post-verification confirmation
 
 Once you've approved her verification in admin:
 
@@ -182,7 +224,7 @@ Mga susunod na mangyayari po:
 May tanong po ba? Nandito lang po ako 🙏
 ```
 
-## STAGE 8: First inquiry routing (within 24-48h of listing going live)
+## STAGE 9: First inquiry routing (within 24-48h of listing going live)
 
 When a verified tenant submits an inquiry:
 
@@ -205,7 +247,7 @@ Message niya: "[inquiry text]"
 Pwede po ba siyang pag-usapan? Pag sabihin niyo po YES, ibibigay ko number niya at pwede na kayong mag-coordinate directly.
 ```
 
-## STAGE 9: Post-placement follow-up (48h after tenant moves in)
+## STAGE 10: Post-placement follow-up (48h after tenant moves in)
 
 ```
 Kumusta po, Mrs. [Name]? ❤️

@@ -1,6 +1,34 @@
-# PLAYBOOK — 40 God Prompts from Install to Scale
+# PLAYBOOK — 47 God Prompts from Install to Infrastructure
 
 This is the canonical execution sequence for RentRayda. Every prompt is engineered to work with Claude Code's failure modes: reminds Claude what to read, constrains scope explicitly, specifies verifiable acceptance criteria, and includes recovery protocols.
+
+---
+
+## Strategic North Star: Trust Infrastructure (not just placement)
+
+**Added:** 2026-04-14
+**Grounded in:** Deep research — Mamikos (Indonesia, $750K raised, acquired 2020), Rukita ($16.5M, 1.4M rooms, EBITDA positive), QuintoAndar (Brazil, $5.1B valuation, replaced fiador guarantor system), OYO (India, standardized 50K budget hotels), M-Pesa (Kenya, digitized cash economy through agents).
+
+RentRayda is building **trust infrastructure for the Philippine informal rental market** — not just a placement service. Placement is the **wedge** (Prompts 1-37). Infrastructure is the **destination** (Prompts 38-47).
+
+**The 4-step pattern from every successful informal economy digitizer:**
+1. **Ride alongside cash** — don't fight it. The deposit is the digital moment. Monthly rent stays cash for now.
+2. **Standardize supply FOR them** — physical verification, Messenger onboarding. The supply side never self-digitizes.
+3. **Become infrastructure** — management tools, verification API, RentRayda Score. Not a transaction, a layer.
+4. **Data moat** — first informal rental dataset in PH. Credit scoring, pricing intelligence, migration patterns. Whoever digitizes first owns it.
+
+**What this means for every prompt below:**
+- Every placement generates data for the RentRayda Score (track default rates from Day 1)
+- Every landlord onboarding builds the verified supply database (schema must be reusable, not rental-specific)
+- Every discovery call tests infrastructure signals (4 extra questions added to Prompt 12)
+- Features that build toward infrastructure (verification, scoring, management) are prioritized over features that only serve the placement wedge (flood risk is nice, listing verification is essential)
+
+**Key comps to remember:**
+- Mamikos started with 50 kos-kosan in Yogyakarta. We start with 50 boarding houses in Pasig.
+- QuintoAndar founders biked to apartments. We walk barangays.
+- QuintoAndar replaced Brazil's fiador with a credit score. We replace kakilala with the RentRayda Score.
+- Rukita manages 1.4M rooms and is EBITDA positive. That's the operational model we evolve toward.
+- Mamikos's #1 user complaint is scams/no verification. Our ENTIRE thesis solves their biggest failure.
 
 ---
 
@@ -69,7 +97,7 @@ Then run these 10 verification commands one at a time and show output:
 7. `./.claude-brain/scripts/install-hooks.sh` (expect pre-commit hook installed)
 8. `ls -la .git/hooks/pre-commit` (must exist, executable)
 9. `grep -c "^### 3\." FINAL_DECISION.md` (expect 19 — the kill list)
-10. `grep -c "^## Prompt [0-9]" PLAYBOOK.md` (expect 40)
+10. `grep -c "^## Prompt [0-9]" PLAYBOOK.md` (expect 47)
 
 If ANY check fails: stop and report the failure. Do NOT attempt to fix without my confirmation.
 
@@ -772,10 +800,33 @@ Across all 5:
 3. SURPRISING DATA (not predicted from psychographic research)
 4. MESSAGING IMPLICATION — ONE specific landing page copy change (before/after text, not redesign)
 
+INFRASTRUCTURE SIGNAL EXTRACTION (4 extra questions — ask every reserver):
+For each call, also extract answers to these 4 questions testing the bigger play:
+
+Q-I1: "If paying rent through our app could build your credit score for bank loans, would that matter to you?"
+→ Extract: Yes/No/Maybe + verbatim reasoning. Tags: credit-history-value
+
+Q-I2: "If we told a landlord you're verified — ID confirmed, employed at [company], paid on time at your last place — do you think they'd prefer you over a random Facebook inquiry?"
+→ Extract: Yes/No + their take on landlord behavior. Tags: verification-value-to-landlord
+
+Q-I3: "What else do you need in your first 30 days in Manila besides housing?"
+→ Extract: top 3 needs mentioned. Tags: adjacent-needs
+
+Q-I4: "We can help process your NBI clearance, police clearance, and barangay clearance for ₱399 all-in — would you use that?"
+→ Extract: Yes/No + willingness to pay amount. Tags: document-processing
+
+Across the 4 infrastructure questions, report:
+- Credit history interest: X/5 said yes (threshold: 7+/10 callers = viable)
+- Verification value to landlords: X/5 said landlords would prefer (threshold: 8+/10 callers = strong signal)
+- Top 3 adjacent needs (ranked by frequency)
+- Document processing demand: X/5 said yes at ₱399 (threshold: 5+/10 callers = build it)
+- (4th signal — guarantee-lite landlord reception — tracked separately in Prompt 34: threshold >60% excited)
+
 Then compare to ALL previous batch syntheses in journal/:
 - Patterns consistent across batches, or changing?
 - Is our messaging implication reinforced or contradicted?
 - Approaching the 10-call threshold for action?
+- Infrastructure signals strengthening or weakening across batches?
 
 Save `.claude-brain/journal/$(date +%Y-%m-%d)-discovery-batch-N.md`.
 
@@ -885,6 +936,19 @@ STEP 3 — IF BUILD:
 - Tier recommendation: 90/10 T1 mix → escrow-first; 10/90 T2 → concierge-first; balanced → parallel
 - Top 3 customer quotes (conviction)
 - Top 3 weakest signals (don't get overconfident)
+
+STEP 3b — INFRASTRUCTURE SIGNAL ANALYSIS (only if BUILD):
+Across all discovery calls + landlord onboarding data, aggregate the 4 infrastructure signals:
+- Credit history interest: X/total callers said yes. If 7+/10 callers → viable (rent payment tracking is Year 2 priority)
+- Verification value to landlords: X/total callers said landlords would prefer. If 8+/10 callers → strong signal
+- Document processing demand: X/total callers said yes at ₱399. If 5+/10 callers → build it (near-term revenue, Prompt 44)
+- Guarantee-lite landlord reception: X% excited across Prompt 34 onboarding. If >60% excited → viable (Prompt 42)
+- Adjacent needs (ranked): top 3 across all calls → informs Prompts 41-47 prioritization
+- Overall infrastructure viability: STRONG (3+ of the 4 signals above their respective threshold) / MODERATE (1-2) / WEAK (0)
+  - STRONG → pursue full infrastructure roadmap (Prompts 41-47 after Phase 3)
+  - MODERATE → pursue placement + management tools only, defer verification API
+  - WEAK → stay as placement service, don't over-invest in infrastructure
+
 - Handoff to Prompt 16
 
 STEP 4 — IF EXTEND:
@@ -1005,7 +1069,7 @@ Follow session kickoff protocol. Draft cleanup execution plan at `.claude-brain/
 
 TASKS (from context/02-repo-status.md):
 1. Auth TODOs in mobile (8 specific file:line)
-2. Brand drift: 306 old fonts + 87 old colors
+2. Brand drift: 1142 old fonts + 733 old colors (updated 2026-04-14; verify with ground-truth audit in Prompt 2)
 3. BullMQ workers not started
 4. Missing resend package
 5. Sentry integration (API + web + mobile) with DPA filters
@@ -1106,7 +1170,7 @@ Any regression → revert immediately, flag.
 
 ---
 
-## Prompt 18 — Eliminate brand drift (306 fonts + 87 colors)
+## Prompt 18 — Eliminate brand drift (1142 fonts + 733 colors)
 
 **🎯 Goal:** Mobile matches brand spec; zero old references.
 
@@ -1122,8 +1186,8 @@ Any regression → revert immediately, flag.
 Follow session kickoff protocol. Systematic brand cleanup across apps/mobile ONLY.
 
 PRE-FLIGHT COUNT:
-- `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (expect 306)
-- `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (expect 87)
+- `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (expect 1142)
+- `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (expect 733)
 
 If counts differ: STOP and tell me — drift may have changed.
 
@@ -1140,7 +1204,7 @@ After:
 - `apps/mobile/app/_layout.tsx` loads new families
 - Re-grep: `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` → 0
 - Expo dev build renders
-- Commit: `fix(mobile): replace 306 deprecated font references with BeVietnamPro + Sentient`
+- Commit: `fix(mobile): replace 1142 deprecated font references with BeVietnamPro + Sentient`
 
 COLORS NEXT (separate commit):
 - '#2563EB' → '#2D79BF'
@@ -1149,7 +1213,7 @@ COLORS NEXT (separate commit):
 After:
 - Re-grep colors → 0
 - Expo dev build — check brand consistency across screens
-- Commit: `fix(mobile): replace 87 deprecated color references with brand blue #2D79BF`
+- Commit: `fix(mobile): replace 733 deprecated color references with brand blue #2D79BF`
 
 FINAL:
 - `pnpm turbo typecheck` passes
@@ -1929,7 +1993,9 @@ COMMIT: `chore(api): gcash deposit stubs pending partnership signature`
 
 ---
 
-## Prompt 31 — HazardHunter flood-risk layer
+## Prompt 31 — HazardHunter flood-risk layer (OPTIONAL — deprioritize if time-constrained)
+
+**⚠️ PRIORITY NOTE:** This prompt is nice-to-have, not core to the trust infrastructure thesis. If Phase 4 is running long, SKIP this and move to Prompt 32 (listing verification agent), which IS core. Flood risk can be added in Phase 5 or later.
 
 **🎯 Goal:** Every Pasig listing has flood-risk badge from government data.
 
@@ -1994,7 +2060,9 @@ COMMIT: `feat: flood-risk indicators via HazardHunter data for all listings`
 
 ---
 
-## Prompt 32 — Listing verification managed agent
+## Prompt 32 — Listing verification managed agent (CORE — trust infrastructure essential)
+
+**⚠️ PRIORITY NOTE:** This is CORE to the trust infrastructure thesis. Mamikos's #1 user complaint is scams and no verification — users search on Mamikos then transact OUTSIDE the app because they don't trust it. This agent IS the trust layer that differentiates us. Do NOT skip or deprioritize.
 
 **🎯 Goal:** New listings get automated scam-screening before admin review.
 
@@ -2179,6 +2247,29 @@ COMMIT (only if successful): `feat: production launch v0.1.0-mvp-live`
 ```
 Follow session kickoff protocol. Onboarding landlords manually via Messenger per artifacts/landlord-messenger-onboarding-script.md. Your job is TRACKING, not scripting (founder sends every message).
 
+SUPPLY ACQUISITION CHANNELS (new — adapted from QuintoAndar doorman strategy):
+In addition to direct barangay walks, use these referral channels:
+
+1. BARANGAY CAPTAIN REFERRALS: Visit barangay halls in Ugong, San Antonio, Kapitolyo, Oranbo. Explain RentRayda (free for landlords, verified tenants). Ask captain/tanod to refer boarding house owners. ₱100-200 per successfully onboarded landlord (paid after listing goes live). Track in landlord-pipeline.md with source='brgy_captain_[name]'.
+
+2. SARI-SARI STORE REFERRALS: Stores near BPO offices see every FOR RENT tarp. ₱50 per referral that leads to a conversation. Track with source='sarisari_[location]'.
+
+3. BPO HR DEPARTMENTS: Contact Concentrix, TaskUs, Teleperformance HR. Ask to be added to their "accredited housing" list for new hires. Free distribution — they want housing solutions for their trainees. Track with source='bpo_hr_[company]'.
+
+GUARANTEE-LITE PITCH (new — use during onboarding):
+After initial rapport, pitch this: "Ate/Kuya, ang tenants na isesend namin sa inyo, verified na po — may PhilSys ID, confirmed na employed, at may record ng on-time payment. Kung umalis sila within 3 months, hahanap kami ng kapalit within 7 days, libre po. Mas maganda po sila kaysa random sa Facebook."
+
+Track landlord reaction to guarantee-lite in pipeline: excited / neutral / skeptical / rejected. This data informs Prompt 42.
+
+RENTRAYDA SCORE DATA (new — track from Day 1):
+For every placed tenant, begin tracking:
+- PhilSys verification status
+- Employment verification status + company name
+- Move-in date
+- Monthly payment status (on-time / late / missed) — check monthly via Messenger with landlord
+- Any incidents reported
+This data feeds the RentRayda Score (Prompt 41) and future insurance-backed guarantee.
+
 EACH TIME I PASTE A LANDLORD INTERACTION:
 1. I paste the Messenger transcript
 2. You extract:
@@ -2188,6 +2279,8 @@ EACH TIME I PASTE A LANDLORD INTERACTION:
    - Verification status (ID + property proof)
    - Listing created Y/N
    - Any concerns raised (BIR? Privacy? Fees?)
+   - Referral source (walk / brgy_captain / sarisari / bpo_hr / tenant_referral)
+   - Reaction to guarantee-lite pitch (excited / neutral / skeptical / rejected)
 3. Update `.claude-brain/context/landlord-pipeline.md` (create if doesn't exist) — one row per landlord
 4. Flag red flags:
    - Scammer indicators (no photos, won't verify, extreme price)
@@ -2197,6 +2290,8 @@ EACH TIME I PASTE A LANDLORD INTERACTION:
    - What's working in script (quote specific responses)
    - What's NOT working (same)
    - One specific script improvement to propose
+   - Which referral channel has highest conversion rate
+   - Guarantee-lite reception: X/10 excited, X/10 neutral, X/10 skeptical
 6. Save synthesis to journal every 10 landlords
 
 DO NOT: auto-generate messages (I write every message). Propose script changes until 10+ data points. Add new stages without founder approval.
@@ -2248,6 +2343,63 @@ ATTRIBUTES TO TRACK:
 - Tenant satisfaction (happy / minor issue / major issue / silent)
 - Landlord satisfaction (same)
 - Friction points that should be automated in Phase 6
+
+VERIFICATION RAW DATA (track for EVERY placement — this feeds the RentRayda Score in Prompt 41):
+- Tenant PhilSys verified: Y/N
+- Tenant employment verified: Y/N
+- Tenant employer / company name: [text]
+- Tenant monthly income bracket: [₱ range]
+- Tenant months at current job: [number]
+- Unit monthly rent: ₱[amount]
+- Rent-to-income ratio: [%]
+- Month 1 rent payment: on-time / late [X days] / missed
+- Month 2 rent payment: on-time / late [X days] / missed
+- Month 3 rent payment: on-time / late [X days] / missed
+- Any incidents: Y/N + description
+- Tenant still in unit at Month 3: Y/N
+- Landlord would accept another RentRayda tenant: Y/N
+
+NOTE: The RentRayda Score algorithm does not exist yet (built in Prompt 41).
+The raw data above IS the training set. Collect it now; score it later.
+
+FIRST RUN ONLY — create the tracking file if it doesn't exist:
+```
+if [ ! -f .claude-brain/context/placement-outcomes.md ]; then
+cat > .claude-brain/context/placement-outcomes.md << 'TEMPLATE'
+# Placement Outcomes Tracker
+
+Raw verification + payment data for first 10 concierge placements.
+This data feeds the RentRayda Score (Prompt 41) and proves whether
+verified tenants default LESS than the market average (8-12%).
+
+Hypothesis: verified tenants default at 2-3%. If confirmed →
+insurance partner can underwrite real guarantee → unlock landlord
+management fees (Prompt 42).
+
+## Placement 1
+- Date:
+- PhilSys verified: Y/N
+- Employment verified: Y/N
+- Employer:
+- Monthly income bracket:
+- Months at current job:
+- Unit monthly rent: ₱
+- Rent-to-income ratio: %
+- Month 1 payment:
+- Month 2 payment:
+- Month 3 payment:
+- Incidents: N
+- Still in unit at Month 3:
+- Landlord would accept another RentRayda tenant:
+
+(Copy this block for Placements 2–10)
+TEMPLATE
+fi
+```
+
+Track in: `.claude-brain/context/placement-outcomes.md`
+This data proves whether verified tenants default LESS than the market average (8-12%).
+Hypothesis: verified tenants default at 2-3%. If confirmed → insurance partner can underwrite real guarantee → unlock landlord management fees (Prompt 42).
 
 AFTER 10 PLACEMENTS:
 Synthesize: `.claude-brain/journal/$(date +%Y-%m-%d)-10-placements-retro.md`:
@@ -2477,26 +2629,51 @@ COMPUTE:
 - Churn: of first 30 landlords, how many still active?
 - LTV signal: of first 20 tenants, how many returned or referred?
 
+INFRASTRUCTURE HEALTH CHECK (new):
+Re-evaluate the 4 canonical infrastructure signals against their thresholds (same thresholds from Prompt 12/14):
+- Credit history interest: across all discovery calls, X/total callers said yes. Threshold: 7+/10 callers = viable
+- Verification value to landlords: X/total callers said landlords would prefer. Threshold: 8+/10 callers = strong signal
+- Document processing demand: X/total callers said yes at ₱399 + actual revenue vs projected ₱10.5K/month. Threshold: 5+/10 callers = build it
+- Guarantee-lite landlord reception: X% excited across all Prompt 34 onboarding. Threshold: >60% excited
+
+Also pull from `.claude-brain/context/placement-outcomes.md`:
+- Verified tenant default rate: X% (hypothesis was 2-3% vs market 8-12%)
+- Referral channel ROI: barangay captains vs walks vs sari-sari vs BPO HR
+- RentRayda Score data quality: enough to build v1? (need 50+ placements with 3-month tracking)
+- Verification API demand signal: any third parties asked about it?
+
+Overall infrastructure viability: STRONG (3+ of the 4 signals above their respective threshold) / MODERATE (1-2) / WEAK (0)
+
 SYNTHESIS (`.claude-brain/journal/$(date +%Y-%m-%d)-month-3-retro.md`):
 1. Targets: hit / missed / partial with numbers
 2. What's working (3 things): each with specific evidence
 3. What's NOT working (3 things): same
 4. Updated kill list (any new concepts proved dead)
 5. Updated business rules (any changed)
-6. Phase 3 scope decision — which to pursue?
-   A. Expand geography (Makati, BGC, QC)
-   B. iOS launch
-   C. Landlord-side monetization
-   D. AI automation scale-up
-   E. Fundraising prep
+6. Infrastructure play viability: PROCEED / DEFER / ABANDON based on data
+   - Credit history interest above 7+/10 threshold? Y/N
+   - Verification value to landlords above 8+/10 threshold? Y/N
+   - Document processing demand above 5+/10 threshold? Y/N
+   - Guarantee-lite landlord reception above >60% excited threshold? Y/N
+   - Count: X/4 signals above threshold → STRONG (3+) / MODERATE (1-2) / WEAK (0)
+7. Next 90-day scope decision — which to pursue? (Pick 1-2 max)
+   A. Build RentRayda Score v1 (Prompt 41) — prerequisite: 50+ placements with outcome data
+   B. Launch guarantee-lite formally (Prompt 42) — prerequisite: landlord reception >60% excited
+   C. Messenger property management tools (Prompt 43) — prerequisite: 30+ active landlords
+   D. Document processing revenue (Prompt 44) — prerequisite: validation demand signal 5+/10
+   E. Expand geography (Makati, BGC, QC) — prerequisite: Pasig/Ortigas saturated
+   F. iOS launch — prerequisite: Android retention >30% Week 4
+   G. Fundraising prep — prerequisite: default rate data + 500+ verified users
+   H. AI automation scale-up — prerequisite: manual process bottleneck identified
 
 Per option:
 - Prerequisite gate (what must be true to consider)
 - Expected cost (founder time + capital)
-- Expected impact (revenue, user growth)
+- Expected impact (revenue, user growth, infrastructure progress)
 - Risk
+- Infrastructure contribution: does this build toward the platform play?
 
-DO NOT: soften misses (brutal). Advocate for expansion (synthesize). Fabricate signal. Hide bad quotes.
+DO NOT: soften misses (brutal). Advocate for expansion (synthesize). Fabricate signal. Hide bad quotes. Pursue infrastructure without data support.
 ```
 
 **✅ Acceptance:** Every target has actual-vs-projected. Honest synthesis (not sales doc). Phase 3 options framed with gates.
@@ -2525,12 +2702,22 @@ DO NOT: soften misses (brutal). Advocate for expansion (synthesize). Fabricate s
 Follow session kickoff protocol. Draft Phase 3 (next 90 days) plan based on Month 3 retro.
 
 STEP 1 — PICK SCOPE:
-Based on retro, which 1–2 for next 90 days?
-A. Expand geography (Makati, BGC, QC)
-B. iOS launch
-C. Landlord-side monetization (only if landlords independently requested)
-D. AI automation scale-up
-E. Fundraising prep
+Based on retro + infrastructure health check, which 1–2 for next 90 days?
+
+INFRASTRUCTURE PATH (prioritize if signals are STRONG from Prompt 39):
+A. Build RentRayda Score v1 (Prompt 41)
+B. Launch guarantee-lite formally (Prompt 42)
+C. Messenger property management tools (Prompt 43)
+D. Document processing revenue (Prompt 44)
+E. Barangay captain referral program at scale (Prompt 45)
+
+GROWTH PATH (pursue alongside or instead of infrastructure):
+F. Expand geography (Makati, BGC, QC)
+G. iOS launch
+H. AI automation scale-up
+I. Fundraising prep with infrastructure data
+
+Recommendation priority: infrastructure options A-E first IF data supports them. Growth options F-I only after infrastructure foundation is solid or if infrastructure signals are WEAK.
 
 You pick with rationale; I approve/override.
 
@@ -2569,7 +2756,7 @@ DO NOT: commit to scope before prereqs met. Skip decision file. Update FINAL_DEC
 
 ---
 
-# END OF 40 PROMPTS
+# END OF PHASE 6 (Prompts 1-40: Wedge)
 
 If you made it through all 40, you:
 1. Validated demand with real money on the table
@@ -2587,7 +2774,635 @@ If you made it through all 40, you:
 
 ---
 
-## Meta-rules across all 40 prompts
+# PHASE 7 — TRUST INFRASTRUCTURE (Prompts 41–47)
+
+**Only run if:** Phase 6 complete AND Month 3 retro (Prompt 39) infrastructure health check = STRONG (3+ of these 4 signals above their respective threshold: credit-history interest 7+/10 callers, verification-value to landlords 8+/10 callers, document-processing demand 5+/10 callers, guarantee-lite landlord reception >60% excited). If MODERATE (1-2 signals) or WEAK (0 signals), stay on Prompts 38-40 growth path and defer infrastructure.
+
+**Phase time:** 60–80h across 2–3 months. Some prompts run in parallel.
+
+**Grounded in:** Mamikos/Rukita (standardized informal supply), QuintoAndar (replaced guarantor with credit score, guaranteed rent to landlords), OYO (standardized with checklists), M-Pesa (data from transactions → financial services).
+
+---
+
+## Prompt 41 — Build the RentRayda Score v1
+
+**🎯 Goal:** Composite trust score for tenants that replaces kakilala — like QuintoAndar replaced Brazil's fiador with proprietary credit scoring.
+
+**⏱️ Time:** 8–10h
+
+**🔒 Prerequisites:** 50+ placements with 3-month outcome data in `placement-outcomes.md`. Default rate data available.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `context/placement-outcomes.md`, QuintoAndar credit scoring research in `braindumps/2026-04-14-mamikos-deep-dive-and-quinto-andar-strategy.md`
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Build RentRayda Score v1 — the algorithmic replacement for kakilala.
+
+STEP 1 — ANALYZE OUTCOME DATA:
+Read placement-outcomes.md. For each placement, correlate:
+- PhilSys verification status → payment behavior
+- Employment verification → payment behavior
+- Company type (BPO vs other) → payment behavior
+- Placement tier (Tier 1 vs 2) → payment behavior
+- Any other predictive signals in the data
+
+Compute: verified tenant default rate vs market baseline (8-12%).
+If our rate is <5%, the score has predictive value. If >5%, we need more signals.
+
+STEP 2 — DESIGN SCORE (0-100):
+Weighted composite:
+- PhilSys ID verified: +25 points
+- Employment verified (with company): +25 points
+- BPO employment specifically: +5 bonus (regular income, HR-accessible)
+- Previous RentRayda rental with on-time payments: +20 points per rental
+- No incidents on record: +15 points
+- Referral from existing verified tenant: +10 points
+
+Score bands:
+- 80-100: "Gold Verified" — top-tier tenant, guaranteed quality
+- 60-79: "Verified" — standard verified, reliable
+- 40-59: "Basic Verified" — ID only, no rental history yet
+- <40: "Unverified" — needs more documentation
+
+STEP 3 — SCHEMA + SCORE FUNCTION:
+Migration: add two columns to `packages/db/schema/tenant-profiles.ts`:
+  rentraydaScore: integer('rentrayda_score').default(0).notNull(),
+  scoreComponents: jsonb('score_components').default('{}'),
+Match existing column patterns (camelCase JS, snake_case DB). Add index:
+  index('idx_tenant_score').on(t.rentraydaScore)
+Generate migration: `pnpm --filter @rentrayda/db drizzle-kit generate`
+Review generated SQL, then apply: `pnpm --filter @rentrayda/db drizzle-kit migrate`
+
+Score computation function: `apps/api/src/lib/rentrayda-score.ts`
+- Export `computeRentraydaScore(tenantId: string): Promise<{ score: number; components: Record<string, number>; band: string }>`
+- Called from: PATCH tenant profile, POST verification completion, POST rental payment recorded, POST incident report
+- Recompute triggers: add calls in `apps/api/src/routes/tenants.ts` (profile update), `apps/api/src/routes/admin.ts` (verification approval)
+
+VERIFY:
+  pnpm turbo typecheck   # zero errors
+  pnpm turbo build       # clean build
+  grep -r 'rentrayda_score' packages/db/   # field exists in schema
+  grep -r 'computeRentraydaScore' apps/api/src/   # function imported in routes
+
+STEP 4 — DISPLAY:
+- Landlord sees tenant's score + band when reviewing connection requests
+- "Gold Verified" badge on tenant profile (visible to landlords only)
+- Score breakdown available on tap (which components contributed)
+
+STEP 5 — LANDLORD-FACING COPY:
+The score replaces kakilala. Frame it as:
+"Hindi mo na kailangan ng kakilala — ang RentRayda Score ang katibayan."
+("You don't need connections anymore — the RentRayda Score is the proof.")
+
+STEP 6 — TEST:
+- Compute score for all 50+ existing tenants retroactively
+- Verify score correlates with actual payment behavior (the data should confirm the weighting)
+- If correlation is weak, adjust weights before launch
+
+COMMIT: `feat(api): RentRayda Score v1 — tenant trust composite replacing kakilala`
+
+DO NOT: expose score to tenants (landlord-facing only for v1). Use score to BLOCK tenants (inform, don't gatekeep). Overcomplicate the algorithm — simple weighted sum beats ML at 50 data points. Add new dependencies.
+```
+
+**✅ Acceptance:** Score computed for all existing tenants. Correlation with payment behavior validated. Landlord UI shows score + badge. Framing copy in place. `pnpm turbo typecheck` and `pnpm turbo build` both pass. `grep -r 'rentrayda_score' packages/db/schema/tenant-profiles.ts` returns the column definition. `apps/api/src/lib/rentrayda-score.ts` exists and exports `computeRentraydaScore`.
+
+**🚫 Forbidden:** ML models on 50 data points (overfitting guaranteed). Tenant-visible scores (creates anxiety). Using score to deny service.
+
+**🆘 Recovery:** If correlation is weak, paste: *"Score v1 doesn't predict well. Defer to v2 with more data. Keep showing verification badges only — they still add value without a numeric score."*
+
+**🏁 Handoff:** → Prompt 42.
+
+---
+
+## Prompt 42 — Launch guarantee-lite to landlords
+
+**🎯 Goal:** Formally offer landlords: "verified tenants + 7-day replacement guarantee if they leave within 3 months." Zero financial guarantee. Zero liquidity required.
+
+**⏱️ Time:** 4–6h
+
+**🔒 Prerequisites:** Prompt 41 complete. Guarantee-lite reception from Prompt 34 data: >60% excited/positive.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, landlord-pipeline.md guarantee-lite reactions, `context/10-target-psychographics-secondary.md`
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Formalize the guarantee-lite offer.
+
+STEP 1 — DEFINE THE GUARANTEE:
+"Sa RentRayda Verified Tenants, naka-verify na po ang ID at employment nila. Kung umalis sila within 3 months, hahanap kami ng kapalit within 7 days — libre po."
+
+What it IS:
+- Verified tenant with RentRayda Score 60+
+- If tenant leaves within 3 months: free replacement tenant within 7 days
+- Landlord pays ₱0
+
+What it is NOT:
+- NOT a financial guarantee (we don't cover missed rent)
+- NOT insurance (no payout on default)
+- NOT binding (we commit to best effort, not legal obligation)
+
+STEP 2 — LANDING PAGE (landlord-facing):
+File: `apps/web/app/landlords/page.tsx`
+SEO: `<title>Verified Tenants for Your Property | RentRayda</title>`
+Content:
+- Hero: "Verified tenants. Free forever."
+- How verification works (PhilSys + employment + RentRayda Score)
+- The guarantee-lite offer (use exact Taglish from Step 1)
+- Testimonials from first 5 satisfied landlords (Prompt 37)
+- CTA: "List your unit via Messenger" → opens `https://m.me/[PAGE_ID]` deep link
+  - Test: deep link opens Messenger on mobile (Android + iOS)
+  - Test: deep link opens messenger.com on desktop
+- Zero sign-up forms. Zero app downloads.
+- Font: Be Vietnam Pro (body) + Sentient (headings) — match DRD.md §1.4
+- Colors: brand #2D79BF for CTA buttons, #16A34A for verified badges
+
+STEP 3 — MESSENGER ONBOARDING SCRIPT UPDATE:
+Update `artifacts/landlord-messenger-onboarding-script.md` to include guarantee-lite as Stage 3 (after initial rapport, before listing creation).
+
+STEP 4 — TRACK:
+- Landlords who signed up BECAUSE of guarantee-lite vs. other reasons
+- Replacement requests triggered (tenant left within 3 months)
+- Replacement delivery time (target: 7 days)
+- Landlord satisfaction with replacement
+
+VERIFY:
+  pnpm turbo build                     # clean build
+  pnpm --filter @rentrayda/web dev     # start dev server
+  # Manual: open http://localhost:3000/landlords at 360px mobile width in DevTools — no horizontal scroll
+  # Manual: click Messenger CTA → Messenger opens (or messenger.com on desktop)
+  grep -r 'guarantee' apps/web/app/landlords/page.tsx   # guarantee-lite copy present
+
+COMMIT: `feat(web): landlord-facing guarantee-lite page + updated onboarding script`
+
+DO NOT: promise financial coverage. Use legal language ("guarantee" is marketing, not contractual). Launch without founder reviewing every word of the landlord page.
+```
+
+**✅ Acceptance:** Landlord page live at `/landlords`. `pnpm turbo build` passes. Page renders at 360px mobile width without horizontal scroll. Messenger deep link opens correctly. Onboarding script updated. Tracking in place.
+
+**🚫 Forbidden:** Financial guarantee language. Legal obligations. Requiring landlord app downloads.
+
+**🏁 Handoff:** → Prompt 43.
+
+---
+
+## Prompt 43 — Messenger property management tools (Mamirooms-lite)
+
+**🎯 Goal:** Landlords receive automated rent reminders, vacancy alerts, and tenant screening reports — all via Messenger. They blame "the system" instead of being embarrassed to collect rent.
+
+**⏱️ Time:** 8–10h
+
+**🔒 Prerequisites:** 30+ active landlords. Messenger API configured.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `context/10-target-psychographics-secondary.md` (nahihiya magsingil insight), Rukita Mamirooms model
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Build Messenger-based property management tools.
+
+KEY INSIGHT: The secondary psychographic says landlords are embarrassed to collect rent ("nahihiya ako magsingil"). Automated reminders solve this — she can blame "the system."
+
+FILES TO CREATE/MODIFY:
+- Route: `apps/api/src/routes/management.ts` (new — mount at `/api/management` in `apps/api/src/index.ts`)
+- BullMQ job: `apps/api/src/jobs/rent-reminder.ts` (new — follows pattern in `apps/api/src/jobs/push-notification.ts`)
+- Messenger lib: `apps/api/src/lib/messenger.ts` (new — Meta Graph API wrapper)
+- Queue: add `managementQueue` to `apps/api/src/lib/queue.ts` (follows existing `notificationQueue` pattern)
+
+STEP 1 — AUTOMATED RENT REMINDERS:
+- BullMQ repeatable job in `apps/api/src/jobs/rent-reminder.ts`: runs daily at 08:00 PHT
+- 3 days before rent due → send Messenger to tenant: "Hi [name], reminder po na due na ang rent ninyo sa [date]. Pwede po i-GCash sa landlord or bayaran in person. — RentRayda"
+- 1 day overdue → send to landlord: "Hi [landlord], si [tenant] ay 1 day overdue sa rent. Nag-send na po kami ng reminder. Kung gusto niyo, pwede kaming mag-follow up."
+- Landlord NEVER has to ask directly. The system does it.
+- Configurable: landlord can turn reminders on/off per tenant
+
+STEP 2 — VACANCY ALERTS:
+- When a tenant signals moving out (or lease end approaches): notify landlord via Messenger
+- "Hi [landlord], si [tenant] sa Unit [X] ay aalis po sa [date]. Gusto niyo po bang maghanap kami ng kapalit?"
+- If yes → create internal match request, use verified supply to fill
+
+STEP 3 — TENANT SCREENING REPORTS:
+- When a new connection request comes in, auto-generate a one-page tenant report:
+  - RentRayda Score + band
+  - PhilSys verification status
+  - Employment (company, verified Y/N)
+  - Previous rental history on platform (if any)
+  - Payment record (on-time %, late %)
+- Send to landlord via Messenger as formatted message or PDF attachment
+- Replaces landlord's "kutob" (gut feeling) screening
+
+STEP 4 — PRICING:
+- Free for first 3 properties (get adoption)
+- ₱299/month for 4+ properties (tests if landlords will pay for TOOLS even though they won't pay for LISTINGS)
+- Track conversion: how many upgrade from free to paid?
+
+STEP 5 — META MESSENGER PLATFORM API:
+File: `apps/api/src/lib/messenger.ts`
+- Use Send API: `POST https://graph.facebook.com/v21.0/me/messages` with Page Access Token
+- CRITICAL: Meta's 24-hour messaging window — you can ONLY send messages within 24 hours of the user's last message to your Page.
+  - For rent reminders (sent outside 24hr window): use Message Tags. Allowed tag: `CONFIRMED_EVENT_UPDATE` (rent due date = confirmed event). This is the ONLY tag that fits; `POST_PURCHASE_UPDATE` does NOT apply.
+  - If Meta revokes tag access or user hasn't messaged the Page: fall back to SMS via PhilSMS (`apps/api/src/lib/sms.ts` — already built).
+  - Log every message attempt + delivery status in a `messenger_log` table or structured log.
+- Env vars (add to .env.example):
+  META_PAGE_ACCESS_TOKEN=""     # From Meta Developer Portal → Page Settings
+  META_PAGE_ID=""               # Facebook Page ID
+  META_APP_SECRET=""            # For webhook signature verification
+- Webhook: `POST /api/management/messenger-webhook` for delivery receipts + user replies
+
+VERIFY:
+  pnpm turbo typecheck        # zero errors
+  pnpm turbo build            # clean build
+  grep -r 'managementQueue' apps/api/src/lib/queue.ts   # queue registered
+  grep -r 'rent-reminder' apps/api/src/jobs/            # job file exists
+  # Manual: trigger test reminder via API → verify Messenger delivery OR SMS fallback
+
+COMMIT: `feat(api): messenger property management tools — rent reminders, vacancy alerts, tenant screening`
+
+DO NOT: spam tenants (max 2 reminders per rent cycle). Send sensitive data in Messenger (score only, not full ID details). Charge landlords before they see value. Send messages outside 24hr window without Message Tags.
+```
+
+**✅ Acceptance:** Rent reminders fire on schedule (BullMQ repeatable job visible in queue). Vacancy alerts work. Tenant screening report generates. Free tier works. Paid tier charges correctly. `pnpm turbo typecheck` and `pnpm turbo build` both pass. SMS fallback works when Messenger delivery fails.
+
+**🚫 Forbidden:** Spamming. Exposing PII in Messenger. Charging before value demonstrated.
+
+**🏁 Handoff:** → Prompt 44.
+
+---
+
+## Prompt 44 — Document processing revenue stream
+
+**🎯 Goal:** Tenants can process NBI, police, and barangay clearances through RentRayda for ₱399 all-in. Revenue from Day 1 of offering.
+
+**⏱️ Time:** 4–6h
+
+**🔒 Prerequisites:** Founder has established connection with clearance processing partner. Validation signal: 5+/10 discovery call respondents said yes.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `braindumps/2026-04-13-revenue-streams-evaluation.md` (#15)
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Build document processing service.
+
+STEP 1 — DEFINE SERVICE:
+Package: "RentRayda Clearance Bundle" — ₱399 all-in
+Includes:
+- NBI clearance processing (gov fee ₱155 + processing)
+- Police clearance processing
+- Barangay clearance processing
+Tenant pays ₱399. We pay partner ~₱255 (gov fees + fixer). Margin: ~₱144/clearance.
+
+STEP 2 — FLOW:
+- Tenant selects "Need clearances?" during onboarding or from profile
+- Fills form: full name, birthdate, address, contact
+- Pays ₱399 via Paymongo
+- We forward details to processing partner
+- Partner processes (3-5 business days)
+- Clearances delivered to tenant (pickup point or digital if available)
+- Clearances auto-verify tenant's verification status on platform
+
+STEP 3 — INTEGRATION:
+Schema file: `packages/db/schema/clearance-orders.ts` (new — follow pattern in `packages/db/schema/reports.ts`)
+```
+export const clearanceOrders = pgTable('clearance_orders', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  tenantUserId: uuid('tenant_user_id').notNull().references(() => users.id),
+  status: varchar('status', { length: 20 }).notNull().default('ordered'),
+    // Values: 'ordered' | 'processing' | 'ready' | 'delivered' | 'cancelled'
+  paidAt: timestamp('paid_at', { withTimezone: true }),
+  completedAt: timestamp('completed_at', { withTimezone: true }),
+  partnerReference: varchar('partner_reference', { length: 100 }),
+  amountPaid: integer('amount_paid').notNull(),  // pesos (399)
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (t) => [
+  index('idx_clearance_tenant').on(t.tenantUserId),
+  index('idx_clearance_status').on(t.status),
+]);
+```
+Export from `packages/db/schema/index.ts`. Add relation in `packages/db/schema/relations.ts`.
+Generate migration: `pnpm --filter @rentrayda/db drizzle-kit generate`
+Review SQL, then: `pnpm --filter @rentrayda/db drizzle-kit migrate`
+
+Route file: `apps/api/src/routes/clearances.ts` (new — mount at `/api/clearances` in `apps/api/src/index.ts`)
+Endpoints:
+- POST /api/clearances/order — create order (auth required, tenant role only)
+- GET /api/clearances/my-orders — list tenant's orders (auth required)
+- PATCH /api/clearances/:id/status — update status (admin only, uses `adminMiddleware` from `apps/api/src/middleware/admin.ts`)
+Status tracking: ordered → processing → ready → delivered
+Push notification at each status change (reuse `notificationQueue` from `apps/api/src/lib/queue.ts`)
+
+STEP 4 — MOBILE UI:
+- Card in tenant onboarding: "Walang clearance? Kaya namin yan — ₱399 all-in"
+- Status tracker in profile tab
+- Receipt/confirmation for tax purposes
+
+STEP 5 — METRICS:
+- Orders per month
+- Completion rate
+- Average processing time
+- Revenue: orders × ₱144 margin
+
+VERIFY:
+  pnpm turbo typecheck                  # zero errors
+  pnpm turbo build                      # clean build
+  grep -r 'clearance_orders' packages/db/schema/   # table defined
+  grep -r 'clearanceOrders' packages/db/schema/index.ts   # exported
+  # curl test (with valid auth token):
+  # curl -X POST http://localhost:3001/api/clearances/order -H 'Authorization: Bearer TOKEN' -H 'Content-Type: application/json' -d '{"fullName":"Juan Cruz","birthdate":"1995-01-15","address":"123 Main St, Pasig","contactPhone":"09171234567"}' → 201
+  # curl http://localhost:3001/api/clearances/my-orders -H 'Authorization: Bearer TOKEN' → 200 with array
+
+COMMIT: `feat(api): document processing service — NBI, police, barangay clearance bundle`
+
+DO NOT: promise specific delivery times (depends on government offices). Handle documents containing sensitive data in our DB (partner handles physical documents). Launch without confirmed partner agreement. Add Paymongo dependency in this prompt if not already installed — reuse existing integration.
+```
+
+**✅ Acceptance:** Order flow works E2E. Payment processes. Partner receives order. Status tracking updates. `pnpm turbo typecheck` and `pnpm turbo build` both pass. `clearance_orders` table exists in schema. Admin can update order status.
+
+**🚫 Forbidden:** Storing government document contents. Promising delivery dates. Launching without partner.
+
+**🏁 Handoff:** → Prompt 45.
+
+---
+
+## Prompt 45 — Barangay captain referral program at scale
+
+**🎯 Goal:** Systematize the barangay captain/tanod referral channel that proved effective in Prompt 34. Scale from 4 barangays to 15+.
+
+**⏱️ Time:** 3–4h
+
+**🔒 Prerequisites:** Prompt 34 data shows barangay captain referrals have >20% conversion rate.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, landlord-pipeline.md referral channel data
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Operationalize barangay captain referral program.
+
+STEP 1 — ANALYZE Prompt 34 DATA:
+- Which barangays produced most referrals?
+- Conversion rate: referral → onboarded landlord
+- Cost per acquisition: ₱100-200 per referral × conversion rate
+- Compare to: direct walk CPA, sari-sari CPA, BPO HR CPA
+
+STEP 2 — REFERRAL PARTNER CRM:
+Create `.claude-brain/context/referral-partners.md` if it doesn't exist (same pattern as `placement-outcomes.md` — create on first run, append thereafter):
+```markdown
+# Referral Partners CRM
+| Partner | Type | Barangay | Referrals sent | Converted | CPA | Status | Last contact |
+|---------|------|----------|----------------|-----------|-----|--------|-------------|
+```
+
+STEP 3 — SCALE PLAN:
+- Identify 15 target barangays in Pasig/Ortigas corridor
+- Visit each barangay hall, meet captain or chief tanod
+- Pitch: "Free verified tenants for your constituents' boarding houses. ₱200 per boarding house owner you connect us with."
+- Leave printed one-pager (Taglish) with QR code to landlord Messenger flow
+- Schedule monthly check-in with each partner
+
+STEP 4 — TRACKING:
+- Every referral tagged with source in landlord-pipeline.md
+- Monthly report: referrals by partner, conversion, cost
+- Top partners get bonus: ₱500 for 10+ successful referrals/month
+
+STEP 5 — SARI-SARI STORE NETWORK:
+- Same model but ₱50/referral (lower because less targeted)
+- Post flyers in stores near BPO offices
+- QR code → Messenger onboarding
+
+COMMIT: `chore(brain): barangay captain referral program CRM + scale plan`
+
+DO NOT: automate outreach (personal relationships). Promise exclusivity. Pay for referrals before landlord is successfully onboarded.
+```
+
+**✅ Acceptance:** CRM tracking 15+ partners. Monthly report template. Cost per acquisition benchmarked.
+
+**🏁 Handoff:** → Prompt 46.
+
+---
+
+## Prompt 46 — Verification API for third parties
+
+**🎯 Goal:** Other platforms can verify rental identities through RentRayda's system. First partner onboarded.
+
+**⏱️ Time:** 10–12h
+
+**🔒 Prerequisites:** 500+ verified users (landlords + tenants). At least one third party has expressed interest (BPO HR, Carousell, barangay office).
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `braindumps/2026-04-14-alphafold-moment-for-informal-rentals.md`
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. Build verification API — the infrastructure layer.
+
+THIS IS THE TRANSITION FROM SERVICE TO PLATFORM. The API is how RentRayda becomes the "PhilSys for rentals" — a trust layer other platforms build on top of.
+
+STEP 1 — API DESIGN:
+Route file: `apps/api/src/routes/verify-api.ts` (new — mount at `/v1/verify` in `apps/api/src/index.ts`)
+This is a PUBLIC API — does NOT use `authMiddleware`. Uses API key auth instead (custom middleware below).
+
+POST /v1/verify/tenant
+- Input: `{ phone_number?: string, user_id?: string }` + `Authorization: Bearer <api_key>` header
+- Output: `{ verified: true/false, score: 72, band: "Verified", employment_verified: true, rental_history: { placements: 2, on_time_rate: 100 } }`
+- Does NOT expose: full name, ID number, address, employer name (DPA compliance)
+- Rate limit: 100/day per API key (free tier), 10,000/day (paid)
+
+POST /v1/verify/landlord
+- Input: `{ phone_number?: string, user_id?: string }` + `Authorization: Bearer <api_key>` header
+- Output: `{ verified: true/false, property_verified: true, listings_count: 3, active_tenants: 2 }`
+
+GET /v1/verify/status/:verification_id
+- Check status of a pending verification request
+
+STEP 2 — API KEY MANAGEMENT:
+Schema file: `packages/db/schema/api-partners.ts` (new):
+```
+export const apiPartners = pgTable('api_partners', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  name: varchar('name', { length: 100 }).notNull(),
+  company: varchar('company', { length: 100 }).notNull(),
+  useCase: text('use_case'),
+  callbackUrl: text('callback_url'),
+  apiKeyHash: varchar('api_key_hash', { length: 64 }).notNull(),  // SHA-256 hash, never store plaintext
+  tier: varchar('tier', { length: 10 }).notNull().default('free'),
+    // Values: 'free' | 'paid' | 'enterprise'
+  dailyLimit: integer('daily_limit').notNull().default(100),
+  isActive: boolean('is_active').default(true).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+export const apiUsageLog = pgTable('api_usage_log', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  partnerId: uuid('partner_id').notNull().references(() => apiPartners.id),
+  endpoint: varchar('endpoint', { length: 50 }).notNull(),
+  requestedPhone: varchar('requested_phone', { length: 15 }),  // for audit only
+  responseType: varchar('response_type', { length: 20 }).notNull(),  // 'verified' | 'not_found' | 'no_consent' | 'error'
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (t) => [
+  index('idx_usage_partner').on(t.partnerId),
+  index('idx_usage_created').on(t.createdAt),
+]);
+```
+Export from `packages/db/schema/index.ts`. Generate + apply migration.
+
+API key middleware: reuse `rateLimiter` from `apps/api/src/middleware/rate-limit.ts` with custom `keyExtractor`:
+```typescript
+rateLimiter({
+  max: 100,  // overridden per partner from DB
+  windowMs: 24 * 60 * 60 * 1000,
+  keyPrefix: 'verify-api',
+  keyExtractor: (c) => c.get('apiPartnerId') || null,
+})
+```
+
+Admin routes for partner management: add to `apps/api/src/routes/admin.ts`:
+- POST /admin/api-partners — create partner, return plaintext API key (only time it's visible)
+- GET /admin/api-partners — list partners with usage stats
+- PATCH /admin/api-partners/:id — update tier/limit/active
+
+STEP 3 — PRICING:
+- Free tier: 100 verifications/day (for BPO HR, barangay offices)
+- Paid tier: ₱5/verification for 10,000+/day (for marketplaces like Carousell)
+- Enterprise: custom pricing for banks/insurers
+
+STEP 4 — FIRST PARTNER:
+- Identify the most receptive partner from Prompt 34 contacts (probably a BPO HR department)
+- Offer free tier
+- Integrate and track: verifications requested, conversion, feedback
+
+STEP 5 — DPA COMPLIANCE:
+- Tenant must CONSENT to third-party verification (opt-in, not opt-out)
+- Add column to `packages/db/schema/tenant-profiles.ts`:
+  thirdPartyVerifyConsent: boolean('third_party_verify_consent').default(false).notNull(),
+  consentUpdatedAt: timestamp('consent_updated_at', { withTimezone: true }),
+- Generate + apply migration for new columns.
+- Mobile UI: consent toggle in tenant profile settings: "Allow partner verification of my RentRayda status"
+- API check: `/v1/verify/tenant` MUST check `thirdPartyVerifyConsent === true` before returning any data. If false → return `{ error: 'no_consent', message: 'Tenant has not consented to third-party verification' }` with 403.
+- Audit log: every API call logged in `api_usage_log` table with partner, timestamp, what was returned
+
+STEP 6 — DOCUMENTATION:
+- API docs at docs.rentrayda.com (simple, Stripe-quality)
+- Integration guide with code examples (Node, Python, curl)
+
+VERIFY:
+  pnpm turbo typecheck                  # zero errors
+  pnpm turbo build                      # clean build
+  grep -r 'api_partners' packages/db/schema/       # table defined
+  grep -r 'third_party_verify_consent' packages/db/schema/tenant-profiles.ts   # consent field exists
+  grep -r 'verify-api' apps/api/src/routes/        # route file exists
+
+  # curl tests (replace API_KEY with key from admin create):
+  # Create partner:
+  # curl -X POST http://localhost:3001/admin/api-partners -H 'Authorization: Bearer ADMIN_TOKEN' -H 'Content-Type: application/json' -d '{"name":"Test BPO","company":"Concentrix","useCase":"Employee housing verification"}' → 201 with api_key in response
+
+  # Verify tenant (with consent):
+  # curl -X POST http://localhost:3001/v1/verify/tenant -H 'Authorization: Bearer API_KEY' -H 'Content-Type: application/json' -d '{"phone_number":"09171234567"}' → 200 with score
+
+  # Verify tenant (no consent):
+  # curl -X POST http://localhost:3001/v1/verify/tenant -H 'Authorization: Bearer API_KEY' -H 'Content-Type: application/json' -d '{"phone_number":"09179999999"}' → 403 no_consent
+
+  # Rate limit test:
+  # Send 101 requests → 101st returns 429
+
+COMMIT: `feat(api): verification API v1 for third-party trust queries`
+
+DO NOT: expose PII through the API. Skip consent. Launch without DPA review. Over-engineer for imaginary scale (100/day free tier is enough for first partner). Store API keys in plaintext (hash with SHA-256). Add new dependencies.
+```
+
+**✅ Acceptance:** API serves verification requests. First partner integrated. Consent flow works. Audit logging in place. `pnpm turbo typecheck` and `pnpm turbo build` both pass. All four curl tests above return expected responses. Rate limiting works per API key. Consent check blocks non-consenting tenants.
+
+**🚫 Forbidden:** PII exposure. Skipping consent. Building without a real partner ready. Storing plaintext API keys.
+
+**🏁 Handoff:** → Prompt 47.
+
+---
+
+## Prompt 47 — Data licensing and credit scoring exploration
+
+**🎯 Goal:** Explore whether RentRayda's rental data has commercial value for banks, insurers, or developers. Identify first data partnership.
+
+**⏱️ Time:** 4–6h (research + outreach prep, not code)
+
+**🔒 Prerequisites:** 1,000+ verified users. 6+ months of payment tracking data. Prompt 46 API live.
+
+**📖 Read first:** `.claude-brain/CLAUDE.md`, placement-outcomes.md, `braindumps/2026-04-14-alphafold-moment-for-informal-rentals.md` (M-Pesa → M-Shwari section)
+
+**📋 Paste into Claude Code:**
+
+```
+Follow session kickoff protocol. This is RESEARCH, not code. Explore data monetization.
+
+STEP 1 — DATA INVENTORY:
+What data do we have that nobody else does?
+- Informal rental prices by barangay (₱3-15K segment — no structured source exists)
+- Tenant payment behavior (on-time %, default rate by verification level)
+- Landlord occupancy rates (fill time, vacancy duration)
+- Migration patterns (where tenants come from, where they move to)
+- Scam frequency and patterns
+- Demand signals by area (which barangays have most unmet demand)
+
+Quantify: how many data points per category? Statistical significance?
+
+STEP 2 — POTENTIAL BUYERS:
+Research and list 5 potential data customers:
+1. Banks offering microloans (e.g., Tonik, Maya Bank, UnaPay) — rental payment history as credit signal
+2. Insurance companies (e.g., Pioneer, Cebuana) — rental risk profiles for renters insurance products
+3. Real estate developers — demand signals for where to build affordable housing
+4. Urban planners / DHSUD — migration and housing data for policy
+5. BPO companies — housing demand data for employee benefits programs
+
+STEP 3 — VALUE PROPOSITION PER BUYER:
+For each, draft a 1-paragraph pitch explaining what data we have and why it's valuable to them.
+
+STEP 4 — LEGAL CHECK:
+- DPA compliance for anonymized data sharing
+- What level of anonymization is required?
+- Does consent from Prompt 46 cover data licensing or need separate consent?
+
+STEP 5 — OUTREACH PLAN:
+Identify 3 specific people/companies to approach first. Draft outreach messages.
+
+Save to `.claude-brain/journal/$(date +%Y-%m-%d)-data-licensing-exploration.md`
+
+DO NOT: share actual data before legal review. Promise data products we can't deliver. Fabricate statistical significance. Approach banks without DPA clearance.
+```
+
+**✅ Acceptance:** Data inventory quantified. 5 potential buyers identified with pitches. Legal requirements documented. 3 outreach targets with draft messages.
+
+**🚫 Forbidden:** Sharing data prematurely. Fabricating significance. Skipping DPA review.
+
+**🏁 Handoff:** PHASE 7 COMPLETE if all prompts executed. You now have trust infrastructure: RentRayda Score + guarantee-lite + management tools + verification API + data exploration.
+
+---
+
+# END OF 47 PROMPTS
+
+If you made it through all 47, you:
+1. Validated demand with real money on the table
+2. Cleaned a 95% MVP into something deployable
+3. Integrated regulated payment flows without custody
+4. Built production safeguards (Sentry, ESLint, auth, tests)
+5. Shipped to production with Android + web
+6. Onboarded 30–50 landlords manually with barangay captain referrals
+7. Delivered 10+ placements by hand with RentRayda Score tracking
+8. Scaled content through nano-influencers
+9. Did a rigorous retrospective with infrastructure health check
+10. Built the RentRayda Score (kakilala replacement)
+11. Launched guarantee-lite for landlords
+12. Built Messenger property management tools
+13. Opened verification API to third parties
+14. Explored data licensing for credit scoring
+
+**You've evolved from a placement service (C+) to trust infrastructure (B+/A-).** The moat is the verified supply database + the data nobody else has.
+
+**If the data said KILL at any point — you also succeeded.** Killing with data is wisdom, not failure.
+
+---
+
+## Meta-rules across all 47 prompts
 
 1. Every prompt starts with reading the brain. Never assume memory persists across sessions.
 2. Every prompt has acceptance criteria. Tell Claude what "done" looks like before it starts.
@@ -2595,11 +3410,12 @@ If you made it through all 40, you:
 4. Every prompt references the kill list. Claude is reminded what NOT to do.
 5. Every prompt produces a commit. Git history is the execution log.
 6. Every prompt is interruptible. Paste `claude-reset.md`, regroup, resume.
-7. No prompt is optional. Each builds on the previous.
-8. Prompts 1–5 are non-destructive. Prompts 6–15 put money on the table. Prompts 16–40 only run if validation passes.
-9. God prompts aren't longer for length's sake — they're longer because constraint is the product. "Build the landing page" produces a landing page no one asked for. "Build this landing page using this exact copy, mobile-first, with these 7 sections, zero new dependencies, and these 5 verification commands" produces the one you need.
+7. No prompt is optional within its phase. Each builds on the previous.
+8. Prompts 1–5 are non-destructive. Prompts 6–15 put money on the table. Prompts 16–40 only run if validation passes. Prompts 41–47 only run if infrastructure signals are STRONG at Month 3 retro.
+9. God prompts aren't longer for length's sake — they're longer because constraint is the product.
 10. If you deviate, create a new decision file FIRST. The brain can evolve. Silent drift kills it.
+11. **Infrastructure lens (new):** Every prompt now serves two masters — the immediate deliverable AND the long-term infrastructure play. When making design decisions within a prompt, prefer choices that accumulate reusable data, build toward the verification API, and strengthen the RentRayda Score.
 
 ---
 
-*This playbook is the execution half of the second brain. The other half (context + decisions + scripts) prevents drift; this half causes progress. Together they ship.*
+*This playbook is the execution half of the second brain. The other half (context + decisions + scripts) prevents drift; this half causes progress. Together they ship. Prompts 1–40 build the wedge. Prompts 41–47 build the infrastructure. The wedge without the infrastructure is a small business. The infrastructure without the wedge is a fantasy. Both matter.*

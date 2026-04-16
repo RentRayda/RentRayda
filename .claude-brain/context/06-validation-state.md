@@ -1,7 +1,7 @@
 # Validation State — Live Metrics
 
-**Last updated:** 2026-04-12 (validation not yet launched)
-**Phase:** Pre-validation setup
+**Last updated:** 2026-04-17 (validation not yet launched; 10/20 research interviews complete)
+**Phase:** Pre-validation setup — listening mode (per founder rule: no product decisions until 20 interviews)
 
 This file is the single source of truth for validation metrics. Update after every significant event (post goes live, reservation comes in, refund processed).
 
@@ -12,6 +12,21 @@ This file is the single source of truth for validation metrics. Update after eve
 **Phase 0: Validation Setup (Day -2 to Day 0)**
 
 Not yet launched. Landing page not yet built.
+
+---
+
+## RESEARCH INTERVIEWS (pre-gate)
+
+Founder rule: **no product decisions until 20/20 interviews complete.**
+
+| Metric | Target | Actual |
+|--------|--------|--------|
+| Landlord interviews | 10 | 6 |
+| Tenant interviews | 10 | 4 |
+| Combined | 20 | 10 |
+
+Source: `context/14-interview-tracker.md`. Distilled summary: `context/01-research-findings.md`.
+When the combined counter reaches 20, only then do we consider moving to paid-validation design decisions.
 
 ---
 
@@ -114,6 +129,8 @@ Sub-signals:
 ## DAILY LOG (append-only during validation)
 
 **Day 0 (2026-04-12):** Brain installed. Landing page not yet built. Awaiting next work session.
+
+**Day 5 (2026-04-17):** L6 logged (high-volume informal landlord, 120 units, Pasig, 60+). Interview tracker migrated from external PDF into canonical `context/14-interview-tracker.md`. Raw transcript archived at `second-brain/04-projects/rentrayda/interviews/2026-04-17-L6-lola-maybunga-transcript.md`. Hypothesis updates: GCash-as-norm promoted from FAILING to DEAD (0/6 landlords); 2 new hypotheses surfaced (compliance-hack systemic, group-fraud Tao Elev/POGO). Bedspace-is-dying claim flagged for L7-L10 counter-evidence before any unit-type decision. Zero product decisions made — n=10 of required 20.
 
 ---
 

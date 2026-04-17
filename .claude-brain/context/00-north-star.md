@@ -7,7 +7,7 @@
 
 ## THE DECISION IN ONE PARAGRAPH
 
-We are NOT building more features. We are running a fake-door validation test with the MVP we already have (95% done per REPO_STATUS.md §9) to prove — with real money on the table — that female BPO new hires migrating to Pasig/Ortigas will pay for verified, safe, scam-protected housing during a **72-hour decision window**. Tier 1 (3% escrow via GCash partnership) and Tier 2 (₱999 concierge) test in parallel. If 30+ combined paid reservations land in 14 days, we finish the MVP cleanup (~40 hours of known fixes), deploy, and manually deliver placements for the first 10 paying users. If fewer than 15 pay, we refund everyone and archive the repo. No more pivots. No more blueprints. The gate is money on the table.
+We are NOT building more features. We are running a fake-door validation test with the MVP we already have (95% done per REPO_STATUS.md §9) to prove — with real money on the table — that female BPO new hires migrating to Pasig/Ortigas will pay for verified, safe, scam-protected housing during a **72-hour decision window**. Tier 0 (free) and Tier 1 (₱499 verified placement) test in parallel. If 30+ paid reservations land in 14 days, we finish the MVP cleanup (~40 hours of known fixes), deploy, and manually deliver placements for the first 10 paying users. If fewer than 15 pay, we refund everyone and archive the repo. No more pivots. No more blueprints. The gate is money on the table.
 
 ## THE USER'S ACTUAL DECISION WINDOW
 
@@ -23,20 +23,17 @@ Per deep research (2026-04-12): the primary target user decides where to live in
 
 **Core proposition:** "Find your next place in Manila. Verified. Scam-free. Free to browse — pay only if you want our full service."
 
-**Three tiers of product, all accessible at zero cost up to the point of commitment:**
+**Two tiers of product, all accessible at zero cost up to the point of commitment:**
 
 ### Tier 0: Free core platform (everyone forever)
 Browse listings, create listings, verify identity, send/receive connection requests, phone reveal after mutual verification, report suspicious activity. **₱0.** No sign-up wall to browse. This is the product everyone can access.
 
-### Tier 1: Secure booking (tenant pays 3% of deposit, avg ~₱450) — payment partner TBD
-For DIY users who find their own place. **We never hold funds.** Payment routes through a licensed EMI partner (GCash hypothesis dead: 0/6 landlords accept GCash, see `01-research-findings.md`. Paymongo handles reservation payments. Deposit flow mechanism needs alternative approach — manual bank transfer or Paymongo-direct as interim). The 3% is a marketplace commission collected after the tenant confirms move-in. Min ₱300, max ₱750. Landlord receives full deposit. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for BSP licensing rationale (principle valid, implementation needs revisiting).
-
-### Tier 2: Full concierge placement (tenant pays ₱999 flat)
-For deadline-driven users (BPO new hires, migrants without kakilala). Done-for-you: 5-field form in, 3 verified matches out within 7 days. AI + human housing buddy. Includes escrow. 7-day money-back guarantee.
+### Tier 1: Verified Placement (tenant pays ₱499 flat)
+For deadline-driven users (BPO new hires, migrants without kakilala). Done-for-you: 5-field form in, 3 verified matches out within 48 hours. AI + human housing buddy. ₱149 reservation via Paymongo + ₱350 on move-in. 48-hour money-back guarantee. Includes deposit coordination (manual bank transfer — we don't touch deposits). No escrow tier. Deposit flows directly landlord-to-tenant as cash or bank transfer.
 
 **Landlord pays ₱0 in all tiers forever.** Research-locked.
 
-**Who the narrow first wedge targets (Tier 2 concierge):**
+**Who the narrow first wedge targets (Tier 1 verified placement):**
 **Who the platform serves (the real wedge pattern):**
 
 Any provincial migrant arriving in Metro Manila with no kakilala network, urgent housing timeline (≤72 hours), and ₱5-8K monthly budget. This pattern applies to:
@@ -78,47 +75,45 @@ Any provincial migrant arriving in Metro Manila with no kakilala network, urgent
 
 **The stack (what gets built across tiers):**
 
-Pre-booking (free + Tier 1/2):
+Pre-booking (free + Tier 1):
 - Verified listings only
 - Verified tenant profile
 - AI-assisted scam screening
-- Deposit escrow via licensed EMI partner (Tier 1 and 2) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17]; Paymongo handles Tier 2 ₱999 payment + validation reservation
 
-Tier 2 additions:
-- Done-for-you matching (form → 3 verified matches in 7 days)
+Tier 1 additions:
+- Done-for-you matching (form → 3 verified matches in 48 hours)
 - AI + human housing buddy
-- 7-day money-back guarantee
+- 48-hour money-back guarantee
+- Deposit coordination (manual bank transfer — we don't touch deposits)
 
 Post-booking (landlord gets value for free):
 - Pre-screened verified tenants
-- Deposit arrives guaranteed via escrow
 - Auto-post to our Facebook Page
 - One-tap share to Groups
 - Reputation system
 
 **Revenue model:**
 - Tier 0: ₱0
-- Tier 1: 3% of deposit, tenant pays, ~₱450 avg per transaction
-- Tier 2: ₱999 flat, tenant pays (₱199 reservation + ₱800 on move-in)
+- Tier 1: ₱499 flat, tenant pays (₱149 reservation via Paymongo + ₱350 on move-in)
 - Landlord: ₱0 forever
+- No escrow tier. No 3% of deposit. No GCash. Deposit flows directly landlord-to-tenant.
 
-**Unit economics (blended target at Month 3):**
-- 70% Tier 1 escrow: ~₱404 margin × 100 = ₱40,400
-- 30% Tier 2 concierge: ~₱879 margin × 40 = ₱35,160
-- Total: ~₱75,560/month contribution margin at 140 (optimistic; base case 50-100) placements/month
+**Unit economics (target at Month 3):**
+- Tier 1 verified placement: ~₱449 margin × 100 = ₱44,900 (Paymongo fees ~₱50/txn)
+- Total: ~₱44,900/month contribution margin at 100 placements/month (base case 50-100)
 
 ---
 
 ## THE BUILD LIST (WHAT WE'RE ACTUALLY SHIPPING)
 
 ### Phase 0: Validation gate (BEFORE any code)
-Fake-door landing page with dual CTAs. Tier 1 path: ₱99 reservation via Paymongo. Tier 2 path: ₱199 reservation via Paymongo. 14-day window, 30+ combined paid reservations = build, <15 = kill. Organic-only traffic (TikTok primary, Facebook Groups secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md`).
+Fake-door landing page with two CTAs (free browse vs. ₱149 reservation for verified placement). 14-day window, 30+ paid reservations = build, <15 = kill. Organic-only traffic (TikTok primary, Facebook Groups secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md`).
 
 ### Phase 1: MVP cleanup (IF validation passes — Week 1, ~40 hours)
 Hit every REPO_STATUS.md §10 item in order. No new features.
 
 ### Phase 2: Validation-specific features (Week 2, ~32 hours)
-Deposit partner integration (escrow) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17], done-for-you matching flow, Facebook auto-post to our Page, PhilSys eVerify integration.
+Done-for-you matching flow, Paymongo integration (₱149 reservation + ₱350 balance), Facebook auto-post to our Page, PhilSys eVerify integration.
 
 ### Phase 3: Soft launch (Week 3)
 Walk barangays to onboard 30-50 landlords, hand-deliver first 10 placements, review.
@@ -141,7 +136,7 @@ Every path below has been specifically rejected. Full reasons in `FINAL_DECISION
 10. AlphaFold-scale ambitions (no such opportunity exists in this market)
 11. Fundraising before PMF (Day 120 earliest)
 12. Over-engineered architecture from V1-V5 (archived noise)
-13. Deposit escrow as sole value prop (needs full bundle to justify ₱999)
+13. Deposit escrow as sole value prop (killed entirely — we don't touch deposits)
 14. Scraping our own Facebook Page (Page is one-way megaphone)
 
 ---
@@ -161,9 +156,9 @@ Every path below has been specifically rejected. Full reasons in `FINAL_DECISION
 
 ## THE ONE TEST
 
-Fake-door landing page with two CTAs (Tier 1 escrow + Tier 2 concierge). Small real-money commitment on either path.
+Fake-door landing page with two CTAs (free browse vs. ₱149 verified placement reservation). Small real-money commitment on the paid path.
 
-**Combined across both tiers in 14 days:**
+**In 14 days:**
 - **30+ paid reservations → we have a business to build.**
 - **Fewer than 15 → we don't.**
 

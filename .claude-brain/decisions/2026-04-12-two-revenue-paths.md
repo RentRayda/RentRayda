@@ -1,7 +1,9 @@
+## SUPERSEDED (2026-04-17): Dual-tier model replaced by single Verified Placement tier at ₱499. See decisions/2026-04-17-kill-tier1-simplify-pricing.md. The PRINCIPLE (tenant pays, landlord free) remains valid. The IMPLEMENTATION (two separate paid tiers) is replaced.
+
 # Decision: Two tenant-paid revenue paths; free core platform; landlord still ₱0
 
 **Date:** 2026-04-12
-**Status:** Active
+**Status:** Superseded
 **Amends:** [[2026-04-11-tenant-only-revenue]] (adds second revenue stream, doesn't replace core principle)
 
 ---

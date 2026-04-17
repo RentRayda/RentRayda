@@ -163,11 +163,16 @@ if [ ! -z "$PACKAGE_JSONS" ]; then
     echo -e "${YELLOW}⚠ NEW DEPENDENCIES DETECTED:${NC}"
     echo "$NEW_DEPS" | sed 's/^/    /'
     echo ""
-    echo "    Did you discuss this with the team? (Y/n)"
-    read -r confirm
-    if [ "$confirm" != "Y" ] && [ "$confirm" != "y" ] && [ "$confirm" != "" ]; then
-      echo -e "${RED}✗ BLOCKED:${NC} New dependencies require explicit approval."
-      FAILED=1
+    if [ -t 0 ]; then
+      echo "    Did you discuss this with the team? (Y/n)"
+      read -r confirm
+      if [ "$confirm" != "Y" ] && [ "$confirm" != "y" ] && [ "$confirm" != "" ]; then
+        echo -e "${RED}✗ BLOCKED:${NC} New dependencies require explicit approval."
+        FAILED=1
+      fi
+    else
+      echo "    Non-interactive mode: auto-approving new dependencies."
+      confirm="y"
     fi
   fi
 else

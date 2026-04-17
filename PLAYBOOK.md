@@ -252,10 +252,10 @@ Follow session kickoff protocol. Read the listed files IN FULL (not summaries). 
 
 1. What is the BUILD threshold? (quote exact number from FINAL_DECISION.md)
 2. What is the KILL threshold? (quote exact number)
-3. What are the two tier CTAs and their reservation amounts?
+3. What is the placement CTA and its reservation amount?
 4. What happens to reservation money if we KILL? (quote refund policy verbatim)
-5. What does "combined" mean in "30+ combined reservations" — both tiers or either?
-6. What are the expected blended unit economics per placement? (quote from two-revenue-paths)
+5. What is the threshold for 30+ reservations?
+6. What are the expected unit economics per Verified Placement? (quote from FINAL_DECISION.md §6.5)
 7. Which acquisition channels are prioritized in validation, in what order?
 8. What is the customer discovery call process — who calls whom, within what window?
 9. Name the 3 psychographic pain points driving conversion per context/09.
@@ -334,9 +334,9 @@ Phase time: 8–12 hours. Outcome: landing page live, reservations working, laun
 
 ---
 
-## Prompt 6 — Build dual-path landing page (rentrayda.com)
+## Prompt 6 — Build landing page with free browse + paid placement (rentrayda.com)
 
-**🎯 Goal:** Production landing page with two CTAs live; copy matches artifact verbatim.
+**🎯 Goal:** Production landing page with browse CTA + paid placement CTA live; copy matches artifact verbatim.
 
 **⏱️ Time:** 3–4 hours
 
@@ -347,18 +347,18 @@ Phase time: 8–12 hours. Outcome: landing page live, reservations working, laun
 **📋 Paste into Claude Code:**
 
 ```
-Follow session kickoff protocol. Build dual-path landing page in `apps/web/app/page.tsx`.
+Follow session kickoff protocol. Build landing page in `apps/web/app/page.tsx`.
 
 COPY FIDELITY RULE (absolute): Copy is in `artifacts/landing-page-copy-and-discovery-script.md`. Copy VERBATIM. Do not paraphrase. Do not translate Taglish. If it says "Libre po talaga", those exact words go on the page.
 
 REQUIREMENTS:
 1. Mobile-first. Must render cleanly at 360px in Chrome DevTools.
-2. Two primary CTAs (side-by-side desktop, stacked mobile):
-   - "Reserve escrow slot — ₱99" → /reserve/escrow
-   - "Reserve concierge slot — ₱199" → /reserve/concierge
+2. Two primary CTAs (stacked mobile, side-by-side desktop):
+   - "Browse listings" → /listings (free, Tier 0)
+   - "Reserve verified placement — ₱149" → /reserve/placement
 3. Hero: "Verified rentals in Pasig/Ortigas. Scam-protected. Landlord-safe."
 4. Three trust signals with icons: PhilSys verified landlord IDs, verified deposit protection, female-only options available
-5. Three-path explainer (Tier 0/1/2) per artifact Section 2
+5. Two-path explainer (Tier 0 free / Tier 1 Verified Placement ₱499) per artifact Section 2
 6. "Why we exist" empathy section per artifact Section 3
 7. "How it works" three columns per artifact Section 4
 8. "Safety matters" four indicators per artifact Section 5
@@ -382,15 +382,15 @@ VERIFY BEFORE COMMIT:
 1. `pnpm turbo build` passes
 2. `pnpm turbo typecheck` passes
 3. Open localhost:3000, resize to 360px — no layout break
-4. Tab order: Browse → Reserve escrow → Reserve concierge → FAQ
+4. Tab order: Browse → Reserve placement → FAQ
 5. `grep -rn "#2563EB\|#2B51E3" apps/web/app/page.tsx` → 0 matches
 
-COMMIT: `feat(web): dual-path validation landing page`
+COMMIT: `feat(web): validation landing page with browse + verified placement CTA`
 
 If any step fails: stop and show me. Do NOT fall back to the old landing page.
 ```
 
-**✅ Acceptance:** Typecheck+build pass. 360px + desktop render clean. Two CTAs with correct labels/hrefs. 7 content sections present. Zero old brand colors. Committed.
+**✅ Acceptance:** Typecheck+build pass. 360px + desktop render clean. Browse + placement CTAs with correct labels/hrefs. Content sections present. Zero old brand colors. Committed.
 
 **🚫 Forbidden:** Paraphrasing. Inventing copy. Adding images we don't have. Adding testimonials (we have none yet). Adding press logos. New npm deps. Bypassing build verification.
 
@@ -402,7 +402,7 @@ If any step fails: stop and show me. Do NOT fall back to the old landing page.
 
 ## Prompt 7 — Wire Paymongo for reservations ONLY (never custody funds)
 
-**🎯 Goal:** Paymongo reservation intents working for ₱99 Tier 1 and ₱199 Tier 2. Webhook-signed, idempotent, no fund-holding.
+**🎯 Goal:** Paymongo reservation intents working for ₱149 Verified Placement. Webhook-signed, idempotent, no fund-holding.
 
 **⏱️ Time:** 4–5 hours
 
@@ -415,13 +415,13 @@ If any step fails: stop and show me. Do NOT fall back to the old landing page.
 ```
 Follow session kickoff protocol. BEFORE any code, re-read `context/12-gotchas.md` BSP landmines + `decisions/2026-04-12-escrow-via-gcash-partnership.md` in full (NOTE: GCash hypothesis dead — 0/6 landlords accept GCash — but the no-fund-custody principle remains). State back in one sentence: what distinguishes a "reservation" from an "escrow" in our architecture? If you get this wrong we'll build a BSP violation.
 
-Then implement Paymongo RESERVATIONS ONLY. No deposit escrow. No fund-holding.
+Then implement Paymongo RESERVATIONS ONLY. No deposit escrow. No fund-holding. ONE tier: Verified Placement at ₱149 reservation (₱350 balance on move-in, ₱499 total).
 
 STEP 1 — Migration 0002 (reservations table):
 - `packages/db/schema/reservations.ts`:
   - id uuid pk
-  - tier enum('escrow','concierge')
-  - amount_centavos int (9900 or 19900)
+  - tier enum('placement') — single tier only
+  - amount_centavos int (14900)
   - currency text default 'PHP'
   - status enum('pending','paid','refunded','expired')
   - paymongo_intent_id text unique not null
@@ -435,7 +435,7 @@ STEP 1 — Migration 0002 (reservations table):
 - Verify: `psql $DATABASE_URL -c "\d reservations"`
 
 STEP 2 — Paymongo client (`apps/api/src/lib/payments/paymongo.ts`):
-- `createReservationIntent({amount_centavos, tier, email, phone, utm})` → Paymongo POST /payment_intents, metadata includes {tier, email, phone, utm}. Returns {intent_id, client_key, next_action}.
+- `createReservationIntent({amount_centavos, email, phone, utm})` → Paymongo POST /payment_intents, metadata includes {tier: 'placement', email, phone, utm}. Returns {intent_id, client_key, next_action}.
 - `verifyWebhookSignature(rawBody, signature)`: HMAC-SHA256 using PAYMONGO_WEBHOOK_SECRET.
 - `refund(intent_id, amount_centavos, reason)` for Day 14 if we KILL.
 - Zod schemas in `packages/shared/validators/payment.ts`.
@@ -443,7 +443,7 @@ STEP 2 — Paymongo client (`apps/api/src/lib/payments/paymongo.ts`):
 STEP 3 — Routes (`apps/api/src/routes/payments.ts`):
 - POST /payments/reservations
   - Rate limit: 5/IP/hour (reuse middleware/rate-limit.ts)
-  - Create DB row status='pending'
+  - Create DB row status='pending', tier='placement', amount_centavos=14900
   - Call paymongo.createReservationIntent
   - Return {reservation_id, client_key}
 - POST /payments/webhook
@@ -473,14 +473,14 @@ VERIFY:
 4. Smoke test with Paymongo card 4343 4343 4343 4345
 5. `grep -c "custody\|hold funds\|escrow wallet" apps/api/src/lib/payments/paymongo.ts` → MUST be 0
 
-COMMIT: `feat(api): paymongo reservations for tier 1 and tier 2 validation (no fund custody per EMI partnership decision)`
+COMMIT: `feat(api): paymongo reservations for verified placement validation (no fund custody per EMI partnership decision)`
 
 If you find yourself adding fund-holding logic, STOP.
 ```
 
-**✅ Acceptance:** Migration applied. paymongo.ts exports 3 functions. Routes registered. 4 tests pass. Smoke test completes. Zero fund-custody references in code.
+**✅ Acceptance:** Migration applied. paymongo.ts exports 3 functions. Routes registered. 4 tests pass. Smoke test completes. Zero fund-custody references in code. Single tier 'placement' at ₱149 (14900 centavos).
 
-**🚫 Forbidden:** Deposit escrow logic (that's Phase 4 via licensed EMI partner TBD — GCash hypothesis dead). Storing card details. Production Paymongo keys. Skipping signature verification. Slow webhook (>500ms). In-memory or DB-backed wallet/balance.
+**🚫 Forbidden:** Deposit escrow logic (that's Phase 4 via licensed EMI partner TBD — GCash hypothesis dead). Storing card details. Production Paymongo keys. Skipping signature verification. Slow webhook (>500ms). In-memory or DB-backed wallet/balance. Multiple tier types (only 'placement').
 
 **🆘 Recovery:** If Claude proposes holding funds, paste: *"STOP. You're about to violate BSP regulations — personal legal liability for the founder. Re-read decisions/2026-04-12-escrow-via-gcash-partnership.md (GCash hypothesis dead, but no-custody principle stands) and context/12-gotchas.md BSP section. Revert any fund-holding code now."*
 
@@ -501,17 +501,15 @@ If you find yourself adding fund-holding logic, STOP.
 **📋 Paste into Claude Code:**
 
 ```
-Follow session kickoff protocol. Build end-to-end reservation flow connecting landing to Paymongo.
+Follow session kickoff protocol. Build end-to-end reservation flow connecting landing to Paymongo. ONE reservation path only (Verified Placement at ₱149).
 
-STEP 1 — Reservation forms:
-- `apps/web/app/reserve/escrow/page.tsx`:
-  - Fields: email (required), phone (required, +63 validation), name (optional)
+STEP 1 — Reservation form:
+- `apps/web/app/reserve/placement/page.tsx`:
+  - Fields: email (required), phone (required, +63 validation), name (optional), desired_barangays (multi-select), move_in_date, budget_min/max
   - Consent checkbox (DPA): "I agree to RentRayda's Privacy Policy and consent to storing my contact information for rental matching" — links to /privacy (stub OK)
-  - Submit POST /api/payments/reservations tier='escrow'
-- `apps/web/app/reserve/concierge/page.tsx`:
-  - Same + desired_barangays (multi-select), move_in_date, budget_min/max
-  - Info: "We'll match you with 3 verified options within 7 days"
-- Both forms: capture UTM from URL query string, submit with request
+  - Info: "3 verified matches in 48 hours or full refund."
+  - Submit POST /api/payments/reservations tier='placement'
+- Capture UTM from URL query string, submit with request
 
 STEP 2 — Payment redirect:
 - Form submit → API returns {reservation_id, client_key}
@@ -522,11 +520,10 @@ STEP 2 — Payment redirect:
 
 STEP 3 — Thank-you page:
 - Server-side fetch /api/reservations/:id
-- Display: tier, amount, date
+- Display: amount (₱149), date
 - Next steps:
   - "We'll call you within 24h at +63[redacted]"
-  - Escrow: "Keep browsing; we'll protect your deposit when you commit"
-  - Concierge: "Expect 3 matched options by [date+7d]"
+  - "Expect 3 verified matches within 48 hours. ₱350 balance due on move-in (₱499 total)."
 - Footer: dpo@rentrayda.com
 
 STEP 4 — Retry page:
@@ -543,19 +540,18 @@ STEP 6 — Webhook tunnel doc:
 VERIFY:
 1. typecheck + build pass
 2. E2E with card 4343 4343 4343 4345:
-   - localhost → escrow CTA → form → Paymongo → payment → thank-you shows "paid"
-   - DB row status='paid'
+   - localhost → placement CTA → form → Paymongo → payment → thank-you shows "paid"
+   - DB row status='paid', tier='placement', amount_centavos=14900
    - reservations_events has webhook record
-3. Concierge tier same flow
-4. Failure: card 4000 0000 0000 0002 → retry page
-5. Idempotency: replay webhook → status stays 'paid', no duplicate row
+3. Failure: card 4000 0000 0000 0002 → retry page
+4. Idempotency: replay webhook → status stays 'paid', no duplicate row
 
 COMMIT: `feat(web+api): end-to-end reservation flow with paymongo checkout`
 
 No "coming soon" fallback — defeats validation.
 ```
 
-**✅ Acceptance:** Both /reserve routes live. Thank-you shows paid. Retry works. Tunnel doc created. All 5 verification tests pass.
+**✅ Acceptance:** /reserve/placement route live. Thank-you shows paid. Retry works. Tunnel doc created. All 4 verification tests pass.
 
 **🚫 Forbidden:** Requiring account before reservation. Storing card data. Multiple reservations per payment intent. Showing PII via public endpoint. Skipping DPA consent checkbox.
 
@@ -675,7 +671,7 @@ TEMPORARY AUTH:
 BACKEND (extend `apps/api/src/routes/admin.ts`):
 - GET /admin/validation/metrics returns:
   - total_reservations (all-time + today + last 24h)
-  - by_tier: {escrow: n, concierge: m}
+  - by_tier: {placement: n}
   - by_status: {pending, paid, refunded, expired}
   - by_utm_source: {[source]: count}
   - by_day: [{date, tier, count}] last 14 days
@@ -919,21 +915,19 @@ Follow session kickoff protocol. Day 14 go/no-go analysis. Be rigorous. If data 
 
 STEP 1 — NUMBERS (pull from dashboard + journal):
 - Total paid reservations: N (target 30+ BUILD)
-- Tier split: escrow X / concierge Y
 - UTM breakdown: which channel produced most
 - Refund rate: Z%
 - Discovery call completion: W% within 24h
 - A/B result (if run): variant_a vs variant_b conversion
 
 STEP 2 — DECISION (per FINAL_DECISION.md §7):
-- 30+ combined paid → BUILD (MVP cleanup → Phase 3)
+- 30+ paid reservations → BUILD (MVP cleanup → Phase 3)
 - 15-29 → EXTEND (7 more days with iterated positioning)
 - <15 → KILL (refund everyone, post-mortem, archive)
 
 State decision in ONE WORD: BUILD, EXTEND, or KILL.
 
 STEP 3 — IF BUILD:
-- Tier recommendation: 90/10 T1 mix → escrow-first; 10/90 T2 → concierge-first; balanced → parallel
 - Top 3 customer quotes (conviction)
 - Top 3 weakest signals (don't get overconfident)
 
@@ -1797,7 +1791,7 @@ STEP 1 — `packages/db/schema/match_requests.ts`:
 - id uuid pk
 - tenant_user_id fk → users
 - reservation_id fk → reservations, nullable (founder can create manual request)
-- tier enum('concierge' only — escrow DIY doesn't need match request)
+- tier enum('placement')
 - form_data jsonb: {work_location, budget_min, budget_max, move_in_date, gender_preference, must_haves[]}
 - status enum('submitted','matching','matches_ready','viewing_scheduled','moved_in','completed','cancelled')
 - matched_landlord_ids jsonb array nullable
@@ -1807,7 +1801,7 @@ STEP 1 — `packages/db/schema/match_requests.ts`:
 STEP 2 — `packages/db/schema/payments.ts` (NEW — different from reservations):
 - id uuid pk
 - user_id fk → users
-- type enum('reservation','commission','refund','concierge_balance')
+- type enum('reservation','commission','refund','placement_balance')
 - related_entity_id uuid nullable (e.g. match_request id for commissions)
 - amount_centavos int (negative for refunds)
 - currency text default 'PHP'
@@ -2179,7 +2173,7 @@ SMOKE TESTS (any failure = rollback):
 2. `curl -sS https://rentrayda.com/` → 200
 3. `curl -sS https://rentrayda.com/listings` → 200 (empty OK)
 4. Admin: log in at /admin/login → dashboard loads
-5. User: create test reservation via /reserve/escrow → Paymongo checkout opens
+5. User: create test reservation via /reserve/placement → Paymongo checkout opens
 6. Paymongo webhook → /api/payments/webhook fires
 7. Sentry: no errors last 5 min
 
@@ -2289,15 +2283,15 @@ DO NOT: auto-generate messages (I write every message). Propose script changes u
 
 ---
 
-## Prompt 35 — First 10 concierge placements (manual, white-glove)
+## Prompt 35 — First 10 verified placements (manual, white-glove)
 
 **🎯 Goal:** 10 real tenants placed in real units by founder, all journaled.
 
 **⏱️ Time:** 2–4 weeks calendar
 
-**🔒 Prerequisites:** Prompt 34 in progress (30+ landlords). Tier 2 reservers from validation waiting.
+**🔒 Prerequisites:** Prompt 34 in progress (30+ landlords). Verified Placement reservers from validation waiting.
 
-**📖 Read first:** `.claude-brain/CLAUDE.md`, `decisions/2026-04-12-landlord-onboarding-messenger.md`, `FINAL_DECISION.md` §6.3
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `decisions/2026-04-12-landlord-onboarding-messenger.md`, `FINAL_DECISION.md` §6.4
 
 **📋 Paste per placement:**
 
@@ -2311,7 +2305,7 @@ EACH PLACEMENT — I paste the timeline:
 - Viewings scheduled + attended
 - Commit date (tenant chose place)
 - Deposit flow used (EMI partner live? or manual bank transfer + founder verifies receipt?)
-- Balance collection (₱800 via Paymongo)
+- Balance collection (₱350 via Paymongo)
 - Move-in date
 - 48h post-move-in check-in result
 
@@ -2321,7 +2315,7 @@ ATTRIBUTES TO TRACK:
 - Total founder-hours on this placement
 - Total Messenger messages sent
 - Number of viewings (ideal 1–2; >3 = inefficient)
-- Discovery call → move-in (target 7 days; measure reality)
+- Discovery call → move-in (target 48 hours for matches, then move-in; measure reality)
 - Tenant satisfaction (happy / minor issue / major issue / silent)
 - Landlord satisfaction (same)
 - Friction points that should be automated in Phase 6
@@ -2350,7 +2344,7 @@ if [ ! -f .claude-brain/context/placement-outcomes.md ]; then
 cat > .claude-brain/context/placement-outcomes.md << 'TEMPLATE'
 # Placement Outcomes Tracker
 
-Raw verification + payment data for first 10 concierge placements.
+Raw verification + payment data for first 10 verified placements.
 This data feeds the RentRayda Score (Prompt 41) and proves whether
 verified tenants default LESS than the market average (8-12%).
 
@@ -2389,7 +2383,7 @@ Synthesize: `.claude-brain/journal/$(date +%Y-%m-%d)-10-placements-retro.md`:
 - Biggest friction point (one, not list)
 - What to automate in Phase 6 (specific tool proposals)
 - What SHOULD stay human (relationship work)
-- Unit economics: did we hit ₱879 gross margin?
+- Unit economics: did we hit ₱397 gross margin per placement?
 
 DO NOT: propose automation during first 10 (feel friction first). Hide failures. Inflate satisfaction.
 ```
@@ -2440,7 +2434,7 @@ STEP 4 — ADMIN DASHBOARD:
 
 STEP 5 — ESCALATION:
 - 'major_issue' → auto-email miguel@rentrayda.com + Sentry high-priority
-- 'major_issue' within 7 days of move-in → Tier 2 guarantee review
+- 'major_issue' within 7 days of move-in → Verified Placement guarantee review
 
 STEP 6 — TEST:
 - Create test placement, set moved_in_at = 2 days ago
@@ -2520,7 +2514,7 @@ Phase time: ~30h Claude Code time over 2–3 weeks.
 
 ## Prompt 38 — TikTok nano-influencer engine
 
-> **NOTE (2026-04-16):** Paid marketing (including creator fees) makes Tier 1 unprofitable at early scale. At ₱99 reservation with ~₱450 blended margin, a ₱2-5K creator fee needs 5-11 placements to break even PER VIDEO. Prioritize organic content (founder-filmed, tenant testimonials from Prompt 37) before scaling paid creator work. Only activate this prompt when organic is producing consistent reservations and you need to scale beyond founder bandwidth.
+> **NOTE (2026-04-16, updated 2026-04-17):** Paid marketing (including creator fees) requires careful unit economics at early scale. At ₱149 reservation with ₱499 total placement fee, a ₱2-5K creator fee needs 4-10 placements to break even PER VIDEO. Prioritize organic content (founder-filmed, tenant testimonials from Prompt 37) before scaling paid creator work. Only activate this prompt when organic is producing consistent reservations and you need to scale beyond founder bandwidth.
 
 **🎯 Goal:** 3 creators per week, tracked, measured, renewed or dropped by data.
 
@@ -2555,7 +2549,7 @@ STEP 4 — PERFORMANCE:
 After each video goes live:
 - Track views at 24h, 72h, 7 days
 - Track reservations via utm_source=tiktok_[creator_name]
-- ROI = (reservations × ₱450 blended margin) ÷ creator_fee
+- ROI = (reservations × ₱397 margin) ÷ creator_fee
 
 STEP 5 — DECISION GATES:
 - Video 1: >5K views → sign 4-video/month contract ₱3–5K per; <1K → drop
@@ -2595,11 +2589,10 @@ COMMIT: `chore(brain): tiktok creator pipeline CRM + weekly sourcing ritual`
 Follow session kickoff protocol. Month 3 retrospective — unvarnished.
 
 PULL DATA:
-- Total placements: actual vs 140/month target (optimistic; base case 50-100)
-- Tier 1: actual vs 100/month projection (optimistic; base case 35-70)
-- Tier 2: actual vs 40/month projection (optimistic; base case 15-30)
+- Total placements: actual vs 100/month target (optimistic; base case 50-100)
+- Verified Placement: actual vs 100/month projection
 - Total revenue
-- Gross margin
+- Gross margin per placement vs ₱397 assumption
 - Refund rate
 - Landlord retention (repeat listings per landlord)
 - Tenant NPS (referral rate)
@@ -2609,7 +2602,7 @@ PULL DATA:
 
 COMPUTE:
 - Hit/miss per target (%)
-- Unit economics: actual margin per placement vs ₱450 Tier 1 / ₱879 Tier 2 assumptions
+- Unit economics: actual margin per placement vs ₱499 Verified Placement assumption
 - Churn: of first 30 landlords, how many still active?
 - LTV signal: of first 20 tenants, how many returned or referred?
 
@@ -2788,7 +2781,7 @@ Read placement-outcomes.md. For each placement, correlate:
 - PhilSys verification status → payment behavior
 - Employment verification → payment behavior
 - Company type (BPO vs other) → payment behavior
-- Placement tier (Tier 1 vs 2) → payment behavior
+- Placement source (organic Tier 0 vs Verified Placement) → payment behavior
 - Any other predictive signals in the data
 
 Compute: verified tenant default rate vs market baseline (8-12%).

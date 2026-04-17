@@ -187,7 +187,7 @@ NEVER trust the client. NEVER reveal a phone number when either party is not ver
 
 ## KEY BUSINESS RULES — NEVER VIOLATE
 
-1. Zero payment processing — no GCash/Maya, no payment endpoints, no escrow [GCash hypothesis dead — 0/6 landlords accept, see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Deposit partner TBD.]
+1. Zero deposit processing — no GCash/Maya, no escrow. Deposits flow directly landlord-to-tenant. Paymongo handles only Tier 1 reservation (₱149) + balance (₱350). We never touch deposits.
 2. Phone numbers revealed ONLY when BOTH parties verified AND connection accepted
 3. Government IDs stored ONLY in PRIVATE R2 bucket — signed URLs, 1hr expiry
 4. Never expose r2ObjectKey to any client response — generate signed URLs server-side
@@ -243,7 +243,7 @@ SENTRY_DSN=""
 
 ## WHAT NOT TO DO
 
-1. Never add payment routes or GCash/Maya/PayMongo integration [GCash hypothesis dead — 0/6 landlords accept. Deposit partner TBD. Never custody funds regardless of partner.]
+1. Never add deposit/escrow payment routes or GCash/Maya integration. Paymongo handles ONLY Tier 1 ₱149 reservation + ₱350 balance. Never custody deposits.
 2. Never serve verification document files directly — presigned URLs only
 3. Never reveal phone numbers without checking BOTH verification statuses server-side
 4. Never use Supabase, Vercel, Firebase, or Heroku for any part of the stack

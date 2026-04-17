@@ -1,7 +1,7 @@
 # Landing Page Copy + Customer Discovery Script
 
 Two artifacts:
-1. Landing page copy for rentrayda.com (dual-path CTAs)
+1. Landing page copy for rentrayda.com (two-path CTAs: Free + Verified Placement)
 2. Customer discovery call script (every reserver gets a call within 24 hours)
 
 ---
@@ -19,24 +19,24 @@ Two artifacts:
 > **Scam-protected. Landlord-safe.**
 
 **Subheadline:**
-> For anyone moving to Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families. Browse free. Pay only if you want scam protection or our full concierge service.
+> For anyone moving to Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families. Browse free. Pay only if you want our verified placement service.
 
 **Primary trust signals (three in a row, icon + text):**
 - ✓ Verified landlord IDs (PhilSys-backed)
-- ✓ Secure deposit protection
+- ✓ 3 verified matches in 48 hours
 - ✓ Female-only options available
 
 **Hero image:** Female BPO worker in background, smiling, in what looks like a small studio or bedspace interior. Natural light. NOT corporate stock photo. NOT smiling model. Should look like a real Ate who moved to Manila last month.
 
 **Under-hero sub-message:**
-> Free to browse. Free for landlords forever. We only charge tenants who want our protection — and only after we've delivered.
+> Free to browse. Free for landlords forever. We only charge tenants who want our verified placement service — and only after we've delivered.
 
-### Section 2: Three-path CTA block (the validation test)
+### Section 2: Two-path CTA block (the validation test)
 
 **Section heading:**
 > **Choose how much help you want.**
 
-Three equal-width cards on desktop; stacked on mobile. Each has its own CTA leading to a different flow.
+Two equal-width cards on desktop; stacked on mobile. Each has its own CTA leading to a different flow.
 
 ---
 
@@ -59,43 +59,21 @@ Three equal-width cards on desktop; stacked on mobile. Each has its own CTA lead
 
 ---
 
-**CARD 2 — Secure booking (Tier 1)**
-
-**Badge:** 💰 3% OF DEPOSIT
-
-**Headline:**
-> Protect your deposit. Pay only if you find a place.
-
-**Body:**
-> - Browse all listings free
-> - When you're ready to commit, we handle the deposit safely through a secure payment partner
-> - We never touch your money — a licensed payment partner holds it
-> - Released only when you confirm move-in
-> - Average fee: ₱300-₱750 (3% of deposit)
-
-**CTA button:** `Reserve escrow slot — ₱99 →`
-**Links to:** `/reserve/escrow`
-**Subtext under button:** `₱99 reservation applies to your eventual 3% fee. Fully refundable.`
-
----
-
-**CARD 3 — Full concierge (Tier 2)**
+**CARD 2 — Verified Placement (₱499)**
 
 **Badge:** 🎯 DONE FOR YOU
 
 **Headline:**
-> Find me a place in 7 days. Guaranteed.
+> Find me a place in 48 hours. Guaranteed.
 
 **Body:**
-> - 5-field form, then we take over
-> - 3 verified matches delivered in 7 days
+> - 3 verified matches in 48 hours
 > - Housing buddy coordinates your viewings
-> - Includes secure deposit handling
-> - 7-day money-back guarantee
+> - Full refund if we can't deliver
 
-**CTA button:** `Reserve concierge slot — ₱199 →`
-**Links to:** `/reserve/concierge`
-**Subtext under button:** `₱199 applied to your ₱999 total. Refunded in full if we can't deliver.`
+**CTA button:** `Reserve your spot — ₱149 →`
+**Links to:** `/reserve/placement`
+**Subtext under button:** `₱149 applied to your ₱499 total. Refunded in full if we can't deliver in 48 hours.`
 
 ---
 
@@ -107,7 +85,7 @@ Three equal-width cards on desktop; stacked on mobile. Each has its own CTA lead
 **Body:**
 > Most people arriving in Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families — land with training or classes starting in 5-14 days, no local contacts, and scammers waiting. We heard story after story: ₱10,000 deposits sent to listings that didn't exist. Units that looked nothing like the photos. Landlords who locked out tenants after complaints.
 >
-> We built RentRayda because Facebook groups weren't enough. Every landlord on our platform is verified via PhilSys. Every listing is photographed in person. Every deposit flows through a secure payment partner, not through us.
+> We built RentRayda because Facebook groups weren't enough. Every landlord on our platform is verified via PhilSys. Every listing is photographed in person. Your deposit goes directly to the landlord — we don't touch it.
 >
 > You shouldn't have to choose between "unsafe and free" and "safe but expensive." With us, free is the default. Safety is the commitment. Money only changes hands when we've delivered.
 
@@ -115,22 +93,17 @@ Three equal-width cards on desktop; stacked on mobile. Each has its own CTA lead
 
 **Heading:** **How RentRayda works**
 
-Three columns, one per path:
+Two columns, one per path:
 
 **Free browsing (Tier 0):**
 1. Browse verified listings
 2. Both sides verify (PhilSys)
 3. Phone numbers reveal — you coordinate directly
 
-**Secure booking (Tier 1):**
-1. Find your place + agree with landlord
-2. Deposit routes through a secure payment partner (we orchestrate, never hold)
-3. Confirm move-in → 3% fee charged to you
-
-**Full concierge (Tier 2):**
-1. Submit 5-field form + ₱199 reservation
-2. We find 3 verified matches within 7 days
-3. You view, pick, move in — deposit protected, ₱800 balance due
+**Verified Placement (₱499):**
+1. Submit 5-field form + ₱149 reservation
+2. We find 3 verified matches within 48 hours
+3. You view, pick, move in — deposit goes direct to landlord, ₱350 balance due
 
 ### Section 5: Safety matters (psychographic-driven)
 
@@ -164,29 +137,28 @@ Three columns, one per path:
 **1. Ano ba yung "verified"?**
 > Every landlord uploads a valid Philippine ID (PhilID, passport, driver's license) AND proof of property ownership (deed or utility bill). We manually review. Only after verification is their listing published.
 
-**2. Bakit may bayad yung deposit protection?**
-> Because holding deposits costs us regulatory compliance with BSP and ongoing operational cost. We keep it at 3% — lower than any broker in Manila — because we're a platform, not a middleman.
+**2. Magkano ang Verified Placement?**
+> ₱499 po — kasama na lahat. 3 verified matches in 48 hours, housing buddy coordinates viewings, full refund kung hindi namin ma-deliver.
 
 **3. May bayad ba sa landlord?**
 > Wala. Libre forever. Hindi kami kumukuha sa inyo ng bayad, fee, subscription, kahit anong form. Kayo lang yung nagde-decide at nag-a-approve ng tenant.
 
-**4. Saan napupunta yung deposit ko?**
-> Derechto po yung deposit ninyo sa landlord through a secure payment partner. Hindi kami humahawak ng pera. We orchestrate yung transaction, pero licensed partner yung actual custody. Sinusunod namin ang BSP regulations po.
+**4. Paano yung deposit ko?**
+> Diretso po ang deposit ninyo sa landlord — cash o bank transfer. Hindi kami humahawak ng pera. Ang binabayaran ninyo sa amin ay ang matching service lang po.
 
 **5. Pag may issue after move-in, ano mangyayari?**
-> Report mo sa amin within 48 hours of move-in. Coordinate kami sa landlord, sa payment partner, at sa inyong legal options. Worst case: Tier 2 users get full ₱999 refund, plus we help locate a replacement unit within 7 days.
+> Report mo sa amin within 48 hours of move-in. Coordinate kami sa landlord at sa inyong legal options. Worst case: Verified Placement users get full ₱499 refund, plus we help locate a replacement unit within 48 hours.
 
 **6. Bakit Pasig/Ortigas lang?**
 > Focus wins. We'd rather be deeply trusted in one corridor than mediocre across five. Makati, BGC, and QC — soon, when we've proven this works here.
 
 ### Section 8: Final CTA
 
-**Heading:** **Your next place is 7 days away.**
+**Heading:** **Your next place is 48 hours away.**
 
-Three buttons (same as Section 2):
+Two buttons (same as Section 2):
 - Browse listings (free)
-- Reserve escrow slot (₱99)
-- Reserve concierge slot (₱199)
+- Reserve your spot — ₱149
 
 **Footer line:** "Built by Filipinos, for Filipinos. RA 10173 compliant. Data Protection Officer: dpo@rentrayda.com"
 
@@ -194,7 +166,7 @@ Three buttons (same as Section 2):
 
 ## ARTIFACT 2: Customer Discovery Call Script (20-minute interview)
 
-**When:** Within 24 hours of each paid reservation (Tier 1 or Tier 2)
+**When:** Within 24 hours of each paid reservation (Verified Placement)
 **Who:** Founder only during validation phase
 **Where:** Messenger video call (target's native platform)
 **Goal:** Learn why they paid, what they expect, what they'd refund over, how they heard about us
@@ -243,10 +215,10 @@ If they say no to recording, confirm only notes.
 
 ### Section 3: What made them pay (10-15 minutes)
 
-**Q7:** "Ano po yung nag-convince sa inyo na mag-pay ng ₱[99/199] reservation?"
+**Q7:** "Ano po yung nag-convince sa inyo na mag-pay ng ₱149 reservation?"
 > [Listen: specific trust signals that worked. Badge? Verification language? Money-back promise? Something specific to write more of.]
 
-**Q8:** "What would make this worth the full ₱[450/999] price to you?"
+**Q8:** "What would make this worth the full ₱499 price to you?"
 > [Listen: their definition of value = our product spec. If they say "just three listings in 3 days" we know the product surface. If they say "a housing buddy to meet me at the unit" we know the service.]
 
 **Q9:** "What would make you want to refund and walk away?"
@@ -290,7 +262,7 @@ If they say no to recording, confirm only notes.
 
 **Closing:**
 > "Salamat po talaga [name] for the time. Two things:
-> 1. Within 48 hours, mag-message ako sa inyo with an update on your [escrow/matches].
+> 1. Within 48 hours, mag-message ako sa inyo with an update on your matches.
 > 2. Kung may issue po, message niyo ako sa Messenger kahit kailan — I'll respond within a few hours.
 > Kung gusto niyo i-share yung experience with batchmates, we'd love it. Pero kung ayaw, ayaw niyo, no pressure.
 > Salamat ulit po 🙏"
@@ -302,7 +274,7 @@ If they say no to recording, confirm only notes.
 Document in `.claude-brain/journal/YYYY-MM-DD-customer-call-[name].md`:
 
 ```markdown
-# Customer call — [First Name] ([Tier 1/2], [amount])
+# Customer call — [First Name] (Verified Placement, ₱149)
 
 ## Date: YYYY-MM-DD HH:MM
 ## Source channel: [TikTok/Facebook/Friend/Other]
@@ -353,7 +325,7 @@ Document in `.claude-brain/journal/YYYY-MM-DD-customer-call-[name].md`:
 
 After 10 calls, look for:
 - Channel concentration (is TikTok actually driving reservations?)
-- Price sensitivity (are ₱99 Tier 1 reservations converting to 3% commission, or are they all just Tier 2?)
+- Price sensitivity (are ₱149 reservations converting to full ₱499 placements?)
 - Deal-breaker clustering (what's the one thing that would make 7+/10 people refund?)
 - Urgency distribution (is the 72-hour window the modal case, or outlier?)
 - Referral rate (what % offer a name vs. decline?)

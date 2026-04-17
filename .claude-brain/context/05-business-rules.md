@@ -42,25 +42,24 @@ If you find yourself wanting to relax one of these rules, STOP. Create a decisio
    - When in doubt: landlord pays nothing, ever
 
 5. **Transaction-based revenue only. No subscriptions.**
-   - Two tenant-paid paths (see Tier 1 and Tier 2 below)
+   - One tenant-paid tier (Tier 1 verified placement ₱499)
    - Research-validated (fees kill adoption on recurring basis)
    - Do NOT introduce monthly/weekly billing
 
-6. **Three tiers of product access:**
+6. **Two tiers of product access:**
    - **Tier 0 (free forever for everyone):** browse, list, verify, connect. Landlord and tenant both use this at ₱0.
-   - **Tier 1 (tenant pays 3% of deposit):** escrow-only for DIY users. Min ₱300, max ₱750. Landlord receives full deposit.
-   - **Tier 2 (tenant pays ₱999):** full concierge — ₱199 reservation + ₱800 on move-in.
+   - **Tier 1 (tenant pays ₱499 flat):** verified placement — ₱149 reservation + ₱350 on move-in. 3 verified matches in 48 hours or full refund.
 
-7. **Money-back guarantee on Tier 2 is real.**
-   - If we can't deliver 3 verified matches in 7 days → full refund
+7. **Money-back guarantee on Tier 1 is real.**
+   - If we can't deliver 3 verified matches in 48 hours → full refund
    - If user wants to cancel before match → full refund
    - Do NOT add "restocking fees" or "processing deductions"
 
-8. **Escrow/deposit protection for Tier 1 and Tier 2.**
-   - Tenant deposit routes through licensed EMI partner (GCash hypothesis dead — 0/6 landlords accept; Paymongo or manual bank transfer as interim alternatives). We never custody.
-   - Paymongo handles card payment gateway for reservations only (₱99/₱199)
-   - Our 3% fee is a marketplace commission settled AFTER EMI partner releases funds to landlord
-   - Landlord always receives the full deposit amount they agreed to with the tenant
+8. **Deposits flow directly between landlord and tenant.**
+   - We do NOT handle, escrow, or touch deposits in any way
+   - Deposit coordination is manual: we help the tenant arrange a bank transfer or cash handoff directly to the landlord
+   - No 3% commission on deposits. No EMI partner for deposits. No GCash.
+   - Landlord and tenant handle the deposit exactly as they would without us
 
 ---
 
@@ -69,17 +68,15 @@ If you find yourself wanting to relax one of these rules, STOP. Create a decisio
 9. **We NEVER hold, transmit, or control user funds directly.**
    - BSP classifies fund-holding as OPS or EMI — requires licensing we don't have
    - AFASA (RA 12010) adds fraud detection obligations we can't meet at our scale
-   - All fund flows route through a licensed EMI partner (partner TBD — GCash rejected by 0/6 landlords, Paymongo handles reservation payments, deposit flow requires alternative approach)
-   - Paymongo handles card payment gateway for reservations (Tier 1 ₱99 / Tier 2 ₱199)
-   - Deposits (₱15K+): mechanism TBD. Manual bank transfer with founder-verified receipt for first 10 placements. EMI partnership for scale.
-   - Our 3% fee is a marketplace commission settled AFTER the deposit is confirmed received by landlord
-   - See `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle valid: never custody. Implementation needs revisiting given GCash rejection data)
+   - Paymongo handles reservation payments only (₱149 reservation + ₱350 balance for Tier 1)
+   - Deposits flow directly landlord-to-tenant (cash or bank transfer). We coordinate but never touch.
+   - No EMI partner needed. No GCash. No escrow.
+   - See `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle valid: never custody. Escrow tier killed entirely for launch.)
 
-10. **Deposit confirmation requires BOTH parties.**
+10. **Move-in confirmation.**
    - Tenant confirms "I moved in and unit matches listing" in-app
-   - Landlord confirms "I received the deposit" in-app
-   - If tenant disputes within 48h of landlord confirmation → fund release frozen, admin review
-   - Do NOT auto-release on timer without dual confirmation
+   - This triggers ₱350 balance charge via Paymongo
+   - Deposit is between landlord and tenant directly — we don't track or confirm it
 
 ---
 
@@ -196,7 +193,7 @@ These are the paths documented in `FINAL_DECISION.md` Section 3 (kill list). Nev
 
 ## THE META RULE
 
-When in doubt, ask: **"Does this help us get 30+ paid reservations (across Tier 1 or Tier 2) in 14 days?"**
+When in doubt, ask: **"Does this help us get 30+ paid reservations in 14 days?"**
 
 If no → it's not MVP scope. Defer it.
 If yes → ship it simply.

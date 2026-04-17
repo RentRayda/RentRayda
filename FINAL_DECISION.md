@@ -27,7 +27,7 @@
 
 ## 1. THE DECISION IN ONE PARAGRAPH
 
-**We are NOT building more features. The core platform is free for everyone forever — browse, list, verify, connect. On top of that free core, we validate two tenant-paid products in parallel: (a) Tier 1 escrow-only at 3% of deposit for DIY users who want scam protection, and (b) Tier 2 full concierge placement at ₱999 for deadline-driven users who want done-for-you matching. Landlord pays ₱0 in all tiers, forever (research-locked). We run a fake-door validation test with real money on the table: 30+ paid reservations combined across both tiers in 14 days → we finish the MVP cleanup (~40 hours from REPO_STATUS.md §10), deploy, and manually deliver first 10 placements. If fewer than 15 pay, we refund everyone, publish an honest post-mortem, and archive the repo. The gate is money on the table, combined across both revenue paths.**
+**We are NOT building more features. The core platform is free for everyone forever — browse, list, verify, connect (Tier 0). On top of that free core, we validate one tenant-paid product: Verified Placement at ₱499 flat (₱149 reservation + ₱350 on move-in) — "3 verified matches in 48 hours or full refund." Landlord pays ₱0 forever (research-locked). We run a fake-door validation test with real money on the table: 30+ paid reservations in 14 days → we finish the MVP cleanup (~40 hours from REPO_STATUS.md §10), deploy, and manually deliver first 10 placements. If fewer than 15 pay, we refund everyone, publish an honest post-mortem, and archive the repo. The gate is money on the table.**
 
 ---
 
@@ -103,7 +103,7 @@ From REPO_STATUS.md §1-9:
 
 Hard rules that will NOT change without a new decision file:
 
-1. **Zero fund custody ever.** We never hold, transmit, or control user funds. Paymongo handles card gateway for reservations only (₱99/₱199). [GCash hypothesis dead — 0/6 landlords accept GCash for rent/deposit, per L1-L6 interviews. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Principle (never custody) remains valid per `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
+1. **Zero fund custody ever.** We never hold, transmit, or control user funds. Paymongo handles card gateway for reservations only (₱149 Verified Placement). [GCash hypothesis dead — 0/6 landlords accept GCash for rent/deposit, per L1-L6 interviews. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Principle (never custody) remains valid per `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
 2. **Phone numbers revealed ONLY when BOTH parties verified AND connection accepted** — the triple-check in `apps/api/src/routes/connections.ts` is the core security guarantee
 3. **Government ID images in PRIVATE R2 bucket** — signed URLs with 1-hour expiry, never returned in API responses
 4. **Response format:** success = `{ data: ... }`, error = `{ error: 'message', code: 'MACHINE_CODE' }`
@@ -172,7 +172,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - ₱149/mo Pro has NEGATIVE gross margin once honest Gemini costs factored in.
 - ₱299/mo would crater retention.
 
-**Replaced by:** One-time transaction fee per successful placement (₱199 reservation + ₱800 on move-in = ₱999 total).
+**Replaced by:** One-time Verified Placement fee (₱149 reservation + ₱350 on move-in = ₱499 total).
 
 ### 3.6 KILLED: Landlord-side paid features
 
@@ -256,11 +256,11 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 **What it was:** "We hold your deposit safely, that's the product."
 
 **Why killed:**
-- Deposit protection alone isn't worth ₱999.
+- Deposit protection alone isn't worth paying for.
 - Research showed only 1/4 tenants willing to pay 3% for reservation protection.
 - Needs to be bundled with the full done-for-you service to justify price.
 
-**Replaced by:** Escrow is ONE feature inside the ₱999 placement service, not the product itself.
+**Replaced by:** Escrow is ONE feature inside the ₱499 Verified Placement service, not the product itself.
 
 ### 3.14 KILLED: Scraping our own Facebook Page for listings
 
@@ -283,7 +283,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - Makes the validation question unanswerable — we never learn if anyone would pay for the core value prop.
 - Investors can't fund "many users but no revenue and no evidence they'd pay."
 
-**Replaced by:** Free Tier 0 core platform (browse, list, verify, connect) + optional paid Tier 1 and Tier 2 for users who want escrow or concierge service. Free where it aids reach; paid where it validates willingness to pay.
+**Replaced by:** Free Tier 0 core platform (browse, list, verify, connect) + optional paid Verified Placement (₱499) for tenants who want done-for-you matching. Free where it aids reach; paid where it validates willingness to pay.
 
 ### 3.16 KILLED: Charging landlords any fee in any form
 
@@ -339,9 +339,9 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 
 ### 4.1 Phase 0: Validation gate (BEFORE any code work)
 
-- [ ] Fake-door landing page at root `rentrayda.com` with two CTAs (per `decisions/2026-04-12-two-revenue-paths.md`)
-- [ ] Tier 1 CTA: "Reserve escrow slot — ₱99" → Paymongo reservation (refundable, applied to 3% fee)
-- [ ] Tier 2 CTA: "Reserve concierge slot — ₱199" → Paymongo reservation (refundable, applied to ₱999 total)
+- [ ] Fake-door landing page at root `rentrayda.com` with browse CTA + placement CTA
+- [ ] Browse CTA: "Browse listings" → free listings page (Tier 0)
+- [ ] Placement CTA: "Reserve verified placement — ₱149" → Paymongo reservation (refundable, applied to ₱499 total)
 - [ ] Tier 0 browse-only path remains free and unblocked
 - [ ] Zero paid ads — organic only (TikTok primary, Facebook Groups secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md`)
 - [ ] 14-day window. 30+ combined paid reservations = proceed. <15 = kill.
@@ -367,7 +367,7 @@ Only what validation proved we need:
 
 **Day 6-7: Payment orchestration (Paymongo + deposit partner TBD)**
 - Add `payments` + `match_requests` tables (migration 0002)
-- Paymongo payment intent creation for reservations ONLY (₱99 Tier 1 / ₱199 Tier 2)
+- Paymongo payment intent creation for reservations ONLY (₱149 Verified Placement)
 - Paymongo webhook handler for payment.paid
 - [GCash hypothesis dead — 0/6 landlords accept GCash, see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Deposit flow mechanism needs alternative approach (manual bank transfer, Paymongo-direct, or new partner). Principle: we never custody — see `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
 - Dual-confirmation state machine (tenant confirms move-in + landlord confirms deposit receipt)
@@ -395,7 +395,7 @@ Only what validation proved we need:
 
 **Day 13-14: First 10 placements manually**
 - Take first 10 paid reservations
-- Hand-match each to 3 verified listings within 7 days
+- Hand-match each to 3 verified listings within 48 hours
 - Coordinate viewings personally
 - Track friction in `.claude-brain/journal/`
 
@@ -468,9 +468,9 @@ If we can't get `pages_manage_posts` approved (possible but unlikely), Part A is
 
 ### 6.1 Core proposition
 
-**"Find verified rentals in Manila. Free to browse. Pay only if you want scam protection or our full concierge service."**
+**"Find verified rentals in Manila. Free to browse. Pay only if you want done-for-you verified placement."**
 
-Three tiers of product access. Tier 0 is free forever for everyone. Tier 1 and Tier 2 are optional tenant-paid products. Landlord pays ₱0 in all tiers, forever.
+Two tiers of product access. Tier 0 is free forever for everyone. Tier 1 (Verified Placement) is an optional tenant-paid product at ₱499 flat. Landlord pays ₱0 forever.
 
 ### 6.2 Tier 0 — Free core platform (everyone, forever)
 
@@ -486,97 +486,74 @@ Three tiers of product access. Tier 0 is free forever for everyone. Tier 1 and T
 
 **Why this tier exists:** Removes all friction, maximizes reach, lets the product spread organically. Research validated: landlords won't tolerate fees, tenants won't sign up behind a paywall just to browse. Tier 0 respects both.
 
-**What it doesn't include:** No escrow, no matching service, no housing buddy, no money-back guarantee. Users doing Tier 0 are on their own for deposit safety — same as they are on Facebook today, but with verified listings/landlords reducing scam risk significantly.
+**What it doesn't include:** No done-for-you matching, no housing buddy, no money-back guarantee. Users doing Tier 0 are on their own for finding a place — same as they are on Facebook today, but with verified listings/landlords reducing scam risk significantly.
 
-### 6.3 Tier 1 — Escrow-only (tenant pays 3% of deposit)
+### 6.3 ~~Tier 1 — Escrow-only (tenant pays 3% of deposit)~~ [KILLED]
 
-**Who it's for:** DIY users who find their own place on our platform but want their deposit protected.
+**[KILLED — pricing strategy 2026-04-17. Deposit disputes 0/9, GCash dead 0/6, WTP 1/4. Replaced by single Verified Placement tier at ₱499. See §6.4.]**
 
-**The pitch:** "Don't hand ₱15K to a stranger. Route it through a secure payment partner with our orchestration layer. Fee only charged after you've moved in and confirmed."
+~~Who it's for: DIY users who find their own place on our platform but want their deposit protected.~~
 
-**How it works:**
-1. Tenant finds a listing they like, connects with landlord (Tier 0, free)
-2. They agree on a place and move-in date
-3. Instead of direct cash, tenant initiates a protected deposit flow via our app (we orchestrate, licensed EMI partner holds the funds — we never custody)
-4. Tenant moves in, confirms in-app
-5. Landlord confirms receipt in-app
-6. On dual confirmation: partner completes release to landlord, we collect our 3% marketplace commission from the tenant via Paymongo
-7. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for BSP licensing rationale (principle valid). [GCash hypothesis dead — 0/6 landlords accept GCash. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.]
+~~Pricing: 3% of deposit amount (min ₱300, max ₱750, avg ~₱450).~~
 
-**Pricing:**
-- 3% of deposit amount
-- Minimum: ₱300 (applies when deposit < ₱10K)
-- Maximum: ₱750 (applies when deposit > ₱25K)
-- Average on our target segment (₱15K deposit): ~₱450
+**Why killed:**
+- Deposit disputes appeared in 0/9 interviews — not a real pain point at this market segment.
+- GCash deposit flow dead — 0/6 landlords accept GCash for rent/deposit.
+- Only 1/4 tenants willing to pay 3% for deposit protection.
+- Standalone escrow adds BSP complexity with no validated demand.
+- Single-tier pricing (₱499 Verified Placement) is simpler to validate, sell, and operate.
 
-**Who actually pays:**
-- Tenant pays ₱15,450 total (₱15K + 3% fee to us)
-- Landlord receives ₱15,000 (the full agreed deposit)
-- Landlord pays ₱0 (non-negotiable)
-
-### 6.4 Tier 2 — Full concierge placement (tenant pays ₱999 flat)
+### 6.4 Tier 1 — Verified Placement (tenant pays ₱499 flat)
 
 **Who it's for:** Deadline-driven provincial migrants arriving in Metro Manila with no kakilala network — female BPO new hires at Concentrix/Accenture/Teleperformance are the primary marketing focus (highest-concentration findable segment), but the product serves male migrants, students (DLSU/UP/PUP), fresh grads at hospitals/banks/retail, and OFW families equally. Pasig/Ortigas corridor at launch. Budget ₱5-8K/month.
 
-**Why this wedge for Tier 2:**
+**Why this wedge:**
 - Deadline-driven = real urgency
 - Migrant = no network, highest pain
-- Parents will help pay ₱999 for safety
+- Parents will help pay ₱499 for safety
 - Concentrated = findable via BPO HR + new-hire FB groups
 
 **How it works:**
-1. Tenant submits 5-field form (where they work, budget, move-in date, gender preference, must-haves)
-2. ₱199 reservation via Paymongo
-3. AI + human matches them to 3 verified listings within 7 days
+1. Tenant submits form (where they work, budget, move-in date, gender preference, must-haves)
+2. ₱149 reservation via Paymongo
+3. AI + human matches them to 3 verified listings within 48 hours
 4. Human "housing buddy" coordinates viewings
-5. Tenant picks one, pays ₱800 balance (₱999 total), deposit goes into escrow
-6. Move-in confirmation releases deposit to landlord
+5. Tenant picks one, pays ₱350 balance (₱499 total)
+6. Move-in confirmation
 
 **Includes:**
 - Verified listings only
 - AI-assisted scam screening
 - Done-for-you matching
-- Deposit escrow (Tier 1 functionality bundled in)
-- 7-day money-back guarantee — no 3 verified matches in 7 days = full ₱999 refund
+- 48-hour money-back guarantee — no 3 verified matches in 48 hours = full refund
 
 ### 6.5 Revenue model
 
 | Tier | Who pays | Amount | When |
 |------|----------|--------|------|
-| 0 | Nobody | ₱0 | N/A |
-| 1 | Tenant | 3% of deposit (min ₱300, max ₱750, avg ~₱450) | At escrow release on move-in |
-| 2 | Tenant | ₱999 flat | ₱199 reservation + ₱800 on move-in |
+| 0 (Free) | Nobody | ₱0 | N/A |
+| 1 (Verified Placement) | Tenant | ₱499 flat | ₱149 reservation + ₱350 on move-in |
 | Landlord | Never | ₱0 forever | N/A — research-locked |
 
-**Unit economics per placement:**
-
-Tier 1 (escrow-only):
-- Revenue: ~₱450 avg
-- Paymongo fees (3.5%): ~₱16
-- Infra amortized: ~₱10
-- Escrow ops: ~₱20
-- **Gross margin: ~₱404 per placement (~90%)**
-
-Tier 2 (concierge):
-- Revenue: ₱999
+**Unit economics per placement (Verified Placement):**
+- Revenue: ₱499
 - Gemini API: ~₱50
 - PhilSMS: ~₱5
 - Infra amortized: ~₱30
-- Paymongo fees (3.5%): ~₱35
+- Paymongo fees (3.5%): ~₱17
 - Housing buddy (Phase 2): ~₱0 (founder-led initially)
-- **Gross margin: ~₱879 per placement (~88%)**
+- **Gross margin: ~₱397 per placement (~80%)**
 
-**Blended target at Month 3:**
-- 70% Tier 1 × 100 placements × ₱404 = ₱40,400
-- 30% Tier 2 × 40 placements × ₱879 = ₱35,160
-- **Total contribution margin: ~₱75,560/month at 140 (optimistic; base case 50-100) placements**
+**Target at Month 3:**
+- 100 placements × ₱397 = ₱39,700/month
+- **Base case 50-100 placements: ₱19,850-₱39,700/month contribution margin**
 
 ### 6.6 Post-booking value (same across all tiers, landlord-side)
 
 Landlords get this automatically, regardless of which tier the tenant used:
 1. Pre-screened verified tenants — no more 50 "available pa po?" DMs
 2. Tenant comes with verified ID + employment + budget confirmed
-3. Deposit arrives guaranteed via escrow (Tier 1 or 2; Tier 0 tenants pay landlord directly as before)
+3. Deposit coordination (Verified Placement tenants; Tier 0 tenants pay landlord directly as before)
 4. Auto-post to our Facebook Page = free marketing
 5. One-tap share to Groups = 100x easier than posting manually
 6. Reputation system builds over successful rentals
@@ -584,10 +561,10 @@ Landlords get this automatically, regardless of which tier the tenant used:
 
 ### 6.7 The Shopee moment (what we can't manufacture but can prepare for)
 
-The viral unlock is a single scam-prevention story: "Almost lost ₱20K but RentRayda's escrow held it — got my refund when the landlord disappeared." That spreads through BPO groups because 67% of Filipinos encounter scams monthly.
+The viral unlock is a single scam-prevention story: "Almost lost ₱20K but RentRayda's verification caught it — the 'landlord' wasn't even the owner." That spreads through BPO groups because 67% of Filipinos encounter scams monthly.
 
 We can't force this. We can:
-- Build escrow so it actually catches scams (Tier 1 and Tier 2 both protect deposits)
+- Build verification so it actually catches scams (every placement uses verified-only listings)
 - Document every saved scam publicly (with permission)
 - Make refunds frictionless so users WANT to share
 - Be responsive on social when users mention us
@@ -601,28 +578,23 @@ We can't force this. We can:
 Build at `rentrayda.com` — 2 hours using Next.js on existing domain.
 
 **Page structure:**
-- Hero: "Find verified rentals in Manila. Free to browse. Optional protection when you're ready to commit."
+- Hero: "Find verified rentals in Manila. Free to browse. Pay only if you want done-for-you placement."
 - Browse button → actual listings page (Tier 0 free access, even during validation)
-- Two CTAs for paid tiers, side-by-side:
+- One paid CTA:
 
-**Left CTA (Tier 1):** "Protect my deposit — 3% of deposit amount (avg ₱450)"
-- Sub-copy: "For when you've found a place yourself but want scam protection. We hold your deposit until you've moved in."
-- Button: "Reserve escrow — ₱99"
+**Placement CTA:** "Find me a verified place in 48 hours — ₱499"
+- Sub-copy: "3 verified matches in 48 hours or full refund. ₱149 to reserve, ₱350 on move-in."
+- Button: "Reserve verified placement — ₱149"
 
-**Right CTA (Tier 2):** "Find me a place in 7 days — ₱999"
-- Sub-copy: "For when you're moving to Manila and need someone to handle the whole search. 3 verified matches delivered in 7 days or full refund."
-- Button: "Reserve spot — ₱199"
-
-- 3-step "How it works" for each tier
-- Trust signals: "Verified landlords only · Escrow protection · Money-back guarantee"
+- 3-step "How it works"
+- Trust signals: "Verified landlords only · 48-hour matching · Money-back guarantee"
 - FAQ at bottom, including "Why do you charge at all? What's free?"
 
 ### 7.2 Critical mechanic: real money commitment
 
-**No free signups for paid tiers. Paymongo payment required to reserve a spot.**
+**No free signups for paid tier. Paymongo payment required to reserve a spot.**
 
-- Tier 1 escrow reservation: ₱99 (applied to eventual 3% fee on move-in)
-- Tier 2 concierge reservation: ₱199 (applied to eventual ₱999 total)
+- Verified Placement reservation: ₱149 (applied to eventual ₱499 total on move-in)
 
 Email signups = noise. Real cash = honest signal of intent.
 
@@ -632,12 +604,12 @@ Refund 100% of reservations if we decide not to build. Cost: ~₱7 per refund in
 
 ### 7.3 Sub-signals to watch
 
-Beyond the total count, the MIX tells us what product to build:
+Beyond the total count, qualitative signals tell us how to refine:
 
-- **Mostly Tier 1 reservations:** Build escrow-only, defer concierge. Market wants scam protection, not hand-holding.
-- **Mostly Tier 2 reservations:** Build concierge, defer standalone escrow. Market wants full service.
-- **Roughly even mix:** Build both as planned.
-- **Either tier <5 reservations:** Consider killing that tier even if combined total hits threshold.
+- **Most reservers mention urgency/deadline:** Lean into speed messaging ("48 hours").
+- **Most reservers mention safety/scams:** Lean into trust messaging ("verified landlords").
+- **Reservers ask about deposit protection:** Consider adding escrow as a future add-on.
+- **High refund rate (>20%):** Product-market fit is weak — investigate why.
 
 ### 7.4 Traffic plan (organic only)
 
@@ -654,15 +626,15 @@ Beyond the total count, the MIX tells us what product to build:
 
 ### 7.5 Go/No-Go thresholds
 
-Combined paid reservations across both tiers in 14 days:
+Paid Verified Placement reservations in 14 days:
 
-| Combined paid reservations | Decision |
+| Paid reservations | Decision |
 |---|---|
 | **30+** | **BUILD** — Phase 1 MVP cleanup → Phase 2 features → Phase 3 soft launch |
 | **15-29** | **EXTEND** — 14 more days with iterated landing |
 | **<15** | **KILL** — Refund all, publish post-mortem, archive repo |
 
-Plus the sub-signal analysis in 7.3 tells us which tier(s) to actually build.
+Plus the sub-signal analysis in 7.3 informs messaging refinement.
 
 ### 7.6 Customer discovery (every single reserver)
 
@@ -670,14 +642,14 @@ Within 24h of their reservation, call or Messenger-video-call. 20 min:
 
 1. What's your current housing situation?
 2. How did you hear about us?
-3. What made you pay [₱99 / ₱199]?
-4. Which tier did you pick and why? Did you consider the other one?
-5. What would make this feel worth the full price (either 3% or ₱999)?
-6. What would make you refund and walk away?
-7. If this worked perfectly, how would you describe it to a friend?
-8. What's your deadline and why?
+3. What made you pay ₱149?
+4. What would make this feel worth the full ₱499?
+5. What would make you refund and walk away?
+6. If this worked perfectly, how would you describe it to a friend?
+7. What's your deadline and why?
+8. Would you have preferred a cheaper DIY option, or is done-for-you what you need?
 
-Document every call in `.claude-brain/journal/`. Track which tier each reserver picked in `.claude-brain/context/06-validation-state.md`. Patterns emerge after 30 calls.
+Document every call in `.claude-brain/journal/`. Track in `.claude-brain/context/06-validation-state.md`. Patterns emerge after 30 calls.
 
 ---
 
@@ -724,7 +696,7 @@ Document every call in `.claude-brain/journal/`. Track which tier each reserver 
 
 **Hour 1-16: Payment orchestration (Paymongo + deposit partner TBD)**
 - Migration 0002: `payments` + `match_requests` tables
-- apps/api/src/lib/payments/paymongo.ts — reservations only (₱99/₱199 card)
+- apps/api/src/lib/payments/paymongo.ts — reservations only (₱149 Verified Placement)
 - [GCash hypothesis dead — 0/6 landlords accept GCash. `gcash.ts` NOT the path. Deposit orchestration partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.]
 - apps/api/src/routes/payments/create-intent.ts (reservations)
 - apps/api/src/routes/payments/webhook.ts (paymongo.paid + deposit partner settled)
@@ -981,7 +953,7 @@ If Claude already committed hallucinated work:
 
 | Metric | Target | Kill if |
 |--------|--------|---------|
-| Paid ₱199 reservations | 30+ | <15 |
+| Paid ₱149 reservations | 30+ | <15 |
 | Reserver → completed call | 80%+ | <50% |
 | Price A/B clear winner | Yes | No signal by Day 10 |
 
@@ -1072,8 +1044,8 @@ Everything in Sections 1-11 is just mechanism for getting a clean answer. Nothin
 
 ### Tomorrow (Day 1 of validation)
 
-- [ ] Build single landing page at `rentrayda.com` with dual CTAs (per `decisions/2026-04-12-two-revenue-paths.md` and copy in `artifacts/landing-page-copy-and-discovery-script.md`)
-- [ ] Paymongo payment links: ₱99 (Tier 1 escrow reservation) and ₱199 (Tier 2 concierge reservation)
+- [ ] Build single landing page at `rentrayda.com` with browse + placement CTAs (copy in `artifacts/landing-page-copy-and-discovery-script.md`)
+- [ ] Paymongo payment link: ₱149 (Verified Placement reservation)
 - [ ] Test full payment flow with own phone
 - [ ] Draft TikTok creator outreach (use `artifacts/tiktok-scripts-first-3-videos.md`)
 - [ ] Draft 5 Facebook post variants for BPO groups + 3 university posts + LinkedIn post + 10 DM template

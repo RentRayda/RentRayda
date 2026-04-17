@@ -115,7 +115,7 @@ If you catch yourself doing any of these, stop and re-read this file.
 ## THE ONE SIMPLE TEST
 
 Before shipping anything, ask:
-**"Does this help us get 30+ paid reservations (across Tier 1 or Tier 2) in 14 days?"**
+**"Does this help us get 30+ paid reservations in 14 days?"**
 
 If no — it's not MVP scope.
 If maybe — justify it in writing.

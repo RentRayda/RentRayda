@@ -97,7 +97,7 @@ All files in `packages/db/schema/`:
 - `0001_moaning_texas_twister.sql` (149 bytes, adds email column)
 
 **Phase 2 future migrations** (if validation passes):
-- `0002_*.sql` — adds `payments` + `match_requests` tables per `decisions/2026-04-12-escrow-via-gcash-partnership.md`
+- `0002_*.sql` — adds `payments` + `match_requests` tables per `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle: never custody. GCash-specific implementation dead — 0/6 landlords accept GCash. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`)
 
 ---
 
@@ -224,7 +224,7 @@ SENTRY_DSN                ⚠️ no @sentry/* packages installed
 ### Phase 2 additions (after validation passes, per decisions)
 
 - `PAYMONGO_SECRET_KEY`, `PAYMONGO_WEBHOOK_SECRET` — reservation card payments
-- `GCASH_API_KEY`, `GCASH_MERCHANT_ID` — deposit orchestration (pending partnership, see `decisions/2026-04-12-escrow-via-gcash-partnership.md`)
+- ~~`GCASH_API_KEY`, `GCASH_MERCHANT_ID`~~ — **REMOVED.** GCash hypothesis dead (0/6 landlords accept GCash, see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`). Deposit orchestration partner TBD. Env vars will be added when a new partner is selected.
 - `PHILSYS_EVERIFY_API_KEY`, `PHILSYS_EVERIFY_INSTITUTION_ID` — pending PSA onboarding
 - `FACEBOOK_PAGE_ACCESS_TOKEN`, `FACEBOOK_PAGE_ID` — Page auto-posting
 - `GEMINI_API_KEY` or `ANTHROPIC_API_KEY` — for listing verification managed agent

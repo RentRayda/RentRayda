@@ -43,10 +43,10 @@
 **What Claude Code must NEVER do:**
 - Add code that routes deposit funds to a RentRayda-controlled account
 - Implement "escrow wallet" for any purpose
-- Store user GCash balances or credentials
-- Process rent payments (only deposit facilitation through GCash partnership)
+- Store user e-wallet balances or credentials (GCash, Maya, or any partner)
+- Process rent payments (only deposit facilitation through licensed EMI partner — partner TBD, GCash hypothesis dead: 0/6 landlords accept GCash per L1-L6 interviews)
 
-**Reference:** `decisions/2026-04-12-escrow-via-gcash-partnership.md`
+**Reference:** `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle: never custody — still valid). GCash-specific implementation invalidated: see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.
 
 ### 3. Anti-Cybercrime Act (RA 10175)
 
@@ -184,7 +184,7 @@ Never assume you know the answer. These landmines are jurisdictional and cultura
 
 ## Kill switch for any of these
 
-If Claude Code has already implemented something that touches a landmine (e.g., pushed a fund-holding feature before the GCash partnership was signed), the remediation is:
+If Claude Code has already implemented something that touches a landmine (e.g., pushed a fund-holding feature before a payment partner agreement is signed), the remediation is:
 
 1. **Immediately feature-flag it off** — `.env` variable disables the endpoint
 2. **Assess exposure** — how many users hit this path? What data was processed?
@@ -199,7 +199,8 @@ Reputation in the Philippine startup scene is small. One BSP violation or NPC en
 ## References
 
 - `decisions/2026-04-12-data-privacy-act-compliance.md`
-- `decisions/2026-04-12-escrow-via-gcash-partnership.md`
+- `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle valid, GCash implementation dead)
+- `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`
 - `context/07-facebook-policy.md`
 - `context/08-pestel-snapshot-2026.md`
 - `context/09-target-psychographics-primary.md` (72-hour window, data cost sensitivity)

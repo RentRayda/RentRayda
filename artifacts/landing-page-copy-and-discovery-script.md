@@ -23,10 +23,10 @@ Two artifacts:
 
 **Primary trust signals (three in a row, icon + text):**
 - ✓ Verified landlord IDs (PhilSys-backed)
-- ✓ Deposits protected through GCash
+- ✓ Secure deposit protection
 - ✓ Female-only options available
 
-**Hero image:** Female BPO worker in background, smiling, in what looks like a bedspace interior. Natural light. NOT corporate stock photo. NOT smiling model. Should look like a real Ate who moved to Manila last month.
+**Hero image:** Female BPO worker in background, smiling, in what looks like a small studio or bedspace interior. Natural light. NOT corporate stock photo. NOT smiling model. Should look like a real Ate who moved to Manila last month.
 
 **Under-hero sub-message:**
 > Free to browse. Free for landlords forever. We only charge tenants who want our protection — and only after we've delivered.
@@ -68,8 +68,8 @@ Three equal-width cards on desktop; stacked on mobile. Each has its own CTA lead
 
 **Body:**
 > - Browse all listings free
-> - When you're ready to commit, we handle the deposit safely through GCash
-> - We never touch your money — licensed EMI partner holds it
+> - When you're ready to commit, we handle the deposit safely through a secure payment partner
+> - We never touch your money — a licensed payment partner holds it
 > - Released only when you confirm move-in
 > - Average fee: ₱300-₱750 (3% of deposit)
 
@@ -105,9 +105,9 @@ Three equal-width cards on desktop; stacked on mobile. Each has its own CTA lead
 > **Finding safe housing in Manila shouldn't be this hard.**
 
 **Body:**
-> Most people arriving in Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families — land with training or classes starting in 5-14 days, no local contacts, and scammers waiting. We heard story after story: ₱10,000 deposits sent via GCash to listings that didn't exist. Units that looked nothing like the photos. Landlords who locked out tenants after complaints.
+> Most people arriving in Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families — land with training or classes starting in 5-14 days, no local contacts, and scammers waiting. We heard story after story: ₱10,000 deposits sent to listings that didn't exist. Units that looked nothing like the photos. Landlords who locked out tenants after complaints.
 >
-> We built RentRayda because Facebook groups weren't enough. Every landlord on our platform is verified via PhilSys. Every listing is photographed in person. Every deposit flows through GCash, not through us.
+> We built RentRayda because Facebook groups weren't enough. Every landlord on our platform is verified via PhilSys. Every listing is photographed in person. Every deposit flows through a secure payment partner, not through us.
 >
 > You shouldn't have to choose between "unsafe and free" and "safe but expensive." With us, free is the default. Safety is the commitment. Money only changes hands when we've delivered.
 
@@ -124,7 +124,7 @@ Three columns, one per path:
 
 **Secure booking (Tier 1):**
 1. Find your place + agree with landlord
-2. Deposit routes through GCash (we orchestrate, never hold)
+2. Deposit routes through a secure payment partner (we orchestrate, never hold)
 3. Confirm move-in → 3% fee charged to you
 
 **Full concierge (Tier 2):**
@@ -171,10 +171,10 @@ Three columns, one per path:
 > Wala. Libre forever. Hindi kami kumukuha sa inyo ng bayad, fee, subscription, kahit anong form. Kayo lang yung nagde-decide at nag-a-approve ng tenant.
 
 **4. Saan napupunta yung deposit ko?**
-> Derechto po yung deposit ninyo sa landlord via GCash. Hindi kami humahawak ng pera. We orchestrate yung transaction, pero licensed EMI (GCash) yung actual custody. Sinusunod namin ang BSP regulations po.
+> Derechto po yung deposit ninyo sa landlord through a secure payment partner. Hindi kami humahawak ng pera. We orchestrate yung transaction, pero licensed partner yung actual custody. Sinusunod namin ang BSP regulations po.
 
 **5. Pag may issue after move-in, ano mangyayari?**
-> Report mo sa amin within 48 hours of move-in. Coordinate kami sa landlord, sa GCash, at sa inyong legal options. Worst case: Tier 2 users get full ₱999 refund, plus we help locate a replacement unit within 7 days.
+> Report mo sa amin within 48 hours of move-in. Coordinate kami sa landlord, sa payment partner, at sa inyong legal options. Worst case: Tier 2 users get full ₱999 refund, plus we help locate a replacement unit within 7 days.
 
 **6. Bakit Pasig/Ortigas lang?**
 > Focus wins. We'd rather be deeply trusted in one corridor than mediocre across five. Makati, BGC, and QC — soon, when we've proven this works here.

@@ -103,7 +103,7 @@ From REPO_STATUS.md §1-9:
 
 Hard rules that will NOT change without a new decision file:
 
-1. **Zero fund custody ever.** We never hold, transmit, or control user funds. Paymongo handles card gateway for reservations only (₱99/₱199). GCash licensed EMI handles deposit flows under our orchestration. See `decisions/2026-04-12-escrow-via-gcash-partnership.md`.
+1. **Zero fund custody ever.** We never hold, transmit, or control user funds. Paymongo handles card gateway for reservations only (₱99/₱199). [GCash hypothesis dead — 0/6 landlords accept GCash for rent/deposit, per L1-L6 interviews. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Principle (never custody) remains valid per `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
 2. **Phone numbers revealed ONLY when BOTH parties verified AND connection accepted** — the triple-check in `apps/api/src/routes/connections.ts` is the core security guarantee
 3. **Government ID images in PRIVATE R2 bucket** — signed URLs with 1-hour expiry, never returned in API responses
 4. **Response format:** success = `{ data: ... }`, error = `{ error: 'message', code: 'MACHINE_CODE' }`
@@ -293,7 +293,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - Research is unambiguous and locked: 0/5 landlords enthusiastic about any paid platform. L5 explicit: "if it's free."
 - "Fees kill adoption" is marked VALIDATED on the landlord side specifically.
 - Supply collapse is the failure mode: if landlords revolt at a fee, we have no listings, no product.
-- Hidden fees still get noticed. Tita Cora will compare her GCash inbox to the agreed deposit. The ₱450 gap triggers a support ticket, then a bad Facebook post, then supply death.
+- Hidden fees still get noticed. Tita Cora will compare her payment receipt to the agreed deposit. The ₱450 gap triggers a support ticket, then a bad Facebook post, then supply death. [Note: GCash hypothesis dead — 0/6 landlords accept GCash. Payment mechanism TBD.]
 
 **Replaced by:** All revenue comes from tenants. Landlord receives 100% of the agreed deposit amount in every tier. Landlord pays ₱0, forever, non-negotiable.
 
@@ -305,9 +305,9 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - BSP classifies fund-holding as Operator of Payment Systems (OPS) requiring registration OR E-Money Issuer (EMI) requiring full licensing + capital requirements
 - AFASA (RA 12010, signed July 2024) adds fraud detection + fund-holding obligations we cannot meet pre-PMF
 - Penalty exposure is material: imprisonment possible under payment system regulations
-- GCash (94M users, 89% wallet share, licensed EMI) already does this correctly
+- GCash (94M users, 89% wallet share, licensed EMI) already does this correctly [Note: GCash hypothesis dead — 0/6 landlords accept GCash. The BSP licensing rationale here is still valid, but GCash is not the implementation path.]
 
-**Replaced by:** Decision `2026-04-12-escrow-via-gcash-partnership.md`. All fund flows route through GCash. We never custody. Our 3% is a marketplace commission settled by the EMI after fund release.
+**Replaced by:** Decision `2026-04-12-escrow-via-gcash-partnership.md` (principle valid: never custody). [GCash-specific implementation invalidated by field data — 0/6 landlords accept GCash. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.]
 
 ### 3.18 KILLED: Self-serve landlord listing creation at launch
 
@@ -365,11 +365,11 @@ Hit every REPO_STATUS.md §10 item. Self-contained fixes, no new features.
 
 Only what validation proved we need:
 
-**Day 6-7: Payment orchestration (Paymongo + GCash partnership)**
+**Day 6-7: Payment orchestration (Paymongo + deposit partner TBD)**
 - Add `payments` + `match_requests` tables (migration 0002)
 - Paymongo payment intent creation for reservations ONLY (₱99 Tier 1 / ₱199 Tier 2)
 - Paymongo webhook handler for payment.paid
-- GCash send-money orchestration for deposit flow (we never custody — see `decisions/2026-04-12-escrow-via-gcash-partnership.md`)
+- [GCash hypothesis dead — 0/6 landlords accept GCash, see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Deposit flow mechanism needs alternative approach (manual bank transfer, Paymongo-direct, or new partner). Principle: we never custody — see `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
 - Dual-confirmation state machine (tenant confirms move-in + landlord confirms deposit receipt)
 - 3% marketplace commission collected via Paymongo AFTER dual confirmation
 - Full refund endpoint for failed validations
@@ -492,16 +492,16 @@ Three tiers of product access. Tier 0 is free forever for everyone. Tier 1 and T
 
 **Who it's for:** DIY users who find their own place on our platform but want their deposit protected.
 
-**The pitch:** "Don't hand ₱15K to a stranger. Route it through GCash with our orchestration layer. Fee only charged after you've moved in and confirmed."
+**The pitch:** "Don't hand ₱15K to a stranger. Route it through a secure payment partner with our orchestration layer. Fee only charged after you've moved in and confirmed."
 
 **How it works:**
 1. Tenant finds a listing they like, connects with landlord (Tier 0, free)
 2. They agree on a place and move-in date
-3. Instead of direct cash, tenant initiates a GCash send-money flow via our app (we trigger the send, GCash holds the funds per their licensed EMI rails — we never custody)
+3. Instead of direct cash, tenant initiates a protected deposit flow via our app (we orchestrate, licensed EMI partner holds the funds — we never custody)
 4. Tenant moves in, confirms in-app
 5. Landlord confirms receipt in-app
-6. On dual confirmation: GCash completes release to landlord's wallet, we collect our 3% marketplace commission from the tenant via Paymongo
-7. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for full regulatory rationale
+6. On dual confirmation: partner completes release to landlord, we collect our 3% marketplace commission from the tenant via Paymongo
+7. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for BSP licensing rationale (principle valid). [GCash hypothesis dead — 0/6 landlords accept GCash. Deposit flow partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.]
 
 **Pricing:**
 - 3% of deposit amount
@@ -722,15 +722,15 @@ Document every call in `.claude-brain/journal/`. Track which tier each reserver 
 
 ### 8.2 Week 2: Validation-specific features (~32 hours)
 
-**Hour 1-16: Payment orchestration (Paymongo + GCash)**
+**Hour 1-16: Payment orchestration (Paymongo + deposit partner TBD)**
 - Migration 0002: `payments` + `match_requests` tables
 - apps/api/src/lib/payments/paymongo.ts — reservations only (₱99/₱199 card)
-- apps/api/src/lib/payments/gcash.ts — deposit send-money orchestration (no custody)
+- [GCash hypothesis dead — 0/6 landlords accept GCash. `gcash.ts` NOT the path. Deposit orchestration partner TBD. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`.]
 - apps/api/src/routes/payments/create-intent.ts (reservations)
-- apps/api/src/routes/payments/webhook.ts (paymongo.paid + gcash settled)
+- apps/api/src/routes/payments/webhook.ts (paymongo.paid + deposit partner settled)
 - Dual-confirmation state machine: reserved → matching → viewing_scheduled → moved_in (tenant confirm) → received (landlord confirm) → commission_settled / disputed / refunded
 - Full refund endpoint with admin authorization
-- Reference: `decisions/2026-04-12-escrow-via-gcash-partnership.md`
+- Reference: `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle: never custody)
 
 **Hour 17-28: Done-for-you matching**
 - apps/mobile/app/(tabs)/search/quick-match.tsx — the 5-field form

@@ -357,7 +357,7 @@ REQUIREMENTS:
    - "Reserve escrow slot — ₱99" → /reserve/escrow
    - "Reserve concierge slot — ₱199" → /reserve/concierge
 3. Hero: "Verified rentals in Pasig/Ortigas. Scam-protected. Landlord-safe."
-4. Three trust signals with icons: PhilSys verified landlord IDs, GCash deposit protection, female-only options available
+4. Three trust signals with icons: PhilSys verified landlord IDs, verified deposit protection, female-only options available
 5. Three-path explainer (Tier 0/1/2) per artifact Section 2
 6. "Why we exist" empathy section per artifact Section 3
 7. "How it works" three columns per artifact Section 4
@@ -408,12 +408,12 @@ If any step fails: stop and show me. Do NOT fall back to the old landing page.
 
 **🔒 Prerequisites:** Prompt 6 complete. Paymongo TEST keys available. Clean working tree.
 
-**📖 Read first:** `.claude-brain/CLAUDE.md`, `context/12-gotchas.md` BSP/AFASA section, `decisions/2026-04-12-escrow-via-gcash-partnership.md`, `context/03-architecture.md` API response envelope + rate-limit patterns, `packages/db/schema/users.ts` (schema pattern), `apps/api/src/routes/auth.ts` (route pattern)
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `context/12-gotchas.md` BSP/AFASA section, `decisions/2026-04-12-escrow-via-gcash-partnership.md` (HYPOTHESIS DEAD — 0/6 landlords accept GCash per field interviews; principle of no fund custody still valid), `context/03-architecture.md` API response envelope + rate-limit patterns, `packages/db/schema/users.ts` (schema pattern), `apps/api/src/routes/auth.ts` (route pattern)
 
 **📋 Paste into Claude Code:**
 
 ```
-Follow session kickoff protocol. BEFORE any code, re-read `context/12-gotchas.md` BSP landmines + `decisions/2026-04-12-escrow-via-gcash-partnership.md` in full. State back in one sentence: what distinguishes a "reservation" from an "escrow" in our architecture? If you get this wrong we'll build a BSP violation.
+Follow session kickoff protocol. BEFORE any code, re-read `context/12-gotchas.md` BSP landmines + `decisions/2026-04-12-escrow-via-gcash-partnership.md` in full (NOTE: GCash hypothesis dead — 0/6 landlords accept GCash — but the no-fund-custody principle remains). State back in one sentence: what distinguishes a "reservation" from an "escrow" in our architecture? If you get this wrong we'll build a BSP violation.
 
 Then implement Paymongo RESERVATIONS ONLY. No deposit escrow. No fund-holding.
 
@@ -473,16 +473,16 @@ VERIFY:
 4. Smoke test with Paymongo card 4343 4343 4343 4345
 5. `grep -c "custody\|hold funds\|escrow wallet" apps/api/src/lib/payments/paymongo.ts` → MUST be 0
 
-COMMIT: `feat(api): paymongo reservations for tier 1 and tier 2 validation (no fund custody per gcash decision)`
+COMMIT: `feat(api): paymongo reservations for tier 1 and tier 2 validation (no fund custody per EMI partnership decision)`
 
 If you find yourself adding fund-holding logic, STOP.
 ```
 
 **✅ Acceptance:** Migration applied. paymongo.ts exports 3 functions. Routes registered. 4 tests pass. Smoke test completes. Zero fund-custody references in code.
 
-**🚫 Forbidden:** Deposit escrow logic (that's Phase 4 via GCash). Storing card details. Production Paymongo keys. Skipping signature verification. Slow webhook (>500ms). In-memory or DB-backed wallet/balance.
+**🚫 Forbidden:** Deposit escrow logic (that's Phase 4 via licensed EMI partner TBD — GCash hypothesis dead). Storing card details. Production Paymongo keys. Skipping signature verification. Slow webhook (>500ms). In-memory or DB-backed wallet/balance.
 
-**🆘 Recovery:** If Claude proposes holding funds, paste: *"STOP. You're about to violate BSP regulations — personal legal liability for the founder. Re-read decisions/2026-04-12-escrow-via-gcash-partnership.md and context/12-gotchas.md BSP section. Revert any fund-holding code now."*
+**🆘 Recovery:** If Claude proposes holding funds, paste: *"STOP. You're about to violate BSP regulations — personal legal liability for the founder. Re-read decisions/2026-04-12-escrow-via-gcash-partnership.md (GCash hypothesis dead, but no-custody principle stands) and context/12-gotchas.md BSP section. Revert any fund-holding code now."*
 
 **🏁 Handoff:** → Prompt 8.
 
@@ -604,7 +604,7 @@ TONE:
 3. FB GROUP POST — "Ortigas Housing Rentals"
    - Verified landlord angle
    - utm_source=fb_ortigas_housing
-   - Emphasize GCash deposit protection
+   - Emphasize verified deposit protection
 
 4. TIKTOK OUTREACH #1 — female BPO creator 2-5K followers
    - Find 3 REAL candidates by searching #BPOlife #ConcentrixBPO; provide URLs
@@ -1663,9 +1663,9 @@ Phase time: 50–70h across 7–10 working days.
 
 **⏱️ Time:** 2h
 
-**🔒 Prerequisites:** Phase 3 complete. Founder checked GCash + PSA eVerify status.
+**🔒 Prerequisites:** Phase 3 complete. Founder checked licensed EMI partner + PSA eVerify status. (GCash hypothesis dead — 0/6 landlords accept GCash per field interviews. Evaluate Maya, Tonik, or manual bank transfer as alternatives.)
 
-**📖 Read first:** `.claude-brain/CLAUDE.md`, all 4 partnership-relevant decisions, `artifacts/partnership-outreach-gcash-and-philsys.md`
+**📖 Read first:** `.claude-brain/CLAUDE.md`, all 4 partnership-relevant decisions, `artifacts/partnership-outreach-gcash-and-philsys.md` (GCash sections are historical reference only)
 
 **📋 Paste into Claude Code:**
 
@@ -1673,7 +1673,7 @@ Phase time: 50–70h across 7–10 working days.
 Follow session kickoff protocol. Draft Phase 4 plan at `.claude-brain/journal/$(date +%Y-%m-%d)-phase-4-plan.md`.
 
 FIRST ask me:
-1. GCash Business API — status? (Not sent / Sent / Negotiating / Signed / Stuck)
+1. Licensed EMI partner — status? (GCash DEAD per field interviews. Evaluating: Maya / Tonik / manual bank transfer / other?)
 2. PSA eVerify institutional onboarding — status?
 3. OPC registration — complete?
 4. DPO appointment + NPC registration — status?
@@ -1682,15 +1682,15 @@ For each feature: BUILD NOW / STUB (typed interface no implementation) / WAIT (b
 
 1. Migration 0002 payments + match_requests — always BUILD (no dependency)
 2. Paymongo production hardening — always BUILD
-3. GCash deposit orchestration — BUILD if partnership signed, STUB otherwise
+3. Deposit orchestration via licensed EMI partner (TBD) — BUILD if partnership signed, STUB otherwise
 4. PhilSys eVerify — BUILD if PSA onboarded, STUB otherwise
 5. HazardHunter flood-risk — always BUILD (public data)
 6. Listing verification managed agent — always BUILD (uses Anthropic API)
-7. Dual-confirmation deposit state machine — BUILD if GCash signed, STUB otherwise
+7. Dual-confirmation deposit state machine — BUILD if EMI partner signed, STUB otherwise
 
 Sequence considering dependencies:
 - Migration 0002 first
-- Paymongo hardening before GCash (we're live with it)
+- Paymongo hardening before EMI deposit integration (we're live with it)
 - Flood risk can run parallel with anything
 - Managed agent can run parallel, needs Anthropic key
 
@@ -1811,7 +1811,7 @@ STEP 2 — `packages/db/schema/payments.ts` (NEW — different from reservations
 - related_entity_id uuid nullable (e.g. match_request id for commissions)
 - amount_centavos int (negative for refunds)
 - currency text default 'PHP'
-- provider enum('paymongo','gcash','manual')
+- provider enum('paymongo','emi_partner','manual')  -- was 'gcash', now generic pending partner selection
 - provider_reference text unique when not null
 - status enum('pending','succeeded','failed','reversed')
 - metadata jsonb
@@ -1916,78 +1916,60 @@ COMMIT: `feat(api): paymongo production hardening — signatures, idempotency, a
 
 ---
 
-## Prompt 30 — GCash partnership integration (BUILD if signed, STUB otherwise)
+## Prompt 30 — Deposit mechanism integration (STUB path — GCash hypothesis dead)
 
-**🎯 Goal:** Deposit flow works E2E via GCash (if partnership signed).
+> **HYPOTHESIS DEAD (2026-04-16):** GCash partnership was the original plan for deposit orchestration. Field interviews invalidated this: 0/6 landlords accept GCash. The PRINCIPLE (we never custody funds — route through a licensed EMI) remains valid. The IMPLEMENTATION is TBD. For the first 10 placements, use manual bank transfer with founder-verified receipts.
 
-**⏱️ Time:** 8–10h if building, 2h if stubbing
+**🎯 Goal:** Deposit stub routes exist. Manual bank transfer interim documented. Architecture ready for future EMI partner (Maya, Tonik, or other).
 
-**🔒 Prerequisites:** Prompt 29 complete. Founder confirmed GCash status from Prompt 26.
+**⏱️ Time:** 2–3h (stub + manual interim docs)
 
-**📖 Read first:** `.claude-brain/CLAUDE.md`, `decisions/2026-04-12-escrow-via-gcash-partnership.md`, GCash Business API docs
+**🔒 Prerequisites:** Prompt 29 complete. Founder has NOT signed any EMI partnership yet.
 
-**📋 Paste if PARTNERSHIP SIGNED:**
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `decisions/2026-04-12-escrow-via-gcash-partnership.md` (historical — GCash hypothesis dead, no-custody principle still valid)
 
-```
-Follow session kickoff protocol. GCash SIGNED. Implement deposit orchestration.
-
-CRITICAL: We never custody. We orchestrate. GCash holds funds per their EMI license.
-
-STEP 1 — GCash CLIENT (`apps/api/src/lib/payments/gcash.ts`):
-- Constructor: GCASH_API_KEY, GCASH_MERCHANT_ID from env
-- `initiateDepositSend({tenant_gcash_number, landlord_gcash_number, amount_centavos, metadata})` → GCash Send Money API → {transaction_reference, status}
-- `checkTransactionStatus(reference)` → {status, details}
-- `initiateRefund(reference, reason)` — if tenant reports scam within 48h
-
-STEP 2 — DEPOSIT ROUTES (`apps/api/src/routes/deposits.ts`):
-- POST /deposits/initiate (tenant-authenticated): body {landlord_id, amount_centavos}; creates match_request transition; triggers gcash.initiateDepositSend; returns transaction_reference
-- POST /deposits/:id/confirm-moved-in (tenant-auth): flag; if landlord also confirmed → trigger commission
-- POST /deposits/:id/confirm-received (landlord-auth): flag; if tenant also → trigger commission
-- POST /deposits/:id/dispute (tenant, <48h from move-in): flag, halt commission, notify admin
-
-STEP 3 — DUAL-CONFIRMATION STATE MACHINE:
-- States: initiated → sent → (tenant_moved_in AND landlord_received) → commission_collected → complete
-- Branches: disputed → manual_review → refunded OR released
-- Implement as state column on match_requests or separate deposits table
-
-STEP 4 — COMMISSION COLLECTION:
-- Both confirmations set → compute 3% of deposit
-- Charge tenant via Paymongo (method on file from reservation)
-- Log as payments type='commission'
-
-STEP 5 — GCash sandbox integration tests
-
-COMMIT: `feat(api): gcash deposit orchestration with dual-confirmation state machine`
-```
-
-**📋 Paste if PARTNERSHIP NOT SIGNED:**
+**📋 Paste into Claude Code:**
 
 ```
-Follow session kickoff protocol. GCash NOT signed. Stub only.
+Follow session kickoff protocol. EMI deposit partner NOT signed (GCash hypothesis dead — 0/6 landlords accept GCash per field interviews). Stub + manual interim.
 
-STEP 1 — `apps/api/src/lib/payments/gcash.ts` TypeScript interfaces ONLY:
+CRITICAL: We never custody. When an EMI partner IS signed, they hold funds per their license. Until then, manual bank transfer with founder-verified receipts.
+
+STEP 1 — `apps/api/src/lib/payments/emi-partner.ts` TypeScript interfaces ONLY:
+- Generic EMI partner interface (not GCash-specific) — designed to work with Maya, Tonik, GCash, or any BSP-licensed EMI
 - No API calls
 - All functions throw 'NOT_IMPLEMENTED_PENDING_PARTNERSHIP'
 - Export types matching expected real implementation
 
 STEP 2 — `apps/api/src/routes/deposits.ts` route stubs:
-- Routes exist, return 503 with {error: "Deposit escrow pending GCash partnership", code: "PARTNERSHIP_PENDING"}
+- Routes exist, return 503 with {error: "Deposit orchestration pending EMI partnership", code: "PARTNERSHIP_PENDING"}
+- POST /deposits/manual-confirm (admin-only): for founder to log manual bank transfer receipt during interim period
 
-STEP 3 — Journal:
-`.claude-brain/journal/$(date +%Y-%m-%d)-gcash-partnership-blocker.md`:
-- Status: outreach sent on [date]
-- Expected timeline: [weeks]
-- Blocked: deposit orchestration, commission collection, 3% fee
-- Workaround: manual coordination for first 10 placements per FINAL_DECISION §6.3
+STEP 3 — MANUAL INTERIM FLOW (first 10 placements):
+Document in `.claude-brain/journal/$(date +%Y-%m-%d)-deposit-interim-manual.md`:
+- Tenant sends deposit directly to landlord via bank transfer (BDO/BPI/UnionBank)
+- Tenant sends screenshot of transfer receipt to founder via Messenger
+- Founder verifies receipt + amount, logs via POST /deposits/manual-confirm
+- Commission collected separately via Paymongo (method on file from reservation)
+- This is TEMPORARY — scales to ~10-15 placements before it breaks
 
-COMMIT: `chore(api): gcash deposit stubs pending partnership signature`
+STEP 4 — Journal:
+`.claude-brain/journal/$(date +%Y-%m-%d)-emi-partnership-status.md`:
+- GCash: DEAD (0/6 landlord acceptance per field interviews)
+- Maya Business API: status [Not evaluated / Evaluating / Sent / Negotiating]
+- Tonik: status [Not evaluated / Evaluating / Sent / Negotiating]
+- Manual bank transfer: ACTIVE as interim for first 10 placements
+- Blocked: automated deposit orchestration, automated commission collection
+- Next step: evaluate Maya Business API terms
+
+COMMIT: `chore(api): deposit stubs with manual interim flow (gcash hypothesis dead, emi partner tbd)`
 ```
 
-**✅ Acceptance:** Interfaces exist. Partnership status journaled. Full flow works OR 503 returned appropriately.
+**✅ Acceptance:** Generic EMI interfaces exist. Manual interim documented. Partnership status journaled. 503 returned on automated deposit routes. Manual-confirm route works for admin.
 
-**🚫 Forbidden:** Partial integration without partnership. Silently skipping integration tests. Pretending signed when not.
+**🚫 Forbidden:** Building GCash-specific integration. Partial integration without partnership. Pretending any EMI partner is signed when not.
 
-**🆘 Recovery:** If partnership stalls, paste: *"Update journal with status. Move to Prompt 31. Don't wait forever."*
+**🆘 Recovery:** If all EMI partnerships stall, paste: *"Manual bank transfer is fine for first 10 placements. Update journal. Move to Prompt 31. Don't wait forever — the manual process IS the MVP."*
 
 **🏁 Handoff:** → Prompt 31.
 
@@ -2328,7 +2310,7 @@ EACH PLACEMENT — I paste the timeline:
 - Matches proposed (3 landlords)
 - Viewings scheduled + attended
 - Commit date (tenant chose place)
-- Deposit flow used (GCash partnership live? or manual GCash + founder verifies receipt?)
+- Deposit flow used (EMI partner live? or manual bank transfer + founder verifies receipt?)
 - Balance collection (₱800 via Paymongo)
 - Move-in date
 - 48h post-move-in check-in result
@@ -2538,11 +2520,13 @@ Phase time: ~30h Claude Code time over 2–3 weeks.
 
 ## Prompt 38 — TikTok nano-influencer engine
 
+> **NOTE (2026-04-16):** Paid marketing (including creator fees) makes Tier 1 unprofitable at early scale. At ₱99 reservation with ~₱450 blended margin, a ₱2-5K creator fee needs 5-11 placements to break even PER VIDEO. Prioritize organic content (founder-filmed, tenant testimonials from Prompt 37) before scaling paid creator work. Only activate this prompt when organic is producing consistent reservations and you need to scale beyond founder bandwidth.
+
 **🎯 Goal:** 3 creators per week, tracked, measured, renewed or dropped by data.
 
 **⏱️ Time:** 4h setup, ongoing to run
 
-**🔒 Prerequisites:** Phase 5 complete. Budget approved (₱30K/month max).
+**🔒 Prerequisites:** Phase 5 complete. Budget approved (₱30K/month max). Organic TikTok already producing measurable reservations (do not skip to paid before validating organic).
 
 **📖 Read first:** `.claude-brain/CLAUDE.md`, `artifacts/tiktok-scripts-first-3-videos.md` creator sourcing
 
@@ -2611,9 +2595,9 @@ COMMIT: `chore(brain): tiktok creator pipeline CRM + weekly sourcing ritual`
 Follow session kickoff protocol. Month 3 retrospective — unvarnished.
 
 PULL DATA:
-- Total placements: actual vs 140/month target
-- Tier 1: actual vs 100/month projection
-- Tier 2: actual vs 40/month projection
+- Total placements: actual vs 140/month target (optimistic; base case 50-100)
+- Tier 1: actual vs 100/month projection (optimistic; base case 35-70)
+- Tier 2: actual vs 40/month projection (optimistic; base case 15-30)
 - Total revenue
 - Gross margin
 - Refund rate
@@ -2972,7 +2956,7 @@ FILES TO CREATE/MODIFY:
 
 STEP 1 — AUTOMATED RENT REMINDERS:
 - BullMQ repeatable job in `apps/api/src/jobs/rent-reminder.ts`: runs daily at 08:00 PHT
-- 3 days before rent due → send Messenger to tenant: "Hi [name], reminder po na due na ang rent ninyo sa [date]. Pwede po i-GCash sa landlord or bayaran in person. — RentRayda"
+- 3 days before rent due → send Messenger to tenant: "Hi [name], reminder po na due na ang rent ninyo sa [date]. Pwede po i-bank transfer sa landlord or bayaran in person. — RentRayda"
 - 1 day overdue → send to landlord: "Hi [landlord], si [tenant] ay 1 day overdue sa rent. Nag-send na po kami ng reminder. Kung gusto niyo, pwede kaming mag-follow up."
 - Landlord NEVER has to ask directly. The system does it.
 - Configurable: landlord can turn reminders on/off per tenant

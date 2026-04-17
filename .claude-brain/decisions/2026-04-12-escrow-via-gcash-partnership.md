@@ -1,8 +1,14 @@
 # Decision: Route escrow through GCash/Maya partnership, never hold funds directly
 
 **Date:** 2026-04-12
-**Status:** Active
+**Status:** Active (PRINCIPLE VALID, IMPLEMENTATION INVALIDATED — see addendum)
 **Supersedes:** Paymongo-as-escrow assumptions in prior planning docs
+
+---
+
+> **ADDENDUM (2026-04-17):** The core principle of this decision — **never custody funds** — remains valid and non-negotiable. However, the GCash-specific implementation is invalidated by field data: **0/6 landlords accept GCash** for rent or deposit collection (L1-L6 interviews, March-April 2026). 4/6 are cash-or-bank only, 2/6 use PDCs, L6 explicitly refuses GCash AND online banking. The deposit flow mechanism needs an alternative approach. See `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md` for the full analysis and next steps.
+
+---
 
 ---
 

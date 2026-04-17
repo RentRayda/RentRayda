@@ -1063,7 +1063,7 @@ Follow session kickoff protocol. Draft cleanup execution plan at `.claude-brain/
 
 TASKS (from context/02-repo-status.md):
 1. Auth TODOs in mobile (8 specific file:line)
-2. Brand drift: 1142 old fonts + 733 old colors (updated 2026-04-14; verify with ground-truth audit in Prompt 2)
+2. Brand drift: 306 old fonts + 85 old colors (corrected 2026-04-17 after Prompt 2 audit — previous 1142/733 counts included .next build cache)
 3. BullMQ workers not started
 4. Missing resend package
 5. Sentry integration (API + web + mobile) with DPA filters
@@ -1164,7 +1164,7 @@ Any regression → revert immediately, flag.
 
 ---
 
-## Prompt 18 — Eliminate brand drift (1142 fonts + 733 colors)
+## Prompt 18 — Eliminate brand drift (306 fonts + 85 colors)
 
 **🎯 Goal:** Mobile matches brand spec; zero old references.
 
@@ -1180,8 +1180,8 @@ Any regression → revert immediately, flag.
 Follow session kickoff protocol. Systematic brand cleanup across apps/mobile ONLY.
 
 PRE-FLIGHT COUNT:
-- `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (expect 1142)
-- `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (expect 733)
+- `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (expect 306)
+- `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (expect 85)
 
 If counts differ: STOP and tell me — drift may have changed.
 
@@ -1198,7 +1198,7 @@ After:
 - `apps/mobile/app/_layout.tsx` loads new families
 - Re-grep: `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` → 0
 - Expo dev build renders
-- Commit: `fix(mobile): replace 1142 deprecated font references with BeVietnamPro + Sentient`
+- Commit: `fix(mobile): replace 306 deprecated font references with BeVietnamPro + Sentient`
 
 COLORS NEXT (separate commit):
 - '#2563EB' → '#2D79BF'
@@ -1207,7 +1207,7 @@ COLORS NEXT (separate commit):
 After:
 - Re-grep colors → 0
 - Expo dev build — check brand consistency across screens
-- Commit: `fix(mobile): replace 733 deprecated color references with brand blue #2D79BF`
+- Commit: `fix(mobile): replace 85 deprecated color references with brand blue #2D79BF`
 
 FINAL:
 - `pnpm turbo typecheck` passes

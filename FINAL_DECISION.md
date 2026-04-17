@@ -331,7 +331,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - Reddit PH skews male, higher-income, tech — wrong demographic
 - TikTok commands 40 hrs/month for our target (vs. Reddit <1 hr/month for this segment)
 
-**Replaced by:** Decision `2026-04-12-tiktok-primary-awareness-channel.md`. TikTok becomes primary awareness channel via nano-influencer BPO worker content. Reddit removed from channel plan.
+**Replaced by:** Decision `2026-04-12-tiktok-primary-awareness-channel.md` (amended 2026-04-17: FB Groups elevated to primary overall, TikTok secondary awareness). Reddit removed from channel plan.
 
 ---
 
@@ -343,7 +343,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 - [ ] Browse CTA: "Browse listings" → free listings page (Tier 0)
 - [ ] Placement CTA: "Reserve verified placement — ₱149" → Paymongo reservation (refundable, applied to ₱499 total)
 - [ ] Tier 0 browse-only path remains free and unblocked
-- [ ] Zero paid ads — organic only (TikTok primary, Facebook Groups secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md`)
+- [ ] Zero paid ads — organic only (Facebook Groups primary, TikTok secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md` amended 2026-04-17)
 - [ ] 14-day window. 30+ combined paid reservations = proceed. <15 = kill.
 - [ ] Customer discovery call within 24h of every reservation using script in `artifacts/landing-page-copy-and-discovery-script.md`
 

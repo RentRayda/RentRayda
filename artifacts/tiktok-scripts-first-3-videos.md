@@ -1,6 +1,6 @@
 # TikTok Scripts — First 3 Videos
 
-**Purpose:** Launch TikTok as primary awareness channel with content calibrated to the psychographic profile of female BPO new hires, 20-26, provincial migrants.
+**Purpose:** Launch TikTok as secondary awareness channel (FB Groups are primary overall — see `decisions/2026-04-12-tiktok-primary-awareness-channel.md` amended 2026-04-17) with content calibrated to the psychographic profile of female BPO new hires, 20-26, provincial migrants.
 
 **⚠️ SCOPE NOTE:** These scripts lead with the female BPO narrator because that demographic has our sharpest empathy signal. The PLATFORM serves all genders, all employer types, all provincial migrants. Once first 3 videos prove the channel works, add variants:
 - Video 4+: male BPO new hire perspective (same scam story, different voice)

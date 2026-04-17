@@ -1,7 +1,9 @@
 # Validation State — Live Metrics
 
 **Last updated:** 2026-04-17 (validation not yet launched; 10/20 research interviews complete)
-**Phase:** Pre-validation setup — listening mode (per founder rule: no product decisions until 20 interviews)
+**Phase:** Pre-validation setup — landing page build authorized (see override below)
+
+> **Override (2026-04-17, founder-authorized):** The 20-interview rule applies to *product decisions* (schema changes, feature commits, new capabilities). The validation landing page is a *demand test*, not a product decision — it tests willingness-to-pay, not what to build. Landing page work (Prompts 6-10) is authorized to proceed in parallel with remaining interviews (L7-L10, T5-T10). Dom continues interviews during the 14-day validation window.
 
 This file is the single source of truth for validation metrics. Update after every significant event (post goes live, reservation comes in, refund processed).
 

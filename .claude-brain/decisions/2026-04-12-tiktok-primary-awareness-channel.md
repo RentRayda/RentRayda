@@ -1,7 +1,7 @@
-# Decision: TikTok is the primary awareness channel; Facebook Groups remain primary conversion channel
+# Decision: Facebook Groups are the PRIMARY channel; TikTok is secondary awareness
 
-**Date:** 2026-04-12
-**Status:** Active
+**Date:** 2026-04-12 (amended 2026-04-17 — FB Groups elevated to overall primary based on Dormy PH research + conversion analysis)
+**Status:** Active (amended)
 **Amends:** Validation traffic plan in [[2026-04-12-validate-before-build]]
 
 ---
@@ -26,20 +26,23 @@ TikTok owns attention. Facebook owns transaction intent. Reddit is nearly irrele
 
 ## Decision
 
-**Revised channel priority for validation phase and beyond:**
+**Revised channel priority for 14-day validation (amended 2026-04-17):**
 
-1. **TikTok** — Primary awareness channel. Nano-influencer BPO workers creating authentic content (housing tours, move-in day videos, "how I found my bedspace" stories)
-2. **Facebook Groups** — Primary conversion channel. Remains #1 for bottom-of-funnel transaction intent. Thousands-strong BPO housing groups (Pasig Bedspace, Ortigas condoshare)
-3. **Messenger** — Primary peer referral channel. BPO batchmate group chats are the native sharing mechanism. Design shareable listing cards for Messenger
-4. **BPO HR partnerships** — High-conversion institutional channel. Concentrix, TaskUs, Teleperformance HR departments maintain accredited housing lists
-5. **Reddit** — DEPRIORITIZED heavily. Allocate minimal effort. Not the demographic.
+1. **Facebook Groups** — PRIMARY overall. Where transactions happen. 8+ active Pasig/Ortigas housing groups with 120K+ combined members. Users in these groups have *active housing intent* (they joined to find a place). One tap to Messenger for negotiation. Our "verified, scam-free" message lands hardest exactly where scams happen. FB drives >70% of all social media web referrals in PH.
+2. **TikTok** — Secondary awareness. 3 videos as planned. Builds credibility, may catch viral wave. But TikTok→₱149 payment requires 3+ hops (video → bio link → site → pay). Dormy PH has 85K followers but no evidence of meaningful conversion from TikTok to actual bookings.
+3. **Messenger** — Peer referral channel. BPO batchmate group chats are the native sharing mechanism. Design shareable listing cards for Messenger.
+4. **Personal network** — 10 targeted DMs to BPO contacts.
+5. **University Facebook Groups** — 3 groups (DLSU, UP, PUP).
+6. **LinkedIn** — 1 founder post.
+7. **Reddit** — DEPRIORITIZED. Not the demographic.
+
+> **Amendment basis (2026-04-17):** Dormy PH research showed 85K TikTok followers with 1.2M total likes but no conversion evidence to actual bookings. TikTok "bed space for rent Manila" has 4.9M posts — massive content volume but entertainment-adjacent engagement ("saan 'to?" comments, not transactions). FB Groups are where "PM sent" = actual deposits discussed. For a 14-day validation test needing ₱149 reservations, conversion-first > awareness-first. Full research: `Second Brain/04-projects/rentrayda/braindumps/2026-04-17-tiktok-vs-fb-groups-channel-research.md`
 
 **Funnel design:**
 ```
-TikTok (discover RentRayda) →
-Facebook (evaluate listings) →
-Messenger (get referral from batchmate) →
-App (book)
+FB Groups (active housing need) → Landing page → ₱149 reservation
+TikTok (passive discovery) → Bio link → Landing page → ₱149 reservation
+Messenger (peer referral) → Shared link → Landing page → ₱149 reservation
 ```
 
 ---

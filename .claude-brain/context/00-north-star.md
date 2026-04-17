@@ -148,7 +148,7 @@ Post-booking (landlord gets value for free):
 ## THE BUILD LIST (WHAT WE'RE ACTUALLY SHIPPING)
 
 ### Phase 0: Validation gate (BEFORE any code)
-Fake-door landing page with two CTAs (free browse vs. ₱149 reservation for verified placement). 14-day window, 30+ paid reservations = build, <15 = kill. Organic-only traffic (TikTok primary, Facebook Groups secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md`).
+Fake-door landing page with two CTAs (free browse vs. ₱149 reservation for verified placement). 14-day window, 30+ paid reservations = build, <15 = kill. Organic-only traffic (Facebook Groups primary, TikTok secondary per `decisions/2026-04-12-tiktok-primary-awareness-channel.md` amended 2026-04-17).
 
 ### Phase 1: MVP cleanup (IF validation passes — Week 1, ~40 hours)
 Hit every REPO_STATUS.md §10 item in order. No new features.

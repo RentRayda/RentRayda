@@ -68,15 +68,15 @@ Phase time: 3–4 hours. Outcome: brain installed, dev env verified, founder ali
 
 ---
 
-## Prompt 1 — Install the brain and verify every piece
+## Prompt 1 — Verify brain and boot session
 
-**🎯 Goal:** Second-brain installed in repo; all automation verified working.
+**🎯 Goal:** Brain already installed (2026-04-13). Verify everything still works after the 2026-04-17 strategic overhaul (pricing change, GCash purge, supply model). Boot a clean session.
 
-**⏱️ Time:** 30 min
+**⏱️ Time:** 15 min (verification only — brain is already installed)
 
 **🔒 Prerequisites:**
-- Bundle unzipped and copied per SETUP.md Steps 1–3
-- `chmod +x .claude-brain/scripts/*.sh` run
+- Brain already in `.claude-brain/` (installed 2026-04-13, updated through 2026-04-17)
+- Pre-commit hooks already installed
 - You're at a terminal inside the git repo root
 
 **📖 Read first:** `.claude-brain/CLAUDE.md`, `.claude-brain/README.md`
@@ -88,16 +88,16 @@ Read .claude-brain/CLAUDE.md in full and execute the SESSION KICKOFF PROTOCOL li
 
 Then run these 10 verification commands one at a time and show output:
 
-1. `ls .claude-brain/context/*.md | wc -l` (expect 13)
-2. `ls .claude-brain/decisions/*.md | wc -l` (expect 13, includes TEMPLATE)
+1. `ls .claude-brain/context/*.md | wc -l` (expect 14 — includes 14-interview-tracker.md added 2026-04-17)
+2. `ls .claude-brain/decisions/*.md | wc -l` (expect 16 — includes TEMPLATE + 3 new decisions from 2026-04-17)
 3. `ls .claude-brain/prompts/*.md | wc -l` (expect 5)
 4. `ls artifacts/*.md | wc -l` (expect 4)
 5. `./.claude-brain/scripts/check-sync.sh` (expect: "Canonical docs in sync")
 6. `./.claude-brain/scripts/refresh-repo-status.sh` (expect exit 0)
-7. `./.claude-brain/scripts/install-hooks.sh` (expect pre-commit hook installed)
-8. `ls -la .git/hooks/pre-commit` (must exist, executable)
-9. `grep -c "^### 3\." FINAL_DECISION.md` (expect 19 — the kill list)
-10. `grep -c "^## Prompt [0-9]" PLAYBOOK.md` (expect 47)
+7. `ls -la .git/hooks/pre-commit` (must exist, executable)
+8. `grep -c "^### 3\." FINAL_DECISION.md` (expect 19 — the kill list)
+9. `grep -c "^## Prompt [0-9]" PLAYBOOK.md` (expect 47)
+10. `grep "₱499" .claude-brain/context/05-business-rules.md | head -1` (verify pricing is ₱499 not ₱999)
 
 If ANY check fails: stop and report the failure. Do NOT attempt to fix without my confirmation.
 
@@ -155,8 +155,8 @@ Follow session kickoff protocol. Then verify that brain assumptions match actual
    - `grep -rn "TODO\|FIXME" apps/mobile/app/ --include="*.ts" --include="*.tsx" | wc -l` (brain claims 8)
 
 7. Brand drift counts:
-   - `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (brain: 306)
-   - `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (brain: 87)
+   - `grep -rn "NotoSansOsage\|TANNimbus" apps/mobile | wc -l` (brain claimed 306, REPO_STATUS said 1142 — run to get ACTUAL count)
+   - `grep -rn "#2563EB\|#2B51E3" apps/mobile | wc -l` (brain claimed 87, REPO_STATUS said 733, 5 fixed 2026-04-17 — run to get ACTUAL count)
 
 8. Migrations applied:
    - `ls packages/db/migrations/` (expect 0000_*.sql, 0001_*.sql, meta/)
@@ -569,7 +569,7 @@ No "coming soon" fallback — defeats validation.
 
 **🔒 Prerequisites:** Prompt 8 complete (CTAs clickable). Landing page deployed to rentrayda.com.
 
-**📖 Read first:** `.claude-brain/CLAUDE.md`, `artifacts/tiktok-scripts-first-3-videos.md`, `artifacts/landing-page-copy-and-discovery-script.md`, `decisions/2026-04-12-facebook-page-only-no-groups.md`, `decisions/2026-04-12-tiktok-primary-awareness-channel.md`, `context/09-target-psychographics-primary.md`, `context/07-facebook-policy.md`
+**📖 Read first:** `.claude-brain/CLAUDE.md`, `artifacts/tiktok-scripts-first-3-videos.md`, `artifacts/landing-page-copy-and-discovery-script.md`, `decisions/2026-04-12-facebook-page-only-no-groups.md`, `decisions/2026-04-12-tiktok-primary-awareness-channel.md`, `context/09-target-psychographics-primary.md`, `context/07-facebook-policy.md`. **Also reference:** `Second Brain/COG-second-brain/04-projects/rentrayda/braindumps/2026-04-17-content-strategy.md` — this is the 14-day content calendar with per-channel format guides, posting schedules, metrics targets, and funnel projections. Day-1 content (8 pieces below) should align with this calendar's Day 1 plan.
 
 **📋 Paste into Claude Code:**
 

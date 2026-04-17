@@ -71,6 +71,47 @@ Any provincial migrant arriving in Metro Manila with no kakilala network, urgent
 
 **Why this works:** We're not adding work. We're removing it. L6 already does passport + ID + workplace verification manually for every tenant. Our pre-screened tenants arrive already verified — less screening work for her, same (preferred) tenant profile.
 
+## NORTH STAR METRIC (added 2026-04-17)
+
+**North Star: Verified Placements per Month**
+
+Definition: The number of completed, verified placement transactions in a calendar month where:
+1. Tenant paid ₱499 (full: ₱149 reservation + ₱350 on move-in)
+2. Both tenant AND landlord were identity-verified before phone reveal
+3. Tenant confirmed move-in (not just phone reveal — actual placement)
+
+RentRayda plays the **Transaction Game** (like Airbnb, Uber, Mamikos). Revenue is per-transaction. Usage is episodic. Success = more completed transactions.
+
+### Input Metrics (5 levers that drive the North Star)
+
+| Metric | Definition | Target (Month 1 / Month 3) |
+|--------|------------|---------------------------|
+| Active Verified Listings | Listings where landlord verified + status active + updated in 30 days | 50 / 150 |
+| Tenant Conversion Rate | % of landing page visitors who complete ₱149 reservation | 3% / 5% |
+| Match Rate (48hr) | % of paid reservations that receive 3 verified matches within 48 hours | 70% / 85% |
+| Landlord Sige Rate | % of landlords approached who agree to be listed for free | 60% / 70% |
+| Placement Completion Rate | % of phone reveals that result in confirmed move-in within 7 days | 40% / 55% |
+
+### North Star Targets
+
+| Stage | Verified Placements/Month |
+|-------|--------------------------|
+| Validation (now) | 0 (testing demand with fake-door) |
+| Soft Launch (Month 1) | 5-10 |
+| Early Traction (Month 3) | 30-50 |
+| Product-Market Fit signal | 100+ |
+| Scale readiness | 500+ |
+
+### Market Sizing (added 2026-04-17)
+
+| Metric | Annual Estimate | Basis |
+|--------|----------------|-------|
+| **TAM** | ₱200M (400K placements, Metro Manila) | Bottom-up: 285K-475K migration-eligible transactions/year at ₱499 |
+| **SAM** | ₱28M (57K placements) | TAM x 0.70 (price band) x 0.85 (digital access) x 0.40 (willingness to pay) x 0.60 (supply coverage) |
+| **SOM Year 1** | ₱100K (200 placements, ~17/month) | 4-barangay Pasig/Ortigas scope, 5-10% of local SAM, 2-person team |
+
+Note: "30 reservations in 14 days" is the **validation gate**, not the North Star. The gate tests willingness-to-pay. The North Star tracks ongoing value delivery. They are sequential, not competing.
+
 **Tao Elev prevention pitch:** "Verified tenant = isang tao, isang ID, isang workplace. Hindi Tao Elev." L6's worst experience was group fraud (1 signs, 5 occupy). Verified-tenant directly prevents this.
 
 **The stack (what gets built across tiers):**

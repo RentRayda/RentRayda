@@ -23,6 +23,12 @@ If you find yourself wanting to relax one of these rules, STOP. Create a decisio
    - Free government API, already working
    - Do NOT replace with paid third-party KYC
 
+3b. **Verified tenant = one person, one ID, one unit.**
+   - Group occupancy beyond the verified signer violates verification terms and is grounds for reporting
+   - Addresses "Tao Elev" / POGO group fraud pattern (L6 interview: 1 signs contract, 5 occupy, damage unit, leave)
+   - Landlord pitch: "Isang tao, isang ID, isang workplace. Hindi Tao Elev."
+   - If group fraud reported on a RentRayda-verified tenant, flag account + investigate
+
 ---
 
 ## REVENUE
@@ -51,9 +57,9 @@ If you find yourself wanting to relax one of these rules, STOP. Create a decisio
    - Do NOT add "restocking fees" or "processing deductions"
 
 8. **Escrow/deposit protection for Tier 1 and Tier 2.**
-   - Tenant deposit routes through GCash EMI flow (we never custody)
+   - Tenant deposit routes through licensed EMI partner (GCash hypothesis dead — 0/6 landlords accept; Paymongo or manual bank transfer as interim alternatives). We never custody.
    - Paymongo handles card payment gateway for reservations only (₱99/₱199)
-   - Our 3% fee is a marketplace commission settled AFTER GCash releases funds to landlord
+   - Our 3% fee is a marketplace commission settled AFTER EMI partner releases funds to landlord
    - Landlord always receives the full deposit amount they agreed to with the tenant
 
 ---
@@ -63,11 +69,11 @@ If you find yourself wanting to relax one of these rules, STOP. Create a decisio
 9. **We NEVER hold, transmit, or control user funds directly.**
    - BSP classifies fund-holding as OPS or EMI — requires licensing we don't have
    - AFASA (RA 12010) adds fraud detection obligations we can't meet at our scale
-   - All fund flows route through a licensed EMI partner (GCash primary, Maya secondary)
+   - All fund flows route through a licensed EMI partner (partner TBD — GCash rejected by 0/6 landlords, Paymongo handles reservation payments, deposit flow requires alternative approach)
    - Paymongo handles card payment gateway for reservations (Tier 1 ₱99 / Tier 2 ₱199)
-   - Deposits (₱15K+) route through GCash send-money flow initiated from app — we observe receipts, we never custody
-   - Our 3% fee is a marketplace commission settled AFTER the EMI releases funds to landlord
-   - See `decisions/2026-04-12-escrow-via-gcash-partnership.md`
+   - Deposits (₱15K+): mechanism TBD. Manual bank transfer with founder-verified receipt for first 10 placements. EMI partnership for scale.
+   - Our 3% fee is a marketplace commission settled AFTER the deposit is confirmed received by landlord
+   - See `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle valid: never custody. Implementation needs revisiting given GCash rejection data)
 
 10. **Deposit confirmation requires BOTH parties.**
    - Tenant confirms "I moved in and unit matches listing" in-app

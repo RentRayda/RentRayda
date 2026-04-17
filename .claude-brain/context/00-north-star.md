@@ -28,8 +28,8 @@ Per deep research (2026-04-12): the primary target user decides where to live in
 ### Tier 0: Free core platform (everyone forever)
 Browse listings, create listings, verify identity, send/receive connection requests, phone reveal after mutual verification, report suspicious activity. **₱0.** No sign-up wall to browse. This is the product everyone can access.
 
-### Tier 1: Secure booking (tenant pays 3% of deposit, avg ~₱450) — GCash-powered
-For DIY users who find their own place. **We never hold funds.** Payment routes through a licensed EMI partner (GCash primary, Maya secondary). The 3% is a marketplace commission collected by the EMI and remitted to us after the tenant confirms move-in. Min ₱300, max ₱750. Landlord receives full deposit. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for BSP licensing rationale.
+### Tier 1: Secure booking (tenant pays 3% of deposit, avg ~₱450) — payment partner TBD
+For DIY users who find their own place. **We never hold funds.** Payment routes through a licensed EMI partner (GCash hypothesis dead: 0/6 landlords accept GCash, see `01-research-findings.md`. Paymongo handles reservation payments. Deposit flow mechanism needs alternative approach — manual bank transfer or Paymongo-direct as interim). The 3% is a marketplace commission collected after the tenant confirms move-in. Min ₱300, max ₱750. Landlord receives full deposit. See `decisions/2026-04-12-escrow-via-gcash-partnership.md` for BSP licensing rationale (principle valid, implementation needs revisiting).
 
 ### Tier 2: Full concierge placement (tenant pays ₱999 flat)
 For deadline-driven users (BPO new hires, migrants without kakilala). Done-for-you: 5-field form in, 3 verified matches out within 7 days. AI + human housing buddy. Includes escrow. 7-day money-back guarantee.
@@ -55,6 +55,26 @@ Any provincial migrant arriving in Metro Manila with no kakilala network, urgent
 - Track gender + employer in customer discovery to surface demand patterns we haven't seen
 - Do NOT write UI copy that excludes male/non-BPO users
 - Do lean marketing content toward the female-BPO-migrant story for sharp emotional targeting
+
+## SUPPLY-SIDE MODEL: "SIGE" (added 2026-04-17, based on L1-L6 interviews)
+
+**The landlord is NOT our user. She is our supply.**
+
+0/6 landlords showed genuine enthusiasm for adopting any platform. But all would say "sige" (yes) to having their units listed for free with no effort required on their part. The Mamikos Mamichecker model applies: WE do the digitization work, the landlord just exists.
+
+**How supply onboarding works:**
+1. Walk barangay, find boarding house / studio building (FOR RENT signs, Facebook posts)
+2. Approach: "Ate, we have verified tenants looking for studios. Pwede po bang i-list yung units ninyo? Libre po, we do everything."
+3. She says "sige" — that is her ENTIRE involvement
+4. WE photograph, WE verify her ID (PhilSys), WE create the listing
+5. She continues operating exactly as she does — notebooks, cash, Facebook
+6. Verified tenants from our platform contact her like any other inquiry
+
+**Key alignment (L6 confirmed):** Informal landlords PREFER taga-probinsya (provincial) tenants over Metro Manila locals. Our target tenants ARE the landlord's preferred tenants. The platform aligns supply preference with demand — we're not fighting it.
+
+**Why this works:** We're not adding work. We're removing it. L6 already does passport + ID + workplace verification manually for every tenant. Our pre-screened tenants arrive already verified — less screening work for her, same (preferred) tenant profile.
+
+**Tao Elev prevention pitch:** "Verified tenant = isang tao, isang ID, isang workplace. Hindi Tao Elev." L6's worst experience was group fraud (1 signs, 5 occupy). Verified-tenant directly prevents this.
 
 **The stack (what gets built across tiers):**
 

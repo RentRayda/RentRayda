@@ -165,7 +165,8 @@ All queries are inline in route handlers (no separate queries/ directory).
 
 Key column names (match these exactly — do NOT use alternatives):
 - listings.landlordProfileId (NOT landlordId)
-- listings.unitType (NOT propertyType) — values: 'bedspace' | 'room' | 'apartment'
+- listings.unitType (NOT propertyType) — values: 'bedspace' | 'room' | 'apartment' | 'studio'
+  <!-- NOTE (2026-04-17): L6 claims bedspace declining — studio ₱5-7.5K with private CR is the growth segment. PROVISIONAL (n=1) — confirm with L7-L10 before changing enum priority. 'studio' added as option but bedspace NOT removed. -->
 - listings.monthlyRent (integer, pesos)
 - No listings.title field — listings identified by unitType + barangay
 

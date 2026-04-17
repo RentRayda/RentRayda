@@ -36,7 +36,7 @@ No fee. No gate. No sign-up wall for browsing. This is the product "everyone can
 
 ### Tier 1: Escrow-only (tenant-paid, 3% of deposit)
 - For DIY users who find their own place on the platform
-- GCash holds the deposit in escrow via our partnership (we never hold funds — see [[2026-04-12-escrow-via-gcash-partnership]])
+- Licensed EMI partner holds the deposit in escrow via our partnership (we never hold funds — see [[2026-04-12-escrow-via-gcash-partnership]]) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17]
 - Protects against scam landlords and bait-and-switch units
 - Fee: 3% of deposit amount, min ₱300, max ₱750
 - Average transaction: ~₱450 on a ₱15K deposit
@@ -110,7 +110,7 @@ Considered. Percentage ties our fee to transaction size, which aligns our incent
 ### Blended target mix at Month 3
 - 70% Tier 1 escrow (100 placements × ₱404 = ₱40,400)
 - 30% Tier 2 concierge (40 placements × ₱879 = ₱35,160)
-- **Total: ~₱75,560/month contribution margin at 140 placements/month**
+- **Total: ~₱75,560/month contribution margin at 140 (optimistic; base case 50-100) placements/month**
 
 ---
 

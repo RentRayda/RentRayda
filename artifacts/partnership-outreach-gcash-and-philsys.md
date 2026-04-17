@@ -1,5 +1,7 @@
 # Partnership Outreach — GCash + PhilSys
 
+## GCash PARTNERSHIP HYPOTHESIS DEAD (0/6 landlords accept, 2026-04-17). This outreach draft is ARCHIVED. Do not send. See decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md
+
 Two drafts ready to send. Both critical blockers for Phase 2.
 
 ---

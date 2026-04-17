@@ -42,7 +42,7 @@ Simple lang po 🙏
 
 Pag may interesado na tenant, ipapakita ko po sa inyo ang profile niya (verified ID, nasaan siya nagtatrabaho, ano budget). Kayo po ang magde-decide kung papayag or hindi.
 
-Pag pumayag kayo, kayo na po mag-usap via phone or Messenger. Kami hindi na po apektado. Yung deposit at rent, direkta po sa inyo via GCash — hindi po kami humahawak ng pera ninyo.
+Pag pumayag kayo, kayo na po mag-usap via phone or Messenger. Kami hindi na po apektado. Yung deposit at rent, direkta po sa inyo — bank transfer o cash, kayo po bahala. Hindi po kami humahawak ng pera ninyo.
 
 Interested po ba kayong subukan?
 ```
@@ -51,7 +51,7 @@ Interested po ba kayong subukan?
 - "You don't need to download anything" — removes the single biggest landlord friction we identified
 - "Verified ID, nasaan siya nagtatrabaho, ano budget" — offers her the tenant screening she wants (L4, L5 requested this)
 - "Kayo po ang magde-decide" — respects her authority, doesn't strip control
-- "Direkta po sa inyo via GCash — hindi po kami humahawak ng pera" — addresses BSP concerns AND reinforces trust
+- "Direkta po sa inyo — bank transfer o cash" — addresses BSP concerns AND reinforces trust
 - "Kami hindi na po apektado" — signals we're not getting in between her and tenant relationship
 
 ## STAGE 3: Guarantee-lite pitch (after rapport, before listing creation)
@@ -218,7 +218,7 @@ rentrayda.com/listings/[id]
 Mga susunod na mangyayari po:
 1. Pag may interesado, you'll receive a Messenger message from me saying: "May interesado po si [Name] sa listing ninyo. Verified po siya, BPO worker sa [Company], budget niya [₱X]. Pwede niyo ba siyang pag-usapan?"
 2. Pag pumayag po kayo, ibibigay namin number niya sa inyo at kayo na mag-coordinate.
-3. Pag may nag-commit, diretso po ang deposit sa GCash ninyo — hindi kami humahawak ng pera.
+3. Pag may nag-commit, diretso po ang deposit sa inyo — bank transfer o cash, kayo po bahala. Hindi kami humahawak ng pera.
 4. 100% libre po para sa inyo, from start to finish.
 
 May tanong po ba? Nandito lang po ako 🙏
@@ -291,7 +291,7 @@ Important po yan. Let me be direct:
 1. RentRayda hindi po nag-re-report ng anything sa BIR. Hindi kami tax collector, hindi kami government agent.
 2. Ang records namin ay para sa amin lang (verification, customer support).
 3. Sa legal sense, kahit cash or digital, rental income ay technically taxable — pero yan pagitan ninyo at ng BIR, hindi namin pake.
-4. Yung deposit at rent payment via GCash ay transaction between you and tenant. GCash handles their own reporting kung anuman — hindi po yan sa amin.
+4. Yung deposit at rent payment ay transaction between you and tenant — bank transfer o cash, kayo po ang bahala. Hindi po yan sa amin.
 
 Ikaw po mismo ang decide kung magpa-register sa BIR, hindi kami magtutulak. 🙏
 ```
@@ -300,7 +300,7 @@ Ikaw po mismo ang decide kung magpa-register sa BIR, hindi kami magtutulak. 🙏
 ```
 ₱0 po talaga. Forever. No hidden fees, no percentage, no subscription. 
 
-Kami kumukuha ng 3% commission SA TENANT side (hindi sa inyo) pag nag-escrow yung deposit via GCash. Pero kahit yung 3%, hindi sa inyo — yung tenant po ang magbabayad. Kayo po buo yung ₱[deposit amount] na nakareceive.
+Kami kumukuha ng 3% commission SA TENANT side (hindi sa inyo) pag nag-escrow yung deposit. Pero kahit yung 3%, hindi sa inyo — yung tenant po ang magbabayad. Kayo po buo yung ₱[deposit amount] na nakareceive.
 ```
 
 ### If she says "Binebenta niyo ba yung info ko?"

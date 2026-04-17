@@ -42,7 +42,7 @@ Specifically:
 
 **WHAT WE WILL DO:**
 - Facilitate connection and trust between tenant and landlord
-- Route payments through GCash (tenant-to-landlord; we're not the recipient)
+- Route payments through licensed EMI partner (tenant-to-landlord; we're not the recipient) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17]
 - Provide tenant-facing receipts (tenant may need them, that's fine)
 - Maintain platform activity logs for dispute resolution (internal, not exported)
 - Comply with legal requests for specific data (we're not hiding illegal activity)
@@ -103,7 +103,7 @@ When building landlord-facing features, DO NOT propose:
 - BIR registration links or prompts
 - Landlord accounting tools
 - Integrations with accounting software
-- Receipts from RentRayda to landlord (only tenant → landlord receipts via GCash)
+- Receipts from RentRayda to landlord (only tenant → landlord receipts via payment partner) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17]
 - "Compliance" language in landlord UX
 - "Official" partnership indicators with DTI, BIR, or tax-adjacent agencies
 

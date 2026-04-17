@@ -569,7 +569,7 @@ Tier 2 (concierge):
 **Blended target at Month 3:**
 - 70% Tier 1 × 100 placements × ₱404 = ₱40,400
 - 30% Tier 2 × 40 placements × ₱879 = ₱35,160
-- **Total contribution margin: ~₱75,560/month at 140 placements**
+- **Total contribution margin: ~₱75,560/month at 140 (optimistic; base case 50-100) placements**
 
 ### 6.6 Post-booking value (same across all tiers, landlord-side)
 

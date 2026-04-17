@@ -82,7 +82,7 @@ Pre-booking (free + Tier 1/2):
 - Verified listings only
 - Verified tenant profile
 - AI-assisted scam screening
-- Deposit escrow via GCash partnership (Tier 1 and 2); Paymongo handles Tier 2 ₱999 payment + validation reservation
+- Deposit escrow via licensed EMI partner (Tier 1 and 2) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17]; Paymongo handles Tier 2 ₱999 payment + validation reservation
 
 Tier 2 additions:
 - Done-for-you matching (form → 3 verified matches in 7 days)
@@ -105,7 +105,7 @@ Post-booking (landlord gets value for free):
 **Unit economics (blended target at Month 3):**
 - 70% Tier 1 escrow: ~₱404 margin × 100 = ₱40,400
 - 30% Tier 2 concierge: ~₱879 margin × 40 = ₱35,160
-- Total: ~₱75,560/month contribution margin at 140 placements/month
+- Total: ~₱75,560/month contribution margin at 140 (optimistic; base case 50-100) placements/month
 
 ---
 
@@ -118,7 +118,7 @@ Fake-door landing page with dual CTAs. Tier 1 path: ₱99 reservation via Paymon
 Hit every REPO_STATUS.md §10 item in order. No new features.
 
 ### Phase 2: Validation-specific features (Week 2, ~32 hours)
-GCash partnership integration (escrow), done-for-you matching flow, Facebook auto-post to our Page, PhilSys eVerify integration.
+Deposit partner integration (escrow) [GCash hypothesis dead — 0/6 landlords, see decisions/2026-04-17], done-for-you matching flow, Facebook auto-post to our Page, PhilSys eVerify integration.
 
 ### Phase 3: Soft launch (Week 3)
 Walk barangays to onboard 30-50 landlords, hand-deliver first 10 placements, review.

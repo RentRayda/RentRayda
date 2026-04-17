@@ -8,7 +8,7 @@
 ## COLORS
 
 ### Primary brand color
-**`#2B51E3` — RentRayda Blue**
+**`#2D79BF` — RentRayda Blue**
 
 Used for:
 - Logo tarsier silhouette
@@ -45,7 +45,7 @@ Used for:
 
 Mobile code currently has:
 - **306 old font references** using `NotoSansOsage` and `TANNimbus` — replace with `BeVietnamPro-Bold` and `Sentient-Medium`
-- **87 old color references** using `#2563EB` (Tailwind blue-600) and an older `#2B51E3` variant — replace with `#2D79BF` per DRD
+- **87 old color references** using `#2563EB` (Tailwind blue-600) and an older `#2D79BF` variant — replace with `#2D79BF` per DRD
 
 These are in the Week 1 cleanup list. Do NOT introduce more of them.
 

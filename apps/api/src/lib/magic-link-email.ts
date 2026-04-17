@@ -1,6 +1,6 @@
 /**
  * Branded HTML email template for magic link sign-in.
- * Uses RentRayda Blue (#2B51E3) for the CTA button.
+ * Uses RentRayda Blue (#2D79BF) for the CTA button.
  */
 export function magicLinkTemplate(url: string): string {
   return `
@@ -15,7 +15,7 @@ export function magicLinkTemplate(url: string): string {
         <p style="color: #6B7280; font-size: 14px; margin-bottom: 28px;">
           Tap the button below to sign in. This link expires in 10 minutes.
         </p>
-        <a href="${url}" style="display: inline-block; background: #2B51E3; color: white; font-size: 14px; font-weight: 600; padding: 12px 32px; border-radius: 8px; text-decoration: none;">
+        <a href="${url}" style="display: inline-block; background: #2D79BF; color: white; font-size: 14px; font-weight: 600; padding: 12px 32px; border-radius: 8px; text-decoration: none;">
           Sign In
         </a>
         <p style="color: #9CA3AF; font-size: 12px; margin-top: 28px;">

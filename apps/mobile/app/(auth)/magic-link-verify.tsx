@@ -58,7 +58,7 @@ export default function MagicLinkVerifyScreen() {
           </>
         ) : (
           <>
-            <ActivityIndicator size="large" color="#2B51E3" />
+            <ActivityIndicator size="large" color="#2D79BF" />
             <Text style={{ fontSize: 16, fontFamily: 'NotoSansOsage', color: '#65676B', marginTop: 16 }}>
               Signing you in...
             </Text>

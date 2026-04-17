@@ -76,7 +76,7 @@ export default function SetupPasskeyScreen() {
           style={{
             width: '100%',
             height: 48,
-            backgroundColor: '#2B51E3',
+            backgroundColor: '#2D79BF',
             borderRadius: 8,
             alignItems: 'center',
             justifyContent: 'center',

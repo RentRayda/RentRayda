@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'RentRayda — Verified Rentals in Pasig',
-  description: 'Find verified rentals in Pasig and Mandaluyong. No scams. No agents. Both landlords and tenants are verified before connecting.',
+  title: 'RentRayda — Verified rentals for provincial migrants in Pasig/Ortigas',
+  description: 'Verified rentals in Pasig/Ortigas for BPO new hires, students, fresh grads, and OFW families. Scam-protected. Landlord-safe. Browse free.',
   openGraph: {
-    title: 'RentRayda — Verified Rentals in Pasig',
-    description: 'Find verified rentals. No scams. No agents. Everyone is verified.',
+    title: 'RentRayda — Verified rentals for provincial migrants in Pasig/Ortigas',
+    description: 'Verified rentals in Pasig/Ortigas. Scam-protected. Landlord-safe. Browse free.',
     siteName: 'RentRayda',
     type: 'website',
   },

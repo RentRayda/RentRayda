@@ -1,16 +1,11 @@
-import InteractiveHero from '../components/InteractiveHero';
-import StickyNav from '../components/StickyNav';
-import SectionDivider from '../components/SectionDivider';
 import {
-  BoldStatement,
-  TrustStats,
+  Hero,
+  TwoPathCTA,
+  WhyWeExist,
   HowItWorks,
-  VerificationDemo,
-  BrowseListingsDemo,
-  ConnectionDemo,
-  AntiScam,
-  CrossPlatform,
-  Testimonials,
+  Safety,
+  BuiltForMigrants,
+  FAQ,
   FinalCTA,
   Footer,
 } from '../components/LandingSections';
@@ -18,23 +13,13 @@ import {
 export default async function LandingPage() {
   return (
     <main>
-      <StickyNav />
-      <InteractiveHero />
-      <SectionDivider variant="dots" />
-      <BoldStatement />
-      <TrustStats />
-      <SectionDivider variant="diamonds" />
+      <Hero />
+      <TwoPathCTA />
+      <WhyWeExist />
       <HowItWorks />
-      <SectionDivider variant="tarsier" />
-      <VerificationDemo />
-      <BrowseListingsDemo />
-      <SectionDivider variant="dots" />
-      <ConnectionDemo />
-      <AntiScam />
-      <SectionDivider variant="zigzag" />
-      <CrossPlatform />
-      <Testimonials />
-      <SectionDivider variant="dots" />
+      <Safety />
+      <BuiltForMigrants />
+      <FAQ />
       <FinalCTA />
       <Footer />
     </main>

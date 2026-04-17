@@ -357,7 +357,7 @@ REQUIREMENTS:
    - "Browse listings" → /listings (free, Tier 0)
    - "Reserve verified placement — ₱149" → /reserve/placement
 3. Hero: "Verified rentals in Pasig/Ortigas. Scam-protected. Landlord-safe."
-4. Three trust signals with icons: PhilSys verified landlord IDs, verified deposit protection, female-only options available
+4. Three trust signals with icons: Verified landlord IDs (PhilSys-backed), 3 verified matches in 48 hours, Female-only options available
 5. Two-path explainer (Tier 0 free / Tier 1 Verified Placement ₱499) per artifact Section 2
 6. "Why we exist" empathy section per artifact Section 3
 7. "How it works" three columns per artifact Section 4
@@ -383,7 +383,7 @@ VERIFY BEFORE COMMIT:
 2. `pnpm turbo typecheck` passes
 3. Open localhost:3000, resize to 360px — no layout break
 4. Tab order: Browse → Reserve placement → FAQ
-5. `grep -rn "#2563EB\|#2B51E3" apps/web/app/page.tsx` → 0 matches
+5. `grep -rn "#2563EB\|#2B51E3" apps/web/app/page.tsx apps/web/components/LandingSections.tsx` → 0 matches
 
 COMMIT: `feat(web): validation landing page with browse + verified placement CTA`
 

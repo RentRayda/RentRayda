@@ -132,7 +132,7 @@ if [ $FAILED -eq 1 ]; then
   echo "  Reconcile them manually. They should agree on:"
   echo "    - The validation gate ('30+ paid reservations in 14 days')"
   echo "    - The kill list (all 19 items)"
-  echo "    - The revenue model (tenant pays ₱999, landlord pays ₱0 forever)"
+  echo "    - The revenue model (tenant pays ₱499 Verified Placement, landlord pays ₱0 forever)"
   echo ""
   exit 1
 fi

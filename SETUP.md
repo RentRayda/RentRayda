@@ -107,7 +107,7 @@ The playbook is phased:
 - **Phase 2 — Running validation (Prompts 11-15):** 14-day test with real money
 - **Phase 3 — MVP cleanup IF validation passes (Prompts 16-25):** ~40 hours
 - **Phase 4 — Phase 2 features (Prompts 26-32):** DPA compliance, GCash, PhilSys, flood risk
-- **Phase 5 — Launch + first placements (Prompts 33-37):** Production + manual concierge delivery
+- **Phase 5 — Launch + first placements (Prompts 33-37):** Production + manual verified placement delivery
 - **Phase 6 — Scale prep (Prompts 38-40):** TikTok engine + Month 3 retro
 
 Read `PLAYBOOK.md` section "The meta-rules across all 40 prompts" before starting. It tells you when to deviate and when not to.

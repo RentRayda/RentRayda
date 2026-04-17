@@ -95,7 +95,7 @@ Do NOT restrict future content creation to female BPO only. That's where we star
 
 **Turn (35-50s):** Calmer, back to camera
 
-> "Then someone from my training batch — yung groupchat sa Messenger — nag-share ng something. RentRayda. Sabi niya verified yung mga listings, at they can help you find a place in 7 days."
+> "Then someone from my training batch — yung groupchat sa Messenger — nag-share ng something. RentRayda. Sabi niya verified yung mga listings, at they can help you find a place in 48 hours."
 
 **Resolution (50-70s):** Show phone screen — RentRayda app / listing page
 
@@ -199,7 +199,7 @@ Ate Cora: "Iniingatan ko sila. Yung mga girls na galing province, wala silang ka
 - Videos with polished corporate voiceover (kills trust)
 - Videos with English-only dialogue (feels alienating)
 - Videos mocking landlords or tenants (respect is mandatory)
-- Videos promising specific outcomes ("find a place in 7 days guaranteed" — overpromise = refund risk)
+- Videos promising specific outcomes ("find a place in 48 hours guaranteed" — overpromise = refund risk)
 
 ---
 
@@ -211,7 +211,7 @@ Ate Cora: "Iniingatan ko sila. Yung mga girls na galing province, wala silang ka
 - DM them with specific pitch: "We're building a platform that helps BPO newbies find safe housing — we loved your video about [specific video]. Want to collaborate?"
 
 **Compensation structure:**
-- Video 1 (trial): ₱2,000 flat + 3-month free RentRayda concierge for themselves or a friend
+- Video 1 (trial): ₱2,000 flat + free RentRayda Verified Placement for themselves or a friend
 - If Video 1 hits >10K views: ongoing contract at ₱3-5K per video
 - If Video 1 hits >50K views: offer brand ambassador role (₱5-8K per video, exclusivity)
 

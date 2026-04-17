@@ -32,19 +32,13 @@ When the combined counter reaches 20, only then do we consider moving to paid-va
 
 ## THE GATE
 
-**Two tenant-paid products tested in parallel:**
-- **Tier 1 (escrow-only):** 3% of deposit, ₱99 reservation to test willingness
-- **Tier 2 (concierge):** ₱999 flat, ₱199 reservation to test willingness
+**One tenant-paid product:**
+- **Verified Placement:** ₱499 flat (₱149 reservation + ₱350 on move-in), 48-hour placement window
 
-**Combined across both tiers in 14 days:**
+**Total reservations in 14 days:**
 - **30+ paid reservations → BUILD**
 - **15-29 → EXTEND 14 more days with iterated landing**
 - **<15 → KILL, refund all, publish post-mortem, archive repo**
-
-Sub-signals:
-- If 30+ but all Tier 1 → build escrow-only, defer concierge
-- If 30+ but all Tier 2 → build concierge, defer escrow
-- If mix → build both
 
 ---
 
@@ -57,39 +51,32 @@ Sub-signals:
 | Total impressions | 150-450K | — |
 | Landing page clicks | 1,500-9,000 | — |
 | Form completions | 50-300 | — |
-| Paid reservations (combined) | 30+ | — |
+| Paid reservations | 30+ | — |
 
-### Per-tier breakdown
+### By channel
 
-| Tier | CTA | Reservation | Paid reservations | Conversion |
-|------|-----|-------------|-------------------|------------|
-| Tier 1: Escrow-only (3%) | "Protect my deposit" | ₱99 | — | — |
-| Tier 2: Concierge (₱999) | "Find me a place in 7 days" | ₱199 | — | — |
-
-### By channel (combined across tiers)
-
-| Channel | Posts | Clicks | T1 reservations | T2 reservations |
+| Channel | Posts | Clicks | Reservations |
 |---------|-------|--------|-----------------|-----------------|
-| BPO Facebook Group #1 | 0 | — | — | — |
-| BPO Facebook Group #2 | 0 | — | — | — |
-| BPO Facebook Group #3 | 0 | — | — | — |
-| BPO Facebook Group #4 | 0 | — | — | — |
-| BPO Facebook Group #5 | 0 | — | — | — |
-| University group (DLSU) | 0 | — | — | — |
-| University group (UP) | 0 | — | — | — |
-| University group (PUP) | 0 | — | — | — |
-| Personal Facebook | 0 | — | — | — |
-| LinkedIn | 0 | — | — | — |
-| TikTok video 1 | 0 | — | — | — |
-| TikTok video 2 | 0 | — | — | — |
-| TikTok video 3 | 0 | — | — | — |
-| Personal DMs | 0 | — | — | — |
+| BPO Facebook Group #1 | 0 | — | — |
+| BPO Facebook Group #2 | 0 | — | — |
+| BPO Facebook Group #3 | 0 | — | — |
+| BPO Facebook Group #4 | 0 | — | — |
+| BPO Facebook Group #5 | 0 | — | — |
+| University group (DLSU) | 0 | — | — |
+| University group (UP) | 0 | — | — |
+| University group (PUP) | 0 | — | — |
+| Personal Facebook | 0 | — | — |
+| LinkedIn | 0 | — | — |
+| TikTok video 1 | 0 | — | — |
+| TikTok video 2 | 0 | — | — |
+| TikTok video 3 | 0 | — | — |
+| Personal DMs | 0 | — | — |
 
 ### Customer discovery calls
 
-| Reserver | Tier | Date | Completed? | Key quote | Deadline |
-|----------|------|------|-----------|-----------|----------|
-| — | — | — | — | — | — |
+| Reserver | Date | Completed? | Key quote | Deadline |
+|----------|------|-----------|-----------|----------|
+| — | — | — | — | — |
 
 ---
 

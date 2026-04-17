@@ -133,7 +133,7 @@ That's the whole recovery protocol.
 ## The one test
 
 Before shipping anything:
-**"Does this help us get 30+ paid reservations (across Tier 1 or Tier 2) in 14 days?"**
+**"Does this help us get 30+ paid reservations for Verified Placement in 14 days?"**
 
 If no — it's not MVP scope.
 If yes — ship it.

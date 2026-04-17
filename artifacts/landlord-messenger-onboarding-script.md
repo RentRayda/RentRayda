@@ -300,7 +300,7 @@ Ikaw po mismo ang decide kung magpa-register sa BIR, hindi kami magtutulak. 🙏
 ```
 ₱0 po talaga. Forever. No hidden fees, no percentage, no subscription. 
 
-Kami kumukuha ng 3% commission SA TENANT side (hindi sa inyo) pag nag-escrow yung deposit. Pero kahit yung 3%, hindi sa inyo — yung tenant po ang magbabayad. Kayo po buo yung ₱[deposit amount] na nakareceive.
+Kami kumukuha ng ₱499 flat fee SA TENANT side (hindi sa inyo) para sa Verified Placement service. Hindi sa inyo — yung tenant po ang magbabayad. Kayo po buo yung ₱[deposit amount] na nakareceive.
 ```
 
 ### If she says "Binebenta niyo ba yung info ko?"

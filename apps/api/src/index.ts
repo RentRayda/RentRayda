@@ -10,6 +10,7 @@ import { adminRouter } from './routes/admin';
 import { connectionsRouter } from './routes/connections';
 import { reportsRouter } from './routes/reports';
 import { usersRouter } from './routes/users';
+import { paymentsRouter } from './routes/payments';
 import { globalRateLimiter } from './middleware/rate-limit';
 
 const app = new Hono();
@@ -47,6 +48,9 @@ app.route('/api/connections', connectionsRouter);
 
 // User routes
 app.route('/api/users', usersRouter);
+
+// Payment routes (reservations only — no fund custody)
+app.route('/api/payments', paymentsRouter);
 
 // Report routes
 app.route('/api/reports', reportsRouter);

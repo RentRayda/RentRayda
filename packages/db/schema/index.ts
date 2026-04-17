@@ -7,4 +7,6 @@ export * from './listing-photos';
 export * from './connection-requests';
 export * from './connections';
 export * from './reports';
+export * from './reservations';
+export * from './reservation-events';
 export * from './relations';

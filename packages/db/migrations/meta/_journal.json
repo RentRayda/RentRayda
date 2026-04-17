@@ -15,6 +15,13 @@
       "when": 1775560874573,
       "tag": "0001_moaning_texas_twister",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776430503475,
+      "tag": "0002_blue_red_skull",
+      "breakpoints": true
     }
   ]
 }

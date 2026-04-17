@@ -8,6 +8,8 @@ import { connectionRequests } from './connection-requests';
 import { connections } from './connections';
 import { verificationDocuments } from './verification-documents';
 import { reports } from './reports';
+import { reservations } from './reservations';
+import { reservationEvents } from './reservation-events';
 
 export const usersRelations = relations(users, ({ one }) => ({
   landlordProfile: one(landlordProfiles, { fields: [users.id], references: [landlordProfiles.userId] }),
@@ -42,4 +44,12 @@ export const connectionRequestsRelations = relations(connectionRequests, ({ one 
 
 export const verificationDocumentsRelations = relations(verificationDocuments, ({ one }) => ({
   user: one(users, { fields: [verificationDocuments.userId], references: [users.id] }),
+}));
+
+export const reservationsRelations = relations(reservations, ({ many }) => ({
+  events: many(reservationEvents),
+}));
+
+export const reservationEventsRelations = relations(reservationEvents, ({ one }) => ({
+  reservation: one(reservations, { fields: [reservationEvents.reservationId], references: [reservations.id] }),
 }));

@@ -205,10 +205,10 @@ ENV:
 
 INSTALL:
 7. `pnpm install` (zero errors)
-8. `ls node_modules/@rentrayda` (expect api, db, mobile, shared, ui, web)
+8. `pnpm ls -r --depth 0` (expect @rentrayda/api, db, mobile, shared, ui, web — note: node-linker=hoisted means ls node_modules/@rentrayda won't work)
 
 DATABASE:
-9. `pnpm --filter @rentrayda/db run migrate`
+9. `cd packages/db && source ../../.env && npx drizzle-kit migrate && cd ../..` (no migrate script in package.json — run drizzle-kit directly with env sourced)
 10. `psql $DATABASE_URL -c "\dt"` (expect 9 tables)
 
 BUILD:
@@ -216,7 +216,7 @@ BUILD:
 12. `pnpm turbo build` (expect: 6 tasks successful)
 
 RUNTIME:
-13. `pnpm --filter @rentrayda/api run dev &` then `curl -sS http://localhost:3001/health`
+13. `pnpm --filter @rentrayda/api run dev &` then `curl -sS http://localhost:3001/api/health` (note: health endpoint is at /api/health not /health)
 14. `kill %1` to stop API
 15. `pnpm --filter @rentrayda/mobile run typecheck`
 

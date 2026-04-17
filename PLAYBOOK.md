@@ -88,8 +88,8 @@ Read .claude-brain/CLAUDE.md in full and execute the SESSION KICKOFF PROTOCOL li
 
 Then run these 10 verification commands one at a time and show output:
 
-1. `ls .claude-brain/context/*.md | wc -l` (expect 14 — includes 14-interview-tracker.md added 2026-04-17)
-2. `ls .claude-brain/decisions/*.md | wc -l` (expect 16 — includes TEMPLATE + 3 new decisions from 2026-04-17)
+1. `ls .claude-brain/context/*.md | wc -l` (expect 15 — 00 through 14, includes 13-code-patterns + 14-interview-tracker)
+2. `ls .claude-brain/decisions/*.md | wc -l` (expect 15 — 12 original + 2 from 2026-04-17 + TEMPLATE)
 3. `ls .claude-brain/prompts/*.md | wc -l` (expect 5)
 4. `ls artifacts/*.md | wc -l` (expect 4)
 5. `./.claude-brain/scripts/check-sync.sh` (expect: "Canonical docs in sync")

@@ -64,8 +64,8 @@ Read this BEFORE proposing any feature that touches: payments, identity, marketi
 
 ## LEGAL
 
-- **BSP licensing (CRITICAL FINDING):** Escrow/fund-holding requires OPS registration or EMI license. EMI moratorium lifted (Circular 1206) but capital requirements are high. **Solution: route escrow through GCash/Maya partnership, never hold funds directly.** See `decisions/2026-04-12-escrow-via-gcash-partnership.md`.
-- **AFASA (RA 12010):** Anti-Financial Account Scamming Act, signed July 2024. Imposes fraud detection, fund-holding on scam reports, and cooperation with authorities on any entity processing payments. Reinforces the GCash partnership decision.
+- **BSP licensing (CRITICAL FINDING):** Escrow/fund-holding requires OPS registration or EMI license. EMI moratorium lifted (Circular 1206) but capital requirements are high. **Solution: never hold funds directly. Deposits flow landlord-to-tenant (cash or bank transfer). Paymongo handles only ₱499 Verified Placement fee.** See `decisions/2026-04-12-escrow-via-gcash-partnership.md` (principle valid: never custody) and `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md` (GCash implementation dead).
+- **AFASA (RA 12010):** Anti-Financial Account Scamming Act, signed July 2024. Imposes fraud detection, fund-holding on scam reports, and cooperation with authorities on any entity processing payments. Reinforces the never-custody principle.
 - **Data Privacy Act (RA 10173):** Imprisonment up to 7 YEARS for violations (not just fines). NPC registration required at 1000+ sensitive records. DPO mandatory. PIA (Privacy Impact Assessment) before launch. 72-hour breach notification.
 - **E-Commerce Act (RA 8792):** Digital contracts legally valid. Enables our connection-reveal mechanism.
 - **BIR:** Landlord rental income technically taxable. Most informal landlords are non-compliant and operate in cash specifically to avoid paper trails. See `decisions/2026-04-12-no-bir-paper-trail.md`.
@@ -77,7 +77,7 @@ Read this BEFORE proposing any feature that touches: payments, identity, marketi
 
 When proposing anything, check against this snapshot:
 
-1. Does it hold funds? → Route through GCash/Maya, don't build custom.
+1. Does it hold funds? → Never custody. Deposits flow landlord-to-tenant directly. Paymongo handles only ₱499 Verified Placement fee.
 2. Does it store IDs or sensitive data? → DPA compliance is non-negotiable (DPO, PIA, encryption, 72hr breach response).
 3. Does it create records for landlords? → Check BIR paper trail decision first.
 4. Does it ignore flood risk? → Add HazardHunter indicator instead.

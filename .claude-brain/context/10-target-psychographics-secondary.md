@@ -173,7 +173,7 @@ Based on research + prior decisions:
 
 ## WHAT SHE'D ACTUALLY PAY FOR (IF ANYTHING)
 
-Past research: 0/5 landlords enthusiastic about paying ANYTHING.
+Past research: 0/6 landlords enthusiastic about paying ANYTHING.
 
 Hypothetical future premium features she MIGHT pay for (once she trusts the platform):
 - Verified pre-screened tenants with employment proof

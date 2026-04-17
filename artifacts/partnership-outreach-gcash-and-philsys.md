@@ -196,13 +196,13 @@ founder@rentrayda.com
 
 ---
 
-**Background on why these two partnerships unlock the business:**
+**Background on why PhilSys partnership unlocks the business:**
 
-Without GCash: we can't do Tier 1 (3% escrow) legally at scale, and our differentiation collapses to "just another Facebook group."
+> **NOTE (2026-04-17):** GCash partnership is ARCHIVED (0/6 landlords accept GCash). Deposits flow directly landlord-to-tenant. Paymongo handles only ₱499 Verified Placement fee. No escrow tier.
 
 Without PhilSys: our "verified" badge has no institutional backing and can be replicated by any competitor.
 
-With both: we have regulatory-clean payment flow AND institutional-grade verification — two defensible moats that no existing informal rental channel offers. This is the platform's core value proposition rendered technical.
+With PhilSys: we have institutional-grade verification — a defensible moat that no existing informal rental channel offers. Combined with Paymongo for Verified Placement payments, this is the platform's core value proposition rendered technical.
 
 **Priority:**
 - GCash email: send within 2 weeks of FINAL_DECISION approval (parallel with validation test)

@@ -20,19 +20,21 @@ Dominic (co-founder) asked two critical questions:
 1. Are the people in our market willing to pay extra for verification?
 2. Who gains more value — landlords or tenants?
 
-We can spend another 100+ hours building features we THINK will work, or we can spend 2 hours building a landing page and find out in 14 days whether real strangers will pay ₱199 for what we're promising.
+We can spend another 100+ hours building features we THINK will work, or we can spend 2 hours building a landing page and find out in 14 days whether real strangers will pay ₱149 for what we're promising.
 
 ---
 
 ## Decision
 
+> **PRICING UPDATED (2026-04-17):** Original pricing (₱999 concierge, ₱199 reservation, two-CTA escrow+concierge) superseded by `decisions/2026-04-17-kill-tier1-simplify-pricing.md`. Current: single Verified Placement at ₱499 (₱149 reservation + ₱350 on move-in), 48-hour matching (not 7 days). The validate-before-build PRINCIPLE remains active.
+
 **Before any more code, we run a fake-door validation test:**
 
-1. Build a landing page at `rentrayda.com/fast` in 2 hours
-2. Page promises: "Find your next place in Manila in 7 days. ₱999 or your money back."
-3. Require real ₱199 Paymongo reservation to submit (refundable)
-4. Run for 14 days with zero paid ads (organic only: BPO FB groups, universities, Reddit, personal network, TikTok)
-5. Two-CTA landing page (per `2026-04-12-two-revenue-paths`): Tier 1 escrow (₱99 reservation) + Tier 2 concierge (₱199 reservation). Both refundable.
+1. Build a landing page at `rentrayda.com` in 2 hours
+2. Page promises: "3 verified matches in 48 hours. ₱499 or your money back."
+3. Require real ₱149 Paymongo reservation to submit (refundable)
+4. Run for 14 days with zero paid ads (organic only: BPO FB groups, universities, TikTok, personal network)
+5. Single paid CTA: Verified Placement (₱149 reservation, applied to ₱499 total). Free browse path alongside.
 6. Call every reserver within 24 hours
 
 **Go/no-go thresholds:**

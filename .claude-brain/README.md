@@ -20,9 +20,9 @@ claude-brain-bundle/              # What you installed
 │   ├── README.md                 # This file
 │   ├── CHANGELOG.md              # Version history of the brain
 │   ├── .gitignore                # Excludes scratch/current-session.md
-│   ├── context/                  # Persistent project knowledge (13 files)
+│   ├── context/                  # Persistent project knowledge (15 files)
 │   │   ├── 00-north-star.md          # What we're building and why (canonical)
-│   │   ├── 01-research-findings.md   # Distilled 9 interviews + hypothesis status
+│   │   ├── 01-research-findings.md   # Distilled 10 interviews (L1-L6, T1-T4) + hypothesis status
 │   │   ├── 02-repo-status.md         # Current code state (auto-refreshed)
 │   │   ├── 03-architecture.md        # TRD.md highlights
 │   │   ├── 04-brand.md               # Brand rules (colors, fonts, voice)
@@ -33,8 +33,10 @@ claude-brain-bundle/              # What you installed
 │   │   ├── 09-target-psychographics-primary.md   # Female BPO new hire profile
 │   │   ├── 10-target-psychographics-secondary.md # Informal Filipina landlord profile
 │   │   ├── 11-managed-agents-use-cases.md        # When to use Claude Managed Agents
-│   │   └── 12-gotchas.md             # PH legal/cultural landmines
-│   ├── decisions/                # Strategic decisions with dates (13 files)
+│   │   ├── 12-gotchas.md             # PH legal/cultural landmines
+│   │   ├── 13-code-patterns.md       # Route, query, response, auth middleware patterns
+│   │   └── 14-interview-tracker.md   # Full interview log (L1-L6, T1-T4)
+│   ├── decisions/                # Strategic decisions with dates (15 files)
 │   │   ├── TEMPLATE.md
 │   │   ├── 2026-04-10-kill-scraping.md
 │   │   ├── 2026-04-11-tenant-only-revenue.md
@@ -47,7 +49,9 @@ claude-brain-bundle/              # What you installed
 │   │   ├── 2026-04-12-tiktok-primary-awareness-channel.md
 │   │   ├── 2026-04-12-data-privacy-act-compliance.md
 │   │   ├── 2026-04-12-flood-risk-indicators.md
-│   │   └── 2026-04-12-no-bir-paper-trail.md
+│   │   ├── 2026-04-12-no-bir-paper-trail.md
+│   │   ├── 2026-04-17-gcash-hypothesis-dead-supply-model.md
+│   │   └── 2026-04-17-kill-tier1-simplify-pricing.md
 │   ├── prompts/                  # Reusable Claude prompts (5 files)
 │   │   ├── session-kickoff.md
 │   │   ├── pre-commit-check.md

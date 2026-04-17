@@ -92,12 +92,12 @@ Same across T1 and T2:
 **Revenue model must respect:**
 - Zero landlord fees (universal finding)
 - Transaction-based, not subscription (fees kill adoption)
-- Price point around ₱999 (2% of ₱15K deposit = acceptable insurance premium)
+- Price point: ₱499 flat for Verified Placement (₱149 reservation + ₱350 on move-in). No escrow tier, no 3% of deposit, no GCash.
 
 **Features must include:**
 - Verified listings (scams are real — VALIDATED)
 - Verified tenants (L4, L5 requested — EMERGING)
-- Deposit escrow (addresses the scam pattern directly)
+- Done-for-you matching within 48 hours (addresses the scam pattern + urgency)
 - Communication facilitation (T1's #1 stated pain)
 - Gendered safety signals (female tenant primary target)
 

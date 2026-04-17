@@ -97,7 +97,7 @@ git push
 
 ## Step 7: Start executing — follow the PLAYBOOK
 
-**The brain is installed. Now follow `PLAYBOOK.md` — 40 ordered prompts that take you from first Claude Code session through Month 3 retrospective.**
+**The brain is installed. Now follow `PLAYBOOK.md` — 47 ordered prompts that take you from first Claude Code session through Month 3 retrospective.**
 
 Open Claude Code in your repo and paste **Prompt 1** from `PLAYBOOK.md` verbatim. After it completes, commit its work and paste **Prompt 2**. Continue sequentially. Do not skip prompts. Do not combine them.
 
@@ -106,11 +106,11 @@ The playbook is phased:
 - **Phase 1 — Validation launch (Prompts 6-10):** Build dual-path landing page + reservations
 - **Phase 2 — Running validation (Prompts 11-15):** 14-day test with real money
 - **Phase 3 — MVP cleanup IF validation passes (Prompts 16-25):** ~40 hours
-- **Phase 4 — Phase 2 features (Prompts 26-32):** DPA compliance, GCash, PhilSys, flood risk
+- **Phase 4 — Phase 2 features (Prompts 26-32):** DPA compliance, Paymongo, PhilSys, flood risk
 - **Phase 5 — Launch + first placements (Prompts 33-37):** Production + manual verified placement delivery
-- **Phase 6 — Scale prep (Prompts 38-40):** TikTok engine + Month 3 retro
+- **Phase 6 — Scale prep (Prompts 38-47):** TikTok engine + infrastructure play + Month 3 retro
 
-Read `PLAYBOOK.md` section "The meta-rules across all 40 prompts" before starting. It tells you when to deviate and when not to.
+Read `PLAYBOOK.md` section "The meta-rules across all 47 prompts" before starting. It tells you when to deviate and when not to.
 
 ---
 
@@ -191,7 +191,7 @@ Full directory map + philosophy.
 ### `.claude-brain/CHANGELOG.md`
 Version history v1 → v6.
 
-### `.claude-brain/context/` (13 files)
+### `.claude-brain/context/` (15 files)
 Persistent project knowledge:
 - **00-north-star.md** — canonical product + validation gate
 - **01-research-findings.md** — distilled interviews (L1-L5, T1-T4)
@@ -206,10 +206,12 @@ Persistent project knowledge:
 - **10-target-psychographics-secondary.md** — informal landlord profile
 - **11-managed-agents-use-cases.md** — when to use Claude Managed Agents
 - **12-gotchas.md** — PH-specific legal/cultural landmines
+- **13-code-patterns.md** — Route, query, response, auth middleware patterns
+- **14-interview-tracker.md** — Full interview log (L1-L6, T1-T4)
 
-### `.claude-brain/decisions/` (13 files)
+### `.claude-brain/decisions/` (15 files)
 Strategic decisions with revive triggers:
-- Kill scraping, tenant-only revenue, validate-before-build, Facebook Page only, two revenue paths, GCash escrow partnership, landlord onboarding via Messenger, PhilSys verification, TikTok as primary channel, DPA compliance as launch blocker, flood-risk indicators, no BIR paper trail
+- Kill scraping, tenant-only revenue, validate-before-build, Facebook Page only, two revenue paths (superseded), GCash escrow partnership (principle valid, implementation dead), landlord onboarding via Messenger, PhilSys verification, TikTok as primary channel, DPA compliance as launch blocker, flood-risk indicators, no BIR paper trail, GCash hypothesis dead + supply model, kill Tier 1 escrow + simplify pricing
 
 ### `.claude-brain/prompts/` (5 files)
 Copy-paste prompts for Claude Code:

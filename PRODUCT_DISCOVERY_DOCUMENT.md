@@ -1,7 +1,7 @@
 # PRODUCT_DISCOVERY_DOCUMENT.md
 # RentRayda — Philippine Informal Rental Marketplace
 # Version 1.1 | April 4, 2026
-# Brand: #2B51E3 (RentRayda Blue) | Verified badge: #16A34A (Green) | NativeWind token: rayda
+# Brand: #2D79BF (RentRayda Blue — NOTE: #2B51E3 was v1, deprecated) | Verified badge: #16A34A (Green) | NativeWind token: rayda
 # Deep link scheme: rentrayda:// | Package scope: @rentrayda/ | Expo scheme: rentrayda
 
 INPUTS CONFIRMED: RESEARCH_FINDINGS.md ✓ | All 6 project files ✓

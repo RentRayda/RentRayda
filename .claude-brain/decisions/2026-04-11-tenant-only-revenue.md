@@ -1,7 +1,9 @@
 # Decision: Tenant-only transaction-based revenue; landlord free forever
 
 **Date:** 2026-04-11 (documented 2026-04-12)
-**Status:** Active
+**Status:** Active (PRINCIPLE valid — pricing details superseded)
+
+> **PRICING UPDATED (2026-04-17):** Original ₱999 (₱199 reservation + ₱800 on move-in) superseded by ₱499 (₱149 reservation + ₱350 on move-in). See `decisions/2026-04-17-kill-tier1-simplify-pricing.md`. The PRINCIPLE (tenant pays, landlord free forever, transaction-based not subscription) remains active and non-negotiable.
 
 ---
 

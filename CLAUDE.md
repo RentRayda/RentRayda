@@ -123,8 +123,8 @@ Code patterns (route, query, response, auth middleware): `.claude-brain/context/
 ```
 /
 ├── .claude-brain/              # v6 second brain — context, decisions, prompts, scripts
-│   ├── context/                # 13 context docs (north-star, research, repo-status, etc.)
-│   ├── decisions/              # Decision log (kill-scraping, tenant-only-revenue, etc.)
+│   ├── context/                # 15 context docs (north-star, research, repo-status, etc.)
+│   ├── decisions/              # Decision log (15 files incl. TEMPLATE)
 │   ├── prompts/                # Session kickoff, pre-commit, reset, debug, wrap
 │   ├── scripts/                # refresh-repo-status, check-sync, install-hooks, verify
 │   ├── journal/                # Session journals (YYYY-MM-DD-topic.md)
@@ -148,7 +148,7 @@ Code patterns (route, query, response, auth middleware): `.claude-brain/context/
 ├── CLAUDE.md                   # This file
 ├── TRD.md                      # Technical Requirement Document (APIs, schemas, infra)
 ├── DRD.md                      # Design Requirement Document (screens, wireframes, components)
-├── PLAYBOOK.md                 # 40 god-prompts: validation → scale
+├── PLAYBOOK.md                 # 47 god-prompts: validation → scale
 ├── FINAL_DECISION.md           # Kill list (19 items) + build list + revenue paths
 ├── BRAND.md                    # Brand book v2 — colors, tarsier, typography
 ├── turbo.json                  # Pipeline: build, dev, lint, typecheck

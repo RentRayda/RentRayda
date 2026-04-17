@@ -1257,7 +1257,7 @@ app.use('*', cors({
 
 ## 13. BUSINESS RULES (Non-Negotiable)
 
-1. Zero payment processing — no GCash, no payment routes, no escrow
+1. Zero deposit processing — no GCash/Maya, no escrow. Deposits flow directly landlord-to-tenant. Paymongo handles ONLY Tier 1 Verified Placement fee (₱149 reservation + ₱350 balance). We never touch deposits.
 2. Phone numbers revealed ONLY when BOTH parties verified AND connection accepted
 3. Government ID images in PRIVATE R2 bucket — signed URLs with 1-hour expiry
 4. Never expose `r2_object_key` to client — generate signed URLs server-side
@@ -1274,7 +1274,7 @@ app.use('*', cors({
 
 ## 14. WHAT NOT TO DO
 
-1. Never add payment routes or GCash/Maya/PayMongo integration
+1. Never add deposit/escrow payment routes or GCash/Maya integration. Paymongo handles ONLY Tier 1 ₱149 reservation + ₱350 balance. Never custody deposits.
 2. Never serve verification document files directly — presigned URLs only
 3. Never reveal phone numbers without checking BOTH verification statuses server-side
 4. Never use Supabase, Vercel, Firebase, or Heroku for any part of the stack

@@ -90,7 +90,7 @@ RentRayda plays the **Transaction Game** (like Airbnb, Uber, Mamikos). Revenue i
 | Tenant Conversion Rate | % of landing page visitors who complete ₱149 reservation | 3% / 5% |
 | Match Rate (48hr) | % of paid reservations that receive 3 verified matches within 48 hours | 70% / 85% |
 | Landlord Sige Rate | % of landlords approached who agree to be listed for free | 60% / 70% |
-| Placement Completion Rate | % of phone reveals that result in confirmed move-in within 7 days | 40% / 55% |
+| Placement Completion Rate | % of phone reveals that result in confirmed move-in within 72 hours | 40% / 55% |
 
 ### North Star Targets
 
@@ -170,7 +170,7 @@ Every path below has been specifically rejected. Full reasons in `FINAL_DECISION
 3. Facebook Marketplace/Groups scraping (ToS violation + Groups API deprecated April 22, 2024)
 4. B2B BPO HR partnerships (BPO shrinking due to AI agents)
 5. Tenant or landlord monthly subscriptions (fees kill adoption)
-6. Landlord-side paid features (0/5 landlords enthusiastic)
+6. Landlord-side paid features (0/6 landlords enthusiastic)
 7. AI chatbot for support (premature optimization)
 8. iOS at launch (Android 90% PH share)
 9. Multi-city at launch (focus wins)

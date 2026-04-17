@@ -52,7 +52,7 @@ RentRayda is building **trust infrastructure for the Philippine informal rental 
 - 🆘 Recovery — what to paste if stuck
 - 🏁 Handoff — next step
 
-**Universal forbidden (all 40 prompts):**
+**Universal forbidden (all 47 prompts):**
 - Reviving kill-list items (FINAL_DECISION.md §3, 19 items)
 - Adding dependencies without written reason
 - Hardcoding secrets

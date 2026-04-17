@@ -2,7 +2,7 @@
 
 **Date:** 2026-04-12
 **Status:** Canonical. Supersedes all V1-V5 planning documents.
-**Grounded in:** REPO_STATUS.md (25/32 prompts done, 6,704 LOC, 0 deployments) + 9 primary interviews + 512 synthesized voices + competitive research + 15+ hours of pruning + Facebook API ToS verification.
+**Grounded in:** REPO_STATUS.md (25/32 prompts done, 6,704 LOC, 0 deployments) + 10 primary interviews + 512 synthesized voices + competitive research + 15+ hours of pruning + Facebook API ToS verification.
 **Second brain:** `.claude-brain/` directory structure inspired by https://github.com/huytieu/COG-second-brain — Claude Code reads this every session to prevent context drift and hallucination.
 
 ---
@@ -179,7 +179,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 **What it was:** Landlord Pro at ₱299/month for analytics, priority placement.
 
 **Why killed:**
-- Research: 0/5 landlords enthusiastic about any platform. L3 fills units in hours. Demand > supply in BPO areas.
+- Research: 0/6 landlords enthusiastic about any platform. L3 fills units in hours. Demand > supply in BPO areas.
 - L5 conditional: "if it's free." L4 is the only absentee landlord with vacancy problems.
 - Building paid landlord features for a segment that doesn't need us kills conversion.
 
@@ -290,7 +290,7 @@ Every idea below was evaluated seriously. Each is DEAD. Do not revive without a 
 **What it was:** Proposal to split the 3% escrow fee between tenant and landlord, or deduct it from the deposit amount landlord receives.
 
 **Why killed:**
-- Research is unambiguous and locked: 0/5 landlords enthusiastic about any paid platform. L5 explicit: "if it's free."
+- Research is unambiguous and locked: 0/6 landlords enthusiastic about any paid platform. L5 explicit: "if it's free." L6 wouldn't pay anything.
 - "Fees kill adoption" is marked VALIDATED on the landlord side specifically.
 - Supply collapse is the failure mode: if landlords revolt at a fee, we have no listings, no product.
 - Hidden fees still get noticed. Tita Cora will compare her payment receipt to the agreed deposit. The ₱450 gap triggers a support ticket, then a bad Facebook post, then supply death. [Note: GCash hypothesis dead — 0/6 landlords accept GCash. Payment mechanism TBD.]
@@ -371,7 +371,8 @@ Only what validation proved we need:
 - Paymongo webhook handler for payment.paid
 - [GCash hypothesis dead — 0/6 landlords accept GCash, see `decisions/2026-04-17-gcash-hypothesis-dead-supply-model.md`. Deposit flow mechanism needs alternative approach (manual bank transfer, Paymongo-direct, or new partner). Principle: we never custody — see `decisions/2026-04-12-escrow-via-gcash-partnership.md`.]
 - Dual-confirmation state machine (tenant confirms move-in + landlord confirms deposit receipt)
-- 3% marketplace commission collected via Paymongo AFTER dual confirmation
+- ₱350 balance charge via Paymongo AFTER tenant confirms move-in (completing ₱499 total)
+- Deposits flow directly landlord-to-tenant (cash or bank transfer — we coordinate, never touch)
 - Full refund endpoint for failed validations
 
 **Day 8-9: Done-for-you matching flow**
@@ -617,12 +618,11 @@ Beyond the total count, qualitative signals tell us how to refine:
 |---------|-------|----------------|
 | 5 BPO Facebook Groups (10-50K members) | 1 per group | 100-300K impressions |
 | 3 university groups (DLSU, UP, PUP) | 1 per group | 30-60K |
-| Reddit r/Philippines + r/BPO | 1 each | 5-20K |
 | Personal Facebook timeline | 1 | 2-5K |
 | 10 DMs to BPO friends/family | Personal | 10 conversations |
 | TikTok | 3 videos | 5-50K views |
 | LinkedIn founder post | 1 | 2-5K |
-| **Total** | **~15 posts over 14 days** | **~150-450K** |
+| **Total** | **~13 posts over 14 days** | **~145-430K** |
 
 ### 7.5 Go/No-Go thresholds
 
@@ -754,6 +754,8 @@ Document every call in `.claude-brain/journal/`. Track in `.claude-brain/context
 
 ## 9. SECOND-BRAIN DIRECTORY STRUCTURE
 
+> **NOTE (2026-04-17):** The structure below is the ORIGINAL spec from 2026-04-12. The actual brain has grown to 15 context files (00-14), 15 decision files (incl. TEMPLATE), and 5 prompt files. See `.claude-brain/README.md` for current layout.
+
 Inspired by https://github.com/huytieu/COG-second-brain. Create in repo root:
 
 ```
@@ -761,7 +763,7 @@ Inspired by https://github.com/huytieu/COG-second-brain. Create in repo root:
 ├── README.md                          # How to use this brain
 ├── context/
 │   ├── 00-north-star.md               # Sections 1-6 of THIS FILE
-│   ├── 01-research-findings.md        # Distilled 9 interviews + hypothesis status
+│   ├── 01-research-findings.md        # Distilled 10 interviews + hypothesis status
 │   ├── 02-repo-status.md              # Living copy of REPO_STATUS.md
 │   ├── 03-architecture-highlights.md  # TRD.md top 20%
 │   ├── 04-brand-and-design.md         # DRD.md top 20%
@@ -1054,7 +1056,6 @@ Everything in Sections 1-11 is just mechanism for getting a clean answer. Nothin
 
 - [ ] Post to 5 BPO FB groups (staggered over 5 days)
 - [ ] Post to 3 university groups
-- [ ] Post to Reddit (r/Philippines, r/BPO)
 - [ ] Personal FB + LinkedIn + 10 DMs
 - [ ] 3 TikTok videos
 - [ ] Call every reserver within 24h
@@ -1072,4 +1073,4 @@ Branch point:
 
 **Length:** ~8,500 words. Status: **FINAL.** Supersedes all prior planning.
 
-*Signed off:* Miguel (founder) with input from Dominic (co-founder), grounded in 9 primary interviews, 512 synthesized voices, Meta ToS verification, and 15+ hours of Claude-assisted strategic pruning.
+*Signed off:* Miguel (founder) with input from Dominic (co-founder), grounded in 10 primary interviews, 512 synthesized voices, Meta ToS verification, and 15+ hours of Claude-assisted strategic pruning.

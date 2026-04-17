@@ -89,8 +89,8 @@ echo "" >> "$STATUS_FILE"
 echo "## Brand drift status" >> "$STATUS_FILE"
 echo "" >> "$STATUS_FILE"
 
-OLD_FONTS=$(grep -r "NotoSansOsage\|TANNimbus" apps/ 2>/dev/null | grep -v node_modules | wc -l)
-OLD_COLORS=$(grep -r "#2563EB\|#2B51E3" apps/ 2>/dev/null | grep -v node_modules | wc -l)
+OLD_FONTS=$(grep -r --exclude-dir=.next "NotoSansOsage\|TANNimbus" apps/ 2>/dev/null | grep -v node_modules | wc -l)
+OLD_COLORS=$(grep -r --exclude-dir=.next "#2563EB\|#2B51E3" apps/ 2>/dev/null | grep -v node_modules | wc -l)
 
 echo "- Old font references (NotoSansOsage, TANNimbus): **$OLD_FONTS**" >> "$STATUS_FILE"
 echo "  - Target: 0 (replace with BeVietnamPro-Bold, Sentient-Medium)" >> "$STATUS_FILE"

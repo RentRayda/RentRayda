@@ -28,7 +28,7 @@ RentRayda is building **trust infrastructure for the Philippine informal rental 
 - QuintoAndar founders biked to apartments. We walk barangays.
 - QuintoAndar replaced Brazil's fiador with a credit score. We replace kakilala with the RentRayda Score.
 - Rukita manages 1.4M rooms and is EBITDA positive. That's the operational model we evolve toward.
-- Mamikos's #1 user complaint is scams/no verification. Our ENTIRE thesis solves their biggest failure.
+- Mamikos's #1 user complaint is scams/no verification. Our ENTIRE thesis solves their biggest failure. [NOTE 2026-04-18: Dormy.ph (35K users, eKYC, deposit protection) is a real PH competitor pursuing verification too. Our edge is concierge matching + "sige" supply model, not verification alone.]
 
 ---
 

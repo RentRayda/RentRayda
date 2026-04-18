@@ -46,9 +46,9 @@ Proceeding to Section 1.
 
 The Philippine informal rental market operates on a single currency: personal connections. T3 found her apartment in one day because her landlord was "known through relatives, councilor child." T1, without a single Manila connection, searched for three months, visited ten or more places, and was almost scammed twice. The difference between these two experiences is not effort, not intelligence, and not budget. The difference is network. The Philippine rental market is a kakilala economy — the best units fill through word of mouth before a tarpaulin goes up, and Facebook Groups are where landlords dump the leftovers after their network has had first pick.
 
-This structural reality means a listing site cannot solve the problem. Lamudi has 160,000+ listings and an 11-review, all-1-star Trustpilot profile. Rentpad has 18,617 Metro Manila listings and Quora users complaining that "the prices are mostly higher than expected and inflated." More listings do not create more trust. Dormy.ph, the closest competitor, recognized this and built tiered verification — but after three years and $50,900 in funding, their CEO's goal was still just "3,000 Filipinos this year." The listing-first model has been tried. It does not work in this market because the problem is not discovery. The problem is trust.
+This structural reality means a listing site cannot solve the problem. Lamudi has 160,000+ listings and an 11-review, all-1-star Trustpilot profile. Rentpad has 18,617 Metro Manila listings and Quora users complaining that "the prices are mostly higher than expected and inflated." More listings do not create more trust. Dormy.ph, the closest direct competitor, recognized this and built eKYC + deposit protection + eSignatures — growing to 35,000 users and 800+ hosts with AHG Lab venture builder backing. [UPDATED 2026-04-18: Dormy is a real competitor, not a negligible one. See `2026-04-18-competitor-reality-check-dormy-lipat.md`.] But Dormy is a DIY marketplace — tenants browse and inquire. For a migrant with 72 hours and no network, a marketplace still requires effort and luck. The listing-marketplace model has been proven viable by Dormy. Our hypothesis is that a done-for-you placement service (3 verified matches in 48 hours) solves the urgency that a marketplace cannot.
 
-The Trust Deadlock mechanism (138/165 in the Unique Mechanism Evaluator) names the structural catch-22: landlords want tenant IDs before showing units, tenants cannot share IDs with unverified strangers, and neither side will move first. Dormy.ph itself documented this: sharing government IDs with unverified agents "is bad practice and must be avoided at all cost." Both sides stay stuck — and default to the kakilala economy, where the only trust bridge is personal connections that provincial migrants do not have.
+The Trust Deadlock mechanism (138/165 in the Unique Mechanism Evaluator) names the structural catch-22: landlords want tenant IDs before showing units, tenants cannot share IDs with unverified strangers, and neither side will move first. Dormy.ph itself documented this: sharing government IDs with unverified agents "is bad practice and must be avoided at all cost." Both sides stay stuck — and default to the kakilala economy, where the only trust bridge is personal connections that provincial migrants do not have. [NOTE: Dormy is working to solve this same deadlock with eKYC. Our differentiation is not in identifying the problem but in the service model for solving it — concierge vs. marketplace.]
 
 The Kakilala Gap mechanism (140/165 — highest score in the entire evaluation) reveals why: the informal rental market structurally excludes anyone without a local network. This is not a technology gap. It is a trust gap. And it cannot be solved by adding more listings to Facebook. It requires a neutral third party where both sides verify their identity to the platform — not to each other — so that a BPO worker from Leyte with zero rental history and zero Manila connections can prove she is a trustworthy tenant, and a Pasig landlord with four units can prove he actually owns the property and is not running a reservation fee scam.
 
@@ -394,16 +394,14 @@ MOAT LAYER 1: Verified Identity Network
 What it is: Every user (landlord and tenant) who completes verification creates a
   permanently stored, PhilSys-checked identity record linked to their phone number.
   This is not a feature — it is a growing database of verified Philippine renters and property
-  owners that no competitor has.
+  owners. [NOTE 2026-04-18: Dormy.ph has 35K users with eKYC — they are building a similar verified identity database. Our moat is NOT "no competitor has this" but rather the depth of verification (PhilSys eVerify + employment proof + property proof) combined with the "sige" physical onboarding model that captures informal supply Dormy's self-onboard cannot reach.]
 Why it takes time to replicate: Each verification requires manual review (at MVP),
   document upload, selfie comparison, and property proof for landlords. A competitor
   cannot replicate 500 verified users overnight — each one represents 15–20 minutes of
   ops team work plus the user's own effort. Angkas took years to verify 30,000 riders using
   a similar manual process.
 How the product builds this from day one: Every verified user from Day 1 adds to the
-  network. The first 100 verified users are the hardest — and the most valuable. By the time
-  a competitor notices the product is working, there are already 100+ verified identities
-  that would take months to replicate.
+  network. The first 100 verified users are the hardest — and the most valuable.
 
 MOAT LAYER 2: Localized Trust Data
 What it is: Over time, the platform accumulates barangay-level trust data: which

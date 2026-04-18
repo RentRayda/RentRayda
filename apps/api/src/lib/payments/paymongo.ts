@@ -104,6 +104,78 @@ export function verifyWebhookSignature(rawBody: string, signatureHeader: string)
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
 }
 
+export interface CreateCheckoutSessionParams {
+  amountCentavos: number;
+  description: string;
+  reservationId: string;
+  email?: string;
+  phone?: string;
+  name?: string;
+  successUrl: string;
+  cancelUrl: string;
+  metadata?: Record<string, string | null>;
+}
+
+export interface CheckoutSessionResult {
+  checkoutSessionId: string;
+  checkoutUrl: string;
+  paymentIntentId: string;
+}
+
+export async function createCheckoutSession(
+  params: CreateCheckoutSessionParams,
+): Promise<CheckoutSessionResult> {
+  const lineItems = [
+    {
+      amount: params.amountCentavos,
+      currency: 'PHP',
+      name: 'Verified Placement Reservation',
+      description: params.description,
+      quantity: 1,
+    },
+  ];
+
+  const response = await fetch(`${PAYMONGO_API}/checkout_sessions`, {
+    method: 'POST',
+    headers: {
+      'Authorization': authHeader(),
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      data: {
+        attributes: {
+          line_items: lineItems,
+          payment_method_types: ['card', 'gcash', 'grab_pay', 'paymaya'],
+          success_url: params.successUrl,
+          cancel_url: params.cancelUrl,
+          description: params.description,
+          statement_descriptor: 'RENTRAYDA',
+          metadata: {
+            reservation_id: params.reservationId,
+            tier: 'placement',
+            ...(params.metadata || {}),
+          },
+          ...(params.email ? { billing: { email: params.email, name: params.name || undefined, phone: params.phone || undefined } } : {}),
+        },
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(`Paymongo create checkout failed: ${response.status} ${JSON.stringify(err)}`);
+  }
+
+  const body = await response.json();
+  const attrs = body.data.attributes;
+
+  return {
+    checkoutSessionId: body.data.id,
+    checkoutUrl: attrs.checkout_url,
+    paymentIntentId: attrs.payment_intent.id,
+  };
+}
+
 export interface RefundParams {
   paymentIntentId: string;
   amountCentavos: number;

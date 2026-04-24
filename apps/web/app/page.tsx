@@ -1,6 +1,5 @@
 import {
   Hero,
-  TwoPathCTA,
   WhyWeExist,
   HowItWorks,
   Safety,
@@ -14,7 +13,6 @@ export default async function LandingPage() {
   return (
     <main>
       <Hero />
-      <TwoPathCTA />
       <WhyWeExist />
       <HowItWorks />
       <Safety />

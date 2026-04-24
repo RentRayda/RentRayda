@@ -2,6 +2,8 @@
 
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 // Animation variants
 const fadeUp = {
@@ -31,66 +33,124 @@ const staggerItem = {
 }
 
 // ─── SECTION 1: HERO ───
+// Asymmetric tarsier-forward editorial. Spec:
+// docs/superpowers/specs/2026-04-24-landing-hero-redesign-design.md
 export function Hero() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, amount: 0.3 })
 
+  // Subtle grain overlay — SVG inlined as a data-URL so it does not cost
+  // an extra HTTP request. 3% opacity is the spec's warmth-without-dirt threshold.
+  const grainStyle = {
+    backgroundImage:
+      "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.03'/></svg>\")",
+  } as const
+
   return (
-    <section ref={ref} className="relative bg-surface py-[var(--section-padding-y)]">
-      <div className="mx-auto max-w-[var(--max-width-narrow)] px-[var(--space-gutter)] text-center">
-        <motion.h1
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="font-display mb-6 font-bold text-fluid-display text-text-primary"
-        >
-          Verified rentals in Pasig/Ortigas.
-          <br />
-          Scam-protected. Landlord-safe.
-        </motion.h1>
-
-        <motion.p
-          variants={fadeUp}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          transition={{ delay: 0.1 }}
-          className="mx-auto mb-10 max-w-[600px] text-fluid-body-lg text-text-secondary"
-        >
-          For anyone moving to Manila without a kakilala network — BPO new hires, students, fresh grads, OFW families. Browse free. Pay only if you want our verified placement service.
-        </motion.p>
-
-        {/* Trust signals */}
+    <section
+      ref={ref}
+      style={grainStyle}
+      className="relative bg-hero-warm py-24 sm:py-28 md:py-32 motion-reduce:[&_*]:!transition-none motion-reduce:[&_*]:!animate-none"
+    >
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-6 md:grid-cols-[45fr_55fr] md:gap-12 md:px-12">
+        {/* LEFT — tarsier */}
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="mb-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-6"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="order-1 flex justify-center md:order-none md:justify-start"
         >
-          {[
-            '\u2713 Verified landlord IDs (PhilSys-backed)',
-            '\u2713 3 verified matches in 48 hours',
-            '\u2713 Female-only options available',
-          ].map((signal) => (
-            <motion.span
-              key={signal}
-              variants={staggerItem}
-              className="text-sm font-medium text-text-primary"
-            >
-              {signal}
-            </motion.span>
-          ))}
+          <Image
+            src="/tarsier-3d.png"
+            alt="Illustration of a Philippine tarsier looking directly at the viewer"
+            width={500}
+            height={500}
+            priority
+            className="h-[260px] w-auto sm:h-[320px] md:h-[500px]"
+          />
         </motion.div>
 
-        {/* Under-hero text */}
-        <motion.p
-          variants={fadeUp}
+        {/* RIGHT — text stack */}
+        <motion.div
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.05, delayChildren: 0.2 } },
+          }}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          transition={{ delay: 0.3 }}
-          className="text-sm text-text-tertiary"
+          className="order-2 flex flex-col items-start text-left md:order-none"
         >
-          Free to browse. Free for landlords forever. We only charge tenants who want our verified placement service — and only after we&apos;ve delivered.
-        </motion.p>
+          <motion.h1
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display mb-6 text-[40px] font-bold leading-[1.05] tracking-tight text-text-primary md:text-[56px]"
+          >
+            Verified rentals in Pasig/Ortigas.
+            <br />
+            Scam-protected. Landlord-safe.
+          </motion.h1>
+
+          <motion.p
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-8 max-w-[520px] text-base leading-[1.6] text-text-secondary md:text-lg"
+          >
+            For anyone moving to Manila without a kakilala network. Browse free. Pay only if you want our verified placement service.
+          </motion.p>
+
+          {/* Trust signals — vertical stack, green checkmarks */}
+          <motion.ul
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 flex flex-col gap-3"
+          >
+            {[
+              'Verified landlord IDs (PhilSys-backed)',
+              '3 verified matches in 48 hours',
+              'Female-only options available',
+            ].map((signal) => (
+              <li key={signal} className="flex items-center gap-2 text-sm font-medium text-text-primary">
+                <svg
+                  aria-hidden="true"
+                  className="h-4 w-4 flex-shrink-0 text-verified"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M16.704 5.29a1 1 0 00-1.408-1.42l-7.29 7.23-3.3-3.27a1 1 0 10-1.41 1.42l4 3.97a1 1 0 001.41 0l8-7.93z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                {signal}
+              </li>
+            ))}
+          </motion.ul>
+
+          {/* CTAs */}
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row"
+          >
+            <Link
+              href="/listings"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-brand px-6 text-[15px] font-semibold text-white transition-colors hover:bg-brand-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-hero-warm"
+            >
+              Find a verified place
+            </Link>
+            <Link
+              href="/landlord/signup"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-brand bg-transparent px-6 text-[15px] font-semibold text-brand transition-colors hover:bg-brand-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-hero-warm"
+            >
+              I&apos;m a landlord
+            </Link>
+          </motion.div>
+
+          <p className="mt-6 text-xs text-text-tertiary">
+            Free to browse. Free for landlords forever.
+          </p>
+        </motion.div>
       </div>
     </section>
   )

@@ -6,6 +6,7 @@ import { db, users, tenantProfiles, listings, landlordProfiles, connectionReques
 import { eq, and } from 'drizzle-orm';
 import { connectionRequestSchema } from '@rentrayda/shared';
 import { notificationQueue } from '../lib/queue';
+import { canRevealPhone } from '../lib/connection-reveal';
 import type { AppVariables } from '../types';
 
 const connectionsRouter = new Hono<{ Variables: AppVariables }>();
@@ -177,36 +178,70 @@ connectionsRouter.patch('/:id/accept', async (c) => {
   const [request] = await db.select().from(connectionRequests).where(eq(connectionRequests.id, requestId)).limit(1);
   if (!request) return c.json({ error: 'Not found', code: 'NOT_FOUND' }, 404);
 
-  // Verify ownership
+  // Load everything the reveal predicate needs, then let the pure function decide.
+  // The rule itself lives in ../lib/connection-reveal.ts and is exhaustively
+  // tested in tests/connection-reveal.test.ts — a privacy leak here is
+  // unrecoverable, so every deny path has its own test.
   const [landlordProfile] = await db.select().from(landlordProfiles).where(eq(landlordProfiles.userId, appUser.id)).limit(1);
-  if (!landlordProfile || request.landlordProfileId !== landlordProfile.id) {
-    return c.json({ error: 'Not the owner', code: 'NOT_OWNER' }, 403);
+  const [tenantProfile] = request.tenantProfileId
+    ? await db.select().from(tenantProfiles).where(eq(tenantProfiles.id, request.tenantProfileId)).limit(1)
+    : [null];
+  const [tenantUser] = tenantProfile?.userId
+    ? await db.select().from(users).where(eq(users.id, tenantProfile.userId)).limit(1)
+    : [null];
+
+  // Narrow Drizzle's `string` to the union types the predicate expects.
+  // DB CHECK constraints guarantee these values at runtime.
+  const decision = canRevealPhone({
+    request: {
+      status: request.status as 'pending' | 'accepted' | 'declined' | 'expired',
+      landlordProfileId: request.landlordProfileId,
+      tenantProfileId: request.tenantProfileId,
+      listingId: request.listingId,
+    },
+    landlordProfile: landlordProfile
+      ? {
+          id: landlordProfile.id,
+          verificationStatus: landlordProfile.verificationStatus as
+            | 'unverified'
+            | 'pending'
+            | 'verified'
+            | 'rejected'
+            | 'partial',
+          userId: landlordProfile.userId,
+        }
+      : null,
+    landlordUser: { id: appUser.id, isSuspended: appUser.isSuspended },
+    tenantProfile: tenantProfile
+      ? {
+          id: tenantProfile.id,
+          verificationStatus: tenantProfile.verificationStatus as
+            | 'unverified'
+            | 'pending'
+            | 'verified'
+            | 'rejected'
+            | 'partial',
+          userId: tenantProfile.userId,
+        }
+      : null,
+    tenantUser: tenantUser ? { id: tenantUser.id, isSuspended: tenantUser.isSuspended } : null,
+  });
+
+  if (!decision.allowed) {
+    const statusByCode = {
+      NOT_OWNER: 403,
+      INVALID_INPUT: 400,
+      BOTH_NOT_VERIFIED: 403,
+      SUSPENDED: 403,
+      NOT_FOUND: 404,
+    } as const;
+    return c.json({ error: decision.reason, code: decision.code }, statusByCode[decision.code]);
   }
 
-  // ⚠️ CRITICAL SERVER-SIDE CHECKS — ALL MUST PASS
-  // Check 1: Request must be pending
-  if (request.status !== 'pending') {
-    return c.json({ error: 'Request already processed', code: 'INVALID_INPUT' }, 400);
-  }
-
-  // Check 2: Landlord must be verified AND not suspended
-  if (landlordProfile.verificationStatus !== 'verified') {
-    return c.json({ error: 'Landlord not verified', code: 'BOTH_NOT_VERIFIED' }, 403);
-  }
-  if (appUser.isSuspended) {
-    return c.json({ error: 'Account suspended', code: 'SUSPENDED' }, 403);
-  }
-
-  // Check 3: Tenant must be verified AND not suspended
-  const [tenantProfile] = await db.select().from(tenantProfiles).where(eq(tenantProfiles.id, request.tenantProfileId)).limit(1);
-  if (!tenantProfile || tenantProfile.verificationStatus !== 'verified') {
-    return c.json({ error: 'Tenant not verified', code: 'BOTH_NOT_VERIFIED' }, 403);
-  }
-
-  const [tenantUser] = await db.select().from(users).where(eq(users.id, tenantProfile.userId)).limit(1);
-  if (!tenantUser) return c.json({ error: 'Tenant not found', code: 'NOT_FOUND' }, 404);
-  if (tenantUser.isSuspended) {
-    return c.json({ error: 'Tenant account suspended', code: 'SUSPENDED' }, 403);
+  // From here on we know the reveal is allowed — non-null narrowing for TS.
+  if (!tenantUser || !tenantProfile) {
+    // Unreachable given the predicate, but satisfies the compiler.
+    return c.json({ error: 'Unexpected null tenant state', code: 'NOT_FOUND' }, 404);
   }
 
   // ALL CHECKS PASSED — reveal phone numbers
